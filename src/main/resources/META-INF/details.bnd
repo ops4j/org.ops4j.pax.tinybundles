@@ -1,3 +1,0 @@
-Include-Resource=\
-src/main/resources,\
-@target/dependency/ops4j-base.jar!/org/ops4j/lang/**

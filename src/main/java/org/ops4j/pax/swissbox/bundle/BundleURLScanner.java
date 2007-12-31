@@ -19,33 +19,39 @@ package org.ops4j.pax.swissbox.bundle;
 
 import java.net.URL;
 import org.osgi.framework.Bundle;
-import org.ops4j.lang.PostConditionException;
 
-public class BundleResourceScanner
-    extends BundleEntryScanner<BundleResource>
+/**
+ * A scanned that creates URL's out of entries.
+ *
+ * @author Alin Dreghiciu
+ * @since 0.1.0, December 26, 2007
+ */
+public class BundleURLScanner
+    extends BundleEntryScanner<URL>
 {
 
     /**
-     * @see BundleEntryScanner#BundleEntryScanner()
+     * @see BundleEntryScanner#BundleEntryScanner(String,String,boolean)
      */
-    public BundleResourceScanner()
+    public BundleURLScanner( final String path,
+                             final String filePattern,
+                             final boolean recurse )
     {
-        super();
+        super( path, filePattern, recurse );
     }
 
     /**
-     * @see BundleEntryScanner#BundleEntryScanner(String,boolean)
+     * Creates an URL for the entry (same as the param)
+     *
+     * @param bundle bundle that contains the entries
+     * @param entry  found entry
+     *
+     * @return URL for the watched entry
      */
-    public BundleResourceScanner( String rootPath, boolean recursive )
+    @Override
+    protected URL createResource( final Bundle bundle, final URL entry )
     {
-        super( rootPath, recursive );
-    }
-
-    protected BundleResource createResource( final Bundle bundle, final String entryName )
-    {
-        final URL resourceUrl = bundle.getEntry( entryName );
-        PostConditionException.validateNotNull( resourceUrl, "Found resource for " + entryName );
-        return new BundleResource( entryName, resourceUrl );
+        return entry;
     }
 
 }

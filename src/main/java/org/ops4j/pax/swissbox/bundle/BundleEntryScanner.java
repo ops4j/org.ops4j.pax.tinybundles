@@ -17,11 +17,10 @@
  */
 package org.ops4j.pax.swissbox.bundle;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.osgi.framework.Bundle;
 import org.ops4j.lang.PreConditionException;
 
@@ -29,47 +28,48 @@ import org.ops4j.lang.PreConditionException;
  * Scans bundles for entries such as directories of files.
  *
  * @author Alin Dreghiciu
- * @since October 14, 2007
+ * @since 0.1.0, October 14, 2007
  */
 public abstract class BundleEntryScanner<T>
     implements BundleScanner<T>
 {
 
     /**
-     * Logger.
-     */
-    private static final Log LOGGER = LogFactory.getLog( BundleEntryScanner.class );
-
-    /**
      * Root path to be scanned.
      */
-    private final String m_rootPath;
+    private final String m_path;
+    /**
+     * File pattern to be scanned.
+     */
+    private String m_filePattern;
     /**
      * True, if the bundle should be scanned recursively.
      */
-    private final boolean m_recursive;
-
-    /**
-     * Creates a bundle entry scanner that scans all entries starting from the root path recursively.
-     */
-    public BundleEntryScanner()
-    {
-        this( "/", true );
-    }
+    private final boolean m_recurse;
 
     /**
      * Creates a bundle entry scanner that scans all entries from a bundle starting form the root path specified
      *
-     * @param rootPath  starting entry path (e.g. "/" for root of the bundle. Cannot be null.
-     * @param recursive if the entry path should be scanned recursively (so if it has a subdirectory also the contet of
-     *                  the subdirectory will be scanned
+     * @param path        The path name in which to look. A specified path of Ò/Ó indicates the root of the bundle. Path
+     *                    is relative to the root of the bundle and must not be null
+     * @param filePattern The file name pattern for selecting entries in the specified path. The pattern is only matched
+     *                    against the last element of the entry path and it supports substring matching, as specified in
+     *                    the Filter specification, using the wild-card character (Ó*Ó). If null is specified, this is
+     *                    equivalent to Ò*Ó and matches all files.
+     * @param recurse     If true, recurse into subdirectories. Otherwise only return entries from the given directory
+     *
+     * @see Bundle#findEntries(String, String, boolean)
      */
-    public BundleEntryScanner( final String rootPath, final boolean recursive )
+    public BundleEntryScanner( final String path,
+                               final String filePattern,
+                               boolean recurse )
     {
-        PreConditionException.validateNotNull( "Root path", rootPath );
+        PreConditionException.validateNotNull( "Path", path );
+        PreConditionException.validateNotNull( "File pattern", filePattern );
 
-        m_rootPath = rootPath;
-        m_recursive = recursive;
+        m_path = path;
+        m_filePattern = filePattern;
+        m_recurse = recurse;
     }
 
     /**
@@ -77,39 +77,35 @@ public abstract class BundleEntryScanner<T>
      */
     public List<T> scan( final Bundle bundle )
     {
-        return internalScan( bundle, m_rootPath );
-    }
-
-    /**
-     * Scans a specific path for resources.
-     *
-     * @param bundle bundle to be scanned
-     * @param path   path to be scanned
-     *
-     * @return a list of resources
-     */
-    private List<T> internalScan( final Bundle bundle, final String path )
-    {
         final List<T> resources = new ArrayList<T>();
-        final Enumeration e = bundle.getEntryPaths( path );
+        final Enumeration e = bundle.findEntries( m_path, m_filePattern, m_recurse );
         if( e != null )
         {
             while( e.hasMoreElements() )
             {
-                final Object entry = e.nextElement();
+                final URL entry = (URL) e.nextElement();
                 if( entry != null )
                 {
-                    resources.add( createResource( bundle, entry.toString() ) );
-                    if( m_recursive && entry.toString().endsWith( "/" ) )
-                    {
-                        resources.addAll( internalScan( bundle, entry.toString() ) );
-                    }
+                    resources.add( createResource( bundle, entry ) );
                 }
             }
         }
         return resources;
     }
 
-    protected abstract T createResource( Bundle bundle, String entryName );
+    protected abstract T createResource( Bundle bundle, URL entry );
+
+    @Override
+    public String toString()
+    {
+        return new StringBuffer()
+            .append( this.getClass().getSimpleName() )
+            .append( "{" )
+            .append( "path=" ).append( m_path )
+            .append( ",filePattern=" ).append( m_filePattern )
+            .append( ",recurse=" ).append( m_recurse )
+            .append( "}" )
+            .toString();
+    }
 
 }

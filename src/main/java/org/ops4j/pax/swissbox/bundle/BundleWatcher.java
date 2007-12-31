@@ -17,6 +17,9 @@
  */
 package org.ops4j.pax.swissbox.bundle;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,7 +49,7 @@ public class BundleWatcher<T>
     /**
      * Logger.
      */
-    private static final Log LOGGER = LogFactory.getLog( BundleWatcher.class );
+    private static final Log LOG = LogFactory.getLog( BundleWatcher.class );
 
     /**
      * Bundle context in use. Constructor paramater. Cannot be null.
@@ -55,7 +58,11 @@ public class BundleWatcher<T>
     /**
      * Bundle scanner used to scan bundles. Constructor paramater. Cannot be null.
      */
-    private final BundleScanner<T> m_bundleScanner;
+    private final BundleScanner<T> m_scanner;
+    /**
+     * Bundle observers for scanned entries. Cannot be null but can be empty.
+     */
+    private final List<BundleObserver<T>> m_observers;
     /**
      * Mapping between bundle and scanned resources. Cannot be null.
      */
@@ -68,18 +75,37 @@ public class BundleWatcher<T>
     /**
      * Create a new bundle watcher.
      *
-     * @param context       a bundle context. Cannot be null.
-     * @param bundleScanner a bundle scanner. Cannot be null.
+     * @param context a bundle context. Cannot be null.
+     * @param scanner a bundle scanner. Cannot be null.
      */
-    public BundleWatcher( final BundleContext context, final BundleScanner<T> bundleScanner )
+    public BundleWatcher( final BundleContext context, final BundleScanner<T> scanner )
     {
-        LOGGER.info( "Creating bundle watcher with scanner [" + bundleScanner + "]..." );
+        this( context, scanner, (BundleObserver<T>[]) null );
+    }
+
+    /**
+     * Create a new bundle watcher.
+     *
+     * @param context   a bundle context. Cannot be null.
+     * @param scanner   a bundle scanner. Cannot be null.
+     * @param observers vararg list of observers
+     */
+    public BundleWatcher( final BundleContext context,
+                          final BundleScanner<T> scanner,
+                          final BundleObserver<T>... observers )
+    {
+        LOG.info( "Creating bundle watcher with scanner [" + scanner + "]..." );
 
         PreConditionException.validateNotNull( context, "Context" );
-        PreConditionException.validateNotNull( bundleScanner, "Bundle scanner" );
+        PreConditionException.validateNotNull( scanner, "Bundle scanner" );
 
         m_context = context;
-        m_bundleScanner = bundleScanner;
+        m_scanner = scanner;
+        m_observers = new ArrayList<BundleObserver<T>>();
+        if( observers != null )
+        {
+            m_observers.addAll( Arrays.asList( observers ) );
+        }
     }
 
     /**
@@ -129,7 +155,8 @@ public class BundleWatcher<T>
     protected void onStop()
     {
         m_context.removeBundleListener( m_bundleListener );
-        for( Bundle bundle : m_mappings.keySet() )
+        final Bundle[] toBeRemoved = m_mappings.keySet().toArray( new Bundle[m_mappings.keySet().size()] );
+        for( Bundle bundle : toBeRemoved )
         {
             unregister( bundle );
         }
@@ -139,34 +166,59 @@ public class BundleWatcher<T>
     }
 
     /**
-     * Scans resources using the bundle scanner and registers the result of scanning process.
+     * Scans entries using the bundle scanner and registers the result of scanning process.
+     * Then notify the observers. If an exception appears during notification, it is ignored.
      *
      * @param bundle registered bundle
      */
     private void register( final Bundle bundle )
     {
-        LOGGER.debug( "Scanning bundle [" + bundle.getSymbolicName() + "]" );
-        final List<T> resources = m_bundleScanner.scan( bundle );
+        LOG.debug( "Scanning bundle [" + bundle.getSymbolicName() + "]" );
+        final List<T> resources = m_scanner.scan( bundle );
         m_mappings.put( bundle, resources );
         if( resources != null && resources.size() > 0 )
         {
-            LOGGER.debug( "Found resources " + resources );
+            LOG.debug( "Found resources " + resources );
+            for( BundleObserver<T> observer : m_observers )
+            {
+                try
+                {
+                    observer.addingEntries( bundle, Collections.unmodifiableList( resources ) );
+                }
+                catch( Throwable ignore )
+                {
+                    LOG.error( "Ignored exception during register", ignore );
+                }
+            }
         }
     }
 
     /**
-     * Unregisters each resource from the unregistered bundle.
+     * Unregisters each entry from the unregistered bundle by first notifing the observers. If an exception appears
+     * during notification, it is ignored.
      *
      * @param bundle the unregistred bundle
      */
     private void unregister( final Bundle bundle )
     {
-        LOGGER.debug( "Releasing bundle [" + bundle.getSymbolicName() + "]" );
+        LOG.debug( "Releasing bundle [" + bundle.getSymbolicName() + "]" );
         final List<T> resources = m_mappings.get( bundle );
         if( resources != null && resources.size() > 0 )
         {
-            LOGGER.debug( "Unregistering " + resources );
+            LOG.debug( "Unregistering " + resources );
+            for( BundleObserver<T> observer : m_observers )
+            {
+                try
+                {
+                    observer.removingEntries( bundle, Collections.unmodifiableList( resources ) );
+                }
+                catch( Throwable ignore )
+                {
+                    LOG.error( "Ignored exception during unregister", ignore );
+                }
+            }
         }
+        m_mappings.remove( bundle );
     }
 
 }

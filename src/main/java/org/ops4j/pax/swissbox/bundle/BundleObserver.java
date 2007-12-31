@@ -13,7 +13,7 @@
  * implied.
  *
  * See the License for the specific language governing permissions and
- * limitations under the License. 
+ * limitations under the License.
  */
 package org.ops4j.pax.swissbox.bundle;
 
@@ -21,21 +21,28 @@ import java.util.List;
 import org.osgi.framework.Bundle;
 
 /**
- * A bundle scanner can scan bundles for divers types of bundle entries.
+ * Observer for watched bundles entries.
  *
  * @author Alin Dreghiciu
- * @since 0.1.0, October 14, 2007
+ * @since 0.1.0, December 26, 2007
  */
-public interface BundleScanner<T>
+public interface BundleObserver<T>
 {
 
     /**
-     * Scan a bundle for resources.
+     * Called when a bundle gets started and containes the desired entries.
      *
-     * @param bundle bundle to be scanned
-     *
-     * @return an array of found bundle resources. If no resource was found it should return an empty array.
+     * @param bundle  startd bundle
+     * @param entries list of watched entries
      */
-    List<T> scan( Bundle bundle );
+    void addingEntries( Bundle bundle, List<T> entries );
+
+    /**
+     * Called when a bunle gets stopped.
+     *
+     * @param bundle  stopped bundle
+     * @param entries list of watched entries for that bundle
+     */
+    void removingEntries( Bundle bundle, List<T> entries );
 
 }
