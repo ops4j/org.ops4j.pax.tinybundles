@@ -77,11 +77,13 @@
       <groupId>commons-logging</groupId>
       <artifactId>commons-logging-api</artifactId>
       <version>1.0.4</version>
+      <optional>true</optional>
     </dependency>
     <dependency>
       <groupId>org.ops4j.base</groupId>
       <artifactId>ops4j-base</artifactId>
       <version>0.4.0</version>
+      <optional>true</optional>
     </dependency>
     <!-- Provided dependencies -->
     <dependency>
