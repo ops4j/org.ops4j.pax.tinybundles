@@ -170,7 +170,7 @@ public class ServiceCollection<T>
         @SuppressWarnings( "unchecked" )
         public Object addingService( final ServiceReference serviceReference )
         {
-            LOGGER.info( "Added service [" + serviceReference + "]" );
+            LOGGER.info( "Added service with reference [" + serviceReference + "]" );
             T service = null;
             try
             {
@@ -207,10 +207,17 @@ public class ServiceCollection<T>
         @SuppressWarnings( "unchecked" )
         public void removedService( final ServiceReference serviceReference, final Object service )
         {
-            LOGGER.info( "Removed service [" + serviceReference + "]" );
-            LOGGER.debug( "Related service [" + service + "]" );
+            LOGGER.info( "Removed service [" + service + "]" );
+            // if one of the listenres is throwing an exception we will still remove it
+            try
+            {
+                m_collectionListener.serviceRemoved( serviceReference, (T) service );
+            }
+            catch( Throwable ignore )
+            {
+                LOGGER.warn( "Ignored exception from collection listener", ignore );
+            }
             super.removedService( serviceReference, service );
-            m_collectionListener.serviceRemoved( serviceReference, (T) service );
         }
     }
 
