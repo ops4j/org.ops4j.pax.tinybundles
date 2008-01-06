@@ -25,10 +25,10 @@ import java.util.concurrent.Callable;
  * @author Alin Dreghiciu
  * @since 0.1.0, December 29, 2007
  */
-public class ContextClassLoader
+public class ContextClassLoaderUtils
 {
 
-    private ContextClassLoader()
+    private ContextClassLoaderUtils()
     {
         // utility class
     }
