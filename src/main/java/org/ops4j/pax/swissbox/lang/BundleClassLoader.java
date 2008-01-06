@@ -19,6 +19,7 @@ package org.ops4j.pax.swissbox.lang;
 
 import java.io.IOException;
 import java.net.URL;
+import java.net.URLClassLoader;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
 import java.util.Enumeration;
@@ -34,7 +35,7 @@ import org.ops4j.lang.PreConditionException;
  * @since 0.1.0, December 29, 2007
  */
 public class BundleClassLoader
-    extends ClassLoader
+    extends URLClassLoader
 {
 
     /**
@@ -75,7 +76,7 @@ public class BundleClassLoader
      */
     public BundleClassLoader( final Bundle bundle )
     {
-        super( null );
+        super( new URL[] {} );
         PreConditionException.validateNotNull( bundle, "Bundle" );
         this.m_bundle = bundle;
     }
@@ -106,14 +107,14 @@ public class BundleClassLoader
     }
 
     @Override
-    protected URL findResource( final String name )
+    public URL findResource( final String name )
     {
         return m_bundle.getResource( name );
     }
 
     @Override
     @SuppressWarnings( "unchecked" )
-    protected Enumeration<URL> findResources( final String name )
+    public Enumeration<URL> findResources( final String name )
         throws IOException
     {
         return m_bundle.getResources( name );
