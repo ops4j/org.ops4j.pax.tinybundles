@@ -44,7 +44,21 @@ public class BundleClassLoader
      * Privileged factory method.
      *
      * @param bundle bundle to be used for class loading. Cannot be null.
-     * @param parent parent clas loader
+     *
+     * @return created bundle class loader
+     *
+     * @see org.ops4j.pax.swissbox.lang.BundleClassLoader#BundleClassLoader(Bundle)
+     */
+    public static BundleClassLoader newPriviledged( final Bundle bundle )
+    {
+        return newPriviledged( bundle, null );
+    }
+
+    /**
+     * Privileged factory method.
+     *
+     * @param bundle bundle to be used for class loading. Cannot be null.
+     * @param parent parent class loader
      *
      * @return created bundle class loader
      *
@@ -61,6 +75,16 @@ public class BundleClassLoader
                 }
             }
         );
+    }
+
+    /**
+     * Creates a bundle class loader with no parent.
+     *
+     * @param bundle bundle to be used for class loading. Cannot be null.
+     */
+    public BundleClassLoader( final Bundle bundle )
+    {
+        this( bundle, null );
     }
 
     /**
