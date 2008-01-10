@@ -76,9 +76,19 @@ public class BundleClassLoader
      */
     public BundleClassLoader( final Bundle bundle )
     {
-        super( new URL[] {} );
+        super( new URL[]{ } );
         PreConditionException.validateNotNull( bundle, "Bundle" );
         this.m_bundle = bundle;
+    }
+
+    /**
+     * Getter.
+     *
+     * @return the bundle the class loader loads from
+     */
+    protected Bundle getBundle()
+    {
+        return m_bundle;
     }
 
     @Override
