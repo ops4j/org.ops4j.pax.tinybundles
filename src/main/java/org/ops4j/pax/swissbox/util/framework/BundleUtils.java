@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.web.extender.war.internal.util;
+package org.ops4j.pax.swissbox.util.framework;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -39,7 +39,7 @@ public class BundleUtils
      *
      * @return corresponding bundle context or throws an IllegalStateException if bundle context cannot be discovered
      *
-     * @throws IlegalStateException if bundle context cannot be discovered
+     * @throws IllegalStateException if bundle context cannot be discovered
      */
     public static BundleContext getBundleContext( final Bundle bundle )
     {
