@@ -37,9 +37,7 @@ public class BundleUtils
      *
      * @param bundle the bundle from which the bundle context is needed
      *
-     * @return corresponding bundle context or throws an IllegalStateException if bundle context cannot be discovered
-     *
-     * @throws IllegalStateException if bundle context cannot be discovered
+     * @return corresponding bundle context or null if bundle context cannot be discovered
      */
     public static BundleContext getBundleContext( final Bundle bundle )
     {
@@ -76,8 +74,8 @@ public class BundleUtils
                 // ignore
             }
         }
-
-        throw new IllegalStateException( "Cannot discover the bundle context for bundle [" + bundle + "]" );
+        // well, discovery failed
+        return null;
     }
 
 }
