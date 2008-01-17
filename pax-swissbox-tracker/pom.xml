@@ -39,6 +39,15 @@
       <artifactId>pax-swissbox-lifecycle</artifactId>
       <version>0.1.0-SNAPSHOT</version>
     </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.swissbox</groupId>
+      <artifactId>pax-swissbox-null-jcl</artifactId>
+      <version>0.1.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.base</groupId>
+      <artifactId>ops4j-base</artifactId>
+    </dependency>
   </dependencies>
 
 </project>

@@ -26,7 +26,7 @@ import org.apache.commons.logging.LogFactory;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 import org.osgi.util.tracker.ServiceTracker;
-import org.ops4j.lang.PreConditionException;
+import org.ops4j.lang.NullArgumentException;
 import org.ops4j.pax.swissbox.lifecycle.AbstractLifecycle;
 
 /**
@@ -87,8 +87,8 @@ public class ServiceCollection<T>
     {
         LOGGER.info( "Creating service collection for [" + serviceClass + "]" );
 
-        PreConditionException.validateNotNull( context, "Context" );
-        PreConditionException.validateNotNull( serviceClass, "Service class" );
+        NullArgumentException.validateNotNull( context, "Context" );
+        NullArgumentException.validateNotNull( serviceClass, "Service class" );
 
         m_context = context;
         m_serviceClass = serviceClass;

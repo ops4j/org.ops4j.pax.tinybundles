@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 import org.osgi.framework.Bundle;
-import org.ops4j.lang.PreConditionException;
+import org.ops4j.lang.NullArgumentException;
 
 /**
  * Scans bundles for entries such as directories of files.
@@ -64,8 +64,8 @@ public abstract class BundleEntryScanner<T>
                                final String filePattern,
                                boolean recurse )
     {
-        PreConditionException.validateNotNull( "Path", path );
-        PreConditionException.validateNotNull( "File pattern", filePattern );
+        NullArgumentException.validateNotNull( "Path", path );
+        NullArgumentException.validateNotNull( "File pattern", filePattern );
 
         m_path = path;
         m_filePattern = filePattern;

@@ -10,18 +10,18 @@
   </parent>
 
   <groupId>org.ops4j.pax.swissbox</groupId>
-  <artifactId>pax-swissbox-core</artifactId>
+  <artifactId>pax-swissbox-null-jcl</artifactId>
   <version>0.1.0-SNAPSHOT</version>
   <packaging>bundle</packaging>
 
-  <name>OPS4J Pax Swissbox - OSGi Core</name>
+  <name>OPS4J Pax Swissbox - Null JCL</name>
   <description>
-    OPS4J Pax Swissbox - Utilities related to OSGi core framework
+    OPS4J Pax Swissbox - Null Apache Commons Logging.
   </description>
 
   <properties>
-    <bundle.symbolicName>org.ops4j.pax.swissbox.core</bundle.symbolicName>
-    <bundle.namespace>org.ops4j.pax.swissbox.core</bundle.namespace>
+    <bundle.symbolicName>org.ops4j.pax.swissbox.null.jcl</bundle.symbolicName>
+    <bundle.namespace>org.apache.commons.logging</bundle.namespace>
   </properties>
 
   <build>
@@ -32,17 +32,5 @@
       </plugin>
     </plugins>
   </build>
-
-  <dependencies>
-    <dependency>
-      <groupId>org.ops4j.pax.swissbox</groupId>
-      <artifactId>pax-swissbox-lifecycle</artifactId>
-      <version>0.1.0-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>org.ops4j.base</groupId>
-      <artifactId>ops4j-base</artifactId>
-    </dependency>
-  </dependencies>
 
 </project>

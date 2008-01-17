@@ -42,6 +42,7 @@
     <module>pax-swissbox-core</module>
     <module>pax-swissbox-extender</module>
     <module>pax-swissbox-lifecycle</module>
+    <module>pax-swissbox-null-jcl</module>
     <module>pax-swissbox-property</module>
     <module>pax-swissbox-tracker</module>
   </modules>
@@ -64,54 +65,56 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
-        <groupId>${maven.bundle.plugin.groupId}</groupId>
-        <artifactId>maven-bundle-plugin</artifactId>
-        <version>${maven.bundle.plugin.version}</version>
-        <extensions>true</extensions>
-        <configuration>
-          <instructions>
-            <_include>-osgi.bnd</_include>
-          </instructions>
-        </configuration>
-      </plugin>
     </plugins>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>${maven.bundle.plugin.groupId}</groupId>
+          <artifactId>maven-bundle-plugin</artifactId>
+          <version>${maven.bundle.plugin.version}</version>
+          <extensions>true</extensions>
+          <configuration>
+            <instructions>
+              <_include>-osgi.bnd</_include>
+            </instructions>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
   </build>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.ops4j.base</groupId>
+        <artifactId>ops4j-base</artifactId>
+        <version>0.5.0-SNAPSHOT</version>
+        <scope>provided</scope>
+      </dependency>
+      <!-- Provided dependencies -->
+      <dependency>
+        <groupId>org.osgi</groupId>
+        <artifactId>osgi_R4_core</artifactId>
+        <version>1.0</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.osgi</groupId>
+        <artifactId>osgi_R4_compendium</artifactId>
+        <version>1.0</version>
+        <scope>provided</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <dependencies>
     <dependency>
-      <groupId>commons-logging</groupId>
-      <artifactId>commons-logging-api</artifactId>
-      <version>1.0.4</version>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>org.ops4j.base</groupId>
-      <artifactId>ops4j-base</artifactId>
-      <version>0.5.0-SNAPSHOT</version>
-      <optional>true</optional>
-    </dependency>
-    <!-- Provided dependencies -->
-    <dependency>
       <groupId>org.osgi</groupId>
       <artifactId>osgi_R4_core</artifactId>
-      <version>1.0</version>
-      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.osgi</groupId>
       <artifactId>osgi_R4_compendium</artifactId>
-      <version>1.0</version>
-      <scope>provided</scope>
-    </dependency>
-    <!-- Testing dependencies -->
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.easymock</groupId>
-      <artifactId>easymock</artifactId>
     </dependency>
   </dependencies>
 

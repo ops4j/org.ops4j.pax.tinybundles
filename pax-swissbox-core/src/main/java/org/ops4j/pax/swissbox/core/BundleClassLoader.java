@@ -23,7 +23,7 @@ import java.security.AccessController;
 import java.security.PrivilegedAction;
 import java.util.Enumeration;
 import org.osgi.framework.Bundle;
-import org.ops4j.lang.PreConditionException;
+import org.ops4j.lang.NullArgumentException;
 
 /**
  * Class loader that uses the a bundle in order to implement class loader functionality.
@@ -96,7 +96,7 @@ public class BundleClassLoader
     public BundleClassLoader( final Bundle bundle, final ClassLoader parent )
     {
         super( parent );
-        PreConditionException.validateNotNull( bundle, "Bundle" );
+        NullArgumentException.validateNotNull( bundle, "Bundle" );
         m_bundle = bundle;
     }
 

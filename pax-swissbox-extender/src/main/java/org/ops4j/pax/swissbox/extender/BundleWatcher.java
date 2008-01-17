@@ -30,7 +30,7 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleEvent;
 import org.osgi.framework.BundleListener;
 import org.osgi.framework.SynchronousBundleListener;
-import org.ops4j.lang.PreConditionException;
+import org.ops4j.lang.NullArgumentException;
 import org.ops4j.pax.swissbox.lifecycle.AbstractLifecycle;
 
 /**
@@ -96,8 +96,8 @@ public class BundleWatcher<T>
     {
         LOG.info( "Creating bundle watcher with scanner [" + scanner + "]..." );
 
-        PreConditionException.validateNotNull( context, "Context" );
-        PreConditionException.validateNotNull( scanner, "Bundle scanner" );
+        NullArgumentException.validateNotNull( context, "Context" );
+        NullArgumentException.validateNotNull( scanner, "Bundle scanner" );
 
         m_context = context;
         m_scanner = scanner;

@@ -9,4 +9,4 @@ Import-Package:\
   *
 
 Export-Package:\
-  ${bundle.namespace}.*; version="${pom.version}
+  ${bundle.namespace}.*; version="${pom.version}"
