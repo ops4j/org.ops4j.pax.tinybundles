@@ -12,7 +12,7 @@
   <groupId>org.ops4j.pax</groupId>
   <artifactId>swissbox</artifactId>
   <version>0.1.0-SNAPSHOT</version>
-  <packaging>bundle</packaging>
+  <packaging>pom</packaging>
 
   <name>OPS4J Pax Swissbox</name>
   <description>
@@ -34,11 +34,17 @@
   <properties>
     <maven.bundle.plugin.groupId>org.apache.felix</maven.bundle.plugin.groupId>
     <maven.bundle.plugin.version>1.1.0-SNAPSHOT</maven.bundle.plugin.version>
-    <!--maven.bundle.plugin.groupId>org.ops4j.pax.maven</maven.bundle.plugin.groupId>
-    <maven.bundle.plugin.version>RELEASE</maven.bundle.plugin.version-->
     <bundle.symbolicName>org.ops4j.pax.swissbox</bundle.symbolicName>
     <bundle.namespace>org.ops4j.pax.swissbox</bundle.namespace>
   </properties>
+
+  <modules>
+    <module>pax-swissbox-core</module>
+    <module>pax-swissbox-extender</module>
+    <module>pax-swissbox-lifecycle</module>
+    <module>pax-swissbox-property</module>
+    <module>pax-swissbox-tracker</module>
+  </modules>
 
   <build>
     <plugins>

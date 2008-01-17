@@ -1,0 +1,44 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.ops4j.pax</groupId>
+    <artifactId>swissbox</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+  </parent>
+
+  <groupId>org.ops4j.pax.swissbox</groupId>
+  <artifactId>pax-swissbox-property</artifactId>
+  <version>0.1.0-SNAPSHOT</version>
+  <packaging>bundle</packaging>
+
+  <name>OPS4J Pax Swissbox - Property</name>
+  <description>
+    OPS4J Pax Swissbox - Utilities related to properties in osgi.
+  </description>
+
+  <properties>
+    <bundle.symbolicName>org.ops4j.pax.swissbox.property</bundle.symbolicName>
+    <bundle.namespace>org.ops4j.pax.swissbox.property</bundle.namespace>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>${maven.bundle.plugin.groupId}</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.ops4j.pax.swissbox</groupId>
+      <artifactId>pax-swissbox-lifecycle</artifactId>
+      <version>0.1.0-SNAPSHOT</version>
+    </dependency>
+  </dependencies>
+
+</project>

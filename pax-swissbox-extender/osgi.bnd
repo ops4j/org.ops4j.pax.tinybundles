@@ -1,0 +1,12 @@
+Bundle-SymbolicName:\
+  ${bundle.symbolicName}
+
+Bundle-Version>:\
+  ${pom.version}
+
+Import-Package:\
+  org.osgi.framework;version="[1.0.0,2.0.0)",\
+  *
+
+Export-Package:\
+  ${bundle.namespace}.*; version="${pom.version}
