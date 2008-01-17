@@ -5,10 +5,11 @@ Bundle-Version>:\
   ${pom.version}
 
 Import-Package:\
+  ${bundle.namespace}.*; version="${pom.version}",\
   org.apache.commons.logging; version="[1.0.4,2.0.0)",\
-  org.osgi.framework;version="[1.0.0,2.0.0)",\
   org.ops4j.lang; version="0.5.0",\
-  *
+  org.ops4j.pax.swissbox.lifecycle; version="0.1.0",\
+  org.osgi.framework; version="[1.0.0,2.0.0)"
 
 Export-Package:\
   ${bundle.namespace}.*; version="${pom.version}"

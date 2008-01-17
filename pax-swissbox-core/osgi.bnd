@@ -5,9 +5,9 @@ Bundle-Version>:\
   ${pom.version}
 
 Import-Package:\
+  ${bundle.namespace}.*; version="${pom.version}",\
   org.osgi.framework; version="[1.0.0,2.0.0)",\
-  org.ops4j.lang; version="0.5.0",\
-  *
+  org.ops4j.lang; version="0.5.0"
 
 Export-Package:\
   ${bundle.namespace}.*; version="${pom.version}"

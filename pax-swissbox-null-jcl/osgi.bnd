@@ -6,3 +6,6 @@ Bundle-Version>:\
 
 Export-Package:\
   ${bundle.namespace}.*; version="1.0.4"
+
+Export-Package:\
+  ${bundle.namespace}.*; version="1.0.4"
