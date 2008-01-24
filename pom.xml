@@ -32,8 +32,6 @@
   </scm>
 
   <properties>
-    <maven.bundle.plugin.groupId>org.apache.felix</maven.bundle.plugin.groupId>
-    <maven.bundle.plugin.version>1.1.0-SNAPSHOT</maven.bundle.plugin.version>
     <bundle.symbolicName>org.ops4j.pax.swissbox</bundle.symbolicName>
     <bundle.namespace>org.ops4j.pax.swissbox</bundle.namespace>
   </properties>
@@ -69,9 +67,9 @@
     <pluginManagement>
       <plugins>
         <plugin>
-          <groupId>${maven.bundle.plugin.groupId}</groupId>
+          <groupId>org.apache.felix</groupId>
           <artifactId>maven-bundle-plugin</artifactId>
-          <version>${maven.bundle.plugin.version}</version>
+          <version>1.2.0</version>
           <extensions>true</extensions>
           <configuration>
             <instructions>
