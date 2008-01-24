@@ -44,8 +44,11 @@ public abstract class AbstractLifecycle
         try
         {
             m_lock.lock();
-            m_state.start( this );
-            m_state = STARTED;
+            if( STARTED != m_state )
+            {
+                m_state.start( this );
+                m_state = STARTED;
+            }
         }
         finally
         {
@@ -58,13 +61,21 @@ public abstract class AbstractLifecycle
         try
         {
             m_lock.lock();
-            m_state.stop( this );
-            m_state = STOPPED;
+            if( STOPPED != m_state )
+            {
+                m_state.stop( this );
+                m_state = STOPPED;
+            }
         }
         finally
         {
             m_lock.unlock();
         }
+    }
+
+    public boolean isStarted()
+    {
+        return m_state == STARTED;
     }
 
     protected abstract void onStart();
@@ -95,6 +106,8 @@ public abstract class AbstractLifecycle
         {
             context.onStop();
         }
+
+
 
     }
 

@@ -23,4 +23,7 @@ public interface Lifecycle
     void start();
 
     void stop();
+
+    boolean isStarted();
+
 }
