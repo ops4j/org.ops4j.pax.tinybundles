@@ -31,7 +31,7 @@
       </roles>
       <timezone>UTC+2</timezone>
     </developer>
-  </developers>  
+  </developers>
 
   <issueManagement>
     <system>jira</system>
@@ -44,8 +44,7 @@
   </scm>
 
   <properties>
-    <bundle.symbolicName>org.ops4j.pax.swissbox</bundle.symbolicName>
-    <bundle.namespace>org.ops4j.pax.swissbox</bundle.namespace>
+    <dependency.base.version>0.5.0</dependency.base.version>
   </properties>
 
   <modules>
@@ -97,8 +96,13 @@
     <dependencies>
       <dependency>
         <groupId>org.ops4j.base</groupId>
-        <artifactId>ops4j-base</artifactId>
-        <version>0.5.0-SNAPSHOT</version>
+        <artifactId>ops4j-base-lang</artifactId>
+        <version>${dependency.base.version}-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>org.ops4j.base</groupId>
+        <artifactId>ops4j-base-util-property</artifactId>
+        <version>${dependency.base.version}-SNAPSHOT</version>
       </dependency>
       <!-- Provided dependencies -->
       <dependency>
