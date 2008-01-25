@@ -21,6 +21,18 @@
 
   <url>http://wiki.ops4j.org</url>
 
+  <developers>
+    <developer>
+      <id>adreghiciu</id>
+      <name>Alin Dreghiciu</name>
+      <email>adreghiciu@gmail.com</email>
+      <roles>
+        <role>Developer</role>
+      </roles>
+      <timezone>UTC+2</timezone>
+    </developer>
+  </developers>  
+
   <issueManagement>
     <system>jira</system>
     <url>http://issues.ops4j.org/jira/browse/PAXSWISSBOX</url>
