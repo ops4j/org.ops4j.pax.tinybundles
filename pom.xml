@@ -40,7 +40,7 @@
     <module>pax-swissbox-core</module>
     <module>pax-swissbox-extender</module>
     <module>pax-swissbox-lifecycle</module>
-    <module>pax-swissbox-null-jcl</module>
+    <module>pax-swissbox-optional-jcl</module>
     <module>pax-swissbox-property</module>
     <module>pax-swissbox-tracker</module>
   </modules>
