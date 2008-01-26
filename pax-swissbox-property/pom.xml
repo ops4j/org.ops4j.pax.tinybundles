@@ -4,6 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
+    <relativePath>../</relativePath>
     <groupId>org.ops4j.pax</groupId>
     <artifactId>swissbox</artifactId>
     <version>0.1.0-SNAPSHOT</version>
@@ -17,6 +18,7 @@
   <name>OPS4J Pax Swissbox - Property</name>
   <description>
     OPS4J Pax Swissbox - Utilities related to properties in osgi.
+    Detailed information to be found at http://wiki.ops4j.org/confluence/x/OARN.
   </description>
 
   <properties>

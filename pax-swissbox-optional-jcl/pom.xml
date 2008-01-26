@@ -4,6 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
+    <relativePath>../</relativePath>
     <groupId>org.ops4j.pax</groupId>
     <artifactId>swissbox</artifactId>
     <version>0.1.0-SNAPSHOT</version>
@@ -17,6 +18,7 @@
   <name>OPS4J Pax Swissbox - Optional JCL</name>
   <description>
     OPS4J Pax Swissbox - Optional Apache Commons Logging.
+    Detailed information to be found at http://wiki.ops4j.org/confluence/x/NwRN. 
   </description>
 
   <properties>
