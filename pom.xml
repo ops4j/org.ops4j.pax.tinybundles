@@ -16,10 +16,11 @@
 
   <name>OPS4J Pax Swissbox</name>
   <description>
-    OPS4J Pax Swissbox - Utilities for OSGi World
+    OPS4J Pax Swissbox - Utilities for OSGi World.
+    Detail information to be found at http://wiki.ops4j.org/confluence/x/LwRN.
   </description>
 
-  <url>http://wiki.ops4j.org</url>
+  <url>http://www.ops4j.org/projects/pax/swissbox</url>
 
   <developers>
     <developer>
