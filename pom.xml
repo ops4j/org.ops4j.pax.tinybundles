@@ -107,14 +107,14 @@
       <!-- Provided dependencies -->
       <dependency>
         <groupId>org.osgi</groupId>
-        <artifactId>osgi_R4_core</artifactId>
-        <version>1.0</version>
+        <artifactId>org.osgi.core</artifactId>
+        <version>4.0.1</version>
         <scope>provided</scope>
       </dependency>
       <dependency>
         <groupId>org.osgi</groupId>
-        <artifactId>osgi_R4_compendium</artifactId>
-        <version>1.0</version>
+        <artifactId>org.osgi.compendium</artifactId>
+        <version>4.0.1</version>
         <scope>provided</scope>
       </dependency>
     </dependencies>
@@ -123,11 +123,11 @@
   <dependencies>
     <dependency>
       <groupId>org.osgi</groupId>
-      <artifactId>osgi_R4_core</artifactId>
+      <artifactId>org.osgi.core</artifactId>
     </dependency>
     <dependency>
       <groupId>org.osgi</groupId>
-      <artifactId>osgi_R4_compendium</artifactId>
+      <artifactId>org.osgi.compendium</artifactId>
     </dependency>
   </dependencies>
 
