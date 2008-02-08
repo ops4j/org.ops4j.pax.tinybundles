@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project relativePaths="false" version="4">
-  <component name="AntConfiguration">
-    <defaultAnt bundledAnt="true" />
-  </component>
   <component name="BuildJarProjectSettings">
     <option name="BUILD_JARS_ON_MAKE" value="false" />
   </component>
@@ -215,13 +212,6 @@
     <option name="IS_EMACS_ERRORS_MODE" value="true" />
     <option name="ADDITIONAL_OPTIONS_STRING" value="" />
   </component>
-  <component name="MavenImporterState">
-    <option name="autoImport">
-      <set>
-        <option value="$PROJECT_DIR$/pom.xml" />
-      </set>
-    </option>
-  </component>
   <component name="Palette2">
     <group name="Swing">
       <item class="com.intellij.uiDesigner.HSpacer" tooltip-text="Horizontal Spacer" icon="/com/intellij/uiDesigner/icons/hspacer.png" removable="false" auto-create-binding="false" can-attach-label="false">
@@ -345,7 +335,15 @@
   </component>
   <component name="ProjectFileVersion" converted="true" />
   <component name="ProjectModuleManager">
-    <modules />
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/pax-swissbox-core/pax-swissbox-core.iml" filepath="$PROJECT_DIR$/pax-swissbox-core/pax-swissbox-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pax-swissbox-extender/pax-swissbox-extender.iml" filepath="$PROJECT_DIR$/pax-swissbox-extender/pax-swissbox-extender.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pax-swissbox-lifecycle/pax-swissbox-lifecycle.iml" filepath="$PROJECT_DIR$/pax-swissbox-lifecycle/pax-swissbox-lifecycle.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pax-swissbox-optional-jcl/pax-swissbox-optional-jcl.iml" filepath="$PROJECT_DIR$/pax-swissbox-optional-jcl/pax-swissbox-optional-jcl.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pax-swissbox-property/pax-swissbox-property.iml" filepath="$PROJECT_DIR$/pax-swissbox-property/pax-swissbox-property.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pax-swissbox-tracker/pax-swissbox-tracker.iml" filepath="$PROJECT_DIR$/pax-swissbox-tracker/pax-swissbox-tracker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/swissbox.iml" filepath="$PROJECT_DIR$/swissbox.iml" />
+    </modules>
   </component>
   <component name="ProjectRootManager" version="2" assert-keyword="true" jdk-15="true" project-jdk-name="1.5" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
@@ -364,22 +362,12 @@
     <option name="GENERATE_IIOP_STUBS" value="false" />
     <option name="ADDITIONAL_OPTIONS_STRING" value="" />
   </component>
-  <component name="SvnBranchConfigurationManager">
-    <option name="myConfigurationMap">
-      <map>
-        <entry key="$PROJECT_DIR$">
-          <value>
-            <SvnBranchConfiguration>
-              <option name="trunkUrl" value="https://scm.ops4j.org/repos/ops4j/projects/pax/swissbox" />
-            </SvnBranchConfiguration>
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="svn" />
   </component>
   <component name="WebServicesPlugin" addRequiredLibraries="true" />
+  <UsedPathMacros>
+    <macro name="M2_REPO" />
+  </UsedPathMacros>
 </project>
 
