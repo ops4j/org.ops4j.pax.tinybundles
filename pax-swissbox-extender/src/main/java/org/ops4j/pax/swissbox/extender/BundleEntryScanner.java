@@ -26,6 +26,7 @@ import org.ops4j.lang.NullArgumentException;
 
 /**
  * Scans bundles for entries such as directories of files.
+ * The bundle entry scanner is abstract in order to allow subclasses to create specific resources out of the found urls.
  *
  * @author Alin Dreghiciu
  * @since 0.1.0, October 14, 2007
@@ -50,12 +51,12 @@ public abstract class BundleEntryScanner<T>
     /**
      * Creates a bundle entry scanner that scans all entries from a bundle starting form the root path specified
      *
-     * @param path        The path name in which to look. A specified path of Ò/Ó indicates the root of the bundle. Path
+     * @param path        The path name in which to look. A specified path of "/" indicates the root of the bundle. Path
      *                    is relative to the root of the bundle and must not be null
      * @param filePattern The file name pattern for selecting entries in the specified path. The pattern is only matched
      *                    against the last element of the entry path and it supports substring matching, as specified in
-     *                    the Filter specification, using the wild-card character (Ó*Ó). If null is specified, this is
-     *                    equivalent to Ò*Ó and matches all files.
+     *                    the Filter specification, using the wild-card character ("*"). If null is specified, this is
+     *                    equivalent to "*" and matches all files.
      * @param recurse     If true, recurse into subdirectories. Otherwise only return entries from the given directory
      *
      * @see Bundle#findEntries(String, String, boolean)

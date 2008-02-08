@@ -21,7 +21,7 @@ import java.net.URL;
 import org.osgi.framework.Bundle;
 
 /**
- * A scanned that creates URL's out of entries.
+ * A bundle scanner that creates URL's out of entries.
  *
  * @author Alin Dreghiciu
  * @since 0.1.0, December 26, 2007
@@ -31,6 +31,8 @@ public class BundleURLScanner
 {
 
     /**
+     * Delegate to BundleEntryScanner.
+     *
      * @see BundleEntryScanner#BundleEntryScanner(String,String,boolean)
      */
     public BundleURLScanner( final String path,
