@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project relativePaths="false" version="4">
-  <component name="AntConfiguration">
-    <defaultAnt bundledAnt="true" />
-  </component>
   <component name="BuildJarProjectSettings">
     <option name="BUILD_JARS_ON_MAKE" value="false" />
   </component>
@@ -339,12 +336,15 @@
   <component name="ProjectFileVersion" converted="true" />
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/samples/extender/extender.iml" filepath="$PROJECT_DIR$/samples/extender/extender.iml" />
+      <module fileurl="file://$PROJECT_DIR$/samples/extender/manifest-extender/manifest-extender.iml" filepath="$PROJECT_DIR$/samples/extender/manifest-extender/manifest-extender.iml" />
       <module fileurl="file://$PROJECT_DIR$/pax-swissbox-core/pax-swissbox-core.iml" filepath="$PROJECT_DIR$/pax-swissbox-core/pax-swissbox-core.iml" />
       <module fileurl="file://$PROJECT_DIR$/pax-swissbox-extender/pax-swissbox-extender.iml" filepath="$PROJECT_DIR$/pax-swissbox-extender/pax-swissbox-extender.iml" />
       <module fileurl="file://$PROJECT_DIR$/pax-swissbox-lifecycle/pax-swissbox-lifecycle.iml" filepath="$PROJECT_DIR$/pax-swissbox-lifecycle/pax-swissbox-lifecycle.iml" />
       <module fileurl="file://$PROJECT_DIR$/pax-swissbox-optional-jcl/pax-swissbox-optional-jcl.iml" filepath="$PROJECT_DIR$/pax-swissbox-optional-jcl/pax-swissbox-optional-jcl.iml" />
       <module fileurl="file://$PROJECT_DIR$/pax-swissbox-property/pax-swissbox-property.iml" filepath="$PROJECT_DIR$/pax-swissbox-property/pax-swissbox-property.iml" />
       <module fileurl="file://$PROJECT_DIR$/pax-swissbox-tracker/pax-swissbox-tracker.iml" filepath="$PROJECT_DIR$/pax-swissbox-tracker/pax-swissbox-tracker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/samples/samples.iml" filepath="$PROJECT_DIR$/samples/samples.iml" />
       <module fileurl="file://$PROJECT_DIR$/swissbox.iml" filepath="$PROJECT_DIR$/swissbox.iml" />
     </modules>
   </component>

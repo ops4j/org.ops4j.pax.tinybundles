@@ -54,6 +54,7 @@
     <module>pax-swissbox-optional-jcl</module>
     <module>pax-swissbox-property</module>
     <module>pax-swissbox-tracker</module>
+    <module>samples</module>
   </modules>
 
   <build>

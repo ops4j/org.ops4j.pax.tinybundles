@@ -104,10 +104,10 @@ public class ManifestEntry
     public String toString()
     {
         return new StringBuilder( ManifestEntry.class.getSimpleName() )
-            .append( "{" )
+            .append( "{ " )
             .append( "key=" ).append( m_key )
-            .append( ",value=" ).append( m_value )
-            .append( "}" )
+            .append( ", value=" ).append( m_value )
+            .append( " }" )
             .toString();
     }
 
