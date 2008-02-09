@@ -63,7 +63,7 @@ public class Activator
                     "Bundle-.*"
                 )
             ),
-            // customized for scanned entries
+            // customizer for scanned entries that logs OSGi manifest headers
             new BundleObserver<ManifestEntry>()
             {
                 // log found entries when bundle containing expected headers starts
