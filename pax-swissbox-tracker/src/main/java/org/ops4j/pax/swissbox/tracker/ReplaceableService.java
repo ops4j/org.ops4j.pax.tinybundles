@@ -32,7 +32,7 @@ public class ReplaceableService<T>
     /**
      * Logger.
      */
-    private static final Log LOGGER = LogFactory.getLog( ReplaceableService.class );
+    private static final Log LOG = LogFactory.getLog( ReplaceableService.class );
 
     /**
      * Bundle context. Constructor parameter. Cannot be null.
@@ -77,7 +77,7 @@ public class ReplaceableService<T>
     public ReplaceableService( final BundleContext context, final Class<T> serviceClass,
                                final ReplaceableServiceListener<T> listener )
     {
-        LOGGER.info( "Creating replaceable service for [" + serviceClass + "]" );
+        LOG.debug( "Creating replaceable service for [" + serviceClass + "]" );
 
         NullArgumentException.validateNotNull( context, "Context" );
         NullArgumentException.validateNotNull( serviceClass, "Service class" );
@@ -106,7 +106,7 @@ public class ReplaceableService<T>
     {
         if( m_service != newService )
         {
-            LOGGER.info( "Service changed [" + m_service + "]  -> [" + newService + "]" );
+            LOG.debug( "Service changed [" + m_service + "]  -> [" + newService + "]" );
             final T oldService = m_service;
             m_service = newService;
             if( m_serviceListener != null )

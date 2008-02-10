@@ -94,7 +94,7 @@ public class BundleWatcher<T>
                           final BundleScanner<T> scanner,
                           final BundleObserver<T>... observers )
     {
-        LOG.info( "Creating bundle watcher with scanner [" + scanner + "]..." );
+        LOG.debug( "Creating bundle watcher with scanner [" + scanner + "]..." );
 
         NullArgumentException.validateNotNull( context, "Context" );
         NullArgumentException.validateNotNull( scanner, "Bundle scanner" );

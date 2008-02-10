@@ -43,7 +43,7 @@ public class ServiceCollection<T>
     /**
      * Logger.
      */
-    private static final Log LOGGER = LogFactory.getLog( ServiceCollection.class );
+    private static final Log LOG = LogFactory.getLog( ServiceCollection.class );
 
     /**
      * Bundle context. Constructor parameter. Cannot be null.
@@ -85,7 +85,7 @@ public class ServiceCollection<T>
     public ServiceCollection( final BundleContext context, final Class<T> serviceClass,
                               final ServiceCollectionListener<T> collectionListener )
     {
-        LOGGER.info( "Creating service collection for [" + serviceClass + "]" );
+        LOG.debug( "Creating service collection for [" + serviceClass + "]" );
 
         NullArgumentException.validateNotNull( context, "Context" );
         NullArgumentException.validateNotNull( serviceClass, "Service class" );
@@ -170,18 +170,18 @@ public class ServiceCollection<T>
         @SuppressWarnings( "unchecked" )
         public Object addingService( final ServiceReference serviceReference )
         {
-            LOGGER.info( "Added service with reference [" + serviceReference + "]" );
+            LOG.debug( "Added service with reference [" + serviceReference + "]" );
             T service = null;
             try
             {
                 service = (T) super.addingService( serviceReference );
-                LOGGER.debug( "Related service [" + service + "]" );
+                LOG.debug( "Related service [" + service + "]" );
                 if( service != null )
                 {
                     if( !m_collectionListener.serviceAdded( serviceReference, service ) )
                     {
                         super.removedService( serviceReference, service );
-                        LOGGER.trace(
+                        LOG.trace(
                             "Service [" + service + "] dropped as requested by listener [" + m_collectionListener + "]"
                         );
                         service = null;
@@ -193,7 +193,7 @@ public class ServiceCollection<T>
                 if( service != null )
                 {
                     super.removedService( serviceReference, service );
-                    LOGGER.debug(
+                    LOG.debug(
                         "Service [" + service + "] dropped due to exception [" + e.getClass() + ":" + e.getMessage()
                         + "]"
                     );
@@ -207,7 +207,7 @@ public class ServiceCollection<T>
         @SuppressWarnings( "unchecked" )
         public void removedService( final ServiceReference serviceReference, final Object service )
         {
-            LOGGER.info( "Removed service [" + service + "]" );
+            LOG.debug( "Removed service [" + service + "]" );
             // if one of the listenres is throwing an exception we will still remove it
             try
             {
@@ -215,7 +215,7 @@ public class ServiceCollection<T>
             }
             catch( Throwable ignore )
             {
-                LOGGER.warn( "Ignored exception from collection listener", ignore );
+                LOG.warn( "Ignored exception from collection listener", ignore );
             }
             super.removedService( serviceReference, service );
         }
