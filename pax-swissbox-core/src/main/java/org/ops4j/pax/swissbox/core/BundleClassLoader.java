@@ -22,6 +22,8 @@ import java.net.URL;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
 import java.util.Enumeration;
+import java.util.NoSuchElementException;
+
 import org.osgi.framework.Bundle;
 import org.ops4j.lang.NullArgumentException;
 
@@ -31,9 +33,24 @@ import org.ops4j.lang.NullArgumentException;
  * @author Alin Dreghiciu
  * @since 0.1.0, December 29, 2007
  */
-public class BundleClassLoader
-    extends ClassLoader
+public class BundleClassLoader extends ClassLoader
 {
+
+    private static final EmptyEnumeration<URL> EMPTY_URL_ENUMERATION = new EmptyEnumeration<URL>();
+
+    private static final class EmptyEnumeration<T>
+        implements Enumeration<T>
+    {
+        public boolean hasMoreElements()
+        {
+            return false;
+        }
+
+        public T nextElement()
+        {
+            throw new NoSuchElementException();
+        }
+    }
 
     /**
      * Bundle used for class loading.
@@ -66,15 +83,13 @@ public class BundleClassLoader
      */
     public static BundleClassLoader newPriviledged( final Bundle bundle, final ClassLoader parent )
     {
-        return AccessController.doPrivileged(
-            new PrivilegedAction<BundleClassLoader>()
+        return AccessController.doPrivileged( new PrivilegedAction<BundleClassLoader>()
+        {
+            public BundleClassLoader run()
             {
-                public BundleClassLoader run()
-                {
-                    return new BundleClassLoader( bundle, parent );
-                }
+                return new BundleClassLoader( bundle, parent );
             }
-        );
+        } );
     }
 
     /**
@@ -135,15 +150,18 @@ public class BundleClassLoader
      * @see ClassLoader#getResources(String)
      */
     @Override
-    @SuppressWarnings( "unchecked" )
+    @SuppressWarnings("unchecked")
     public Enumeration<URL> getResources( final String name )
         throws IOException
     {
         if( getParent() != null )
         {
-            super.getResource( name );
+            return super.getResources( name );
         }
-        return findResources( name );
+        else
+        {
+            return findResources( name );
+        }
     }
 
     /**
@@ -198,23 +216,27 @@ public class BundleClassLoader
      * @see ClassLoader#findResources(String)
      */
     @Override
-    @SuppressWarnings( "unchecked" )
+    @SuppressWarnings("unchecked")
     protected Enumeration<URL> findResources( final String name )
         throws IOException
     {
-        return m_bundle.getResources( name );
+        Enumeration resources = m_bundle.getResources( name );
+        // Bundle.getResources may return null, in such case return empty enumeration
+        if( resources == null )
+        {
+            return EMPTY_URL_ENUMERATION;
+        }
+        else
+        {
+            return resources;
+        }
     }
 
     @Override
     public String toString()
     {
-        return new StringBuffer()
-            .append( this.getClass().getSimpleName() )
-            .append( "{" )
-            .append( "bundle=" ).append( m_bundle )
-            .append( ",parent=" ).append( getParent() )
-            .append( "}" )
-            .toString();
+        return new StringBuffer().append( this.getClass().getSimpleName() ).append( "{" ).append( "bundle=" ).append(
+            m_bundle ).append( ",parent=" ).append( getParent() ).append( "}" ).toString();
     }
 
     @Override
@@ -247,8 +269,6 @@ public class BundleClassLoader
     @Override
     public int hashCode()
     {
-        return ( m_bundle != null ? m_bundle.hashCode() : 0 ) * 37
-               + ( getParent() != null ? getParent().hashCode() : 0 );
+        return (m_bundle != null ? m_bundle.hashCode() : 0) * 37 + (getParent() != null ? getParent().hashCode() : 0);
     }
 }
-
