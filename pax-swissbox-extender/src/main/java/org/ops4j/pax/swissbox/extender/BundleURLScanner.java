@@ -43,6 +43,21 @@ public class BundleURLScanner
     }
 
     /**
+     * Delegate to BundleEntryScanner.
+     *
+     * @see BundleEntryScanner#BundleEntryScanner(String,String,boolean)
+     */
+    public BundleURLScanner( final String pathManifestHeader,
+                             final String filePatternManifestHeader,
+                             final String recurseManifestHeader,
+                             final String path,
+                             final String filePattern,
+                             boolean recurse )
+    {
+        super( pathManifestHeader, filePatternManifestHeader, recurseManifestHeader, path, filePattern, recurse );
+    }
+
+    /**
      * Creates an URL for the entry (same as the param)
      *
      * @param bundle bundle that contains the entries

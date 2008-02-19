@@ -42,33 +42,83 @@ public abstract class BundleEntryScanner<T>
     /**
      * File pattern to be scanned.
      */
-    private String m_filePattern;
+    private final String m_filePattern;
     /**
      * True, if the bundle should be scanned recursively.
      */
     private final boolean m_recurse;
+    /**
+     * Manifest header name of path.
+     */
+    private final String m_pathManifestHeader;
+    /**
+     * Manifest header name of file pattern.
+     */
+    private final String m_filePatternManifestHeader;
+    /**
+     * Manifest header name of recurse.
+     */
+    private final String m_recurseManifestHeader;
 
     /**
      * Creates a bundle entry scanner that scans all entries from a bundle starting form the root path specified
+     * without looking for bundle manifest headers.
      *
-     * @param path        The path name in which to look. A specified path of "/" indicates the root of the bundle. Path
-     *                    is relative to the root of the bundle and must not be null
-     * @param filePattern The file name pattern for selecting entries in the specified path. The pattern is only matched
-     *                    against the last element of the entry path and it supports substring matching, as specified in
-     *                    the Filter specification, using the wild-card character ("*"). If null is specified, this is
+     * @param path        The path name in which to look. A specified path of "/" indicates the root of
+     *                    the bundle. Path is relative to the root of the bundle. If the path is null then
+     *                    it is considered to be root of the bundle.
+     * @param filePattern The file name pattern for selecting entries in the specified path. The pattern
+     *                    is only matched against the last element of the entry path and it supports
+     *                    substring matching, as specified in the Filter specification, using the
+     *                    wild-card character ("*"). If null is specified, this is
      *                    equivalent to "*" and matches all files.
-     * @param recurse     If true, recurse into subdirectories. Otherwise only return entries from the given directory
+     * @param recurse     If true, recurse into subdirectories. Otherwise only return entries from the
+     *                    given directory
      *
-     * @see Bundle#findEntries(String, String, boolean)
+     * @see BundleEntryScanner#BundleEntryScanner(String, String, String, String, String, boolean)
      */
     public BundleEntryScanner( final String path,
                                final String filePattern,
                                boolean recurse )
     {
+        this( null, null, null, path, filePattern, recurse );
         NullArgumentException.validateNotNull( "Path", path );
         NullArgumentException.validateNotNull( "File pattern", filePattern );
+    }
 
-        m_path = path;
+    /**
+     * Creates a bundle entry scanner that scans all entries from a bundle starting form the root path specified. The
+     * path / filePattern / recurse can be specified in the manifest of the bundle. The provided path / filePattern /
+     * recurse are used as defaults if there are no corresponding manifest headers.
+     *
+     * @param pathManifestHeader        name of the manifest header for path
+     * @param filePatternManifestHeader name of the manifest header for file pattern
+     * @param recurseManifestHeader     name of the manifest header for recurse
+     * @param path                      The path name in which to look. A specified path of "/" indicates the root of
+     *                                  the bundle. Path is relative to the root of the bundle. If the path is null then
+     *                                  it is considered to be root of the bundle.
+     * @param filePattern               The file name pattern for selecting entries in the specified path. The pattern
+     *                                  is only matched against the last element of the entry path and it supports
+     *                                  substring matching, as specified in the Filter specification, using the
+     *                                  wild-card character ("*"). If null is specified, this is
+     *                                  equivalent to "*" and matches all files.
+     * @param recurse                   If true, recurse into subdirectories. Otherwise only return entries from the
+     *                                  given directory
+     *
+     * @see Bundle#findEntries(String, String, boolean)
+     */
+    public BundleEntryScanner( final String pathManifestHeader,
+                               final String filePatternManifestHeader,
+                               final String recurseManifestHeader,
+                               final String path,
+                               final String filePattern,
+                               boolean recurse )
+    {
+        m_pathManifestHeader = pathManifestHeader;
+        m_filePatternManifestHeader = filePatternManifestHeader;
+        m_recurseManifestHeader = recurseManifestHeader;
+
+        m_path = path == null ? "/" : path;
         m_filePattern = filePattern;
         m_recurse = recurse;
     }
@@ -79,7 +129,7 @@ public abstract class BundleEntryScanner<T>
     public List<T> scan( final Bundle bundle )
     {
         final List<T> resources = new ArrayList<T>();
-        final Enumeration e = bundle.findEntries( m_path, m_filePattern, m_recurse );
+        final Enumeration e = bundle.findEntries( getPath( bundle ), getFilePattern( bundle ), getRecurse( bundle ) );
         if( e != null )
         {
             while( e.hasMoreElements() )
@@ -94,6 +144,94 @@ public abstract class BundleEntryScanner<T>
         return resources;
     }
 
+    /**
+     * Returns the path to be searched by first looking for an entry in the manifest of the bundle specified by
+     * path manifest header. It will return the default path if:
+     * - path manifest header is null
+     * - header is not set
+     * - header is not a string
+     * - header is empty
+     *
+     * @param bundle bundle containing the manifest
+     *
+     * @return found path
+     */
+    private String getPath( final Bundle bundle )
+    {
+        if( m_pathManifestHeader != null )
+        {
+            final Object value = bundle.getHeaders().get( m_pathManifestHeader );
+            if( value instanceof String && ( (String) value ).trim().length() > 0 )
+            {
+                return (String) value;
+            }
+        }
+        return m_path;
+    }
+
+    /**
+     * Returns the file pattern to be searched by first looking for an entry in the manifest of the bundle specified by
+     * file pattern manifest header. It will return the default file pattern if:
+     * - file pattern manifest header is null
+     * - header is not set
+     * - header is not a string
+     * - header is empty
+     *
+     * @param bundle bundle containing the manifest
+     *
+     * @return found file pattern
+     */
+    private String getFilePattern( final Bundle bundle )
+    {
+        if( m_filePatternManifestHeader != null )
+        {
+            final Object value = bundle.getHeaders().get( m_filePatternManifestHeader );
+            if( value instanceof String && ( (String) value ).trim().length() > 0 )
+            {
+                return (String) value;
+            }
+        }
+        return m_filePattern;
+    }
+
+    /**
+     * Returns the recurse by first looking for an entry in the manifest of the bundle specified by recurse manifest
+     * header. It will return the default recurse if:
+     * - file pattern manifest header is null
+     * - header is not set
+     * - headr is not a string
+     * - header is not true or false (case insensitive)
+     * - header is empty
+     *
+     * @param bundle bundle containing the manifest
+     *
+     * @return found file pattern
+     */
+    private boolean getRecurse( final Bundle bundle )
+    {
+        if( m_recurseManifestHeader != null )
+        {
+            final Object value = bundle.getHeaders().get( m_recurseManifestHeader );
+            if( value instanceof String
+                && ( (String) value ).trim().length() > 0
+                && ( ( ( (String) value ).trim().equalsIgnoreCase( "true" ) )
+                     || ( (String) value ).trim().equalsIgnoreCase( "false" ) ) )
+            {
+
+                return Boolean.valueOf( (String) value );
+            }
+        }
+        return m_recurse;
+    }
+
+    /**
+     * Resource factory.
+     *
+     * @param bundle bundle containing the entry
+     * @param entry  entry URL
+     *
+     * @return created resource
+     */
     protected abstract T createResource( Bundle bundle, URL entry );
 
     @Override
@@ -108,5 +246,6 @@ public abstract class BundleEntryScanner<T>
             .append( "}" )
             .toString();
     }
+
 
 }
