@@ -17,7 +17,6 @@
  */
 package org.ops4j.pax.swissbox.extender;
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
@@ -31,7 +30,7 @@ import org.ops4j.lang.NullArgumentException;
  * @author Alin Dreghiciu
  * @since 0.1.0, October 14, 2007
  */
-public abstract class BundleEntryScanner<T>
+public abstract class BundleEntryScanner<T, U>
     implements BundleScanner<T>
 {
 
@@ -129,12 +128,11 @@ public abstract class BundleEntryScanner<T>
     public List<T> scan( final Bundle bundle )
     {
         final List<T> resources = new ArrayList<T>();
-        final Enumeration e = bundle.findEntries( getPath( bundle ), getFilePattern( bundle ), getRecurse( bundle ) );
-        if( e != null )
+        final List<U> entries = findEntries( bundle );
+        if( entries != null && entries.size() > 0 )
         {
-            while( e.hasMoreElements() )
+            for( U entry : entries )
             {
-                final URL entry = (URL) e.nextElement();
                 if( entry != null )
                 {
                     resources.add( createResource( bundle, entry ) );
@@ -142,6 +140,31 @@ public abstract class BundleEntryScanner<T>
             }
         }
         return resources;
+    }
+
+    /**
+     * Find the bundle entries. Default implementaion fill use Bundle.findEntries.
+     *
+     * @param bundle bundle to be scanned
+     *
+     * @return list of entries. cannot be null but can be empty.
+     */
+    public List<U> findEntries( final Bundle bundle )
+    {
+        final List<U> entries = new ArrayList<U>();
+        final Enumeration e = bundle.findEntries( getPath( bundle ), getFilePattern( bundle ), getRecurse( bundle ) );
+        if( e != null )
+        {
+            while( e.hasMoreElements() )
+            {
+                final U entry = (U) e.nextElement();
+                if( entry != null )
+                {
+                    entries.add( entry );
+                }
+            }
+        }
+        return entries;
     }
 
     /**
@@ -156,7 +179,7 @@ public abstract class BundleEntryScanner<T>
      *
      * @return found path
      */
-    private String getPath( final Bundle bundle )
+    protected String getPath( final Bundle bundle )
     {
         if( m_pathManifestHeader != null )
         {
@@ -181,7 +204,7 @@ public abstract class BundleEntryScanner<T>
      *
      * @return found file pattern
      */
-    private String getFilePattern( final Bundle bundle )
+    protected String getFilePattern( final Bundle bundle )
     {
         if( m_filePatternManifestHeader != null )
         {
@@ -207,7 +230,7 @@ public abstract class BundleEntryScanner<T>
      *
      * @return found file pattern
      */
-    private boolean getRecurse( final Bundle bundle )
+    protected boolean getRecurse( final Bundle bundle )
     {
         if( m_recurseManifestHeader != null )
         {
@@ -232,7 +255,7 @@ public abstract class BundleEntryScanner<T>
      *
      * @return created resource
      */
-    protected abstract T createResource( Bundle bundle, URL entry );
+    protected abstract T createResource( Bundle bundle, U entry );
 
     @Override
     public String toString()

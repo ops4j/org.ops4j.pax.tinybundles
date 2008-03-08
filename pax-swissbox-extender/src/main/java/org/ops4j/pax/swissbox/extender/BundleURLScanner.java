@@ -27,7 +27,7 @@ import org.osgi.framework.Bundle;
  * @since 0.1.0, December 26, 2007
  */
 public class BundleURLScanner
-    extends BundleEntryScanner<URL>
+    extends BundleEntryScanner<URL,URL>
 {
 
     /**
