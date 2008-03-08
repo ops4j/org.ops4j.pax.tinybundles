@@ -114,7 +114,7 @@ public abstract class BundleEntryScanner<T>
         m_filePatternManifestHeader = filePatternManifestHeader;
         m_recurseManifestHeader = recurseManifestHeader;
 
-        m_path = path == null ? "/" : path;
+        m_path = path == null ? "/" : ( path.endsWith( "/" ) ? path : path + "/" );
         m_filePattern = filePattern;
         m_recurse = recurse;
     }
