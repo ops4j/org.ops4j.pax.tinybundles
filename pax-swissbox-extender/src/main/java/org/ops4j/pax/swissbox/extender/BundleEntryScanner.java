@@ -17,9 +17,6 @@
  */
 package org.ops4j.pax.swissbox.extender;
 
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.List;
 import org.osgi.framework.Bundle;
 import org.ops4j.lang.NullArgumentException;
 
@@ -30,7 +27,7 @@ import org.ops4j.lang.NullArgumentException;
  * @author Alin Dreghiciu
  * @since 0.1.0, October 14, 2007
  */
-public abstract class BundleEntryScanner<T, U>
+public abstract class BundleEntryScanner<T>
     implements BundleScanner<T>
 {
 
@@ -123,51 +120,6 @@ public abstract class BundleEntryScanner<T, U>
     }
 
     /**
-     * @see BundleScanner#scan(org.osgi.framework.Bundle)
-     */
-    public List<T> scan( final Bundle bundle )
-    {
-        final List<T> resources = new ArrayList<T>();
-        final List<U> entries = findEntries( bundle );
-        if( entries != null && entries.size() > 0 )
-        {
-            for( U entry : entries )
-            {
-                if( entry != null )
-                {
-                    resources.add( createResource( bundle, entry ) );
-                }
-            }
-        }
-        return resources;
-    }
-
-    /**
-     * Find the bundle entries. Default implementaion fill use Bundle.findEntries.
-     *
-     * @param bundle bundle to be scanned
-     *
-     * @return list of entries. cannot be null but can be empty.
-     */
-    protected List<U> findEntries( final Bundle bundle )
-    {
-        final List<U> entries = new ArrayList<U>();
-        final Enumeration e = bundle.findEntries( getPath( bundle ), getFilePattern( bundle ), getRecurse( bundle ) );
-        if( e != null )
-        {
-            while( e.hasMoreElements() )
-            {
-                final U entry = (U) e.nextElement();
-                if( entry != null )
-                {
-                    entries.add( entry );
-                }
-            }
-        }
-        return entries;
-    }
-
-    /**
      * Returns the path to be searched by first looking for an entry in the manifest of the bundle specified by
      * path manifest header. It will return the default path if:
      * - path manifest header is null
@@ -186,7 +138,12 @@ public abstract class BundleEntryScanner<T, U>
             final Object value = bundle.getHeaders().get( m_pathManifestHeader );
             if( value instanceof String && ( (String) value ).trim().length() > 0 )
             {
-                return (String) value;
+                String path = (String) value;
+                if( !path.endsWith( "/" ) )
+                {
+                    path = path + "/";
+                }
+                return path;
             }
         }
         return m_path;
@@ -246,16 +203,6 @@ public abstract class BundleEntryScanner<T, U>
         }
         return m_recurse;
     }
-
-    /**
-     * Resource factory.
-     *
-     * @param bundle bundle containing the entry
-     * @param entry  entry URL
-     *
-     * @return created resource
-     */
-    protected abstract T createResource( Bundle bundle, U entry );
 
     @Override
     public String toString()
