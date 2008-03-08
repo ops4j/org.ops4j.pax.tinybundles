@@ -149,7 +149,7 @@ public abstract class BundleEntryScanner<T, U>
      *
      * @return list of entries. cannot be null but can be empty.
      */
-    public List<U> findEntries( final Bundle bundle )
+    protected List<U> findEntries( final Bundle bundle )
     {
         final List<U> entries = new ArrayList<U>();
         final Enumeration e = bundle.findEntries( getPath( bundle ), getFilePattern( bundle ), getRecurse( bundle ) );
