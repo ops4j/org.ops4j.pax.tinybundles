@@ -379,8 +379,6 @@
   <component name="ProjectFileVersion" converted="true" />
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/samples/extender/extender.iml" filepath="$PROJECT_DIR$/samples/extender/extender.iml" />
-      <module fileurl="file://$PROJECT_DIR$/samples/extender/manifest-extender/manifest-extender.iml" filepath="$PROJECT_DIR$/samples/extender/manifest-extender/manifest-extender.iml" />
       <module fileurl="file://$PROJECT_DIR$/pax-swissbox-core/pax-swissbox-core.iml" filepath="$PROJECT_DIR$/pax-swissbox-core/pax-swissbox-core.iml" />
       <module fileurl="file://$PROJECT_DIR$/pax-swissbox-extender/pax-swissbox-extender.iml" filepath="$PROJECT_DIR$/pax-swissbox-extender/pax-swissbox-extender.iml" />
       <module fileurl="file://$PROJECT_DIR$/pax-swissbox-lifecycle/pax-swissbox-lifecycle.iml" filepath="$PROJECT_DIR$/pax-swissbox-lifecycle/pax-swissbox-lifecycle.iml" />
@@ -389,6 +387,7 @@
       <module fileurl="file://$PROJECT_DIR$/pax-swissbox-tinybundles/pax-swissbox-tinybundles.iml" filepath="$PROJECT_DIR$/pax-swissbox-tinybundles/pax-swissbox-tinybundles.iml" />
       <module fileurl="file://$PROJECT_DIR$/pax-swissbox-tracker/pax-swissbox-tracker.iml" filepath="$PROJECT_DIR$/pax-swissbox-tracker/pax-swissbox-tracker.iml" />
       <module fileurl="file://$PROJECT_DIR$/samples/samples.iml" filepath="$PROJECT_DIR$/samples/samples.iml" />
+      <module fileurl="file://$PROJECT_DIR$/samples/manifest-extender/samples-manifest-extender.iml" filepath="$PROJECT_DIR$/samples/manifest-extender/samples-manifest-extender.iml" />
       <module fileurl="file://$PROJECT_DIR$/samples/tinybundles/samples-tinybundles.iml" filepath="$PROJECT_DIR$/samples/tinybundles/samples-tinybundles.iml" />
       <module fileurl="file://$PROJECT_DIR$/swissbox.iml" filepath="$PROJECT_DIR$/swissbox.iml" />
     </modules>

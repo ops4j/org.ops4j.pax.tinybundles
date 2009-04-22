@@ -20,7 +20,7 @@
   </description>
 
   <modules>
-    <module>extender</module>
+    <module>manifest-extender</module>
     <module>tinybundles</module>
   </modules>
 
