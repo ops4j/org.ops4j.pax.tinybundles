@@ -31,7 +31,7 @@ import org.ops4j.pax.exam.Inject;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.junit.Configuration;
 import org.ops4j.pax.exam.junit.JUnit4TestRunner;
-import static org.ops4j.pax.tinybundles.core.TinyBundles.*;
+import static org.ops4j.pax.swissbox.tinybundles.core.TinyBundles.*;
 
 /**
  * This is example will use TinyBundles at runtime (inside osgi itself).
@@ -50,9 +50,9 @@ public class BuildWhileRunningTest
         return options(
             provision(
                 mavenBundle()
-                    .groupId( "org.ops4j.pax.tinybundles" )
-                    .artifactId( "pax-tinybundles-core" )
-                    .version( Info.getPaxExamVersion() )
+                    .groupId( "org.ops4j.pax.swissbox" )
+                    .artifactId( "pax-swissbox-tinybundles" )
+                    .version( "0.2.1-SNAPSHOT" )
             )
 
         );

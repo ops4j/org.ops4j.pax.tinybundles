@@ -1,13 +1,11 @@
-package org.ops4j.pax.tinybundles.core.targets;
+package org.ops4j.pax.swissbox.tinybundles.core.targets;
 
-import java.net.URL;
-import java.util.Map;
 import java.io.InputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.FileOutputStream;
 import java.io.FileNotFoundException;
-import org.ops4j.pax.tinybundles.core.BundleAs;
+import org.ops4j.pax.swissbox.tinybundles.core.BundleAs;
 import org.ops4j.io.StreamUtils;
 
 /**

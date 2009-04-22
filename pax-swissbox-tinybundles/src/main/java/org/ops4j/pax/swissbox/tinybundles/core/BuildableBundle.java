@@ -1,4 +1,4 @@
-package org.ops4j.pax.tinybundles.core;
+package org.ops4j.pax.swissbox.tinybundles.core;
 
 import java.net.URL;
 import java.util.Map;

@@ -1,11 +1,11 @@
-package org.ops4j.pax.tinybundles.core.metadata;
+package org.ops4j.pax.swissbox.tinybundles.core.metadata;
 
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
-import org.ops4j.pax.tinybundles.core.BuildableBundle;
-import org.ops4j.pax.tinybundles.core.BundleAs;
-import org.ops4j.pax.tinybundles.core.intern.CoreBuildImpl;
+import org.ops4j.pax.swissbox.tinybundles.core.BuildableBundle;
+import org.ops4j.pax.swissbox.tinybundles.core.BundleAs;
+import org.ops4j.pax.swissbox.tinybundles.core.intern.CoreBuildImpl;
 
 /**
  * @author Toni Menzel (tonit)

@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.tinybundles.core.intern;
+package org.ops4j.pax.swissbox.tinybundles.core.intern;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -30,7 +30,7 @@ import java.util.jar.Manifest;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.ops4j.io.StreamUtils;
-import org.ops4j.pax.tinybundles.core.BundleAs;
+import org.ops4j.pax.swissbox.tinybundles.core.BundleAs;
 
 /**
  * This builds to JarOutputStream.

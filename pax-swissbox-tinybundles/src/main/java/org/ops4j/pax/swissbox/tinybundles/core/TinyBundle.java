@@ -15,19 +15,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.tinybundles.core;
+package org.ops4j.pax.swissbox.tinybundles.core;
 
 import java.net.URL;
-import java.util.Map;
-import java.io.InputStream;
 
 /**
  * @author Toni Menzel (tonit)
- * @since Apr 10, 2009
+ * @since Apr 9, 2009
  */
-public interface BundleAs<T>
+public interface TinyBundle
 {
+    TinyBundle addResource( String name, URL url );
 
-    T make( InputStream inp);
-    
+    TinyBundle addClass( Class clazz );
+
+    BuildableBundle prepare( BuildableBundle builder );
+
+    BuildableBundle prepare();
+
 }

@@ -15,16 +15,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.tinybundles.core.intern;
+package org.ops4j.pax.swissbox.tinybundles.core.intern;
 
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.ops4j.pax.tinybundles.core.BuildableBundle;
-import org.ops4j.pax.tinybundles.core.TinyBundle;
-import org.ops4j.pax.tinybundles.core.metadata.RawBuilder;
+import org.ops4j.pax.swissbox.tinybundles.core.BuildableBundle;
+import org.ops4j.pax.swissbox.tinybundles.core.TinyBundle;
+import org.ops4j.pax.swissbox.tinybundles.core.metadata.RawBuilder;
 
 /**
  * @author Toni Menzel (tonit)

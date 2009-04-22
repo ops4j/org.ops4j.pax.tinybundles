@@ -15,47 +15,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.tinybundles.runtime;
+package org.ops4j.pax.swissbox.tinybundles.core.targets;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
-import org.osgi.framework.Bundle;
-import org.osgi.framework.BundleContext;
-import org.osgi.framework.BundleException;
+import java.net.URL;
+import org.ops4j.io.StreamUtils;
+import org.ops4j.pax.swissbox.tinybundles.core.BundleAs;
 
 /**
- * NOT IMPLEMENTED YET
- *
  * @author Toni Menzel (tonit)
- * @since Apr 6, 2009
+ * @since Apr 9, 2009
  */
-public class OSGi
+public class BundleAsURLImpl implements BundleAs<URL>
 {
 
-    private BundleContext m_context;
-
-    public OSGi( BundleContext context )
-    {
-        m_context = context;
-    }
-
-    public OSGi installAndStart( final InputStream b )
+    public URL make( InputStream inp )
     {
         try
         {
-            Bundle bundle = m_context.installBundle( null, b );
-            bundle.start();
-            return this;
+            // TODO use url handler instead
+            File fout = File.createTempFile( "tinybundle_", ".jar" );
+            fout.deleteOnExit();
+            StreamUtils.copyStream( inp, new FileOutputStream( fout ), true );
+            return fout.toURI().toURL();
         }
-        catch( BundleException e )
+        catch( IOException e )
         {
             throw new RuntimeException( e );
         }
-    }
-
-    public OSGi waitUntilExposed( Class objectClass )
-    {
-        // wait until service comes available..
-
-        return this;
     }
 }

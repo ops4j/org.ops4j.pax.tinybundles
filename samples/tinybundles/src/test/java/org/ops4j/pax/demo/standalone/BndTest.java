@@ -1,16 +1,13 @@
 package org.ops4j.pax.demo.standalone;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.jar.JarOutputStream;
 import java.util.jar.JarInputStream;
 import java.util.jar.Manifest;
 import org.junit.Test;
-import org.junit.Ignore;
 import static org.junit.Assert.*;
 import org.osgi.framework.Constants;
-import static org.ops4j.pax.tinybundles.core.TinyBundles.*;
+import static org.ops4j.pax.swissbox.tinybundles.core.TinyBundles.*;
 import org.ops4j.pax.tinybundles.demo.HelloWorld;
 import org.ops4j.pax.tinybundles.demo.intern.HelloWorldImpl;
 import org.ops4j.pax.tinybundles.demo.intern.MyFirstActivator;

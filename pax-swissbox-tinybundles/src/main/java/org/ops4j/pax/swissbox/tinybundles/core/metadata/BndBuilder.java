@@ -1,4 +1,4 @@
-package org.ops4j.pax.tinybundles.core.metadata;
+package org.ops4j.pax.swissbox.tinybundles.core.metadata;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -6,9 +6,9 @@ import java.util.Properties;
 import java.net.URL;
 import java.io.InputStream;
 import java.io.IOException;
-import org.ops4j.pax.tinybundles.core.BuildableBundle;
-import org.ops4j.pax.tinybundles.core.BundleAs;
-import org.ops4j.pax.tinybundles.core.intern.CoreBuildImpl;
+import org.ops4j.pax.swissbox.tinybundles.core.BuildableBundle;
+import org.ops4j.pax.swissbox.tinybundles.core.BundleAs;
+import org.ops4j.pax.swissbox.tinybundles.core.intern.CoreBuildImpl;
 import org.ops4j.pax.url.bnd.BndUtils;
 
 /**

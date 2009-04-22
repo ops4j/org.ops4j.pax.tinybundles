@@ -15,17 +15,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.tinybundles.core;
+package org.ops4j.pax.swissbox.tinybundles.core;
 
 import java.io.InputStream;
 import java.io.File;
 import java.net.URL;
-import org.ops4j.pax.tinybundles.core.intern.TinyBundleImpl;
-import org.ops4j.pax.tinybundles.core.intern.CoreBuildImpl;
-import org.ops4j.pax.tinybundles.core.targets.BundleAsURLImpl;
-import org.ops4j.pax.tinybundles.core.targets.BundleAsFile;
-import org.ops4j.pax.tinybundles.core.metadata.BndBuilder;
-import org.ops4j.pax.tinybundles.core.metadata.RawBuilder;
+import org.ops4j.pax.swissbox.tinybundles.core.intern.TinyBundleImpl;
+import org.ops4j.pax.swissbox.tinybundles.core.intern.CoreBuildImpl;
+import org.ops4j.pax.swissbox.tinybundles.core.targets.BundleAsURLImpl;
+import org.ops4j.pax.swissbox.tinybundles.core.targets.BundleAsFile;
+import org.ops4j.pax.swissbox.tinybundles.core.metadata.BndBuilder;
+import org.ops4j.pax.swissbox.tinybundles.core.metadata.RawBuilder;
 
 /**
  * @author Toni Menzel (tonit)
