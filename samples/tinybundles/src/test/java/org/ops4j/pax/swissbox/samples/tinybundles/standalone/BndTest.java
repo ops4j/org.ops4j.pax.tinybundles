@@ -1,4 +1,4 @@
-package org.ops4j.pax.demo.standalone;
+package org.ops4j.pax.swissbox.samples.tinybundles.standalone;
 
 import java.io.IOException;
 import java.io.InputStream;

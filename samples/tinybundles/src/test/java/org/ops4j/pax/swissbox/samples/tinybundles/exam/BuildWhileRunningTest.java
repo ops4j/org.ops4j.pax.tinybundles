@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.demo.exam;
+package org.ops4j.pax.swissbox.samples.tinybundles.exam;
 
 import java.io.IOException;
 import static org.junit.Assert.*;
@@ -26,7 +26,6 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
 import org.osgi.framework.Constants;
 import static org.ops4j.pax.exam.CoreOptions.*;
-import org.ops4j.pax.exam.Info;
 import org.ops4j.pax.exam.Inject;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.junit.Configuration;
