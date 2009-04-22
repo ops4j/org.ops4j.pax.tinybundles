@@ -4,27 +4,26 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.ops4j.pax.tinybundles</groupId>
-    <artifactId>pax-tinybundles</artifactId>
-    <version>0.5.0-SNAPSHOT</version>
+    <relativePath>../</relativePath>
+    <groupId>org.ops4j.pax</groupId>
+    <artifactId>swissbox</artifactId>
+    <version>0.2.1-SNAPSHOT</version>
   </parent>
 
-  <groupId>org.ops4j.pax.tinybundles</groupId>
-  <artifactId>pax-tinybundles-core</artifactId>
-  <version>0.5.0-SNAPSHOT</version>
+  <groupId>org.ops4j.pax.swissbox</groupId>
+  <artifactId>pax-swissbox-tinybundles</artifactId>
+  <version>0.2.1-SNAPSHOT</version>
   <packaging>bundle</packaging>
 
-  <name>OPS4J Pax TinyBundles - Core</name>
+  <name>OPS4J Pax Swissbox - TinyBundles</name>
 
   <description>
     Tiny Bundles is a library to create adhoc bundles using Java API.
-    Purpose is to have a simple way to create on-demand bundles for testing OSGi framework/service behaviour.
-    tinybundles-core gives utilities to create those bundles.
   </description>
 
   <properties>
-    <bundle.symbolicName>org.ops4j.pax.tinybundles</bundle.symbolicName>
-    <bundle.namespace>org.ops4j.pax.tinybundles</bundle.namespace>
+    <bundle.symbolicName>org.ops4j.pax.swissbox.tinybundles</bundle.symbolicName>
+    <bundle.namespace>org.ops4j.pax.swissbox.tinybundles</bundle.namespace>
   </properties>
 
   <build>
@@ -50,14 +49,14 @@
       <artifactId>org.osgi.core</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.ops4j.pax.url</groupId>
-      <artifactId>pax-url-bnd</artifactId>
-    </dependency>
-    <dependency>
       <groupId>org.ops4j.pax.swissbox</groupId>
       <artifactId>pax-swissbox-optional-jcl</artifactId>
-      <scope>compile</scope>
       <optional>true</optional>
+      <version>0.2.1-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.url</groupId>
+      <artifactId>pax-url-bnd</artifactId>
     </dependency>
   </dependencies>
 

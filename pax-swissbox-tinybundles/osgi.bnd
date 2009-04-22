@@ -17,7 +17,6 @@ Private-Package:\
   ${bundle.namespace}.core.targets; version="${pom.version}",\
   ${bundle.namespace}.core.metadata; version="${pom.version}"
 
-
 Export-Package:\
   ${bundle.namespace}.core; version="${pom.version}",\
   ${bundle.namespace}.runtime; version="${pom.version}"
