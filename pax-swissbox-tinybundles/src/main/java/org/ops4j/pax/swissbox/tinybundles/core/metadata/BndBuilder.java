@@ -3,6 +3,7 @@ package org.ops4j.pax.swissbox.tinybundles.core.metadata;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Properties;
+import java.util.HashSet;
 import java.net.URL;
 import java.io.InputStream;
 import java.io.IOException;

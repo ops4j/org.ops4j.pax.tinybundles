@@ -53,6 +53,7 @@ public class BuildAtConfigurationTime
         return options(
 
             // install extra tiny bundles that are created on demand:
+
             provision(
                 newBundle()
                     .addClass( MyFirstActivator.class )
@@ -65,6 +66,7 @@ public class BuildAtConfigurationTime
                     .set( Constants.BUNDLE_ACTIVATOR, MyFirstActivator.class.getName() )
                     .build( asURL() ).toExternalForm()
             )
+            
         );
     }
 

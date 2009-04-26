@@ -45,6 +45,9 @@ public class CoreBuildImpl implements BundleAs<InputStream>
 
     private static Log LOG = LogFactory.getLog( CoreBuildImpl.class );
     private static final String ENTRY_MANIFEST = "META-INF/MANIFEST.MF";
+    private static final String BUILT_BY = "Built-By";
+    private static final String TOOL = "Tool";
+    private static final String CREATED_BY = "Created-By";
 
     public InputStream make( final Map<String, URL> resources,
                              final Map<String, String> headers )
@@ -111,12 +114,28 @@ public class CoreBuildImpl implements BundleAs<InputStream>
         return ( pin );
     }
 
+    /**
+     * The calculated manifest for this build output.
+     * Relies on input given.
+     *
+     * @param headers headers will be merged into resulting manifest instance.
+     *
+     * @return a fresh manifest instance
+     */
     private Manifest getManifest( Set<Map.Entry<String, String>> headers )
     {
 
         LOG.debug( "Creating manifest from added headers." );
         Manifest man = new Manifest();
+        String cre = "pax-swissbox-tinybundles-" + Info.getPaxSwissboxTinybundlesVersion();
+
         man.getMainAttributes().putValue( "Manifest-Version", "1.0" );
+        man.getMainAttributes().putValue( BUILT_BY, System.getProperty( "user.name" ) );
+        man.getMainAttributes().putValue( CREATED_BY, cre );
+        man.getMainAttributes().putValue( TOOL, cre );
+        // SwissboxTinybundlesVersion
+        man.getMainAttributes().putValue( "SwissboxTinybundlesVersion", cre );
+
         for( Map.Entry<String, String> entry : headers )
         {
             LOG.debug( entry.getKey() + " = " + entry.getValue() );

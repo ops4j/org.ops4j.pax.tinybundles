@@ -114,9 +114,54 @@
         <option name="VARIABLE_ANNOTATION_WRAP" value="5" />
         <option name="SPACE_WITHIN_ANNOTATION_PARENTHESES" value="true" />
         <option name="ENUM_CONSTANTS_WRAP" value="5" />
+        <ADDITIONAL_INDENT_OPTIONS fileType="groovy">
+          <option name="INDENT_SIZE" value="2" />
+          <option name="CONTINUATION_INDENT_SIZE" value="8" />
+          <option name="TAB_SIZE" value="4" />
+          <option name="USE_TAB_CHARACTER" value="false" />
+          <option name="SMART_TABS" value="false" />
+          <option name="LABEL_INDENT_SIZE" value="0" />
+          <option name="LABEL_INDENT_ABSOLUTE" value="false" />
+        </ADDITIONAL_INDENT_OPTIONS>
+        <ADDITIONAL_INDENT_OPTIONS fileType="gsp">
+          <option name="INDENT_SIZE" value="2" />
+          <option name="CONTINUATION_INDENT_SIZE" value="8" />
+          <option name="TAB_SIZE" value="4" />
+          <option name="USE_TAB_CHARACTER" value="false" />
+          <option name="SMART_TABS" value="false" />
+          <option name="LABEL_INDENT_SIZE" value="0" />
+          <option name="LABEL_INDENT_ABSOLUTE" value="false" />
+        </ADDITIONAL_INDENT_OPTIONS>
         <ADDITIONAL_INDENT_OPTIONS fileType="java">
           <option name="INDENT_SIZE" value="4" />
           <option name="CONTINUATION_INDENT_SIZE" value="4" />
+          <option name="TAB_SIZE" value="4" />
+          <option name="USE_TAB_CHARACTER" value="false" />
+          <option name="SMART_TABS" value="false" />
+          <option name="LABEL_INDENT_SIZE" value="0" />
+          <option name="LABEL_INDENT_ABSOLUTE" value="false" />
+        </ADDITIONAL_INDENT_OPTIONS>
+        <ADDITIONAL_INDENT_OPTIONS fileType="js">
+          <option name="INDENT_SIZE" value="4" />
+          <option name="CONTINUATION_INDENT_SIZE" value="8" />
+          <option name="TAB_SIZE" value="4" />
+          <option name="USE_TAB_CHARACTER" value="false" />
+          <option name="SMART_TABS" value="false" />
+          <option name="LABEL_INDENT_SIZE" value="0" />
+          <option name="LABEL_INDENT_ABSOLUTE" value="false" />
+        </ADDITIONAL_INDENT_OPTIONS>
+        <ADDITIONAL_INDENT_OPTIONS fileType="jsp">
+          <option name="INDENT_SIZE" value="4" />
+          <option name="CONTINUATION_INDENT_SIZE" value="8" />
+          <option name="TAB_SIZE" value="4" />
+          <option name="USE_TAB_CHARACTER" value="false" />
+          <option name="SMART_TABS" value="false" />
+          <option name="LABEL_INDENT_SIZE" value="0" />
+          <option name="LABEL_INDENT_ABSOLUTE" value="false" />
+        </ADDITIONAL_INDENT_OPTIONS>
+        <ADDITIONAL_INDENT_OPTIONS fileType="sql">
+          <option name="INDENT_SIZE" value="2" />
+          <option name="CONTINUATION_INDENT_SIZE" value="8" />
           <option name="TAB_SIZE" value="4" />
           <option name="USE_TAB_CHARACTER" value="false" />
           <option name="SMART_TABS" value="false" />
@@ -377,6 +422,9 @@
     <option name="projectName" value="swissbox" />
   </component>
   <component name="ProjectFileVersion" converted="true" />
+  <component name="ProjectKey">
+    <option name="state" value="https://scm.ops4j.org/repos/ops4j/projects/pax/swissbox/swissbox.ipr" />
+  </component>
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/pax-swissbox-core/pax-swissbox-core.iml" filepath="$PROJECT_DIR$/pax-swissbox-core/pax-swissbox-core.iml" />
@@ -539,50 +587,6 @@
         <root url="jar://$M2_REPO$/javax/servlet/servlet-api/2.3/servlet-api-2.3-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.ops4j.pax.exam:pax-exam:0.4.0">
-      <CLASSES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam/0.4.0/pax-exam-0.4.0.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam/0.4.0/pax-exam-0.4.0-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam/0.4.0/pax-exam-0.4.0-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.ops4j.pax.exam:pax-exam-junit:0.4.0">
-      <CLASSES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-junit/0.4.0/pax-exam-junit-0.4.0.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-junit/0.4.0/pax-exam-junit-0.4.0-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-junit/0.4.0/pax-exam-junit-0.4.0-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.ops4j.pax.exam:pax-exam-runtime:0.4.0">
-      <CLASSES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-runtime/0.4.0/pax-exam-runtime-0.4.0.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-runtime/0.4.0/pax-exam-runtime-0.4.0-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-runtime/0.4.0/pax-exam-runtime-0.4.0-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.ops4j.pax.exam:pax-exam-spi:0.4.0">
-      <CLASSES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-spi/0.4.0/pax-exam-spi-0.4.0.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-spi/0.4.0/pax-exam-spi-0.4.0-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-spi/0.4.0/pax-exam-spi-0.4.0-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Maven: commons-discovery:commons-discovery:0.4">
       <CLASSES>
         <root url="jar://$M2_REPO$/commons-discovery/commons-discovery/0.4/commons-discovery-0.4.jar!/" />
@@ -594,50 +598,6 @@
         <root url="jar://$M2_REPO$/commons-discovery/commons-discovery/0.4/commons-discovery-0.4-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.ops4j.pax.exam:pax-exam-junit-extender:0.4.0">
-      <CLASSES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-junit-extender/0.4.0/pax-exam-junit-extender-0.4.0.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-junit-extender/0.4.0/pax-exam-junit-extender-0.4.0-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-junit-extender/0.4.0/pax-exam-junit-extender-0.4.0-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.ops4j.pax.exam:pax-exam-container-default:0.4.0">
-      <CLASSES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-container-default/0.4.0/pax-exam-container-default-0.4.0.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-container-default/0.4.0/pax-exam-container-default-0.4.0-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-container-default/0.4.0/pax-exam-container-default-0.4.0-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.ops4j.pax.exam:pax-exam-container-rbc-client:0.4.0">
-      <CLASSES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-container-rbc-client/0.4.0/pax-exam-container-rbc-client-0.4.0.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-container-rbc-client/0.4.0/pax-exam-container-rbc-client-0.4.0-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-container-rbc-client/0.4.0/pax-exam-container-rbc-client-0.4.0-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.ops4j.pax.exam:pax-exam-container-rbc:0.4.0">
-      <CLASSES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-container-rbc/0.4.0/pax-exam-container-rbc-0.4.0.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-container-rbc/0.4.0/pax-exam-container-rbc-0.4.0-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-container-rbc/0.4.0/pax-exam-container-rbc-0.4.0-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Maven: org.ops4j.base:ops4j-base-net:0.5.3">
       <CLASSES>
         <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-net/0.5.3/ops4j-base-net-0.5.3.jar!/" />
@@ -647,72 +607,6 @@
       </JAVADOC>
       <SOURCES>
         <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-net/0.5.3/ops4j-base-net-0.5.3-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.ops4j.pax.runner:pax-runner-no-jcl:0.18.0">
-      <CLASSES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/runner/pax-runner-no-jcl/0.18.0/pax-runner-no-jcl-0.18.0.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/runner/pax-runner-no-jcl/0.18.0/pax-runner-no-jcl-0.18.0-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/runner/pax-runner-no-jcl/0.18.0/pax-runner-no-jcl-0.18.0-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.mockito:mockito-core:1.7">
-      <CLASSES>
-        <root url="jar://$M2_REPO$/org/mockito/mockito-core/1.7/mockito-core-1.7.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$M2_REPO$/org/mockito/mockito-core/1.7/mockito-core-1.7-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$M2_REPO$/org/mockito/mockito-core/1.7/mockito-core-1.7-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.hamcrest:hamcrest-core:1.1">
-      <CLASSES>
-        <root url="jar://$M2_REPO$/org/hamcrest/hamcrest-core/1.1/hamcrest-core-1.1.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$M2_REPO$/org/hamcrest/hamcrest-core/1.1/hamcrest-core-1.1-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$M2_REPO$/org/hamcrest/hamcrest-core/1.1/hamcrest-core-1.1-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.objenesis:objenesis:1.0">
-      <CLASSES>
-        <root url="jar://$M2_REPO$/org/objenesis/objenesis/1.0/objenesis-1.0.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$M2_REPO$/org/objenesis/objenesis/1.0/objenesis-1.0-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$M2_REPO$/org/objenesis/objenesis/1.0/objenesis-1.0-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.jmock:jmock:2.5.1">
-      <CLASSES>
-        <root url="jar://$M2_REPO$/org/jmock/jmock/2.5.1/jmock-2.5.1.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$M2_REPO$/org/jmock/jmock/2.5.1/jmock-2.5.1-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$M2_REPO$/org/jmock/jmock/2.5.1/jmock-2.5.1-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.hamcrest:hamcrest-library:1.1">
-      <CLASSES>
-        <root url="jar://$M2_REPO$/org/hamcrest/hamcrest-library/1.1/hamcrest-library-1.1.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$M2_REPO$/org/hamcrest/hamcrest-library/1.1/hamcrest-library-1.1-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$M2_REPO$/org/hamcrest/hamcrest-library/1.1/hamcrest-library-1.1-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.ops4j.base:ops4j-base-lang:0.5.3">
@@ -757,6 +651,105 @@
       </JAVADOC>
       <SOURCES>
         <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-monitors/0.5.3/ops4j-base-monitors-0.5.3-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.ops4j.pax.exam:pax-exam:0.5.0-SNAPSHOT">
+      <CLASSES>
+        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam/0.5.0-SNAPSHOT/pax-exam-0.5.0-SNAPSHOT.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam/0.5.0-SNAPSHOT/pax-exam-0.5.0-SNAPSHOT-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam/0.5.0-SNAPSHOT/pax-exam-0.5.0-SNAPSHOT-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.ops4j.pax.exam:pax-exam-junit:0.5.0-SNAPSHOT">
+      <CLASSES>
+        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-junit/0.5.0-SNAPSHOT/pax-exam-junit-0.5.0-SNAPSHOT.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-junit/0.5.0-SNAPSHOT/pax-exam-junit-0.5.0-SNAPSHOT-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-junit/0.5.0-SNAPSHOT/pax-exam-junit-0.5.0-SNAPSHOT-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.ops4j.pax.exam:pax-exam-runtime:0.5.0-SNAPSHOT">
+      <CLASSES>
+        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-runtime/0.5.0-SNAPSHOT/pax-exam-runtime-0.5.0-SNAPSHOT.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-runtime/0.5.0-SNAPSHOT/pax-exam-runtime-0.5.0-SNAPSHOT-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-runtime/0.5.0-SNAPSHOT/pax-exam-runtime-0.5.0-SNAPSHOT-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.ops4j.pax.exam:pax-exam-spi:0.5.0-SNAPSHOT">
+      <CLASSES>
+        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-spi/0.5.0-SNAPSHOT/pax-exam-spi-0.5.0-SNAPSHOT.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-spi/0.5.0-SNAPSHOT/pax-exam-spi-0.5.0-SNAPSHOT-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-spi/0.5.0-SNAPSHOT/pax-exam-spi-0.5.0-SNAPSHOT-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.ops4j.pax.exam:pax-exam-junit-extender:0.5.0-SNAPSHOT">
+      <CLASSES>
+        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-junit-extender/0.5.0-SNAPSHOT/pax-exam-junit-extender-0.5.0-SNAPSHOT.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-junit-extender/0.5.0-SNAPSHOT/pax-exam-junit-extender-0.5.0-SNAPSHOT-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-junit-extender/0.5.0-SNAPSHOT/pax-exam-junit-extender-0.5.0-SNAPSHOT-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.ops4j.pax.exam:pax-exam-container-default:0.5.0-SNAPSHOT">
+      <CLASSES>
+        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-container-default/0.5.0-SNAPSHOT/pax-exam-container-default-0.5.0-SNAPSHOT.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-container-default/0.5.0-SNAPSHOT/pax-exam-container-default-0.5.0-SNAPSHOT-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-container-default/0.5.0-SNAPSHOT/pax-exam-container-default-0.5.0-SNAPSHOT-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.ops4j.pax.exam:pax-exam-container-rbc-client:0.5.0-SNAPSHOT">
+      <CLASSES>
+        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-container-rbc-client/0.5.0-SNAPSHOT/pax-exam-container-rbc-client-0.5.0-SNAPSHOT.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-container-rbc-client/0.5.0-SNAPSHOT/pax-exam-container-rbc-client-0.5.0-SNAPSHOT-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-container-rbc-client/0.5.0-SNAPSHOT/pax-exam-container-rbc-client-0.5.0-SNAPSHOT-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.ops4j.pax.exam:pax-exam-container-rbc:0.5.0-SNAPSHOT">
+      <CLASSES>
+        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-container-rbc/0.5.0-SNAPSHOT/pax-exam-container-rbc-0.5.0-SNAPSHOT.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-container-rbc/0.5.0-SNAPSHOT/pax-exam-container-rbc-0.5.0-SNAPSHOT-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-container-rbc/0.5.0-SNAPSHOT/pax-exam-container-rbc-0.5.0-SNAPSHOT-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.ops4j.pax.runner:pax-runner-no-jcl:0.19.0">
+      <CLASSES>
+        <root url="jar://$M2_REPO$/org/ops4j/pax/runner/pax-runner-no-jcl/0.19.0/pax-runner-no-jcl-0.19.0.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$M2_REPO$/org/ops4j/pax/runner/pax-runner-no-jcl/0.19.0/pax-runner-no-jcl-0.19.0-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$M2_REPO$/org/ops4j/pax/runner/pax-runner-no-jcl/0.19.0/pax-runner-no-jcl-0.19.0-sources.jar!/" />
       </SOURCES>
     </library>
   </component>

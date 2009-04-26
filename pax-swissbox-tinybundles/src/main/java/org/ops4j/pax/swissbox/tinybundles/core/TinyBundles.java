@@ -28,17 +28,30 @@ import org.ops4j.pax.swissbox.tinybundles.core.metadata.BndBuilder;
 import org.ops4j.pax.swissbox.tinybundles.core.metadata.RawBuilder;
 
 /**
+ * This is the humane api factory class that is meant to be imported statically with TinyBundles.*
+ * Its also the default interaction place with the user. So take care of (non compatible) changes across releases.
+ *
  * @author Toni Menzel (tonit)
  * @since Apr 9, 2009
  */
 public class TinyBundles
 {
 
+    /**
+     * Start with a fresh bundle with this factory method.
+     * You can then chain methodcalls thanks to the humane nature of TinyBundle interface.
+     *
+     * @return a new instance of a tinybundle. This is almost always the startingpoint of any interaction with tinybundles.
+     */
     public static TinyBundle newBundle()
     {
         return new TinyBundleImpl();
     }
 
+    /**
+     * Stream
+     * @return
+     */
     public static BundleAs<InputStream> asStream()
     {
         return new CoreBuildImpl();

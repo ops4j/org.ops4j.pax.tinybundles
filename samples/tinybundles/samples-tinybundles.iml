@@ -24,23 +24,18 @@
     <orderEntry type="library" exported="" name="Maven: org.ops4j.base:ops4j-base-monitors:0.5.3" level="project" />
     <orderEntry type="library" exported="" name="Maven: org.ops4j.pax.url:pax-url-bnd:0.5.1" level="project" />
     <orderEntry type="library" exported="" name="Maven: biz.aQute:bndlib:0.0.313" level="project" />
-    <orderEntry type="library" exported="" name="Maven: org.ops4j.pax.exam:pax-exam:0.4.0" level="project" />
-    <orderEntry type="library" exported="" name="Maven: org.ops4j.pax.exam:pax-exam-junit:0.4.0" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.ops4j.pax.exam:pax-exam:0.5.0-SNAPSHOT" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.ops4j.pax.exam:pax-exam-junit:0.5.0-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: junit:junit:4.4" level="project" />
-    <orderEntry type="library" exported="" name="Maven: org.ops4j.pax.exam:pax-exam-runtime:0.4.0" level="project" />
-    <orderEntry type="library" exported="" name="Maven: org.ops4j.pax.exam:pax-exam-spi:0.4.0" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.ops4j.pax.exam:pax-exam-runtime:0.5.0-SNAPSHOT" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.ops4j.pax.exam:pax-exam-spi:0.5.0-SNAPSHOT" level="project" />
     <orderEntry type="library" exported="" name="Maven: commons-discovery:commons-discovery:0.4" level="project" />
-    <orderEntry type="library" exported="" name="Maven: org.ops4j.pax.exam:pax-exam-junit-extender:0.4.0" level="project" />
-    <orderEntry type="library" exported="" name="Maven: org.ops4j.pax.exam:pax-exam-container-default:0.4.0" level="project" />
-    <orderEntry type="library" exported="" name="Maven: org.ops4j.pax.exam:pax-exam-container-rbc-client:0.4.0" level="project" />
-    <orderEntry type="library" exported="" name="Maven: org.ops4j.pax.exam:pax-exam-container-rbc:0.4.0" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.ops4j.pax.exam:pax-exam-junit-extender:0.5.0-SNAPSHOT" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.ops4j.pax.exam:pax-exam-container-default:0.5.0-SNAPSHOT" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.ops4j.pax.exam:pax-exam-container-rbc-client:0.5.0-SNAPSHOT" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.ops4j.pax.exam:pax-exam-container-rbc:0.5.0-SNAPSHOT" level="project" />
     <orderEntry type="library" exported="" name="Maven: org.ops4j.base:ops4j-base-net:0.5.3" level="project" />
-    <orderEntry type="library" exported="" name="Maven: org.ops4j.pax.runner:pax-runner-no-jcl:0.18.0" level="project" />
-    <orderEntry type="library" exported="" name="Maven: org.mockito:mockito-core:1.7" level="project" />
-    <orderEntry type="library" exported="" name="Maven: org.hamcrest:hamcrest-core:1.1" level="project" />
-    <orderEntry type="library" exported="" name="Maven: org.objenesis:objenesis:1.0" level="project" />
-    <orderEntry type="library" exported="" name="Maven: org.jmock:jmock:2.5.1" level="project" />
-    <orderEntry type="library" exported="" name="Maven: org.hamcrest:hamcrest-library:1.1" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.ops4j.pax.runner:pax-runner-no-jcl:0.19.0" level="project" />
   </component>
 </module>
 

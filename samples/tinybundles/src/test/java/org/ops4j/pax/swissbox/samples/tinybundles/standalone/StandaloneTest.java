@@ -25,6 +25,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.osgi.framework.Constants;
 import static org.ops4j.pax.swissbox.tinybundles.core.TinyBundles.*;
+import org.ops4j.pax.swissbox.tinybundles.core.intern.Info;
 import org.ops4j.pax.tinybundles.demo.HelloWorld;
 import org.ops4j.pax.tinybundles.demo.intern.HelloWorldImpl;
 import org.ops4j.pax.tinybundles.demo.intern.MyFirstActivator;
@@ -66,6 +67,51 @@ public class StandaloneTest
                       man.getMainAttributes().getValue( Constants.IMPORT_PACKAGE )
         );
         assertEquals( "org.ops4j.pax.tinybundles.demo", man.getMainAttributes().getValue( Constants.EXPORT_PACKAGE ) );
+        assertEquals( "pax-swissbox-tinybundles-" + Info.getPaxSwissboxTinybundlesVersion(),
+                      man.getMainAttributes().getValue( "Created-By" )
+        );
+        assertEquals( "pax-swissbox-tinybundles-" + Info.getPaxSwissboxTinybundlesVersion(),
+                      man.getMainAttributes().getValue( "Tool" )
+        );
+
+        assertEquals( System.getProperty( "user.name" ), man.getMainAttributes().getValue( "Built-By" ) );
+        assertEquals( "pax-swissbox-tinybundles-" + Info.getPaxSwissboxTinybundlesVersion(),
+                      man.getMainAttributes().getValue( "SwissboxTinybundlesVersion" )
+        );
+        jout.close();
+
+    }
+
+    @Test
+    public void myFirstBndBundle()
+        throws IOException
+    {
+
+        InputStream inp = newBundle()
+            .addClass( MyFirstActivator.class )
+            .addClass( HelloWorld.class )
+            .addClass( HelloWorldImpl.class )
+            .prepare(
+                withBnd()
+                    .set( Constants.BUNDLE_SYMBOLICNAME, "MyFirstTinyBundle" )
+                    .set( Constants.EXPORT_PACKAGE, "org.ops4j.pax.tinybundles.demo" )
+                    .set( Constants.IMPORT_PACKAGE, "org.ops4j.pax.tinybundles.demo" )
+                    .set( Constants.BUNDLE_ACTIVATOR, MyFirstActivator.class.getName() )
+            ).build( asStream() );
+
+        // test output
+        JarInputStream jout = new JarInputStream( inp );
+        Manifest man = jout.getManifest();
+        assertEquals( "org.ops4j.pax.tinybundles.demo", man.getMainAttributes().getValue( Constants.IMPORT_PACKAGE ) );
+        assertEquals( "org.ops4j.pax.tinybundles.demo", man.getMainAttributes().getValue( Constants.EXPORT_PACKAGE ) );
+
+        // test standard headers output
+        assertTrue( man.getMainAttributes().getValue( "Tool" ).startsWith( "Bnd" ) );
+        assertEquals( System.getProperty( "user.name" ), man.getMainAttributes().getValue( "Built-By" ) );
+
+        assertEquals( "pax-swissbox-tinybundles-" + Info.getPaxSwissboxTinybundlesVersion(),
+                      man.getMainAttributes().getValue( "SwissboxTinybundlesVersion" )
+        );
 
         jout.close();
 
