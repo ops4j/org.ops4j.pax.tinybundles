@@ -2,6 +2,9 @@ package org.ops4j.pax.swissbox.samples.tinybundles.dp;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileInputStream;
 import java.util.jar.JarInputStream;
 import java.util.jar.Manifest;
 import org.junit.Test;
@@ -15,6 +18,7 @@ import static org.ops4j.pax.swissbox.tinybundles.core.TinyBundles.*;
 import org.ops4j.pax.swissbox.tinybundles.core.intern.Info;
 import org.ops4j.pax.swissbox.tinybundles.dp.DP;
 import static org.ops4j.pax.swissbox.tinybundles.dp.DP.*;
+import org.ops4j.io.StreamUtils;
 
 /**
  * @author Toni Menzel (tonit)
@@ -24,13 +28,19 @@ public class DeploymentPackageTest
 {
 
     @Test
-    @Ignore
+    // @Ignore
     public void myFirstDeploymentPackage()
         throws IOException
     {
 
         InputStream inp = newDeploymentPackage()
-            .addBundle( "t1.jar", // this is the name of the resouce in DP
+            .set( "DeploymentPackage-SymbolicName", "MyFirstDeploymentPackage" )
+            .set( "DeploymentPackage-DeploymentPackage-Version", "1.0.0" )
+            .addResource( "log4j.properties", getClass().getResourceAsStream( "/log4j.properties" ),
+                          "log4j-properties-processor"
+            )
+
+            .addBundle( "t1.jar",
                         newBundle()
                             .addClass( MyFirstActivator.class )
                             .addClass( HelloWorld.class )
@@ -47,7 +57,10 @@ public class DeploymentPackageTest
                 //.addBundle( "t2.jar", "mvn:groupId/userId/version" )
             .build();
 
-        JarInputStream jout = new JarInputStream( inp );
+        File f = File.createTempFile( "dest", ".dp" );
+        StreamUtils.copyStream( inp, new FileOutputStream( f ), true );
+
+        JarInputStream jout = new JarInputStream( new FileInputStream( f ) );
         Manifest man = jout.getManifest();
         assertEquals( "application/vnd.osgi.dp", man.getMainAttributes().getValue( "Content-Type" ) );
 

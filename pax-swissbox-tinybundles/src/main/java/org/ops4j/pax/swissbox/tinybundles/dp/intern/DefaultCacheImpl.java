@@ -18,12 +18,15 @@
 package org.ops4j.pax.swissbox.tinybundles.dp.intern;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.FileInputStream;
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.jar.JarInputStream;
 import java.util.jar.Manifest;
 import org.osgi.framework.Constants;
@@ -38,25 +41,33 @@ public class DefaultCacheImpl implements StreamCache
 
     private File m_dir;
 
-    private Map<String, CacheData> data;
+    private List<String> bundleRepository;
+
+    private List<String> resourceRepository;
+
+    private List<String> localizationRepository;
+
+    private List<String> metainfResourcesRepository;
+    
+    private Map<String, CacheData> idx;
 
     public DefaultCacheImpl()
     {
-        try
-        {
-            data = new HashMap<String, CacheData>();
-            m_dir = new File( File.createTempFile( "fooo", "x" ).getParent() + "/tb" );
-            if( m_dir.exists() )
-            {
-                FileUtils.delete( m_dir );
-            }
-            m_dir.mkdirs();
+        bundleRepository = new ArrayList<String>();
+        resourceRepository = new ArrayList<String>();
+        localizationRepository = new ArrayList<String>();
+        metainfResourcesRepository = new ArrayList<String>();
+        
+        idx = new HashMap<String, CacheData>();
 
-
-        } catch( IOException e )
+        m_dir = new File( System.getProperty( "java.io.tmpdir" ) + "/tb" );
+        if( m_dir.exists() )
         {
-            e.printStackTrace();
+            FileUtils.delete( m_dir );
         }
+        m_dir.mkdirs();
+
+
     }
 
     /**
@@ -66,7 +77,15 @@ public class DefaultCacheImpl implements StreamCache
      * @param name            logical name of resource given by InputStream
      * @param resourceContent content
      */
-    public void add( String name, InputStream resourceContent )
+    public void addBundle( String name, InputStream resourceContent )
+        throws IOException
+    {
+        bundleRepository.add( name );
+
+        store( name, resourceContent );
+    }
+
+    private CacheData store( final String name, final InputStream resourceContent )
         throws IOException
     {
         // TODO: do SHA1 mappign instead: 
@@ -74,9 +93,10 @@ public class DefaultCacheImpl implements StreamCache
         StreamUtils.copyStream( resourceContent, new FileOutputStream( target ), true );
         // reaching here means that resource has been copied successfully.
         CacheData dat = new CacheData( target );
-        data.put( name, dat );
 
-        // read stream to find out probably meta data:
+        idx.put( name, dat );
+
+        // read stream to find out probably meta bundleRepository:
         JarInputStream jout = null;
         try
         {
@@ -102,36 +122,48 @@ public class DefaultCacheImpl implements StreamCache
                 }
             }
         }
+        return dat;
     }
 
     public String[] getBundles()
     {
-        return new String[0];  //To change body of implemented methods use File | Settings | File Templates.
+        return bundleRepository.toArray( new String[bundleRepository.size()] );
     }
 
     public String[] getOtherResources()
     {
-        return new String[0];  //To change body of implemented methods use File | Settings | File Templates.
+        return resourceRepository.toArray( new String[resourceRepository.size()] );
     }
 
     public String[] getLocalizationFiles()
     {
-        return new String[0];  //To change body of implemented methods use File | Settings | File Templates.
+        return localizationRepository.toArray( new String[localizationRepository.size()] );
     }
 
     public String[] getMetaInfResources()
     {
-        return new String[0];  //To change body of implemented methods use File | Settings | File Templates.
+        return metainfResourcesRepository.toArray( new String[metainfResourcesRepository.size()] );
     }
 
     public Map<String, String> getHeaders( String name )
     {
-        return data.get( name ).getHeaders();
+        return idx.get( name ).getHeaders();
     }
 
     public InputStream getStream( String name )
     {
-        return null;
+        return idx.get( name ).getStream();
+    }
+
+    public void addResource( String name, InputStream inputStream, String resourceProcessorPID )
+        throws IOException
+    {
+
+        CacheData dat = store( name, inputStream );
+        if( resourceProcessorPID != null )
+        {
+            dat.set( "Resource-Processor", resourceProcessorPID );
+        }
     }
 
     private class CacheData
@@ -153,6 +185,18 @@ public class DefaultCacheImpl implements StreamCache
         public Map<String, String> getHeaders()
         {
             return m_headers;
+        }
+
+        public InputStream getStream()
+        {
+            try
+            {
+                return new FileInputStream( m_target );
+            } catch( FileNotFoundException e )
+            {
+                // should not happen
+                throw new RuntimeException( e );
+            }
         }
     }
 }

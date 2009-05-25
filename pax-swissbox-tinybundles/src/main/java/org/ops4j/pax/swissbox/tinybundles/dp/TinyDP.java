@@ -19,6 +19,7 @@ package org.ops4j.pax.swissbox.tinybundles.dp;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
 import org.ops4j.pax.swissbox.tinybundles.core.BuildableBundle;
 
 /**
@@ -26,9 +27,7 @@ import org.ops4j.pax.swissbox.tinybundles.core.BuildableBundle;
  * Capabilities and final format will comply to
  * OSGi Compendium R4 Version 4.2, Deployment Admin Specification Version 1.1
  *
- * Status: 
- *
- * @author Toni Menzel (tonit)
+ * @author Toni Menzel (toni@okidokiteam.com)
  * @since May 23, 2009
  */
 public interface TinyDP
@@ -40,6 +39,8 @@ public interface TinyDP
      * Header will contain DeploymentPackage-Missing = true
      *
      * @param name identifier of Name parameter in DP manifest
+     *
+     * @return this (fluent api)
      */
     TinyDP addBundle( String name );
 
@@ -48,6 +49,8 @@ public interface TinyDP
      *
      * @param name identifier of Name parameter in DP manifest
      * @param inp  content of this resource
+     *
+     * @return this (fluent api)
      */
     TinyDP addBundle( String name, BuildableBundle inp );
 
@@ -56,6 +59,10 @@ public interface TinyDP
      *
      * @param name identifier of Name parameter in DP manifest
      * @param inp  content of this resource
+     *
+     * @return this (fluent api)
+     *
+     * @throws java.io.IOException if something goes wrong while interpreting the url
      */
     TinyDP addBundle( String name, String inp )
         throws IOException;
@@ -65,11 +72,47 @@ public interface TinyDP
      *
      * @param name identifier of Name parameter in DP manifest
      * @param inp  content of this resource
+     *
+     * @return this
      */
     TinyDP addBundle( String name, InputStream inp );
 
-    TinyDP addCustomizer( InputStream inp );
+    TinyDP addResource( String name, InputStream inp )
+        throws IOException;
 
+    TinyDP addResource( String name, InputStream inputStream, String resourceProcessorPID )
+        throws IOException;
+
+    TinyDP addResource( String name, String url )
+        throws IOException;
+
+    /**
+     * @param name                 identifier of name section
+     * @param url                  to be used to get the content
+     * @param resourceProcessorPID a resource pid.
+     *
+     * @return this
+     */
+    TinyDP addResource( String name, String url, String resourceProcessorPID )
+        throws IOException;
+
+    /**
+     * Meta Data that will appear in the Main Section of this DP Meta Inf Manifest
+     *
+     * @param key   to be used
+     * @param value to be used
+     *
+     * @return this
+     */
+    TinyDP set( String key, String value );
+
+    /**
+     * Will kick off the build of a deployment package.
+     *
+     * @return the Deployment Package (JarInputStream)
+     *
+     * @throws java.io.IOException If something goes wrong while building.
+     */
     InputStream build()
         throws IOException;
 }

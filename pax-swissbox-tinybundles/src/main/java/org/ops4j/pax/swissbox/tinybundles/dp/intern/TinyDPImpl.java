@@ -22,6 +22,7 @@ import java.io.InputStream;
 import java.io.PipedOutputStream;
 import java.io.PipedInputStream;
 import java.net.URL;
+import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -55,14 +56,17 @@ public class TinyDPImpl implements TinyDP
     // - also, the specification of DeploymentPackages mandate a specific order.
     private StreamCache m_cache = null;
 
-    private Map<String, Properties> metaData;
+    private Map<String, Properties> m_sectionMetaData;
+
+    private Map<String, String> m_dpHeaders;
 
     public TinyDPImpl( final StreamCache cache )
     {
-        // meta Data will map add*** Resource's name to their (partitially calculated) properties.
+        // meta Data will map addBundle*** Resource's name to their (partitially calculated) m_dpHeaders.
         // they all will end up in the DP manifest.
-        metaData = new HashMap<String, Properties>();
+        m_sectionMetaData = new HashMap<String, Properties>();
         m_cache = cache;
+        m_dpHeaders = new HashMap<String, String>();
     }
 
     public TinyDP addBundle( String name )
@@ -83,11 +87,11 @@ public class TinyDPImpl implements TinyDP
 
     public TinyDP addBundle( String name, InputStream inp )
     {
-        set( name, "added-by-tinybundles", new Date().toString() );
+        setSection( name, "added-by-tinybundles", new Date().toString() );
         if( inp == null )
         {
-            // set Package Missing header for this NAME
-            set( name, "DeploymentPackage-Missing", "true" );
+            // setSection Package Missing header for this NAME
+            setSection( name, "DeploymentPackage-Missing", "true" );
         }
         else
         {
@@ -95,12 +99,12 @@ public class TinyDPImpl implements TinyDP
             // reading is crucial anyway to retrieve meta data.    
             try
             {
-                m_cache.add( name, inp );
+                m_cache.addBundle( name, inp );
 
                 // read parsed data out so that it can be merged with dp meta data
                 for( String s : m_cache.getHeaders( name ).keySet() )
                 {
-                    set( name, s, m_cache.getHeaders( name ).get( s ) );
+                    setSection( name, s, m_cache.getHeaders( name ).get( s ) );
                 }
             } catch( IOException e )
             {
@@ -111,21 +115,47 @@ public class TinyDPImpl implements TinyDP
         return this;
     }
 
-    private void set( String name, String key, String value )
+    public TinyDP addResource( String name, InputStream inputStream, String resourceProcessorPID )
+        throws IOException
     {
-        Properties p = metaData.get( name );
+        m_cache.addResource( name, inputStream, resourceProcessorPID );
+        setSection( name, "added-by-tinybundles", new Date().toString() );
+
+        for( String s : m_cache.getHeaders( name ).keySet() )
+        {
+            setSection( name, s, m_cache.getHeaders( name ).get( s ) );
+        }
+        return this;
+    }
+
+    public TinyDP addResource( String name, InputStream inp )
+        throws IOException
+    {
+        return addResource( name, inp, null );
+    }
+
+    public TinyDP addResource( String name, String url )
+        throws IOException
+    {
+        return addResource( name, new URL( url ).openStream(), null );
+    }
+
+    public TinyDP addResource( String name, String url, String resourceProcessorPID )
+        throws IOException
+    {
+        return addResource( name, new URL( url ).openStream(), resourceProcessorPID );
+    }
+
+    private void setSection( String name, String key, String value )
+    {
+        Properties p = m_sectionMetaData.get( name );
         if( p == null )
         {
             p = new Properties();
-            metaData.put( name, p );
+            m_sectionMetaData.put( name, p );
         }
-        
-        p.setProperty( key, value );
-    }
 
-    public TinyDP addCustomizer( InputStream inp )
-    {
-        return null;
+        p.setProperty( key, value );
     }
 
     public InputStream build()
@@ -133,17 +163,23 @@ public class TinyDPImpl implements TinyDP
     {
         // 1. Manifest
         Manifest man = new Manifest();
+        // defaults
+        man.getMainAttributes().putValue( "Manifest-Version", "1.0" );
         man.getMainAttributes().putValue( "Content-Type", "application/vnd.osgi.dp" );
-        man.getMainAttributes().putValue( "DeploymentPackage-SymbolicName", "" );
-        man.getMainAttributes().putValue( "DeploymentPackage-DeploymentPackage-Version", "" );
+
+        // user defined
+        for( String key : m_dpHeaders.keySet() )
+        {
+            man.getMainAttributes().putValue( key, m_dpHeaders.get( key ) );
+        }
 
         Map<String, Attributes> entries = man.getEntries();
-        for( String nameSection : metaData.keySet() )
+        for( String nameSection : m_sectionMetaData.keySet() )
         {
             Attributes attr = new Attributes();
-            for( Object k : metaData.get( nameSection ).keySet() )
+            for( Object k : m_sectionMetaData.get( nameSection ).keySet() )
             {
-                attr.putValue( (String) k, (String) metaData.get( nameSection ).get( k ) );
+                attr.putValue( (String) k, (String) m_sectionMetaData.get( nameSection ).get( k ) );
             }
             entries.put( nameSection, attr );
         }
@@ -212,9 +248,16 @@ public class TinyDPImpl implements TinyDP
         return pin;
     }
 
+    public TinyDP set( String key, String value )
+    {
+        m_dpHeaders.put( key, value );
+        return this;
+    }
+
     private void copyResource( String nameSection, JarOutputStream jarOut )
         throws IOException
     {
+        LOG.info( "copying " + nameSection );
         InputStream inputStream = m_cache.getStream( nameSection );
         ZipEntry zipEntry = new JarEntry( nameSection );
         jarOut.putNextEntry( zipEntry );

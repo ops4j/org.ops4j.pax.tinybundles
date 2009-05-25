@@ -40,14 +40,16 @@ public interface StreamCache
      *
      * @param name            logical name of resource given by InputStream
      * @param resourceContent content
+     *
+     * @throws java.io.IOException if something goes wrong reading the resourceContent
      */
-    void add( String name, InputStream resourceContent )
+    void addBundle( String name, InputStream resourceContent )
         throws IOException;
 
     /**
-     * 
-     * @param name
-     * @return
+     * @param name of artifact (resource identifier) to get the headers of. Just applicable on bundles.
+     *
+     * @return the meta data of bundle. Read from InputStream given by addBundle(..)
      */
     Map<String, String> getHeaders( String name );
 
@@ -60,4 +62,12 @@ public interface StreamCache
     String[] getOtherResources();
 
     InputStream getStream( String name );
+
+    /**
+     * @param name                 section and resource identifier
+     * @param inputStream          content
+     * @param resourceProcessorPID optional resource processor pid. Can be null if not needed.
+     */
+    void addResource( String name, InputStream inputStream, String resourceProcessorPID )
+        throws IOException;
 }
