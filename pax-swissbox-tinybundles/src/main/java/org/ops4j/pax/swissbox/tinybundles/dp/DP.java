@@ -18,7 +18,7 @@
 package org.ops4j.pax.swissbox.tinybundles.dp;
 
 import org.ops4j.pax.swissbox.tinybundles.dp.intern.TinyDPImpl;
-import org.ops4j.pax.swissbox.tinybundles.dp.intern.DefaultCache;
+import org.ops4j.pax.swissbox.tinybundles.dp.intern.DefaultCacheImpl;
 
 /**
  * Humane API for constructing Deployment Packages.
@@ -35,7 +35,7 @@ public class DP
 
     public static TinyDP newDeploymentPackage()
     {
-        return new TinyDPImpl( new DefaultCache() );
+        return new TinyDPImpl( new DefaultCacheImpl() );
     }
 
 }

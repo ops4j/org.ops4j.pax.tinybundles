@@ -18,6 +18,7 @@
 package org.ops4j.pax.swissbox.tinybundles.dp.intern;
 
 import java.io.InputStream;
+import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -40,7 +41,8 @@ public interface StreamCache
      * @param name            logical name of resource given by InputStream
      * @param resourceContent content
      */
-    void add( String name, InputStream resourceContent );
+    void add( String name, InputStream resourceContent )
+        throws IOException;
 
     /**
      * 

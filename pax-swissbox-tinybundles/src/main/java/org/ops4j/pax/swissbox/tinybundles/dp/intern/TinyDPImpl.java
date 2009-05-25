@@ -93,12 +93,18 @@ public class TinyDPImpl implements TinyDP
         {
             // stream should be flushed it comes in
             // reading is crucial anyway to retrieve meta data.    
-            m_cache.add( name, inp );
-
-            // read parsed data out so that it can be merged with dp meta data
-            for( String s : m_cache.getHeaders( name ).keySet() )
+            try
             {
-                set( name, s, m_cache.getHeaders( name ).get( s ) );
+                m_cache.add( name, inp );
+
+                // read parsed data out so that it can be merged with dp meta data
+                for( String s : m_cache.getHeaders( name ).keySet() )
+                {
+                    set( name, s, m_cache.getHeaders( name ).get( s ) );
+                }
+            } catch( IOException e )
+            {
+                LOG.error( "Problem while copying resource..", e );
             }
         }
 
@@ -113,6 +119,7 @@ public class TinyDPImpl implements TinyDP
             p = new Properties();
             metaData.put( name, p );
         }
+        
         p.setProperty( key, value );
     }
 
@@ -127,8 +134,8 @@ public class TinyDPImpl implements TinyDP
         // 1. Manifest
         Manifest man = new Manifest();
         man.getMainAttributes().putValue( "Content-Type", "application/vnd.osgi.dp" );
-        man.getMainAttributes().put( "DeploymentPackage-SymbolicName", "" );
-        man.getMainAttributes().put( "DeploymentPackage-DeploymentPackage-Version", "" );
+        man.getMainAttributes().putValue( "DeploymentPackage-SymbolicName", "" );
+        man.getMainAttributes().putValue( "DeploymentPackage-DeploymentPackage-Version", "" );
 
         Map<String, Attributes> entries = man.getEntries();
         for( String nameSection : metaData.keySet() )

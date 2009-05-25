@@ -41,29 +41,16 @@ public class DeploymentPackageTest
                                 .set( Constants.EXPORT_PACKAGE, "org.ops4j.pax.tinybundles.demo" )
                                 .set( Constants.IMPORT_PACKAGE, "org.ops4j.pax.tinybundles.demo" )
                                 .set( Constants.BUNDLE_ACTIVATOR, MyFirstActivator.class.getName() )
+                                .set( Constants.BUNDLE_VERSION, "1.0.0" )
                         )
             )
-            .addBundle( "t2.jar", "mvn:groupId/userId/version" )
-            .addCustomizer( null )
+                //.addBundle( "t2.jar", "mvn:groupId/userId/version" )
             .build();
 
         JarInputStream jout = new JarInputStream( inp );
         Manifest man = jout.getManifest();
-        assertEquals( "org.ops4j.pax.tinybundles.demo",
-                      man.getMainAttributes().getValue( Constants.IMPORT_PACKAGE )
-        );
-        assertEquals( "org.ops4j.pax.tinybundles.demo", man.getMainAttributes().getValue( Constants.EXPORT_PACKAGE ) );
-        assertEquals( "pax-swissbox-tinybundles-" + Info.getPaxSwissboxTinybundlesVersion(),
-                      man.getMainAttributes().getValue( "Created-By" )
-        );
-        assertEquals( "pax-swissbox-tinybundles-" + Info.getPaxSwissboxTinybundlesVersion(),
-                      man.getMainAttributes().getValue( "Tool" )
-        );
+        assertEquals( "application/vnd.osgi.dp", man.getMainAttributes().getValue( "Content-Type" ) );
 
-        assertEquals( System.getProperty( "user.name" ), man.getMainAttributes().getValue( "Built-By" ) );
-        assertEquals( "pax-swissbox-tinybundles-" + Info.getPaxSwissboxTinybundlesVersion(),
-                      man.getMainAttributes().getValue( "SwissboxTinybundlesVersion" )
-        );
         jout.close();
 
     }
