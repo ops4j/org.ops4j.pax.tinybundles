@@ -14,10 +14,14 @@ Import-Package:\
 Private-Package:\
   ${bundle.namespace}.core.intern; version="${pom.version}",\
   ${bundle.namespace}.core.targets; version="${pom.version}",\
-  ${bundle.namespace}.core.metadata; version="${pom.version}"
+  ${bundle.namespace}.core.metadata; version="${pom.version}",\
+  ${bundle.namespace}.dp.intern; version="${pom.version}"
+
 
 Export-Package:\
-  ${bundle.namespace}.core; version="${pom.version}"
+  ${bundle.namespace}.core; version="${pom.version}",\
+  ${bundle.namespace}.dp; version="${pom.version}"
+
 
 Embed-Dependency:\
   *; scope=compile; type=!pom; inline=true
