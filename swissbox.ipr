@@ -729,7 +729,7 @@
     </library>
   </component>
   <UsedPathMacros>
-    <macro name="M2_REPO" description="" />
+    <macro name="M2_REPO" />
   </UsedPathMacros>
 </project>
 
