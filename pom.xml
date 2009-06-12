@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
@@ -6,7 +7,7 @@
   <parent>
     <groupId>org.ops4j.pax</groupId>
     <artifactId>master</artifactId>
-    <version>2.2</version>
+    <version>3.0.0</version>
   </parent>
 
   <groupId>org.ops4j.pax</groupId>
@@ -22,43 +23,20 @@
 
   <url>http://www.ops4j.org/projects/pax/swissbox</url>
 
-  <developers>
-    <developer>
-      <id>adreghiciu</id>
-      <name>Alin Dreghiciu</name>
-      <email>adreghiciu@gmail.com</email>
-      <roles>
-        <role>Developer</role>
-      </roles>
-      <timezone>UTC+2</timezone>
-    </developer>
-  </developers>
+  <scm>
+    <connection>scm:svn:https://scm.ops4j.org/repos/ops4j/projects/pax/swissbox</connection>
+    <developerConnection>scm:svn:https://scm.ops4j.org/repos/ops4j/projects/pax/swissbox</developerConnection>
+  </scm>
 
   <issueManagement>
     <system>jira</system>
     <url>http://issues.ops4j.org/jira/browse/PAXSWISSBOX</url>
   </issueManagement>
 
-  <scm>
-    <connection>scm:svn:https://scm.ops4j.org/repos/ops4j/projects/pax/swissbox</connection>
-    <developerConnection>scm:svn:https://scm.ops4j.org/repos/ops4j/projects/pax/swissbox</developerConnection>
-  </scm>
-
   <properties>
     <dependency.base.version>0.5.3</dependency.base.version>
     <dependency.url.version>0.5.1</dependency.url.version>
   </properties>
-
-  <modules>
-    <module>pax-swissbox-core</module>
-    <module>pax-swissbox-extender</module>
-    <module>pax-swissbox-lifecycle</module>
-    <module>pax-swissbox-optional-jcl</module>
-    <module>pax-swissbox-property</module>
-    <module>pax-swissbox-tinybundles</module>
-    <module>pax-swissbox-tracker</module>
-    <module>samples</module>
-  </modules>
 
   <build>
     <plugins>
@@ -131,6 +109,19 @@
         <version>4.0.1</version>
         <scope>provided</scope>
       </dependency>
+      <!-- Test dependencies-->
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.4</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.easymock</groupId>
+        <artifactId>easymock</artifactId>
+        <version>2.3</version>
+        <scope>test</scope>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
@@ -144,5 +135,28 @@
       <artifactId>org.osgi.compendium</artifactId>
     </dependency>
   </dependencies>
+
+  <developers>
+    <developer>
+      <id>adreghiciu</id>
+      <name>Alin Dreghiciu</name>
+      <email>adreghiciu@gmail.com</email>
+      <roles>
+        <role>Developer</role>
+      </roles>
+      <timezone>UTC+2</timezone>
+    </developer>
+  </developers>
+
+  <modules>
+    <module>pax-swissbox-core</module>
+    <module>pax-swissbox-extender</module>
+    <module>pax-swissbox-lifecycle</module>
+    <module>pax-swissbox-optional-jcl</module>
+    <module>pax-swissbox-property</module>
+    <module>pax-swissbox-tinybundles</module>
+    <module>pax-swissbox-tracker</module>
+    <module>samples</module>
+  </modules>  
 
 </project>
