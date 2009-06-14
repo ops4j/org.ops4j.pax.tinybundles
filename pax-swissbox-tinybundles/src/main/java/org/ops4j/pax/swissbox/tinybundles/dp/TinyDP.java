@@ -107,6 +107,24 @@ public interface TinyDP
     TinyDP set( String key, String value );
 
     /**
+     * Shortcut for set( Constants.DEPLOYMENTPACKAGE_SYMBOLICMAME, value )
+     *
+     * @param value to be used
+     *
+     * @return this
+     */
+    TinyDP setSymbolicName( String value );
+
+    /**
+     * Shortcut for set( Constants.DEPLOYMENTPACKAGE_VERSION, value )
+     *
+     * @param value to be used
+     *
+     * @return this
+     */
+    TinyDP setVersion( String value );
+
+    /**
      * Will kick off the build of a deployment package.
      *
      * @return the Deployment Package (JarInputStream)

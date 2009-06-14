@@ -37,6 +37,7 @@ import org.apache.commons.logging.LogFactory;
 import org.ops4j.pax.swissbox.tinybundles.core.BuildableBundle;
 import static org.ops4j.pax.swissbox.tinybundles.core.TinyBundles.*;
 import org.ops4j.pax.swissbox.tinybundles.dp.TinyDP;
+import org.ops4j.pax.swissbox.tinybundles.dp.Constants;
 import org.ops4j.io.StreamUtils;
 
 /**
@@ -252,6 +253,16 @@ public class TinyDPImpl implements TinyDP
     {
         m_dpHeaders.put( key, value );
         return this;
+    }
+
+    public TinyDP setSymbolicName( String value )
+    {
+        return set( Constants.DEPLOYMENTPACKAGE_SYMBOLICMAME, value );
+    }
+
+    public TinyDP setVersion( String value )
+    {
+        return set( Constants.DEPLOYMENTPACKAGE_VERSION, value );
     }
 
     private void copyResource( String nameSection, JarOutputStream jarOut )
