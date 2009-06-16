@@ -69,7 +69,7 @@ public class BundleUtils
                     }
                 }
             }
-            catch( IllegalAccessException ignore )
+            catch( Exception ignore )
             {
                 // ignore
             }
