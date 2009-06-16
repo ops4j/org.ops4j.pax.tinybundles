@@ -19,7 +19,6 @@ package org.ops4j.pax.swissbox.tinybundles.dp;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import org.ops4j.pax.swissbox.tinybundles.core.BuildableBundle;
 
 /**

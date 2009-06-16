@@ -26,6 +26,6 @@ import java.io.InputStream;
 public interface BundleAs<T>
 {
 
-    T make( InputStream inp);
-    
+    T make( InputStream inp );
+
 }

@@ -17,8 +17,8 @@
  */
 package org.ops4j.pax.swissbox.tinybundles.dp.intern;
 
-import java.io.InputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Map;
 
 /**

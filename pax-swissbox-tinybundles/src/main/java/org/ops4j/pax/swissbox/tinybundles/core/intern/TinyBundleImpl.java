@@ -32,6 +32,7 @@ import org.ops4j.pax.swissbox.tinybundles.core.metadata.RawBuilder;
  */
 public class TinyBundleImpl implements TinyBundle
 {
+
     private static Log LOG = LogFactory.getLog( TinyBundleImpl.class );
 
     private Map<String, URL> m_resources = new HashMap<String, URL>();

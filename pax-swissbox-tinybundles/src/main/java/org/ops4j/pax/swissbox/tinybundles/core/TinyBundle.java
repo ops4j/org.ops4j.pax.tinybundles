@@ -25,6 +25,7 @@ import java.net.URL;
  */
 public interface TinyBundle
 {
+
     TinyBundle addResource( String name, URL url );
 
     TinyBundle addClass( Class clazz );

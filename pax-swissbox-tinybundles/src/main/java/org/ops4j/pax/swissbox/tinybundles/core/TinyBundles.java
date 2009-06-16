@@ -17,15 +17,15 @@
  */
 package org.ops4j.pax.swissbox.tinybundles.core;
 
-import java.io.InputStream;
 import java.io.File;
+import java.io.InputStream;
 import java.net.URL;
-import org.ops4j.pax.swissbox.tinybundles.core.intern.TinyBundleImpl;
 import org.ops4j.pax.swissbox.tinybundles.core.intern.CoreBuildImpl;
-import org.ops4j.pax.swissbox.tinybundles.core.targets.BundleAsURLImpl;
-import org.ops4j.pax.swissbox.tinybundles.core.targets.BundleAsFile;
+import org.ops4j.pax.swissbox.tinybundles.core.intern.TinyBundleImpl;
 import org.ops4j.pax.swissbox.tinybundles.core.metadata.BndBuilder;
 import org.ops4j.pax.swissbox.tinybundles.core.metadata.RawBuilder;
+import org.ops4j.pax.swissbox.tinybundles.core.targets.BundleAsFile;
+import org.ops4j.pax.swissbox.tinybundles.core.targets.BundleAsURLImpl;
 
 /**
  * This is the humane api factory class that is meant to be imported statically with TinyBundles.*
@@ -50,7 +50,6 @@ public class TinyBundles
 
     /**
      * Stream
-     * @return
      */
     public static BundleAs<InputStream> asStream()
     {

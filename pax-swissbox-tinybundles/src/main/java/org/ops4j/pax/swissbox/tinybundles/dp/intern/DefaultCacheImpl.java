@@ -23,10 +23,10 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.jar.JarInputStream;
 import java.util.jar.Manifest;
 import org.osgi.framework.Constants;
@@ -48,7 +48,7 @@ public class DefaultCacheImpl implements StreamCache
     private List<String> localizationRepository;
 
     private List<String> metainfResourcesRepository;
-    
+
     private Map<String, CacheData> idx;
 
     public DefaultCacheImpl()
@@ -57,7 +57,7 @@ public class DefaultCacheImpl implements StreamCache
         resourceRepository = new ArrayList<String>();
         localizationRepository = new ArrayList<String>();
         metainfResourcesRepository = new ArrayList<String>();
-        
+
         idx = new HashMap<String, CacheData>();
 
         m_dir = new File( System.getProperty( "java.io.tmpdir" ) + "/tb" );

@@ -19,26 +19,25 @@ package org.ops4j.pax.swissbox.tinybundles.dp.intern;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.PipedOutputStream;
 import java.io.PipedInputStream;
+import java.io.PipedOutputStream;
 import java.net.URL;
-import java.net.MalformedURLException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
-import java.util.Date;
-import java.util.zip.ZipEntry;
-import java.util.jar.JarOutputStream;
-import java.util.jar.Manifest;
 import java.util.jar.Attributes;
 import java.util.jar.JarEntry;
+import java.util.jar.JarOutputStream;
+import java.util.jar.Manifest;
+import java.util.zip.ZipEntry;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.ops4j.io.StreamUtils;
 import org.ops4j.pax.swissbox.tinybundles.core.BuildableBundle;
 import static org.ops4j.pax.swissbox.tinybundles.core.TinyBundles.*;
-import org.ops4j.pax.swissbox.tinybundles.dp.TinyDP;
 import org.ops4j.pax.swissbox.tinybundles.dp.Constants;
-import org.ops4j.io.StreamUtils;
+import org.ops4j.pax.swissbox.tinybundles.dp.TinyDP;
 
 /**
  * All In one TinyDP implementation.

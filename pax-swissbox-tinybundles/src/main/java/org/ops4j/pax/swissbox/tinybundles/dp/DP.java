@@ -17,8 +17,8 @@
  */
 package org.ops4j.pax.swissbox.tinybundles.dp;
 
-import org.ops4j.pax.swissbox.tinybundles.dp.intern.TinyDPImpl;
 import org.ops4j.pax.swissbox.tinybundles.dp.intern.DefaultCacheImpl;
+import org.ops4j.pax.swissbox.tinybundles.dp.intern.TinyDPImpl;
 
 /**
  * Humane API for constructing Deployment Packages.

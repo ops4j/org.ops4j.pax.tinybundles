@@ -24,7 +24,8 @@ package org.ops4j.pax.swissbox.tinybundles.dp;
  * @author Toni Menzel (tonit)
  * @since Jun 14, 2009
  */
-public interface Constants extends org.osgi.framework.Constants {
+public interface Constants extends org.osgi.framework.Constants
+{
 
     // manifest main attribute header constants
     public static final String DEPLOYMENTPACKAGE_SYMBOLICMAME = "DeploymentPackage-SymbolicName";
