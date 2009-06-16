@@ -34,7 +34,7 @@
   </issueManagement>
 
   <properties>
-    <dependency.base.version>0.5.3</dependency.base.version>
+    <dependency.base.version>1.0.0</dependency.base.version>
   </properties>
 
   <build>
