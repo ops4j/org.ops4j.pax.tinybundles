@@ -115,24 +115,6 @@
         <option name="SPACE_WITHIN_ANNOTATION_PARENTHESES" value="true" />
         <option name="ENUM_CONSTANTS_WRAP" value="5" />
         <ADDITIONAL_INDENT_OPTIONS fileType="">
-          <option name="INDENT_SIZE" value="4" />
-          <option name="CONTINUATION_INDENT_SIZE" value="8" />
-          <option name="TAB_SIZE" value="4" />
-          <option name="USE_TAB_CHARACTER" value="false" />
-          <option name="SMART_TABS" value="false" />
-          <option name="LABEL_INDENT_SIZE" value="0" />
-          <option name="LABEL_INDENT_ABSOLUTE" value="false" />
-        </ADDITIONAL_INDENT_OPTIONS>
-        <ADDITIONAL_INDENT_OPTIONS fileType="groovy">
-          <option name="INDENT_SIZE" value="2" />
-          <option name="CONTINUATION_INDENT_SIZE" value="8" />
-          <option name="TAB_SIZE" value="4" />
-          <option name="USE_TAB_CHARACTER" value="false" />
-          <option name="SMART_TABS" value="false" />
-          <option name="LABEL_INDENT_SIZE" value="0" />
-          <option name="LABEL_INDENT_ABSOLUTE" value="false" />
-        </ADDITIONAL_INDENT_OPTIONS>
-        <ADDITIONAL_INDENT_OPTIONS fileType="gsp">
           <option name="INDENT_SIZE" value="2" />
           <option name="CONTINUATION_INDENT_SIZE" value="8" />
           <option name="TAB_SIZE" value="4" />
@@ -144,33 +126,6 @@
         <ADDITIONAL_INDENT_OPTIONS fileType="java">
           <option name="INDENT_SIZE" value="4" />
           <option name="CONTINUATION_INDENT_SIZE" value="4" />
-          <option name="TAB_SIZE" value="4" />
-          <option name="USE_TAB_CHARACTER" value="false" />
-          <option name="SMART_TABS" value="false" />
-          <option name="LABEL_INDENT_SIZE" value="0" />
-          <option name="LABEL_INDENT_ABSOLUTE" value="false" />
-        </ADDITIONAL_INDENT_OPTIONS>
-        <ADDITIONAL_INDENT_OPTIONS fileType="js">
-          <option name="INDENT_SIZE" value="4" />
-          <option name="CONTINUATION_INDENT_SIZE" value="8" />
-          <option name="TAB_SIZE" value="4" />
-          <option name="USE_TAB_CHARACTER" value="false" />
-          <option name="SMART_TABS" value="false" />
-          <option name="LABEL_INDENT_SIZE" value="0" />
-          <option name="LABEL_INDENT_ABSOLUTE" value="false" />
-        </ADDITIONAL_INDENT_OPTIONS>
-        <ADDITIONAL_INDENT_OPTIONS fileType="jsp">
-          <option name="INDENT_SIZE" value="4" />
-          <option name="CONTINUATION_INDENT_SIZE" value="8" />
-          <option name="TAB_SIZE" value="4" />
-          <option name="USE_TAB_CHARACTER" value="false" />
-          <option name="SMART_TABS" value="false" />
-          <option name="LABEL_INDENT_SIZE" value="0" />
-          <option name="LABEL_INDENT_ABSOLUTE" value="false" />
-        </ADDITIONAL_INDENT_OPTIONS>
-        <ADDITIONAL_INDENT_OPTIONS fileType="sql">
-          <option name="INDENT_SIZE" value="2" />
-          <option name="CONTINUATION_INDENT_SIZE" value="8" />
           <option name="TAB_SIZE" value="4" />
           <option name="USE_TAB_CHARACTER" value="false" />
           <option name="SMART_TABS" value="false" />
@@ -436,6 +391,7 @@
   </component>
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/pax-swissbox-bnd/pax-swissbox-bnd.iml" filepath="$PROJECT_DIR$/pax-swissbox-bnd/pax-swissbox-bnd.iml" />
       <module fileurl="file://$PROJECT_DIR$/pax-swissbox-core/pax-swissbox-core.iml" filepath="$PROJECT_DIR$/pax-swissbox-core/pax-swissbox-core.iml" />
       <module fileurl="file://$PROJECT_DIR$/pax-swissbox-extender/pax-swissbox-extender.iml" filepath="$PROJECT_DIR$/pax-swissbox-extender/pax-swissbox-extender.iml" />
       <module fileurl="file://$PROJECT_DIR$/pax-swissbox-lifecycle/pax-swissbox-lifecycle.iml" filepath="$PROJECT_DIR$/pax-swissbox-lifecycle/pax-swissbox-lifecycle.iml" />
@@ -528,17 +484,6 @@
       </JAVADOC>
       <SOURCES>
         <root url="jar://$M2_REPO$/org/easymock/easymock/2.3/easymock-2.3-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.ops4j.pax.url:pax-url-bnd:0.5.1">
-      <CLASSES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/url/pax-url-bnd/0.5.1/pax-url-bnd-0.5.1.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/url/pax-url-bnd/0.5.1/pax-url-bnd-0.5.1-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/url/pax-url-bnd/0.5.1/pax-url-bnd-0.5.1-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: commons-logging:commons-logging:1.1">
@@ -660,6 +605,28 @@
       </JAVADOC>
       <SOURCES>
         <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-container-default/0.6.0/pax-exam-container-default-0.6.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.ops4j.base:ops4j-base-monitors:0.5.3">
+      <CLASSES>
+        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-monitors/0.5.3/ops4j-base-monitors-0.5.3.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-monitors/0.5.3/ops4j-base-monitors-0.5.3-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-monitors/0.5.3/ops4j-base-monitors-0.5.3-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: biz.aQute:bndlib:0.0.313">
+      <CLASSES>
+        <root url="jar://$M2_REPO$/biz/aQute/bndlib/0.0.313/bndlib-0.0.313.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$M2_REPO$/biz/aQute/bndlib/0.0.313/bndlib-0.0.313-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$M2_REPO$/biz/aQute/bndlib/0.0.313/bndlib-0.0.313-sources.jar!/" />
       </SOURCES>
     </library>
   </component>

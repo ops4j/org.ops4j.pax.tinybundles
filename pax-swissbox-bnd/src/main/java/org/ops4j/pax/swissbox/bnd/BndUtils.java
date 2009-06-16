@@ -16,7 +16,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.url.bnd;
+package org.ops4j.pax.swissbox.bnd;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -99,7 +99,7 @@ public class BndUtils
             // Do not use instrauctions as default for properties because it looks like BND uses the props
             // via some other means then getProperty() and so the instructions will not be used at all
             // So, just cyo instructions to properties
-            final Properties properties = new Properties( );
+            final Properties properties = new Properties();
             properties.putAll( instructions );
 
             properties.put( "Generated-By-Ops4j-Pax-From", jarInfo );

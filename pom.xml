@@ -35,7 +35,6 @@
 
   <properties>
     <dependency.base.version>0.5.3</dependency.base.version>
-    <dependency.url.version>0.5.1</dependency.url.version>
   </properties>
 
   <build>
@@ -76,6 +75,13 @@
 
   <dependencyManagement>
     <dependencies>
+      <!-- Peter Kriens BND -->
+      <dependency>
+        <groupId>biz.aQute</groupId>
+        <artifactId>bndlib</artifactId>
+        <version>0.0.313</version>
+      </dependency>
+      <!-- OPS4J Base -->
       <dependency>
         <groupId>org.ops4j.base</groupId>
         <artifactId>ops4j-base-io</artifactId>
@@ -90,11 +96,6 @@
         <groupId>org.ops4j.base</groupId>
         <artifactId>ops4j-base-util-property</artifactId>
         <version>${dependency.base.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.ops4j.pax.url</groupId>
-        <artifactId>pax-url-bnd</artifactId>
-        <version>${dependency.url.version}</version>
       </dependency>
       <!-- Provided dependencies -->
       <dependency>
@@ -149,6 +150,7 @@
   </developers>
 
   <modules>
+    <module>pax-swissbox-bnd</module>
     <module>pax-swissbox-core</module>
     <module>pax-swissbox-extender</module>
     <module>pax-swissbox-lifecycle</module>
@@ -157,6 +159,6 @@
     <module>pax-swissbox-tinybundles</module>
     <module>pax-swissbox-tracker</module>
     <module>samples</module>
-  </modules>  
+  </modules>
 
 </project>
