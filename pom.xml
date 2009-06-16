@@ -1,3 +1,4 @@
+<?xml version='1.0' encoding='UTF-8' ?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
@@ -149,16 +150,39 @@
     </developer>
   </developers>
 
-  <modules>
-    <module>pax-swissbox-bnd</module>
-    <module>pax-swissbox-core</module>
-    <module>pax-swissbox-extender</module>
-    <module>pax-swissbox-lifecycle</module>
-    <module>pax-swissbox-optional-jcl</module>
-    <module>pax-swissbox-property</module>
-    <module>pax-swissbox-tinybundles</module>
-    <module>pax-swissbox-tracker</module>
-    <module>samples</module>
-  </modules>
+  <profiles>
+    <profile>
+      <id>default</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <modules>
+        <module>pax-swissbox-bnd</module>
+        <module>pax-swissbox-core</module>
+        <module>pax-swissbox-extender</module>
+        <module>pax-swissbox-lifecycle</module>
+        <module>pax-swissbox-optional-jcl</module>
+        <module>pax-swissbox-property</module>
+        <module>pax-swissbox-tinybundles</module>
+        <module>pax-swissbox-tracker</module>
+        <module>samples</module>
+      </modules>
+    </profile>
+
+    <profile>
+      <id>release</id>
+      <modules>
+        <module>pax-swissbox-bnd</module>
+        <module>pax-swissbox-core</module>
+        <module>pax-swissbox-extender</module>
+        <module>pax-swissbox-lifecycle</module>
+        <module>pax-swissbox-optional-jcl</module>
+        <module>pax-swissbox-property</module>
+        <module>pax-swissbox-tinybundles</module>
+        <module>pax-swissbox-tracker</module>
+      </modules>
+    </profile>
+
+  </profiles>
 
 </project>

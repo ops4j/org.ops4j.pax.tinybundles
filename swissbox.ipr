@@ -260,6 +260,13 @@
         <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
+    <option name="activeProfiles">
+      <list>
+        <option value="default" />
+        <option value="samples" />
+        <option value="release" />
+      </list>
+    </option>
   </component>
   <component name="NewModuleRootManager" />
   <component name="Palette2">
