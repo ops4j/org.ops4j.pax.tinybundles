@@ -261,6 +261,7 @@
       </list>
     </option>
   </component>
+  <component name="NewModuleRootManager" />
   <component name="Palette2">
     <group name="Swing">
       <item class="com.intellij.uiDesigner.HSpacer" tooltip-text="Horizontal Spacer" icon="/com/intellij/uiDesigner/icons/hspacer.png" removable="false" auto-create-binding="false" can-attach-label="false">
@@ -539,39 +540,6 @@
       </JAVADOC>
       <SOURCES>
         <root url="jar://$M2_REPO$/javax/servlet/servlet-api/2.3/servlet-api-2.3-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.ops4j.pax.exam:pax-exam:0.6.0">
-      <CLASSES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam/0.6.0/pax-exam-0.6.0.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam/0.6.0/pax-exam-0.6.0-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam/0.6.0/pax-exam-0.6.0-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.ops4j.pax.exam:pax-exam-junit:0.6.0">
-      <CLASSES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-junit/0.6.0/pax-exam-junit-0.6.0.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-junit/0.6.0/pax-exam-junit-0.6.0-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-junit/0.6.0/pax-exam-junit-0.6.0-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.ops4j.pax.exam:pax-exam-container-default:0.6.0">
-      <CLASSES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-container-default/0.6.0/pax-exam-container-default-0.6.0.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-container-default/0.6.0/pax-exam-container-default-0.6.0-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-container-default/0.6.0/pax-exam-container-default-0.6.0-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: biz.aQute:bndlib:0.0.313">
