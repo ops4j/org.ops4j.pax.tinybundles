@@ -17,7 +17,7 @@
   <name>OPS4J Pax Swissbox - TinyBundles</name>
 
   <description>
-    Tiny Bundles is a library to create adhoc bundles using Java API.
+    Tiny Bundles is a library to create adhoc bundles and other OSGi resources using Java API.
   </description>
 
   <properties>
