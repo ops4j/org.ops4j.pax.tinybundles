@@ -17,15 +17,16 @@
  */
 package org.ops4j.pax.swissbox.tinybundles.dp;
 
+import java.io.IOException;
+import java.io.InputStream;
 import org.ops4j.pax.swissbox.tinybundles.dp.intern.DefaultCacheImpl;
 import org.ops4j.pax.swissbox.tinybundles.dp.intern.TinyDPImpl;
+import org.ops4j.pax.swissbox.tinybundles.dp.intern.Backend;
 
 /**
  * Humane API for constructing Deployment Packages.
  * Capabilities and final format will comply to
  * OSGi Compendium R4 Version 4.2, Deployment Admin Specification Version 1.1
- *
- * Status:
  *
  * @author Toni Menzel (tonit)
  * @since May 23, 2009
@@ -33,9 +34,43 @@ import org.ops4j.pax.swissbox.tinybundles.dp.intern.TinyDPImpl;
 public class DP
 {
 
+    /**
+     * Create a new deploymentpackage from scratch.
+     *
+     * @return an api to create a deployment package.
+     */
     public static TinyDP newDeploymentPackage()
     {
-        return new TinyDPImpl( new DefaultCacheImpl() );
+        return new TinyDPImpl( null, new Backend( new DefaultCacheImpl() ) );
+    }
+
+    /**
+     * Change an existing DeploymentPackage. (Fix Package)
+     *
+     * @param input Deployment Package you want to change.
+     *
+     * @return an extended api to create and change a deployment package.
+     *
+     * @throws java.io.IOException in case input.build() throws an Exception.
+     */
+    public static FixPackDP newFixPackage( BuildableDP input )
+        throws IOException
+    {
+        return newFixPackage( input.build() );
+
+    }
+
+    /**
+     * Change an existing DeploymentPackage. (Fix Package)
+     *
+     * @param input Deployment Package you want to change.
+     *
+     * @return an extended api to create and change a deployment package.
+     */
+    public static FixPackDP newFixPackage( InputStream input )
+    {
+        return new TinyDPImpl( input, new Backend( new DefaultCacheImpl() ) );
+
     }
 
 }
