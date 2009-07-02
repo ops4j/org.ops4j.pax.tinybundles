@@ -20,6 +20,7 @@ package org.ops4j.pax.swissbox.samples.tinybundles.dp;
 import java.io.IOException;
 import java.io.InputStream;
 import org.junit.Test;
+import org.junit.Before;
 import org.ops4j.pax.swissbox.samples.tinybundles.DPTestingHelper;
 import static org.ops4j.pax.swissbox.tinybundles.dp.DP.*;
 import org.ops4j.pax.swissbox.tinybundles.dp.store.BinaryHandle;
@@ -33,11 +34,50 @@ import org.ops4j.pax.swissbox.tinybundles.dp.store.TemporaryBinaryStore;
 public class DeploymentPackageTest
 {
 
+    @Before
+    public void prepare()
+    {
+        System.setProperty( "java.protocol.handler.pkgs", "org.ops4j.pax.url" );
+
+    }
+
+    @Test
+    public void testMinimalCreate()
+        throws IOException
+    {
+        BinaryStore<InputStream> cache = new TemporaryBinaryStore();
+
+        BinaryHandle original = cache.store( newDeploymentPackage()
+            .set( "DeploymentPackage-SymbolicName", "MyFirstDeploymentPackage" )
+            .set( "DeploymentPackage-DeploymentPackage-Version", "1.0.0" )
+            .build()
+        );
+
+        DPTestingHelper.verifyDP( cache.load( original ) );
+        DPTestingHelper.verifyBundleContents( cache.load( original ) );
+    }
+
+    @Test
+    public void testOneCreate()
+        throws IOException
+    {
+        BinaryStore<InputStream> cache = new TemporaryBinaryStore();
+
+        BinaryHandle original = cache.store( newDeploymentPackage()
+            .set( "DeploymentPackage-SymbolicName", "MyFirstDeploymentPackage" )
+            .set( "DeploymentPackage-DeploymentPackage-Version", "1.0.0" )
+            .setBundle( "t1.jar", "mvn:org.ops4j.pax.url/pax-url-mvn/1.1.0-SNAPSHOT" )
+            .build()
+        );
+
+        DPTestingHelper.verifyDP( cache.load( original ), "t1.jar" );
+        DPTestingHelper.verifyBundleContents( cache.load( original ), "t1.jar" );
+    }
+
     @Test
     public void createDPAndCreateFixPack()
         throws IOException
     {
-        System.setProperty( "java.protocol.handler.pkgs", "org.ops4j.pax.url" );
         BinaryStore<InputStream> cache = new TemporaryBinaryStore();
 
         BinaryHandle original = cache.store( newDeploymentPackage()
