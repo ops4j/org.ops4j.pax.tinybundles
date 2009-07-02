@@ -98,5 +98,39 @@ public class DeploymentPackageTest
         DPTestingHelper.verifyBundleContents( cache.load( fix ), "t2.jar" );
     }
 
+    //@Test
+    // TODO: Fix Packs as real deltas
+    public void testDelta()
+        throws IOException
+    {
+        BinaryStore<InputStream> cache = new TemporaryBinaryStore();
+
+        BinaryHandle original = cache.store( newDeploymentPackage()
+            .set( "DeploymentPackage-SymbolicName", "MyFirstDeploymentPackage" )
+            .set( "DeploymentPackage-DeploymentPackage-Version", "1.0.0" )
+            .addResource( "log4j.properties", getClass().getResourceAsStream( "/log4j.properties" ), "log4j-properties-processor" )
+            .setBundle( "t1.jar", "mvn:org.ops4j.pax.url/pax-url-mvn/1.1.0-SNAPSHOT" )
+            .setBundle( "t2.jar", "mvn:org.ops4j.pax.url/pax-url-wrap/1.1.0-SNAPSHOT" )
+            .setBundle( "t3.jar", "mvn:org.ops4j.pax.url/pax-url-bnd/1.1.0-SNAPSHOT" )
+
+            .build()
+        );
+
+        DPTestingHelper.verifyDP( cache.load( original ), "log4j.properties", "t1.jar", "t2.jar", "t3.jar" );
+        DPTestingHelper.verifyBundleContents( cache.load( original ), "t1.jar", "t2.jar", "t3.jar" );
+
+        BinaryHandle fix = cache.store( newFixPackage( cache.load( original ) )
+            .setBundle( "t2", "mvn:org.ops4j.pax.url/pax-url-war/1.1.0-SNAPSHOT" ) // replace wrap by war ! Fix!
+            .remove( "t1.jar" ) 
+            .build()
+        );
+
+        // t1 should not occure anymore
+        // t2 must be "in there" cause it contains a fix
+        // t3 must have a Missing-Content Header and no real content (no change)
+        DPTestingHelper.verifyDP( cache.load( fix ), "log4j.properties", "t2.jar" );
+        DPTestingHelper.verifyBundleContents( cache.load( fix ), "t2.jar" );
+    }
+
 
 }
