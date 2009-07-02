@@ -20,101 +20,154 @@ package org.ops4j.pax.swissbox.tinybundles.dp.intern;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.jar.Attributes;
+import java.util.jar.JarInputStream;
+import java.util.jar.Manifest;
+import java.util.zip.ZipEntry;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.ops4j.pax.swissbox.tinybundles.core.BuildableBundle;
 import static org.ops4j.pax.swissbox.tinybundles.core.TinyBundles.*;
 import org.ops4j.pax.swissbox.tinybundles.dp.Constants;
-import org.ops4j.pax.swissbox.tinybundles.dp.FixPackDP;
 import org.ops4j.pax.swissbox.tinybundles.dp.TinyDP;
+import org.ops4j.pax.swissbox.tinybundles.dp.store.BinaryStore;
 
 /**
- * All In one TinyDP implementation.
- * Resource Cache will be exchangable (constructor injection)
+ * 1. Allow Reading of another DeploymentPackage as "base". (probably to be moved out)
+ * 2. Normalize various method sugar to apriate calls to metadataStore.
  */
-public class TinyDPImpl implements FixPackDP
+public class TinyDPImpl implements TinyDP
 {
 
     private static Log LOG = LogFactory.getLog( TinyDPImpl.class );
 
-    private Backend m_backend;
+    // All Contents of Deployment Package are stored here
+    private BinaryStore<InputStream> m_cache = null;
 
-    public TinyDPImpl( InputStream parent, final Backend back)
-    {
-        m_backend =back;
-    }
+    private Bucket m_meta;
 
-    public TinyDP addBundle( String name )
-        throws IOException
-    {
-        return addBundle( name, (InputStream) null );
-    }
+    // The DeploymentPackages.Manifest Instructions
+    private Map<String, String> m_dpHeaders = new HashMap<String, String>();
 
-    public TinyDP addBundle( String s, BuildableBundle buildableBundle )
-        throws IOException
+    public TinyDPImpl( InputStream parent, final Bucket bucket, BinaryStore<InputStream> cache )
     {
-        return addBundle( s, buildableBundle.build( asStream() ) );
-    }
+        m_meta = bucket;
+        m_cache = cache;
 
-    public TinyDP addBundle( String name, String inp )
-        throws IOException
-    {
-        return addBundle( name, new URL( inp ).openStream() );
-    }
-
-    public TinyDP addBundle( String name, InputStream inp )
-        throws IOException
-    {
-        m_backend.setSection( name, "added-by-tinybundles", new Date().toString() );
-        if( inp == null )
+        if( parent != null )
         {
-            // setSection Package Missing header for this NAME
-            m_backend.setSection( name, Constants.DEPLOYMENTPACKAGE_MISSING, "true" );
-        }
-        else
-        {
-            // stream should be flushed it comes in
-            // reading is crucial anyway to retrieve meta data.    
-            m_backend.addBundle( name, inp );
-
-            // read parsed data out so that it can be merged with dp meta data
-            for( String s : m_backend.getHeaders( name ).keySet() )
+            // replay parent into *this*
+            JarInputStream jin = null;
+            try
             {
-                m_backend.setSection( name, s, m_backend.getHeaders( name ).get( s ) );
+                jin = new JarInputStream( parent );
+                // first entry must be manifest
+                Manifest man = jin.getManifest();
+
+                Attributes att = man.getMainAttributes();
+                for( Object o : att.keySet() )
+                {
+                    String k = o.toString();
+                    String v = att.getValue( k );
+                    System.out.println( k + " = " + v );
+                    set( k, v );
+                }
+
+                Set<String> bundles = new HashSet<String>();
+                Set<String> resources = new HashSet<String>();
+
+                for( String s : man.getEntries().keySet() )
+                {
+
+                    Attributes attrs = man.getAttributes( s );
+                    if( attrs.getValue( "Bundle-SymbolicName" ) != null )
+                    {
+                        bundles.add( s );
+                    }
+                    else if( attrs.getValue( "Resource-Processor" ) != null )
+                    {
+                        resources.add( s );
+                    }
+                }
+
+                ZipEntry entry;
+                while( ( entry = jin.getNextEntry() ) != null )
+                {
+                    if( bundles.contains( entry.getName() ) )
+                    {
+                        setBundle( entry.getName(), jin );
+                    }
+                    else if( resources.contains( entry.getName() ) )
+                    {
+                        setResource( entry.getName(), jin );
+                    }
+
+                }
+
+            } catch( IOException e )
+            {
+                throw new RuntimeException( e );
+            } finally
+            {
+                if( jin != null )
+                {
+                    try
+                    {
+                        jin.close();
+                    } catch( IOException e )
+                    {
+                        //
+                    }
+                }
             }
-
         }
-
-        return this;
     }
 
-    public TinyDP addResource( String name, InputStream inputStream, String resourceProcessorPID )
+    public TinyDP setBundle( String s, BuildableBundle buildableBundle )
         throws IOException
     {
-        m_backend.addResource( name, inputStream, resourceProcessorPID );
-        m_backend.setSection( name, "added-by-tinybundles", new Date().toString() );
+        return setBundle( s, buildableBundle.build( asStream() ) );
+    }
 
-        for( String s : m_backend.getHeaders( name ).keySet() )
-        {
-            m_backend.setSection( name, s, m_backend.getHeaders( name ).get( s ) );
-        }
+    public TinyDP setBundle( String name, String inp )
+        throws IOException
+    {
+        return setBundle( name, new URL( inp ).openStream() );
+    }
+
+    // just set metadata + add inputstream to some kind of cache.
+    public TinyDP setBundle( String name, InputStream inp )
+        throws IOException
+    {
+        m_meta.store( name, m_cache.store( inp ), DPContentTypes.BUNDLE );
         return this;
     }
 
-    public TinyDP addResource( String name, InputStream inp )
+    public TinyDP addResource( String name, InputStream inp, String resourceProcessorPID )
+        throws IOException
+    {
+        m_meta.store( name, m_cache.store( inp ), DPContentTypes.OTHERRESOURCE );
+
+        return this;
+    }
+
+    public TinyDP setResource( String name, InputStream inp )
         throws IOException
     {
         return addResource( name, inp, null );
     }
 
-    public TinyDP addResource( String name, String url )
+    public TinyDP setResource( String name, String url )
         throws IOException
     {
         return addResource( name, new URL( url ).openStream(), null );
     }
 
-    public TinyDP addResource( String name, String url, String resourceProcessorPID )
+    public TinyDP setResource( String name, String url, String resourceProcessorPID )
         throws IOException
     {
         return addResource( name, new URL( url ).openStream(), resourceProcessorPID );
@@ -122,7 +175,7 @@ public class TinyDPImpl implements FixPackDP
 
     public TinyDP set( String key, String value )
     {
-        m_backend.putHeader( key, value );
+        m_dpHeaders.put( key, value );
         return this;
     }
 
@@ -136,19 +189,15 @@ public class TinyDPImpl implements FixPackDP
         return set( Constants.DEPLOYMENTPACKAGE_VERSION, value );
     }
 
-    public TinyDP removeBundle( String s )
+    public TinyDP remove( String s )
     {
-        return null;
-    }
-
-    public TinyDP removeResource( String identifier )
-    {
-        return null;
+        m_meta.remove( s );
+        return this;
     }
 
     public InputStream build()
         throws IOException
     {
-        return m_backend.build();
+        return new DPBuilder().build( m_dpHeaders, m_cache, m_meta );
     }
 }

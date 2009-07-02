@@ -17,11 +17,10 @@
  */
 package org.ops4j.pax.swissbox.tinybundles.dp;
 
-import java.io.IOException;
 import java.io.InputStream;
-import org.ops4j.pax.swissbox.tinybundles.dp.intern.DefaultCacheImpl;
+import org.ops4j.pax.swissbox.tinybundles.dp.intern.Bucket;
 import org.ops4j.pax.swissbox.tinybundles.dp.intern.TinyDPImpl;
-import org.ops4j.pax.swissbox.tinybundles.dp.intern.Backend;
+import org.ops4j.pax.swissbox.tinybundles.dp.store.TemporaryBinaryStore;
 
 /**
  * Humane API for constructing Deployment Packages.
@@ -41,23 +40,7 @@ public class DP
      */
     public static TinyDP newDeploymentPackage()
     {
-        return new TinyDPImpl( null, new Backend( new DefaultCacheImpl() ) );
-    }
-
-    /**
-     * Change an existing DeploymentPackage. (Fix Package)
-     *
-     * @param input Deployment Package you want to change.
-     *
-     * @return an extended api to create and change a deployment package.
-     *
-     * @throws java.io.IOException in case input.build() throws an Exception.
-     */
-    public static FixPackDP newFixPackage( BuildableDP input )
-        throws IOException
-    {
-        return newFixPackage( input.build() );
-
+        return new TinyDPImpl( null, new Bucket(), new TemporaryBinaryStore() );
     }
 
     /**
@@ -67,9 +50,9 @@ public class DP
      *
      * @return an extended api to create and change a deployment package.
      */
-    public static FixPackDP newFixPackage( InputStream input )
+    public static TinyDP newFixPackage( InputStream input )
     {
-        return new TinyDPImpl( input, new Backend( new DefaultCacheImpl() ) );
+        return new TinyDPImpl( input, new Bucket(), new TemporaryBinaryStore() );
 
     }
 

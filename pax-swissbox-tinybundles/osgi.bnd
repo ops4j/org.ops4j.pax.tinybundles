@@ -17,10 +17,14 @@ Private-Package:\
   ${bundle.namespace}.core.metadata; version="${pom.version}",\
   ${bundle.namespace}.dp.intern; version="${pom.version}"
 
+ Ignore-Package: ${bundle.namespace}.dp.intern.legacy
+
 
 Export-Package:\
   ${bundle.namespace}.core; version="${pom.version}",\
-  ${bundle.namespace}.dp; version="${pom.version}"
+  ${bundle.namespace}.dp; version="${pom.version}",\
+  ${bundle.namespace}.dp.store; version="${pom.version}"
+
 
 
 Embed-Dependency:\

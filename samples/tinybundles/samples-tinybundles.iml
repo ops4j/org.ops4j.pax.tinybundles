@@ -25,6 +25,7 @@
     <orderEntry type="module" module-name="pax-swissbox-bnd" exported="" />
     <orderEntry type="library" exported="" name="Maven: biz.aQute:bndlib:0.0.313" level="project" />
     <orderEntry type="library" name="Maven: junit:junit:4.4" level="project" />
+    <orderEntry type="library" name="Maven: org.ops4j.pax.url:pax-url-mvn:1.1.0-SNAPSHOT" level="project" />
   </component>
 </module>
 

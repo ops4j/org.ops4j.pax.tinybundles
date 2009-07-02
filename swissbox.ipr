@@ -117,7 +117,7 @@
         <ADDITIONAL_INDENT_OPTIONS fileType="">
           <option name="INDENT_SIZE" value="2" />
           <option name="CONTINUATION_INDENT_SIZE" value="8" />
-          <option name="TAB_SIZE" value="4" />
+          <option name="TAB_SIZE" value="2" />
           <option name="USE_TAB_CHARACTER" value="false" />
           <option name="SMART_TABS" value="false" />
           <option name="LABEL_INDENT_SIZE" value="0" />
@@ -197,7 +197,7 @@
         </ADDITIONAL_INDENT_OPTIONS>
       </value>
     </option>
-    <option name="USE_PER_PROJECT_SETTINGS" value="true" />
+    <option name="USE_PER_PROJECT_SETTINGS" value="false" />
   </component>
   <component name="CompilerConfiguration">
     <option name="DEFAULT_COMPILER" value="Javac" />
@@ -245,18 +245,40 @@
   <component name="EntryPointsManager">
     <entry_points version="2.0" />
   </component>
+  <component name="FacetAutodetectingManager">
+    <autodetection-disabled>
+      <facet-type id="Osmorc">
+        <modules>
+          <module name="pax-swissbox-core" />
+          <module name="pax-swissbox-lifecycle" />
+          <module name="pax-swissbox-optional-jcl" />
+          <module name="samples-manifest-extender" />
+          <module name="pax-swissbox-property" />
+          <module name="pax-swissbox-tracker" />
+          <module name="pax-swissbox-tinybundles" />
+          <module name="pax-swissbox-extender" />
+          <module name="pax-swissbox-bnd" />
+        </modules>
+      </facet-type>
+    </autodetection-disabled>
+  </component>
   <component name="IdProvider" IDEtalkID="4451B5B5A99F7794544410A3C9A2B92B" />
   <component name="InspectionProjectProfileManager">
     <option name="PROJECT_PROFILE" value="Project Default" />
-    <option name="USE_PROJECT_LEVEL_SETTINGS" value="false" />
-    <scopes />
+    <option name="USE_PROJECT_PROFILE" value="true" />
+    <version value="1.0" />
     <profiles>
       <profile version="1.0" is_locked="false">
         <option name="myName" value="Project Default" />
         <option name="myLocal" value="false" />
       </profile>
     </profiles>
-    <list size="0" />
+    <list size="4">
+      <item index="0" class="java.lang.String" itemvalue="WARNING" />
+      <item index="1" class="java.lang.String" itemvalue="SERVER PROBLEM" />
+      <item index="2" class="java.lang.String" itemvalue="INFO" />
+      <item index="3" class="java.lang.String" itemvalue="ERROR" />
+    </list>
   </component>
   <component name="JavacSettings">
     <option name="DEBUGGING_INFO" value="true" />
@@ -308,7 +330,6 @@
     <option name="activeProfiles">
       <list>
         <option value="default" />
-        <option value="samples" />
         <option value="release" />
       </list>
     </option>
@@ -457,7 +478,7 @@
       <module fileurl="file://$PROJECT_DIR$/swissbox.iml" filepath="$PROJECT_DIR$/swissbox.iml" />
     </modules>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_5" assert-keyword="true" jdk-15="true" project-jdk-name="1.5" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_5" assert-keyword="true" jdk-15="true" project-jdk-name="1.6" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
   <component name="ResourceManagerContainer">
@@ -473,6 +494,16 @@
     <option name="GENERATE_NO_WARNINGS" value="false" />
     <option name="GENERATE_IIOP_STUBS" value="false" />
     <option name="ADDITIONAL_OPTIONS_STRING" value="" />
+  </component>
+  <component name="SharedJiraServers">
+    <option name="servers">
+      <server>
+        <option name="serverId">
+          <ServerId />
+        </option>
+        <option name="url" value="http://issues.ops4j.org" />
+      </server>
+    </option>
   </component>
   <component name="SvnBranchConfigurationManager">
     <option name="myConfigurationMap">
@@ -494,6 +525,275 @@
   </component>
   <component name="WebServicesPlugin" addRequiredLibraries="true" />
   <component name="libraryTable">
+    <library name="Maven: biz.aQute:bndlib:0.0.313">
+      <CLASSES>
+        <root url="jar://$M2_REPO$/biz/aQute/bndlib/0.0.313/bndlib-0.0.313.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$M2_REPO$/biz/aQute/bndlib/0.0.313/bndlib-0.0.313-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$M2_REPO$/biz/aQute/bndlib/0.0.313/bndlib-0.0.313-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.ops4j.pax.swissbox:pax-swissbox-optional-jcl:1.0.0-SNAPSHOT">
+      <CLASSES>
+        <root url="jar://$M2_REPO$/org/ops4j/pax/swissbox/pax-swissbox-optional-jcl/1.0.0-SNAPSHOT/pax-swissbox-optional-jcl-1.0.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/ops4j/pax/swissbox/pax-swissbox-optional-jcl/1.0.0-SNAPSHOT/pax-swissbox-optional-jcl-1.0.0-SNAPSHOT.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$M2_REPO$/org/ops4j/pax/swissbox/pax-swissbox-optional-jcl/1.0.0-SNAPSHOT/pax-swissbox-optional-jcl-1.0.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/ops4j/pax/swissbox/pax-swissbox-optional-jcl/1.0.0-SNAPSHOT/pax-swissbox-optional-jcl-1.0.0-SNAPSHOT-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$M2_REPO$/org/ops4j/pax/swissbox/pax-swissbox-optional-jcl/1.0.0-SNAPSHOT/pax-swissbox-optional-jcl-1.0.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/ops4j/pax/swissbox/pax-swissbox-optional-jcl/1.0.0-SNAPSHOT/pax-swissbox-optional-jcl-1.0.0-SNAPSHOT-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.apache.felix:org.osgi.compendium:1.1.0-SNAPSHOT">
+      <CLASSES>
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.apache.felix:org.osgi.core:1.1.0-SNAPSHOT">
+      <CLASSES>
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+      </SOURCES>
+    </library>
     <library name="Maven: org.osgi:org.osgi.core:4.0.1">
       <CLASSES>
         <root url="jar://$M2_REPO$/org/osgi/org.osgi.core/4.0.1/org.osgi.core-4.0.1.jar!/" />
@@ -516,6 +816,17 @@
         <root url="jar://$M2_REPO$/org/osgi/org.osgi.compendium/4.0.1/org.osgi.compendium-4.0.1-sources.jar!/" />
       </SOURCES>
     </library>
+    <library name="Maven: org.ops4j.base:ops4j-base-lang:1.0.0">
+      <CLASSES>
+        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-lang/1.0.0/ops4j-base-lang-1.0.0.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-lang/1.0.0/ops4j-base-lang-1.0.0-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-lang/1.0.0/ops4j-base-lang-1.0.0-sources.jar!/" />
+      </SOURCES>
+    </library>
     <library name="Maven: junit:junit:4.4">
       <CLASSES>
         <root url="jar://$M2_REPO$/junit/junit/4.4/junit-4.4.jar!/" />
@@ -536,6 +847,39 @@
       </JAVADOC>
       <SOURCES>
         <root url="jar://$M2_REPO$/org/easymock/easymock/2.3/easymock-2.3-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.ops4j.base:ops4j-base-util-property:1.0.0">
+      <CLASSES>
+        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-util-property/1.0.0/ops4j-base-util-property-1.0.0.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-util-property/1.0.0/ops4j-base-util-property-1.0.0-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-util-property/1.0.0/ops4j-base-util-property-1.0.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.ops4j.base:ops4j-base-io:1.0.0">
+      <CLASSES>
+        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-io/1.0.0/ops4j-base-io-1.0.0.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-io/1.0.0/ops4j-base-io-1.0.0-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-io/1.0.0/ops4j-base-io-1.0.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.ops4j.base:ops4j-base-monitors:1.0.0">
+      <CLASSES>
+        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-monitors/1.0.0/ops4j-base-monitors-1.0.0.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-monitors/1.0.0/ops4j-base-monitors-1.0.0-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-monitors/1.0.0/ops4j-base-monitors-1.0.0-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: commons-logging:commons-logging:1.1">
@@ -593,129 +937,20 @@
         <root url="jar://$M2_REPO$/javax/servlet/servlet-api/2.3/servlet-api-2.3-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: biz.aQute:bndlib:0.0.313">
+    <library name="Maven: org.ops4j.pax.url:pax-url-mvn:1.1.0-SNAPSHOT">
       <CLASSES>
-        <root url="jar://$M2_REPO$/biz/aQute/bndlib/0.0.313/bndlib-0.0.313.jar!/" />
+        <root url="jar://$M2_REPO$/org/ops4j/pax/url/pax-url-mvn/1.1.0-SNAPSHOT/pax-url-mvn-1.1.0-SNAPSHOT.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$M2_REPO$/biz/aQute/bndlib/0.0.313/bndlib-0.0.313-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/ops4j/pax/url/pax-url-mvn/1.1.0-SNAPSHOT/pax-url-mvn-1.1.0-SNAPSHOT-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$M2_REPO$/biz/aQute/bndlib/0.0.313/bndlib-0.0.313-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.ops4j.base:ops4j-base-lang:1.0.0">
-      <CLASSES>
-        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-lang/1.0.0/ops4j-base-lang-1.0.0.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-lang/1.0.0/ops4j-base-lang-1.0.0-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-lang/1.0.0/ops4j-base-lang-1.0.0-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.ops4j.base:ops4j-base-io:1.0.0">
-      <CLASSES>
-        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-io/1.0.0/ops4j-base-io-1.0.0.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-io/1.0.0/ops4j-base-io-1.0.0-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-io/1.0.0/ops4j-base-io-1.0.0-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.ops4j.base:ops4j-base-monitors:1.0.0">
-      <CLASSES>
-        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-monitors/1.0.0/ops4j-base-monitors-1.0.0.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-monitors/1.0.0/ops4j-base-monitors-1.0.0-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-monitors/1.0.0/ops4j-base-monitors-1.0.0-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.ops4j.base:ops4j-base-util-property:1.0.0">
-      <CLASSES>
-        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-util-property/1.0.0/ops4j-base-util-property-1.0.0.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-util-property/1.0.0/ops4j-base-util-property-1.0.0-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-util-property/1.0.0/ops4j-base-util-property-1.0.0-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: biz.aQute:bndlib:0.0.313">
-      <CLASSES>
-        <root url="jar://$M2_REPO$/biz/aQute/bndlib/0.0.313/bndlib-0.0.313.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$M2_REPO$/biz/aQute/bndlib/0.0.313/bndlib-0.0.313-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$M2_REPO$/biz/aQute/bndlib/0.0.313/bndlib-0.0.313-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.ops4j.pax.swissbox:pax-swissbox-optional-jcl:1.0.0-SNAPSHOT">
-      <CLASSES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/swissbox/pax-swissbox-optional-jcl/1.0.0-SNAPSHOT/pax-swissbox-optional-jcl-1.0.0-SNAPSHOT.jar!/" />
-        <root url="jar://$M2_REPO$/org/ops4j/pax/swissbox/pax-swissbox-optional-jcl/1.0.0-SNAPSHOT/pax-swissbox-optional-jcl-1.0.0-SNAPSHOT.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/swissbox/pax-swissbox-optional-jcl/1.0.0-SNAPSHOT/pax-swissbox-optional-jcl-1.0.0-SNAPSHOT-javadoc.jar!/" />
-        <root url="jar://$M2_REPO$/org/ops4j/pax/swissbox/pax-swissbox-optional-jcl/1.0.0-SNAPSHOT/pax-swissbox-optional-jcl-1.0.0-SNAPSHOT-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/swissbox/pax-swissbox-optional-jcl/1.0.0-SNAPSHOT/pax-swissbox-optional-jcl-1.0.0-SNAPSHOT-sources.jar!/" />
-        <root url="jar://$M2_REPO$/org/ops4j/pax/swissbox/pax-swissbox-optional-jcl/1.0.0-SNAPSHOT/pax-swissbox-optional-jcl-1.0.0-SNAPSHOT-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.apache.felix:org.osgi.compendium:1.1.0-SNAPSHOT">
-      <CLASSES>
-        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
-        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
-        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
-        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
-        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
-        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
-        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
-        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
-        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
-        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.apache.felix:org.osgi.core:1.1.0-SNAPSHOT">
-      <CLASSES>
-        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
-        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
-        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
-        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
-        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
-        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
-        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
-        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
-        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
-        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/ops4j/pax/url/pax-url-mvn/1.1.0-SNAPSHOT/pax-url-mvn-1.1.0-SNAPSHOT-sources.jar!/" />
       </SOURCES>
     </library>
   </component>
   <UsedPathMacros>
-    <macro name="M2_REPO" />
+    <macro name="M2_REPO" description="" />
   </UsedPathMacros>
 </project>
 

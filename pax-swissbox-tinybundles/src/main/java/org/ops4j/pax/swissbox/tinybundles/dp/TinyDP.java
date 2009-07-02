@@ -29,7 +29,95 @@ import org.ops4j.pax.swissbox.tinybundles.core.BuildableBundle;
  * @author Toni Menzel (toni@okidokiteam.com)
  * @since May 23, 2009
  */
-public interface TinyDP extends BuildableDP, BundleTinyDP, ResourceTinyDP, HeadersTinyDP
+public interface TinyDP
 {
-    
+
+    /**
+     * Meta Data that will appear in the Main Section of this DP Meta Inf Manifest
+     *
+     * @param key   to be used
+     * @param value to be used
+     *
+     * @return this
+     */
+    TinyDP set( String key, String value );
+
+    /**
+     * Shortcut for set( Constants.DEPLOYMENTPACKAGE_SYMBOLICMAME, value )
+     *
+     * @param value to be used
+     *
+     * @return this
+     */
+    TinyDP setSymbolicName( String value );
+
+    /**
+     * Shortcut for set( Constants.DEPLOYMENTPACKAGE_VERSION, value )
+     *
+     * @param value to be used
+     *
+     * @return this
+     */
+    TinyDP setVersion( String value );
+
+    TinyDP setResource( String name, InputStream inp )
+        throws IOException;
+
+    TinyDP addResource( String name, InputStream inputStream, String resourceProcessorPID )
+        throws IOException;
+
+    TinyDP setResource( String name, String url )
+        throws IOException;
+
+    /**
+     * @param name                 identifier of name section
+     * @param url                  to be used to get the content
+     * @param resourceProcessorPID a resource pid.
+     *
+     * @return this
+     *
+     * @throws java.io.IOException dew
+     */
+    TinyDP setResource( String name, String url, String resourceProcessorPID )
+        throws IOException;
+
+    InputStream build()
+        throws IOException;
+
+    public TinyDP remove( String identifier );
+
+    /**
+     * convinient adapter for setBundle(String,InputStream)
+     *
+     * @param name identifier of Name parameter in DP manifest
+     * @param inp  content of this resource
+     *
+     * @return this (fluent api)
+     */
+    TinyDP setBundle( String name, BuildableBundle inp )
+        throws IOException;
+
+    /**
+     * convinient adapter for setBundle(String,InputStream)
+     *
+     * @param name identifier of Name parameter in DP manifest
+     * @param url  content of this resource
+     *
+     * @return this (fluent api)
+     *
+     * @throws java.io.IOException if something goes wrong while interpreting the url
+     */
+    TinyDP setBundle( String name, String url )
+        throws IOException;
+
+    /**
+     * the very basic way to add a bundle.
+     *
+     * @param name identifier of Name parameter in DP manifest
+     * @param inp  content of this resource
+     *
+     * @return this
+     */
+    TinyDP setBundle( String name, InputStream inp )
+        throws IOException;
 }
