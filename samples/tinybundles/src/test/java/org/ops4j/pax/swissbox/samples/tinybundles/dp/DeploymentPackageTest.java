@@ -20,16 +20,11 @@ package org.ops4j.pax.swissbox.samples.tinybundles.dp;
 import java.io.IOException;
 import java.io.InputStream;
 import org.junit.Test;
-import org.osgi.framework.Constants;
-import static org.ops4j.pax.swissbox.tinybundles.core.TinyBundles.*;
+import org.ops4j.pax.swissbox.samples.tinybundles.DPTestingHelper;
 import static org.ops4j.pax.swissbox.tinybundles.dp.DP.*;
 import org.ops4j.pax.swissbox.tinybundles.dp.store.BinaryHandle;
 import org.ops4j.pax.swissbox.tinybundles.dp.store.BinaryStore;
 import org.ops4j.pax.swissbox.tinybundles.dp.store.TemporaryBinaryStore;
-import org.ops4j.pax.swissbox.samples.tinybundles.DPTestingHelper;
-import org.ops4j.pax.tinybundles.demo.HelloWorld;
-import org.ops4j.pax.tinybundles.demo.intern.HelloWorldImpl;
-import org.ops4j.pax.tinybundles.demo.intern.MyFirstActivator;
 
 /**
  * @author Toni Menzel (tonit)
