@@ -37,8 +37,7 @@ import org.ops4j.pax.swissbox.tinybundles.dp.TinyDP;
 import org.ops4j.pax.swissbox.tinybundles.dp.store.BinaryStore;
 
 /**
- * 1. Allow Reading of another DeploymentPackage as "base". (probably to be moved out)
- * 2. Normalize various method sugar to apriate calls to metadataStore.
+ * Implementation that also allows Fix-Packs (See Constructors)
  */
 public class TinyDPImpl implements TinyDP
 {
@@ -46,21 +45,27 @@ public class TinyDPImpl implements TinyDP
     private static Log LOG = LogFactory.getLog( TinyDPImpl.class );
 
     // All Contents of Deployment Package are stored here
-    private BinaryStore<InputStream> m_cache = null;
+    final private BinaryStore<InputStream> m_cache;
 
-    private Bucket m_meta;
+    // out meta data repository
+    final private Bucket m_meta;
+
+    // the one who can finaly build DeploymentPackages
+    final private DPBuilder m_builder;
 
     // The DeploymentPackages.Manifest Instructions
-    private Map<String, String> m_dpHeaders = new HashMap<String, String>();
+    final private Map<String, String> m_dpHeaders = new HashMap<String, String>();
 
-    public TinyDPImpl( InputStream parent, final Bucket bucket, BinaryStore<InputStream> cache )
+    public TinyDPImpl( DPBuilder builder, InputStream parent, final Bucket bucket, BinaryStore<InputStream> cache )
     {
-        m_meta = bucket;
         m_cache = cache;
+        m_builder = builder;
+        m_meta = bucket;
 
         if( parent != null )
         {
             // replay parent into *this*
+            set( Constants.DEPLOYMENTPACKAGE_FIXPACK, "yes" );
             JarInputStream jin = null;
             try
             {
@@ -73,7 +78,6 @@ public class TinyDPImpl implements TinyDP
                 {
                     String k = o.toString();
                     String v = att.getValue( k );
-                    System.out.println( k + " = " + v );
                     set( k, v );
                 }
 
@@ -88,7 +92,7 @@ public class TinyDPImpl implements TinyDP
                     {
                         bundles.add( s );
                     }
-                    else if( attrs.getValue( "Resource-Processor" ) != null )
+                    else
                     {
                         resources.add( s );
                     }
@@ -97,13 +101,15 @@ public class TinyDPImpl implements TinyDP
                 ZipEntry entry;
                 while( ( entry = jin.getNextEntry() ) != null )
                 {
+                    // add to store but  mark entries as missing 
                     if( bundles.contains( entry.getName() ) )
                     {
-                        setBundle( entry.getName(), jin );
+                        setBundle( entry.getName(), jin, false );
                     }
                     else if( resources.contains( entry.getName() ) )
                     {
-                        setResource( entry.getName(), jin );
+
+                        setResource( entry.getName(), jin, false );
                     }
 
                 }
@@ -126,6 +132,7 @@ public class TinyDPImpl implements TinyDP
             }
         }
     }
+    
 
     public TinyDP setBundle( String s, BuildableBundle buildableBundle )
         throws IOException
@@ -143,14 +150,29 @@ public class TinyDPImpl implements TinyDP
     public TinyDP setBundle( String name, InputStream inp )
         throws IOException
     {
-        m_meta.store( name, m_cache.store( inp ), DPContentTypes.BUNDLE );
+        setBundle( name, inp, true );
         return this;
     }
 
-    public TinyDP addResource( String name, InputStream inp, String resourceProcessorPID )
+    // just set metadata + add inputstream to some kind of cache.
+    public TinyDP setBundle( String name, InputStream inp, boolean includeContent )
         throws IOException
     {
-        m_meta.store( name, m_cache.store( inp ), DPContentTypes.OTHERRESOURCE );
+        m_meta.store( name, m_cache.store( inp ), DPContentTypes.BUNDLE, includeContent );
+        return this;
+    }
+
+    public TinyDP addResource( String name, InputStream inp )
+        throws IOException
+    {
+        setResource( name, inp, true );
+        return this;
+    }
+
+    private TinyDP setResource( String name, InputStream inp, boolean includeContent )
+        throws IOException
+    {
+        m_meta.store( name, m_cache.store( inp ), DPContentTypes.OTHERRESOURCE, includeContent );
 
         return this;
     }
@@ -158,19 +180,13 @@ public class TinyDPImpl implements TinyDP
     public TinyDP setResource( String name, InputStream inp )
         throws IOException
     {
-        return addResource( name, inp, null );
+        return addResource( name, inp );
     }
 
     public TinyDP setResource( String name, String url )
         throws IOException
     {
-        return addResource( name, new URL( url ).openStream(), null );
-    }
-
-    public TinyDP setResource( String name, String url, String resourceProcessorPID )
-        throws IOException
-    {
-        return addResource( name, new URL( url ).openStream(), resourceProcessorPID );
+        return addResource( name, new URL( url ).openStream() );
     }
 
     public TinyDP set( String key, String value )
@@ -198,6 +214,6 @@ public class TinyDPImpl implements TinyDP
     public InputStream build()
         throws IOException
     {
-        return new DPBuilder().build( m_dpHeaders, m_cache, m_meta );
+        return m_builder.build( m_dpHeaders, m_cache, m_meta );
     }
 }

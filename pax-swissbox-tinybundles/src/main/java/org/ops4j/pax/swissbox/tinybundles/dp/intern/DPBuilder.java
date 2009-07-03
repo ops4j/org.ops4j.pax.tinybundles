@@ -45,11 +45,10 @@ public class DPBuilder
 
     /**
      * Build a DeploymentPackage from manually set headers, stored content (cache) and the bucket.
+     *
      * @param headers
      * @param cache
      * @param meta
-     * @return
-     * @throws IOException
      */
     public InputStream build( Map<String, String> headers, final BinaryStore<InputStream> cache, final Bucket meta )
         throws IOException
@@ -94,6 +93,11 @@ public class DPBuilder
                 {
                     attr.putValue( Constants.RESOURCE_PROCESSOR, "foo" );
                 }
+
+                if( meta.isMissing( name ) )
+                {
+                    attr.putValue( Constants.DEPLOYMENTPACKAGE_MISSING, "true" );
+                }
             } finally
             {
                 if( jout != null )
@@ -127,7 +131,10 @@ public class DPBuilder
                     {
                         for( String entry : entries.keySet() )
                         {
-                            copyResource( entry, cache.load( meta.getHandle( entry ) ), jarOut );
+                            if( !meta.isMissing( entry ) )
+                            {
+                                copyResource( entry, cache.load( meta.getHandle( entry ) ), jarOut );
+                            }
                         }
 
 
@@ -149,7 +156,7 @@ public class DPBuilder
                         {
                             // be quiet.
                         }
-                        LOG.info( "Copy thread finished." );
+                        LOG.debug( "Copy thread finished." );
                     }
                 }
             }.start();

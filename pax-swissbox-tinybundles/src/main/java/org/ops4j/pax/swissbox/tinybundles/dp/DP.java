@@ -20,10 +20,12 @@ package org.ops4j.pax.swissbox.tinybundles.dp;
 import java.io.InputStream;
 import org.ops4j.pax.swissbox.tinybundles.dp.intern.Bucket;
 import org.ops4j.pax.swissbox.tinybundles.dp.intern.TinyDPImpl;
+import org.ops4j.pax.swissbox.tinybundles.dp.intern.DPBuilder;
 import org.ops4j.pax.swissbox.tinybundles.dp.store.TemporaryBinaryStore;
 
 /**
- * Humane API for constructing Deployment Packages.
+ * Factory to use a TinyDP instance to construct Deployment Packages.
+ * 
  * Capabilities and final format will comply to
  * OSGi Compendium R4 Version 4.2, Deployment Admin Specification Version 1.1
  *
@@ -40,19 +42,19 @@ public class DP
      */
     public static TinyDP newDeploymentPackage()
     {
-        return new TinyDPImpl( null, new Bucket(), new TemporaryBinaryStore() );
+        return new TinyDPImpl( new DPBuilder(), null, new Bucket(), new TemporaryBinaryStore() );
     }
 
     /**
      * Change an existing DeploymentPackage. (Fix Package)
      *
-     * @param input Deployment Package you want to change.
+     * @param target Deployment Package you want to change.
      *
      * @return an extended api to create and change a deployment package.
      */
-    public static TinyDP newFixPackage( InputStream input )
+    public static TinyDP newFixPackage( InputStream target )
     {
-        return new TinyDPImpl( input, new Bucket(), new TemporaryBinaryStore() );
+        return new TinyDPImpl( new DPBuilder(), target, new Bucket(), new TemporaryBinaryStore() );
 
     }
 

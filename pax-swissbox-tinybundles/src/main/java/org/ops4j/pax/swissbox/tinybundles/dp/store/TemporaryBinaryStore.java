@@ -22,6 +22,10 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.io.OutputStream;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import org.ops4j.io.StreamUtils;
 
 /**
@@ -47,35 +51,76 @@ public class TemporaryBinaryStore implements BinaryStore<InputStream>
     public BinaryHandle store( InputStream inp )
         throws IOException
     {
-        // TODO: do SHA1 mappign so we do not store identical artifacts twice.
-        final File target = File.createTempFile( "tinybundles", "binary" );
+        final File intermediate = File.createTempFile( "tinybundles_", ".tmp" );
+
+        FileOutputStream fis = null;
+        final String h;
+
+        fis = new FileOutputStream( intermediate );
+        h = hash( inp, fis );
+        fis.close();
+        StreamUtils.copyStream( new FileInputStream( intermediate ), new FileOutputStream( getLocation( h ) ), true );
+        intermediate.delete();
+
         BinaryHandle handle = new BinaryHandle()
         {
 
             public String getIdentification()
             {
-                return target.getAbsolutePath();
+                return h;
             }
         };
-
-        FileOutputStream fis = null;
-        try
-        {
-            fis = new FileOutputStream( target );
-            StreamUtils.copyStream( inp, fis, false );
-        } finally
-        {
-            if( fis != null )
-            {
-                fis.close();
-            }
-        }
         return handle;
+    }
+
+    private File getLocation( String id )
+    {
+        return new File( m_dir, "tinyundles_" + id + ".bin" );
     }
 
     public InputStream load( BinaryHandle handle )
         throws IOException
     {
-        return new FileInputStream( handle.getIdentification() );
+        return new FileInputStream( getLocation( handle.getIdentification() ) );
     }
+
+    public String hash( final InputStream in, OutputStream storeHere )
+        throws IOException
+    {
+        String result;
+        MessageDigest digest;
+
+        try
+        {
+            digest = MessageDigest.getInstance( "SHA1" );
+        } catch( NoSuchAlgorithmException failed )
+        {
+            failed.printStackTrace( System.err );
+            RuntimeException failure = new IllegalStateException( "Could not get SHA-1 Message" );
+
+            failure.initCause( failed );
+            throw failure;
+        }
+
+        try
+        {
+            byte[] buffer = new byte[1024];
+            int le = 0;
+            while( ( le = in.read( buffer ) ) >= 0 )
+            {
+                digest.update( buffer.toString().getBytes( "UTF-8" ) );
+                storeHere.write( buffer, 0, le );
+            }
+
+            result = Base64.encode( digest.digest().toString() );
+        } catch( UnsupportedEncodingException impossible )
+        {
+            RuntimeException failure = new IllegalStateException( "Could not encode expression as UTF8" );
+
+            failure.initCause( impossible );
+            throw failure;
+        }
+        return result;
+    }
+
 }

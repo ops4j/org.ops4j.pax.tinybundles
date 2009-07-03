@@ -19,29 +19,48 @@ package org.ops4j.pax.swissbox.tinybundles.dp.intern;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Set;
+import java.util.HashSet;
+import sun.awt.RepaintArea;
 import org.ops4j.pax.swissbox.tinybundles.dp.store.BinaryHandle;
+import org.ops4j.pax.swissbox.tinybundles.dp.Constants;
 
 /**
  * Lightweight container that basically just "records" user's calls (addBundle, removeBundle .. etc).
  * From this, a builder can build the final dp.
- * 
  */
 public class Bucket
 {
+
     private Map<String, TypedBinaryHandle> m_store = new HashMap<String, TypedBinaryHandle>();
+    private Set<String> m_missing = new HashSet<String>();
 
     public String[] getEntries()
     {
         return m_store.keySet().toArray( new String[m_store.size()] );
     }
 
+    public boolean isMissing( String entry )
+    {
+        return m_missing.contains( entry );
+    }
+
     public void remove( String entry )
     {
+
         m_store.remove( entry );
     }
 
-    public void store( String entry, BinaryHandle binaryHandle, DPContentTypes type )
+    public void store( String entry, BinaryHandle binaryHandle, DPContentTypes type, boolean includeContent )
     {
+        if( !includeContent )
+        {
+            m_missing.add( entry );
+        }
+        else
+        {
+            m_missing.remove( entry );
+        }
         m_store.put( entry, new TypedBinaryHandle( binaryHandle, type ) );
     }
 

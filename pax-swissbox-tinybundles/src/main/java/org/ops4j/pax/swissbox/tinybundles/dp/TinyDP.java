@@ -63,22 +63,7 @@ public interface TinyDP
     TinyDP setResource( String name, InputStream inp )
         throws IOException;
 
-    TinyDP addResource( String name, InputStream inputStream, String resourceProcessorPID )
-        throws IOException;
-
     TinyDP setResource( String name, String url )
-        throws IOException;
-
-    /**
-     * @param name                 identifier of name section
-     * @param url                  to be used to get the content
-     * @param resourceProcessorPID a resource pid.
-     *
-     * @return this
-     *
-     * @throws java.io.IOException dew
-     */
-    TinyDP setResource( String name, String url, String resourceProcessorPID )
         throws IOException;
 
     InputStream build()

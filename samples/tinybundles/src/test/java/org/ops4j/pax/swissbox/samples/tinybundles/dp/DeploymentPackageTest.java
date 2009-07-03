@@ -19,8 +19,8 @@ package org.ops4j.pax.swissbox.samples.tinybundles.dp;
 
 import java.io.IOException;
 import java.io.InputStream;
-import org.junit.Test;
 import org.junit.Before;
+import org.junit.Test;
 import org.ops4j.pax.swissbox.samples.tinybundles.DPTestingHelper;
 import static org.ops4j.pax.swissbox.tinybundles.dp.DP.*;
 import org.ops4j.pax.swissbox.tinybundles.dp.store.BinaryHandle;
@@ -48,12 +48,14 @@ public class DeploymentPackageTest
         BinaryStore<InputStream> cache = new TemporaryBinaryStore();
 
         BinaryHandle original = cache.store( newDeploymentPackage()
-            .set( "DeploymentPackage-SymbolicName", "MyFirstDeploymentPackage" )
-            .set( "DeploymentPackage-DeploymentPackage-Version", "1.0.0" )
+            .setSymbolicName( "MyFirstDeploymentPackage" )
+            .setVersion( "1.0.0" )
             .build()
         );
 
-        DPTestingHelper.verifyDP( cache.load( original ) );
+        DPTestingHelper.verifyStandardHeaders( cache.load( original ), false );
+
+        DPTestingHelper.verifyNonMissing( cache.load( original ) );
         DPTestingHelper.verifyBundleContents( cache.load( original ) );
     }
 
@@ -64,72 +66,78 @@ public class DeploymentPackageTest
         BinaryStore<InputStream> cache = new TemporaryBinaryStore();
 
         BinaryHandle original = cache.store( newDeploymentPackage()
-            .set( "DeploymentPackage-SymbolicName", "MyFirstDeploymentPackage" )
-            .set( "DeploymentPackage-DeploymentPackage-Version", "1.0.0" )
-            .setBundle( "t1.jar", "mvn:org.ops4j.pax.url/pax-url-mvn/1.1.0-SNAPSHOT" )
+            .setSymbolicName( "MyFirstDeploymentPackage" )
+            .setVersion( "1.0.0" )
+            .setBundle( "t1", "mvn:org.ops4j.pax.url/pax-url-mvn/1.1.0-SNAPSHOT" )
             .build()
         );
 
-        DPTestingHelper.verifyDP( cache.load( original ), "t1.jar" );
-        DPTestingHelper.verifyBundleContents( cache.load( original ), "t1.jar" );
+        DPTestingHelper.verifyStandardHeaders( cache.load( original ), false );
+
+        DPTestingHelper.verifyNonMissing( cache.load( original ), "t1" );
+        DPTestingHelper.verifyBundleContents( cache.load( original ), "t1" );
     }
 
     @Test
-    public void createDPAndCreateFixPack()
+    public void createDPAndDeleteItemInFixPack()
         throws IOException
     {
         BinaryStore<InputStream> cache = new TemporaryBinaryStore();
 
         BinaryHandle original = cache.store( newDeploymentPackage()
-            .set( "DeploymentPackage-SymbolicName", "MyFirstDeploymentPackage" )
-            .set( "DeploymentPackage-DeploymentPackage-Version", "1.0.0" )
-            .addResource( "log4j.properties", getClass().getResourceAsStream( "/log4j.properties" ), "log4j-properties-processor" )
-            .setBundle( "t1.jar", "mvn:org.ops4j.pax.url/pax-url-mvn/1.1.0-SNAPSHOT" )
-            .setBundle( "t2.jar", "mvn:org.ops4j.pax.url/pax-url-wrap/1.1.0-SNAPSHOT" )
+            .setSymbolicName( "MyFirstDeploymentPackage" )
+            .setVersion( "1.0.0" )
+            .setResource( "log4j.properties", getClass().getResourceAsStream( "/log4j.properties" ) )
+            .setBundle( "t1", "mvn:org.ops4j.pax.url/pax-url-mvn/1.1.0-SNAPSHOT" )
+            .setBundle( "t2", "mvn:org.ops4j.pax.url/pax-url-wrap/1.1.0-SNAPSHOT" )
             .build()
         );
 
-        DPTestingHelper.verifyDP( cache.load( original ), "log4j.properties", "t1.jar", "t2.jar" );
-        DPTestingHelper.verifyBundleContents( cache.load( original ), "t1.jar", "t2.jar" );
+        DPTestingHelper.verifyStandardHeaders( cache.load( original ), false );
 
-        BinaryHandle fix = cache.store( newFixPackage( cache.load( original ) ).remove( "t1.jar" ).build() );
+        DPTestingHelper.verifyNonMissing( cache.load( original ), "log4j.properties", "t1", "t2" );
+        DPTestingHelper.verifyBundleContents( cache.load( original ), "t1", "t2" );
 
-        DPTestingHelper.verifyDP( cache.load( fix ), "log4j.properties", "t2.jar" );
-        DPTestingHelper.verifyBundleContents( cache.load( fix ), "t2.jar" );
+        BinaryHandle fix = cache.store( newFixPackage( cache.load( original ) ).remove( "t1" ).build() );
+
+        DPTestingHelper.verifyStandardHeaders( cache.load( fix ), true );
+
+        DPTestingHelper.verifyNonMissing( cache.load( fix ) );
+        DPTestingHelper.verifyMissing( cache.load( fix ), "log4j.properties", "t2" );
+        DPTestingHelper.verifyBundleContents( cache.load( fix ), "t2" );
     }
 
-    //@Test
-    // TODO: Fix Packs as real deltas
-    public void testDelta()
+    @Test
+    public void createDPAndChangeItemInFixPack()
         throws IOException
     {
         BinaryStore<InputStream> cache = new TemporaryBinaryStore();
 
-        BinaryHandle original = cache.store( newDeploymentPackage()
-            .set( "DeploymentPackage-SymbolicName", "MyFirstDeploymentPackage" )
-            .set( "DeploymentPackage-DeploymentPackage-Version", "1.0.0" )
-            .addResource( "log4j.properties", getClass().getResourceAsStream( "/log4j.properties" ), "log4j-properties-processor" )
-            .setBundle( "t1.jar", "mvn:org.ops4j.pax.url/pax-url-mvn/1.1.0-SNAPSHOT" )
-            .setBundle( "t2.jar", "mvn:org.ops4j.pax.url/pax-url-wrap/1.1.0-SNAPSHOT" )
-            .setBundle( "t3.jar", "mvn:org.ops4j.pax.url/pax-url-bnd/1.1.0-SNAPSHOT" )
+        BinaryHandle target = cache.store( newDeploymentPackage()
+            .setSymbolicName( "MyFirstDeploymentPackage" )
+            .setVersion( "1.0.0" )
+            .setResource( "log4j.properties", getClass().getResourceAsStream( "/log4j.properties" ) )
+            .setBundle( "t1", "mvn:org.ops4j.pax.url/pax-url-mvn/1.1.0-SNAPSHOT" )
+            .setBundle( "t2", "mvn:org.ops4j.pax.url/pax-url-wrap/1.1.0-SNAPSHOT" )
+            .setBundle( "t3", "mvn:org.ops4j.pax.url/pax-url-link/1.1.0-SNAPSHOT" )
 
             .build()
         );
+        DPTestingHelper.verifyStandardHeaders( cache.load( target ), false );
+        DPTestingHelper.verifyNonMissing( cache.load( target ), "log4j.properties", "t1", "t2", "t3" );
+        DPTestingHelper.verifyBundleContents( cache.load( target ), "t1", "t2", "t3" );
 
-        DPTestingHelper.verifyDP( cache.load( original ), "log4j.properties", "t1.jar", "t2.jar", "t3.jar" );
-        DPTestingHelper.verifyBundleContents( cache.load( original ), "t1.jar", "t2.jar", "t3.jar" );
-
-        BinaryHandle fix = cache.store( newFixPackage( cache.load( original ) )
-            .setBundle( "t2", "mvn:org.ops4j.pax.url/pax-url-war/1.1.0-SNAPSHOT" ) // replace wrap by war ! Fix!
-            .remove( "t1.jar" ) 
-            .build()
+        BinaryHandle fix = cache.store(
+            newFixPackage( cache.load( target ) )
+                .setBundle( "t2", "mvn:org.ops4j.pax.url/pax-url-war/1.1.0-SNAPSHOT" ) // replace wrap by war ! Fix!
+                .remove( "t1" )
+                .build()
         );
 
-        // t1 should not occure anymore
-        // t2 must be "in there" cause it contains a fix
-        // t3 must have a Missing-Content Header and no real content (no change)
-        DPTestingHelper.verifyDP( cache.load( fix ), "log4j.properties", "t2.jar" );
-        DPTestingHelper.verifyBundleContents( cache.load( fix ), "t2.jar" );
+        DPTestingHelper.verifyStandardHeaders( cache.load( fix ), true );
+        DPTestingHelper.verifyMissing( cache.load( fix ), "t3", "log4j.properties" );
+        DPTestingHelper.verifyNonMissing( cache.load( fix ), "t2" );
+        DPTestingHelper.verifyBundleContents( cache.load( fix ), "t2" );
     }
 
 
