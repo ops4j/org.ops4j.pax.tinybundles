@@ -22,20 +22,26 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.io.OutputStream;
+import java.io.FileNotFoundException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.ops4j.io.StreamUtils;
+import org.ops4j.io.FileUtils;
 
 /**
  * Entity store like implementation.
  * Stores incoming data (store) to disk at a temporaty location.
  * The handle is valid for use (load) only for this instance's lifetime. (tmp storage location)
+ *
+ * Uses an SHA-1 hash for indexing.
  */
 public class TemporaryBinaryStore implements BinaryStore<InputStream>
 {
 
+    private static Log LOG = LogFactory.getLog( TemporaryBinaryStore.class );
     private File m_dir;
 
     public TemporaryBinaryStore()
@@ -43,14 +49,16 @@ public class TemporaryBinaryStore implements BinaryStore<InputStream>
         m_dir = new File( System.getProperty( "java.io.tmpdir" ) + "/tb" );
         if( m_dir.exists() )
         {
-            //FileUtils.delete( m_dir );
+            FileUtils.delete( m_dir );
         }
         m_dir.mkdirs();
+        LOG.debug( "Storage Area is " + m_dir.getAbsolutePath() );
     }
 
     public BinaryHandle store( InputStream inp )
         throws IOException
     {
+        LOG.debug( "Enter store()" );
         final File intermediate = File.createTempFile( "tinybundles_", ".tmp" );
 
         FileOutputStream fis = null;
@@ -58,8 +66,16 @@ public class TemporaryBinaryStore implements BinaryStore<InputStream>
 
         fis = new FileOutputStream( intermediate );
         h = hash( inp, fis );
+
         fis.close();
-        StreamUtils.copyStream( new FileInputStream( intermediate ), new FileOutputStream( getLocation( h ) ), true );
+        if( !getLocation( h ).exists() )
+        {
+            StreamUtils.copyStream( new FileInputStream( intermediate ), new FileOutputStream( getLocation( h ) ), true );
+        }
+        else
+        {
+            LOG.info( "Object for " + h + " already exists in store." );
+        }
         intermediate.delete();
 
         BinaryHandle handle = new BinaryHandle()
@@ -70,6 +86,7 @@ public class TemporaryBinaryStore implements BinaryStore<InputStream>
                 return h;
             }
         };
+        LOG.debug( "Exit store(): " + h );
         return handle;
     }
 
@@ -84,43 +101,59 @@ public class TemporaryBinaryStore implements BinaryStore<InputStream>
         return new FileInputStream( getLocation( handle.getIdentification() ) );
     }
 
-    public String hash( final InputStream in, OutputStream storeHere )
+    public String hash( final InputStream is, OutputStream storeHere )
         throws IOException
     {
-        String result;
-        MessageDigest digest;
+
+        byte[] sha1hash;
 
         try
         {
-            digest = MessageDigest.getInstance( "SHA1" );
-        } catch( NoSuchAlgorithmException failed )
-        {
-            failed.printStackTrace( System.err );
-            RuntimeException failure = new IllegalStateException( "Could not get SHA-1 Message" );
+            MessageDigest md;
+            md = MessageDigest.getInstance( "SHA-1" );
+            byte[] bytes = new byte[1024];
+            int numRead = 0;
+            while( ( numRead = is.read( bytes ) ) >= 0 )
 
-            failure.initCause( failed );
-            throw failure;
-        }
-
-        try
-        {
-            byte[] buffer = new byte[1024];
-            int le = 0;
-            while( ( le = in.read( buffer ) ) >= 0 )
             {
-                digest.update( buffer.toString().getBytes( "UTF-8" ) );
-                storeHere.write( buffer, 0, le );
+                md.update( bytes, 0, numRead );
+                storeHere.write( bytes, 0, numRead );
             }
-
-            result = Base64.encode( digest.digest().toString() );
-        } catch( UnsupportedEncodingException impossible )
+            sha1hash = md.digest();
+        } catch( NoSuchAlgorithmException e )
         {
-            RuntimeException failure = new IllegalStateException( "Could not encode expression as UTF8" );
-
-            failure.initCause( impossible );
-            throw failure;
+            throw new RuntimeException( e );
+        } catch( FileNotFoundException e )
+        {
+            throw new RuntimeException( e );
+        } catch( IOException e )
+        {
+            throw new RuntimeException( e );
         }
-        return result;
+        return convertToHex( sha1hash );
+    }
+
+    private static String convertToHex( byte[] data )
+    {
+        StringBuffer buf = new StringBuffer();
+        for( int i = 0; i < data.length; i++ )
+        {
+            int halfbyte = ( data[ i ] >>> 4 ) & 0x0F;
+            int two_halfs = 0;
+            do
+            {
+                if( ( 0 <= halfbyte ) && ( halfbyte <= 9 ) )
+                {
+                    buf.append( (char) ( '0' + halfbyte ) );
+                }
+                else
+                {
+                    buf.append( (char) ( 'a' + ( halfbyte - 10 ) ) );
+                }
+                halfbyte = data[ i ] & 0x0F;
+            } while( two_halfs++ < 1 );
+        }
+        return buf.toString();
     }
 
 }
