@@ -46,8 +46,13 @@ public class TemporaryBinaryStore implements BinaryStore<InputStream>
 
     public TemporaryBinaryStore()
     {
+        this( false );
+    }
+
+    public TemporaryBinaryStore( boolean flushStoreage )
+    {
         m_dir = new File( System.getProperty( "java.io.tmpdir" ) + "/tb" );
-        if( m_dir.exists() )
+        if( m_dir.exists() && flushStoreage )
         {
             FileUtils.delete( m_dir );
         }
@@ -92,7 +97,7 @@ public class TemporaryBinaryStore implements BinaryStore<InputStream>
 
     private File getLocation( String id )
     {
-        return new File( m_dir, "tinyundles_" + id + ".bin" );
+        return new File( m_dir, "tinybundles_" + id + ".bin" );
     }
 
     public InputStream load( BinaryHandle handle )

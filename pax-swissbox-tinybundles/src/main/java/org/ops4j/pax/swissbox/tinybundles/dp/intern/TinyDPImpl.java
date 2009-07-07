@@ -30,6 +30,7 @@ import java.util.jar.Manifest;
 import java.util.zip.ZipEntry;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.osgi.framework.Version;
 import org.ops4j.pax.swissbox.tinybundles.core.BuildableBundle;
 import static org.ops4j.pax.swissbox.tinybundles.core.TinyBundles.*;
 import org.ops4j.pax.swissbox.tinybundles.dp.Constants;
@@ -65,7 +66,6 @@ public class TinyDPImpl implements TinyDP
         if( parent != null )
         {
             // replay parent into *this*
-            set( Constants.DEPLOYMENTPACKAGE_FIXPACK, "yes" );
             JarInputStream jin = null;
             try
             {
@@ -78,6 +78,18 @@ public class TinyDPImpl implements TinyDP
                 {
                     String k = o.toString();
                     String v = att.getValue( k );
+                    if( k.equals( Constants.DEPLOYMENTPACKAGE_VERSION ) )
+                    {
+                        // raise default fixpack version:
+                        VersionRange versionRange = VersionRange.parse( v );
+                        Version is = versionRange.getLow();
+                        String n = is.getMajor() + "." + is.getMinor() + "." + ( is.getMicro() + 1 ) + ( ( is.getQualifier() != null && is.getQualifier().trim().length() > 0 ) ? ( "-" + is.getQualifier() ) : "" );
+
+                        set( Constants.DEPLOYMENTPACKAGE_FIXPACK, "(0," + n + "]" );
+
+                        // set my own version a bit higher:
+                        set( Constants.DEPLOYMENTPACKAGE_VERSION, n );
+                    }
                     set( k, v );
                 }
 
@@ -88,7 +100,7 @@ public class TinyDPImpl implements TinyDP
                 {
 
                     Attributes attrs = man.getAttributes( s );
-                    if( attrs.getValue( "Bundle-SymbolicName" ) != null )
+                    if( attrs.getValue( Constants.BUNDLE_SYMBOLICNAME ) != null )
                     {
                         bundles.add( s );
                     }
@@ -132,7 +144,6 @@ public class TinyDPImpl implements TinyDP
             }
         }
     }
-    
 
     public TinyDP setBundle( String s, BuildableBundle buildableBundle )
         throws IOException
