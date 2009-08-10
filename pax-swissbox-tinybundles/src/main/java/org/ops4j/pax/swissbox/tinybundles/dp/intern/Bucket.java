@@ -21,9 +21,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.HashSet;
-import sun.awt.RepaintArea;
 import org.ops4j.pax.swissbox.tinybundles.dp.store.BinaryHandle;
-import org.ops4j.pax.swissbox.tinybundles.dp.Constants;
 
 /**
  * Lightweight container that basically just "records" user's calls (addBundle, removeBundle .. etc).
@@ -51,7 +49,7 @@ public class Bucket
         m_store.remove( entry );
     }
 
-    public void store( String entry, BinaryHandle binaryHandle, DPContentTypes type, boolean includeContent )
+    public void store( String entry, BinaryHandle binaryHandle, DPContentType type, boolean includeContent )
     {
         if( !includeContent )
         {
@@ -69,7 +67,7 @@ public class Bucket
         return m_store.get( entry );
     }
 
-    public boolean isType( String name, DPContentTypes bundle )
+    public boolean isType( String name, DPContentType bundle )
     {
         return m_store.get( name ).getType() == bundle;
     }
@@ -78,9 +76,9 @@ public class Bucket
     {
 
         private BinaryHandle m_handle;
-        private DPContentTypes m_type;
+        private DPContentType m_type;
 
-        public TypedBinaryHandle( BinaryHandle handle, DPContentTypes type )
+        public TypedBinaryHandle( BinaryHandle handle, DPContentType type )
         {
             m_handle = handle;
             m_type = type;
@@ -91,7 +89,7 @@ public class Bucket
             return m_handle.getIdentification();
         }
 
-        public DPContentTypes getType()
+        public DPContentType getType()
         {
             return m_type;
         }
