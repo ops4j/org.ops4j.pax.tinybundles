@@ -169,7 +169,7 @@ public class TinyDPImpl implements TinyDP
     public TinyDP setBundle( String name, InputStream inp, boolean includeContent )
         throws IOException
     {
-        m_meta.store( name, m_cache.store( inp ), DPContentTypes.BUNDLE, includeContent );
+        m_meta.store( name, m_cache.store( inp ), DPContentType.BUNDLE, includeContent );
         return this;
     }
 
@@ -183,7 +183,7 @@ public class TinyDPImpl implements TinyDP
     private TinyDP setResource( String name, InputStream inp, boolean includeContent )
         throws IOException
     {
-        m_meta.store( name, m_cache.store( inp ), DPContentTypes.OTHERRESOURCE, includeContent );
+        m_meta.store( name, m_cache.store( inp ), DPContentType.OTHERRESOURCE, includeContent );
 
         return this;
     }
