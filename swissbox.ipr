@@ -114,33 +114,6 @@
         <option name="VARIABLE_ANNOTATION_WRAP" value="5" />
         <option name="SPACE_WITHIN_ANNOTATION_PARENTHESES" value="true" />
         <option name="ENUM_CONSTANTS_WRAP" value="5" />
-        <ADDITIONAL_INDENT_OPTIONS fileType="">
-          <option name="INDENT_SIZE" value="2" />
-          <option name="CONTINUATION_INDENT_SIZE" value="8" />
-          <option name="TAB_SIZE" value="2" />
-          <option name="USE_TAB_CHARACTER" value="false" />
-          <option name="SMART_TABS" value="false" />
-          <option name="LABEL_INDENT_SIZE" value="0" />
-          <option name="LABEL_INDENT_ABSOLUTE" value="false" />
-        </ADDITIONAL_INDENT_OPTIONS>
-        <ADDITIONAL_INDENT_OPTIONS fileType="groovy">
-          <option name="INDENT_SIZE" value="2" />
-          <option name="CONTINUATION_INDENT_SIZE" value="8" />
-          <option name="TAB_SIZE" value="4" />
-          <option name="USE_TAB_CHARACTER" value="false" />
-          <option name="SMART_TABS" value="false" />
-          <option name="LABEL_INDENT_SIZE" value="0" />
-          <option name="LABEL_INDENT_ABSOLUTE" value="false" />
-        </ADDITIONAL_INDENT_OPTIONS>
-        <ADDITIONAL_INDENT_OPTIONS fileType="gsp">
-          <option name="INDENT_SIZE" value="2" />
-          <option name="CONTINUATION_INDENT_SIZE" value="8" />
-          <option name="TAB_SIZE" value="4" />
-          <option name="USE_TAB_CHARACTER" value="false" />
-          <option name="SMART_TABS" value="false" />
-          <option name="LABEL_INDENT_SIZE" value="0" />
-          <option name="LABEL_INDENT_ABSOLUTE" value="false" />
-        </ADDITIONAL_INDENT_OPTIONS>
         <ADDITIONAL_INDENT_OPTIONS fileType="java">
           <option name="INDENT_SIZE" value="4" />
           <option name="CONTINUATION_INDENT_SIZE" value="4" />
@@ -161,15 +134,6 @@
         </ADDITIONAL_INDENT_OPTIONS>
         <ADDITIONAL_INDENT_OPTIONS fileType="jsp">
           <option name="INDENT_SIZE" value="4" />
-          <option name="CONTINUATION_INDENT_SIZE" value="8" />
-          <option name="TAB_SIZE" value="4" />
-          <option name="USE_TAB_CHARACTER" value="false" />
-          <option name="SMART_TABS" value="false" />
-          <option name="LABEL_INDENT_SIZE" value="0" />
-          <option name="LABEL_INDENT_ABSOLUTE" value="false" />
-        </ADDITIONAL_INDENT_OPTIONS>
-        <ADDITIONAL_INDENT_OPTIONS fileType="sql">
-          <option name="INDENT_SIZE" value="2" />
           <option name="CONTINUATION_INDENT_SIZE" value="8" />
           <option name="TAB_SIZE" value="4" />
           <option name="USE_TAB_CHARACTER" value="false" />
@@ -273,11 +237,12 @@
         <option name="myLocal" value="false" />
       </profile>
     </profiles>
-    <list size="4">
-      <item index="0" class="java.lang.String" itemvalue="WARNING" />
-      <item index="1" class="java.lang.String" itemvalue="SERVER PROBLEM" />
-      <item index="2" class="java.lang.String" itemvalue="INFO" />
-      <item index="3" class="java.lang.String" itemvalue="ERROR" />
+    <list size="5">
+      <item index="0" class="java.lang.String" itemvalue="TYPO" />
+      <item index="1" class="java.lang.String" itemvalue="WARNING" />
+      <item index="2" class="java.lang.String" itemvalue="SERVER PROBLEM" />
+      <item index="3" class="java.lang.String" itemvalue="INFO" />
+      <item index="4" class="java.lang.String" itemvalue="ERROR" />
     </list>
   </component>
   <component name="JavacSettings">
@@ -458,6 +423,9 @@
   <component name="ProjectDetails">
     <option name="projectName" value="swissbox" />
   </component>
+  <component name="ProjectDictionaryState">
+    <dictionary name="tonit" />
+  </component>
   <component name="ProjectFileVersion" converted="true" />
   <component name="ProjectKey">
     <option name="state" value="https://scm.ops4j.org/repos/ops4j/projects/pax/swissbox/swissbox.ipr" />
@@ -525,17 +493,6 @@
   </component>
   <component name="WebServicesPlugin" addRequiredLibraries="true" />
   <component name="libraryTable">
-    <library name="Maven: biz.aQute:bndlib:0.0.313">
-      <CLASSES>
-        <root url="jar://$M2_REPO$/biz/aQute/bndlib/0.0.313/bndlib-0.0.313.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$M2_REPO$/biz/aQute/bndlib/0.0.313/bndlib-0.0.313-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$M2_REPO$/biz/aQute/bndlib/0.0.313/bndlib-0.0.313-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Maven: org.ops4j.pax.swissbox:pax-swissbox-optional-jcl:1.0.0-SNAPSHOT">
       <CLASSES>
         <root url="jar://$M2_REPO$/org/ops4j/pax/swissbox/pax-swissbox-optional-jcl/1.0.0-SNAPSHOT/pax-swissbox-optional-jcl-1.0.0-SNAPSHOT.jar!/" />
@@ -590,6 +547,13 @@
         <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
         <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
         <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
       </CLASSES>
       <JAVADOC>
         <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
@@ -630,8 +594,22 @@
         <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
         <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
         <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
         <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
         <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
         <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
@@ -712,8 +690,22 @@
         <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
         <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
         <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
       </CLASSES>
       <JAVADOC>
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
         <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
         <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
         <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
@@ -792,6 +784,24 @@
         <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
         <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
         <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.apache.felix:org.apache.felix.deploymentadmin:0.9.0-SNAPSHOT">
+      <CLASSES>
+        <root url="jar://$M2_REPO$/org/apache/felix/org.apache.felix.deploymentadmin/0.9.0-SNAPSHOT/org.apache.felix.deploymentadmin-0.9.0-SNAPSHOT.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$M2_REPO$/org/apache/felix/org.apache.felix.deploymentadmin/0.9.0-SNAPSHOT/org.apache.felix.deploymentadmin-0.9.0-SNAPSHOT-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="file://$PROJECT_DIR$/../../felix/deploymentadmin/service/src/main/java" />
       </SOURCES>
     </library>
     <library name="Maven: org.osgi:org.osgi.core:4.0.1">
@@ -827,6 +837,17 @@
         <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-lang/1.0.0/ops4j-base-lang-1.0.0-sources.jar!/" />
       </SOURCES>
     </library>
+    <library name="Maven: org.ops4j.base:ops4j-base-util-property:1.0.0">
+      <CLASSES>
+        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-util-property/1.0.0/ops4j-base-util-property-1.0.0.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-util-property/1.0.0/ops4j-base-util-property-1.0.0-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-util-property/1.0.0/ops4j-base-util-property-1.0.0-sources.jar!/" />
+      </SOURCES>
+    </library>
     <library name="Maven: junit:junit:4.4">
       <CLASSES>
         <root url="jar://$M2_REPO$/junit/junit/4.4/junit-4.4.jar!/" />
@@ -847,39 +868,6 @@
       </JAVADOC>
       <SOURCES>
         <root url="jar://$M2_REPO$/org/easymock/easymock/2.3/easymock-2.3-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.ops4j.base:ops4j-base-util-property:1.0.0">
-      <CLASSES>
-        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-util-property/1.0.0/ops4j-base-util-property-1.0.0.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-util-property/1.0.0/ops4j-base-util-property-1.0.0-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-util-property/1.0.0/ops4j-base-util-property-1.0.0-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.ops4j.base:ops4j-base-io:1.0.0">
-      <CLASSES>
-        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-io/1.0.0/ops4j-base-io-1.0.0.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-io/1.0.0/ops4j-base-io-1.0.0-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-io/1.0.0/ops4j-base-io-1.0.0-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.ops4j.base:ops4j-base-monitors:1.0.0">
-      <CLASSES>
-        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-monitors/1.0.0/ops4j-base-monitors-1.0.0.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-monitors/1.0.0/ops4j-base-monitors-1.0.0-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-monitors/1.0.0/ops4j-base-monitors-1.0.0-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: commons-logging:commons-logging:1.1">
@@ -937,6 +925,39 @@
         <root url="jar://$M2_REPO$/javax/servlet/servlet-api/2.3/servlet-api-2.3-sources.jar!/" />
       </SOURCES>
     </library>
+    <library name="Maven: org.ops4j.base:ops4j-base-io:1.0.0">
+      <CLASSES>
+        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-io/1.0.0/ops4j-base-io-1.0.0.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-io/1.0.0/ops4j-base-io-1.0.0-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-io/1.0.0/ops4j-base-io-1.0.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.ops4j.base:ops4j-base-monitors:1.0.0">
+      <CLASSES>
+        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-monitors/1.0.0/ops4j-base-monitors-1.0.0.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-monitors/1.0.0/ops4j-base-monitors-1.0.0-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-monitors/1.0.0/ops4j-base-monitors-1.0.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: biz.aQute:bndlib:0.0.313">
+      <CLASSES>
+        <root url="jar://$M2_REPO$/biz/aQute/bndlib/0.0.313/bndlib-0.0.313.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$M2_REPO$/biz/aQute/bndlib/0.0.313/bndlib-0.0.313-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$M2_REPO$/biz/aQute/bndlib/0.0.313/bndlib-0.0.313-sources.jar!/" />
+      </SOURCES>
+    </library>
     <library name="Maven: org.ops4j.pax.url:pax-url-mvn:1.1.0-SNAPSHOT">
       <CLASSES>
         <root url="jar://$M2_REPO$/org/ops4j/pax/url/pax-url-mvn/1.1.0-SNAPSHOT/pax-url-mvn-1.1.0-SNAPSHOT.jar!/" />
@@ -950,7 +971,7 @@
     </library>
   </component>
   <UsedPathMacros>
-    <macro name="M2_REPO" description="" />
+    <macro name="M2_REPO" />
   </UsedPathMacros>
 </project>
 
