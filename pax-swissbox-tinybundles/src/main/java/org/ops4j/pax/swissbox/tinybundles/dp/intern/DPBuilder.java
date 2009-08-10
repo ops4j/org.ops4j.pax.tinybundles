@@ -84,7 +84,7 @@ public class DPBuilder
                 jout = new JarInputStream( cache.load( meta.getHandle( name ) ) );
                 Manifest man = jout.getManifest();
                 // those m_headers are meant to show up in DP Manifest.
-                if( meta.isType( name, DPContentTypes.BUNDLE ) )
+                if( meta.isType( name, DPContentType.BUNDLE ) )
                 {
                     attr.putValue( Constants.BUNDLE_SYMBOLICNAME, man.getMainAttributes().getValue( Constants.BUNDLE_SYMBOLICNAME ) );
                     attr.putValue( Constants.BUNDLE_VERSION, man.getMainAttributes().getValue( Constants.BUNDLE_VERSION ) );
