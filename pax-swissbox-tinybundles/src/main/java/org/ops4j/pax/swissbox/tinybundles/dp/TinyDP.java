@@ -78,12 +78,13 @@ public interface TinyDP
      * @param inp  content of this resource
      *
      * @return this (fluent api)
+     * @throws java.io.IOException in case of an IO error when processing inp
      */
     TinyDP setBundle( String name, BuildableBundle inp )
         throws IOException;
 
     /**
-     * convinient adapter for setBundle(String,InputStream)
+     * convenient adapter for setBundle(String,InputStream)
      *
      * @param name identifier of Name parameter in DP manifest
      * @param url  content of this resource
@@ -102,6 +103,7 @@ public interface TinyDP
      * @param inp  content of this resource
      *
      * @return this
+     * @throws java.io.IOException in case of an IO error when processing inp
      */
     TinyDP setBundle( String name, InputStream inp )
         throws IOException;

@@ -51,7 +51,7 @@ public class TinyDPImpl implements TinyDP
     // out meta data repository
     final private Bucket m_meta;
 
-    // the one who can finaly build DeploymentPackages
+    // the one who can finally build DeploymentPackages
     final private DPBuilder m_builder;
 
     // The DeploymentPackages.Manifest Instructions
@@ -84,7 +84,7 @@ public class TinyDPImpl implements TinyDP
                         VersionRange versionRange = VersionRange.parse( v );
                         Version is = versionRange.getLow();
                         String n = is.getMajor() + "." + is.getMinor() + "." + ( is.getMicro() + 1 ) + ( ( is.getQualifier() != null && is.getQualifier().trim().length() > 0 ) ? ( "-" + is.getQualifier() ) : "" );
-
+                        // TODO fix me
                         set( Constants.DEPLOYMENTPACKAGE_FIXPACK, "(0," + n + "]" );
 
                         // set my own version a bit higher:
@@ -165,29 +165,6 @@ public class TinyDPImpl implements TinyDP
         return this;
     }
 
-    // just set metadata + add inputstream to some kind of cache.
-    public TinyDP setBundle( String name, InputStream inp, boolean includeContent )
-        throws IOException
-    {
-        m_meta.store( name, m_cache.store( inp ), DPContentType.BUNDLE, includeContent );
-        return this;
-    }
-
-    public TinyDP addResource( String name, InputStream inp )
-        throws IOException
-    {
-        setResource( name, inp, true );
-        return this;
-    }
-
-    private TinyDP setResource( String name, InputStream inp, boolean includeContent )
-        throws IOException
-    {
-        m_meta.store( name, m_cache.store( inp ), DPContentType.OTHERRESOURCE, includeContent );
-
-        return this;
-    }
-
     public TinyDP setResource( String name, InputStream inp )
         throws IOException
     {
@@ -226,5 +203,28 @@ public class TinyDPImpl implements TinyDP
         throws IOException
     {
         return m_builder.build( m_dpHeaders, m_cache, m_meta );
+    }
+
+    // just set metadata + add inputstream to some kind of cache.
+    private TinyDP setBundle( String name, InputStream inp, boolean includeContent )
+        throws IOException
+    {
+        m_meta.store( name, m_cache.store( inp ), DPContentType.BUNDLE, includeContent );
+        return this;
+    }
+
+    private TinyDP addResource( String name, InputStream inp )
+        throws IOException
+    {
+        setResource( name, inp, true );
+        return this;
+    }
+
+    private TinyDP setResource( String name, InputStream inp, boolean includeContent )
+        throws IOException
+    {
+        m_meta.store( name, m_cache.store( inp ), DPContentType.OTHERRESOURCE, includeContent );
+
+        return this;
     }
 }

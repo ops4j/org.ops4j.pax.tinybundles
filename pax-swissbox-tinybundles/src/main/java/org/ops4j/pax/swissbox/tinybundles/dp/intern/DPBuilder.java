@@ -49,6 +49,8 @@ public class DPBuilder
      * @param headers
      * @param cache
      * @param meta
+     * @return The final deployment package as stream
+     * @throws java.io.IOException
      */
     public InputStream build( Map<String, String> headers, final BinaryStore<InputStream> cache, final Bucket meta )
         throws IOException

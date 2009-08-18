@@ -33,7 +33,7 @@ import org.ops4j.io.FileUtils;
 
 /**
  * Entity store like implementation.
- * Stores incoming data (store) to disk at a temporaty location.
+ * Stores incoming data (store) to disk at a temporary location.
  * The handle is valid for use (load) only for this instance's lifetime. (tmp storage location)
  *
  * Uses an SHA-1 hash for indexing.

@@ -30,8 +30,8 @@ import org.ops4j.pax.swissbox.tinybundles.dp.store.BinaryHandle;
 public class Bucket
 {
 
-    private Map<String, TypedBinaryHandle> m_store = new HashMap<String, TypedBinaryHandle>();
-    private Set<String> m_missing = new HashSet<String>();
+    final private Map<String, TypedBinaryHandle> m_store = new HashMap<String, TypedBinaryHandle>();
+    final private Set<String> m_missing = new HashSet<String>();
 
     public String[] getEntries()
     {
@@ -75,8 +75,8 @@ public class Bucket
     private class TypedBinaryHandle implements BinaryHandle
     {
 
-        private BinaryHandle m_handle;
-        private DPContentType m_type;
+        final private BinaryHandle m_handle;
+        final private DPContentType m_type;
 
         public TypedBinaryHandle( BinaryHandle handle, DPContentType type )
         {

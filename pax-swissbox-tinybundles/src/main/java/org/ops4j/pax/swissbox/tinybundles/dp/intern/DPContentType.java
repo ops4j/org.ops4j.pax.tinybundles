@@ -18,7 +18,7 @@
 package org.ops4j.pax.swissbox.tinybundles.dp.intern;
 
 /**
- * Types we differentiate in procssing internally.
+ * Types we differentiate in processing internally.
  */
 public enum DPContentType
 {
