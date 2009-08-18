@@ -32,7 +32,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.ops4j.io.StreamUtils;
 import org.ops4j.pax.swissbox.tinybundles.dp.Constants;
-import org.ops4j.pax.swissbox.tinybundles.dp.store.BinaryStore;
+import org.ops4j.pax.swissbox.tinybundles.store.BinaryStore;
 
 /**
  * @author Toni Menzel (tonit)

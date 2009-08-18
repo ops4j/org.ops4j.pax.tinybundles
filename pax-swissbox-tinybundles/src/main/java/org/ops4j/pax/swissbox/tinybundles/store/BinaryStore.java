@@ -15,16 +15,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.swissbox.tinybundles.dp.store;
+package org.ops4j.pax.swissbox.tinybundles.store;
+
+import java.io.IOException;
 
 /**
- * Reference to be used in combination with BinaryStore.
- * You can store/reference binary objects using this handle during the validity determined by the implementation
- * of BinaryStore of choice.
+ * Entity Store Style Interface to store and retrieve data of type T.
  */
-public interface BinaryHandle
+public interface BinaryStore<T>
 {
 
-    String getIdentification();
+    BinaryHandle store( T inp )
+        throws IOException;
+
+    T load( BinaryHandle handle )
+        throws IOException;
+
 
 }

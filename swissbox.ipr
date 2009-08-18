@@ -424,7 +424,13 @@
     <option name="projectName" value="swissbox" />
   </component>
   <component name="ProjectDictionaryState">
-    <dictionary name="tonit" />
+    <dictionary name="tonit">
+      <words>
+        <w>Menzel</w>
+        <w>OTHERRESOURCE</w>
+        <w>deploymentpackage</w>
+      </words>
+    </dictionary>
   </component>
   <component name="ProjectFileVersion" converted="true" />
   <component name="ProjectKey">

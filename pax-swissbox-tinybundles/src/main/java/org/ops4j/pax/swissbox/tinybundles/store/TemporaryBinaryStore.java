@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.swissbox.tinybundles.dp.store;
+package org.ops4j.pax.swissbox.tinybundles.store;
 
 import java.io.File;
 import java.io.FileInputStream;

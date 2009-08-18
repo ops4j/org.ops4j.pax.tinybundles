@@ -35,7 +35,7 @@ import org.ops4j.pax.swissbox.tinybundles.core.BuildableBundle;
 import static org.ops4j.pax.swissbox.tinybundles.core.TinyBundles.*;
 import org.ops4j.pax.swissbox.tinybundles.dp.Constants;
 import org.ops4j.pax.swissbox.tinybundles.dp.TinyDP;
-import org.ops4j.pax.swissbox.tinybundles.dp.store.BinaryStore;
+import org.ops4j.pax.swissbox.tinybundles.store.BinaryStore;
 
 /**
  * Implementation that also allows Fix-Packs (See Constructors)

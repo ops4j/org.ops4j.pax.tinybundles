@@ -21,7 +21,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.HashSet;
-import org.ops4j.pax.swissbox.tinybundles.dp.store.BinaryHandle;
+import org.ops4j.pax.swissbox.tinybundles.store.BinaryHandle;
 
 /**
  * Lightweight container that basically just "records" user's calls (addBundle, removeBundle .. etc).
