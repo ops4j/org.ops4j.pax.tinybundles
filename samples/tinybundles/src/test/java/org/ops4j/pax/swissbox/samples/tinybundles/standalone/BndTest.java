@@ -41,9 +41,9 @@ public class BndTest
         throws IOException
     {
         InputStream inp = newBundle()
-            .addClass( MyFirstActivator.class )
-            .addClass( HelloWorld.class )
-            .addClass( HelloWorldImpl.class )
+            .add( MyFirstActivator.class )
+            .add( HelloWorld.class )
+            .add( HelloWorldImpl.class )
             .prepare(
                 withBnd()
                     .set( Constants.BUNDLE_SYMBOLICNAME, "MyFirstTinyBundle" )

@@ -26,6 +26,7 @@ import org.ops4j.pax.swissbox.tinybundles.core.metadata.BndBuilder;
 import org.ops4j.pax.swissbox.tinybundles.core.metadata.RawBuilder;
 import org.ops4j.pax.swissbox.tinybundles.core.targets.BundleAsFile;
 import org.ops4j.pax.swissbox.tinybundles.core.targets.BundleAsURLImpl;
+import org.ops4j.pax.swissbox.tinybundles.store.TemporaryBinaryStore;
 
 /**
  * This is the humane api factory class that is meant to be imported statically with TinyBundles.*
@@ -45,11 +46,11 @@ public class TinyBundles
      */
     public static TinyBundle newBundle()
     {
-        return new TinyBundleImpl();
+        return new TinyBundleImpl( new TemporaryBinaryStore() );
     }
 
     /**
-     * Stream
+     * @return content ready to be built as a flat stream.
      */
     public static BundleAs<InputStream> asStream()
     {

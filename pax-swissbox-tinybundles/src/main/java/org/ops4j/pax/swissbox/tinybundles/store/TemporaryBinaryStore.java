@@ -26,6 +26,7 @@ import java.io.OutputStream;
 import java.io.FileNotFoundException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.net.URI;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.ops4j.io.StreamUtils;
@@ -104,6 +105,12 @@ public class TemporaryBinaryStore implements BinaryStore<InputStream>
         throws IOException
     {
         return new FileInputStream( getLocation( handle.getIdentification() ) );
+    }
+
+    public URI getLocation( BinaryHandle handle )
+        throws IOException
+    {
+        return getLocation( handle.getIdentification() ).toURI();
     }
 
     public String hash( final InputStream is, OutputStream storeHere )

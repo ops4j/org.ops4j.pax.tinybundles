@@ -18,6 +18,7 @@
 package org.ops4j.pax.swissbox.tinybundles.core;
 
 import java.net.URL;
+import java.io.InputStream;
 
 /**
  * @author Toni Menzel (tonit)
@@ -26,9 +27,11 @@ import java.net.URL;
 public interface TinyBundle
 {
 
-    TinyBundle addResource( String name, URL url );
+    TinyBundle add( String name, URL content );
 
-    TinyBundle addClass( Class clazz );
+    TinyBundle add( String name, InputStream content );
+
+    TinyBundle add( Class content );
 
     BuildableBundle prepare( BuildableBundle builder );
 
