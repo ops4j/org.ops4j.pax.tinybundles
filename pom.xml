@@ -74,12 +74,6 @@
 
   <dependencyManagement>
     <dependencies>
-      <!-- Peter Kriens BND -->
-      <dependency>
-        <groupId>biz.aQute</groupId>
-        <artifactId>bndlib</artifactId>
-        <version>0.0.313</version>
-      </dependency>
       <!-- OPS4J Base -->
       <dependency>
         <groupId>org.ops4j.base</groupId>
