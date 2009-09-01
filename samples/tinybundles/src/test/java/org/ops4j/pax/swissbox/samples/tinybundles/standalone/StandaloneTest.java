@@ -58,7 +58,7 @@ public class StandaloneTest
                     .set( Constants.EXPORT_PACKAGE, "org.ops4j.pax.tinybundles.demo" )
                     .set( Constants.IMPORT_PACKAGE, "org.ops4j.pax.tinybundles.demo" )
                     .set( Constants.BUNDLE_ACTIVATOR, MyFirstActivator.class.getName() )
-            ).build( asStream() );
+            ).build( );
 
         // test output
         JarInputStream jout = new JarInputStream( inp );
@@ -97,7 +97,7 @@ public class StandaloneTest
                     .set( Constants.EXPORT_PACKAGE, "org.ops4j.pax.tinybundles.demo" )
                     .set( Constants.IMPORT_PACKAGE, "org.ops4j.pax.tinybundles.demo" )
                     .set( Constants.BUNDLE_ACTIVATOR, MyFirstActivator.class.getName() )
-            ).build( asStream() );
+            ).build( );
 
         // test output
         JarInputStream jout = new JarInputStream( inp );

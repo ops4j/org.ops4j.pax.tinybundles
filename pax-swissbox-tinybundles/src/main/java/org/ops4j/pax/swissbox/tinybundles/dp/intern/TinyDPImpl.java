@@ -148,7 +148,7 @@ public class TinyDPImpl implements TinyDP
     public TinyDP setBundle( String s, BuildableBundle buildableBundle )
         throws IOException
     {
-        return setBundle( s, buildableBundle.build( asStream() ) );
+        return setBundle( s, buildableBundle.build( ) );
     }
 
     public TinyDP setBundle( String name, String inp )

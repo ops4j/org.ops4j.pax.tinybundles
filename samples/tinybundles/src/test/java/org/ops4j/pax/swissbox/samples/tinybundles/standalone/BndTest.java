@@ -49,7 +49,7 @@ public class BndTest
                     .set( Constants.BUNDLE_SYMBOLICNAME, "MyFirstTinyBundle" )
                     .set( Constants.EXPORT_PACKAGE, "org.ops4j.pax.tinybundles.demo" )
                     .set( Constants.BUNDLE_ACTIVATOR, MyFirstActivator.class.getName() )
-            ).build( asStream() );
+            ).build( );
 
         // test output
         JarInputStream jout = new JarInputStream( inp );

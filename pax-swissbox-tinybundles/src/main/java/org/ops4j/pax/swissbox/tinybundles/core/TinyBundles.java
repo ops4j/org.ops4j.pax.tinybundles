@@ -17,15 +17,11 @@
  */
 package org.ops4j.pax.swissbox.tinybundles.core;
 
-import java.io.File;
 import java.io.InputStream;
-import java.net.URL;
 import org.ops4j.pax.swissbox.tinybundles.core.intern.CoreBuildImpl;
 import org.ops4j.pax.swissbox.tinybundles.core.intern.TinyBundleImpl;
 import org.ops4j.pax.swissbox.tinybundles.core.metadata.BndBuilder;
 import org.ops4j.pax.swissbox.tinybundles.core.metadata.RawBuilder;
-import org.ops4j.pax.swissbox.tinybundles.core.targets.BundleAsFile;
-import org.ops4j.pax.swissbox.tinybundles.core.targets.BundleAsURLImpl;
 import org.ops4j.pax.swissbox.tinybundles.store.TemporaryBinaryStore;
 
 /**
@@ -40,9 +36,9 @@ public class TinyBundles
 
     /**
      * Start with a fresh bundle with this factory method.
-     * You can then chain methodcalls thanks to the humane nature of TinyBundle interface.
+     * You can then chain methodcalls thanks to the humane nature of {@link TinyBundle} interface.
      *
-     * @return a new instance of a tinybundle. This is almost always the startingpoint of any interaction with tinybundles.
+     * @return a new instance of a  {@link TinyBundle}. This is almost always the startingpoint of any interaction with {@link TinyBundle}.
      */
     public static TinyBundle newBundle()
     {
@@ -57,15 +53,6 @@ public class TinyBundles
         return new CoreBuildImpl();
     }
 
-    public static BundleAs<URL> asURL()
-    {
-        return new BundleAsURLImpl();
-    }
-
-    public static BundleAs<File> asFile( File f )
-    {
-        return new BundleAsFile( f );
-    }
 
     public static BuildableBundle withBnd()
     {

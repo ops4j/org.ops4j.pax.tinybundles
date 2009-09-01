@@ -20,6 +20,7 @@ package org.ops4j.pax.swissbox.tinybundles.core.metadata;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.io.InputStream;
 import org.ops4j.pax.swissbox.tinybundles.core.BuildableBundle;
 import org.ops4j.pax.swissbox.tinybundles.core.BundleAs;
 import org.ops4j.pax.swissbox.tinybundles.core.intern.CoreBuildImpl;
@@ -46,8 +47,8 @@ public class RawBuilder implements BuildableBundle
         return this;
     }
 
-    public <T> T build( BundleAs<T> type )
+    public InputStream build()
     {
-        return type.make( new CoreBuildImpl().make( m_resources, m_headers ) );
+        return new CoreBuildImpl().make( m_resources, m_headers );
     }
 }

@@ -50,12 +50,12 @@ public class BndBuilder implements BuildableBundle
         return this;
     }
 
-    public <T> T build( BundleAs<T> type )
+    public InputStream build(  )
     {
         InputStream in = new CoreBuildImpl().make( m_resources, new HashMap<String, String>() );
         try
         {
-            return type.make( BndUtils.createBundle( in, m_directives, "BuildByTinyBundles" ) );
+            return BndUtils.createBundle( in, m_directives, "BuildByTinyBundles" );
         }
         catch( IOException e )
         {

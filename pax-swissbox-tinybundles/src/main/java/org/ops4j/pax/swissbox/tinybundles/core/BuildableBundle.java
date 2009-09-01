@@ -19,8 +19,13 @@ package org.ops4j.pax.swissbox.tinybundles.core;
 
 import java.net.URL;
 import java.util.Map;
+import java.io.InputStream;
 
 /**
+ * From TinyBundles you get an instance of this.
+ * At this state, all resources has been definined (added), now you can either build()
+ * directly or set addition meta data and configuration.
+ * 
  * @author Toni Menzel (tonit)
  * @since Apr 20, 2009
  */
@@ -29,7 +34,7 @@ public interface BuildableBundle
 
     BuildableBundle set( String key, String value );
 
-    <T> T build( BundleAs<T> type );
+    InputStream build( );
 
     BuildableBundle setResources( Map<String, URL> resources );
 }

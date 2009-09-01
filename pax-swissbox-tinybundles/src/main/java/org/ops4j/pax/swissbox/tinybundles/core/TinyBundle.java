@@ -21,20 +21,59 @@ import java.net.URL;
 import java.io.InputStream;
 
 /**
+ * Main type when making bundles with the {@link TinyBundles} library.
+ * Get an instance from {@link TinyBundles} Factory, add resources and call "prepare" to go to the next finalization step.
+ *
  * @author Toni Menzel (tonit)
  * @since Apr 9, 2009
  */
 public interface TinyBundle
 {
 
+    /**
+     * Add a resource to the current bundle (to be built).
+     *
+     * @param name    final path inside the jar
+     * @param content content to be copied into bundle.
+     *
+     * @return *this*
+     */
     TinyBundle add( String name, URL content );
 
+    /**
+     * Add a resource to the current bundle (to be built).
+     *
+     * @param name    final path inside the jar
+     * @param content content to be copied into bundle.
+     *
+     * @return *this*
+     */
     TinyBundle add( String name, InputStream content );
 
+    /**
+     * Add a class to the current bundle.
+     *
+     * @param content content to be copied into bundle.
+     *
+     * @return *this*
+     */
     TinyBundle add( Class content );
 
+    /**
+     * When you are done adding stuff to *this* you can call this method to go to next step.
+     *
+     * @param builder Instance may be retrieved from {TinyBundles} factory methods.
+     *
+     * @return Next step in the bundle making process.
+     */
     BuildableBundle prepare( BuildableBundle builder );
 
+    /**
+     * When you are done adding stuff to *this* you can call this method to go to next step.
+     * The BND based builder will be used for your convenience.
+     *
+     * @return Next step in the bundle making process.
+     */
     BuildableBundle prepare();
 
 }
