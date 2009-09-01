@@ -452,16 +452,6 @@
     <option name="GENERATE_IIOP_STUBS" value="false" />
     <option name="ADDITIONAL_OPTIONS_STRING" value="" />
   </component>
-  <component name="SharedJiraServers">
-    <option name="servers">
-      <server>
-        <option name="serverId">
-          <ServerId />
-        </option>
-        <option name="url" value="http://issues.ops4j.org" />
-      </server>
-    </option>
-  </component>
   <component name="SvnBranchConfigurationManager">
     <option name="myConfigurationMap">
       <map>
@@ -947,15 +937,15 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/url/pax-url-mvn/1.1.0-SNAPSHOT/pax-url-mvn-1.1.0-SNAPSHOT-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: biz.aQute:bndlib:0.0.355">
+    <library name="Maven: biz.aQute:bndlib:0.0.313">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/biz/aQute/bndlib/0.0.355/bndlib-0.0.355.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/biz/aQute/bndlib/0.0.313/bndlib-0.0.313.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/biz/aQute/bndlib/0.0.355/bndlib-0.0.355-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/biz/aQute/bndlib/0.0.313/bndlib-0.0.313-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/biz/aQute/bndlib/0.0.355/bndlib-0.0.355-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/biz/aQute/bndlib/0.0.313/bndlib-0.0.313-sources.jar!/" />
       </SOURCES>
     </library>
   </component>

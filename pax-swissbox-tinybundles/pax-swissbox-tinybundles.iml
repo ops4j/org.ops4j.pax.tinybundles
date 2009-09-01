@@ -28,7 +28,7 @@
     <orderEntry type="library" exported="" name="Maven: org.ops4j.base:ops4j-base-monitors:1.0.0" level="project" />
     <orderEntry type="module" module-name="pax-swissbox-optional-jcl" />
     <orderEntry type="module" module-name="pax-swissbox-bnd" exported="" />
-    <orderEntry type="library" exported="" name="Maven: biz.aQute:bndlib:0.0.355" level="project" />
+    <orderEntry type="library" exported="" name="Maven: biz.aQute:bndlib:0.0.313" level="project" />
   </component>
 </module>
 
