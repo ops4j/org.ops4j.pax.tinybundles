@@ -2,7 +2,7 @@
 <module relativePaths="false" MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
   <component name="FacetManager">
     <facet type="Osmorc" name="OSGi">
-      <configuration osmorcControlsManifest="true" manifestLocation="" jarfileLocation="$MODULE_DIR$/target/pax-swissbox-lifecycle.jar" useBndFile="false" bndFileLocation="" bundleActivator="" bundleSymbolicName="org.ops4j.pax.swissbox.pax-swissbox-lifecycle" bundleVersion="1.0.1-SNAPSHOT" ignoreFilePattern="" useProjectDefaultManifestFileLocation="true" alwaysRebuildBundleJAR="false">
+      <configuration osmorcControlsManifest="true" manifestLocation="" jarfileLocation="$MODULE_DIR$/target/pax-swissbox-lifecycle.jar" useBndFile="false" bndFileLocation="" bundleActivator="" bundleSymbolicName="org.ops4j.pax.swissbox.pax-swissbox-lifecycle" bundleVersion="1.1.0-SNAPSHOT" ignoreFilePattern="" useProjectDefaultManifestFileLocation="true" alwaysRebuildBundleJAR="false">
         <additionalProperties>
           <property key="_include" value="-osgi.bnd" />
         </additionalProperties>

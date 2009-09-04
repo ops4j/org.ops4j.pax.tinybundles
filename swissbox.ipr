@@ -937,6 +937,37 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-util-property/1.1.0/ops4j-base-util-property-1.1.0-sources.jar!/" />
       </SOURCES>
     </library>
+    <library name="Maven: org.ops4j.pax.swissbox:pax-swissbox-lifecycle:1.0.1-SNAPSHOT">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-lifecycle/pom.xml!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-lifecycle/pom.xml!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-lifecycle/pom.xml!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-lifecycle/pom-javadoc.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-lifecycle/pom-javadoc.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-lifecycle/pom-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-lifecycle/pom-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-lifecycle/pom-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-lifecycle/pom-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.ops4j.pax.swissbox:pax-swissbox-optional-jcl:1.0.1-SNAPSHOT">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-optional-jcl/pom.xml!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-optional-jcl/pom.xml!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-optional-jcl/pom-javadoc.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-optional-jcl/pom-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-optional-jcl/pom-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-optional-jcl/pom-sources.jar!/" />
+      </SOURCES>
+    </library>
   </component>
   <UsedPathMacros>
     <macro name="MAVEN_REPOSITORY" description="Maven Local Repostiry" />
