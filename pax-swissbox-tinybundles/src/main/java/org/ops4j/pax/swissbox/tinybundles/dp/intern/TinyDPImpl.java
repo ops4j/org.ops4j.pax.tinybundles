@@ -34,7 +34,7 @@ import org.osgi.framework.Version;
 import org.ops4j.pax.swissbox.tinybundles.core.BuildableBundle;
 import org.ops4j.pax.swissbox.tinybundles.dp.Constants;
 import org.ops4j.pax.swissbox.tinybundles.dp.TinyDP;
-import org.ops4j.store.BinaryStore;
+import org.ops4j.store.Store;
 
 /**
  * Implementation that also allows Fix-Packs (See Constructors)
@@ -45,7 +45,7 @@ public class TinyDPImpl implements TinyDP
     private static Log LOG = LogFactory.getLog( TinyDPImpl.class );
 
     // All Contents of Deployment Package are stored here
-    final private BinaryStore<InputStream> m_cache;
+    final private Store<InputStream> m_cache;
 
     // out meta data repository
     final private Bucket m_meta;
@@ -56,7 +56,7 @@ public class TinyDPImpl implements TinyDP
     // The DeploymentPackages.Manifest Instructions
     final private Map<String, String> m_dpHeaders = new HashMap<String, String>();
 
-    public TinyDPImpl( DPBuilder builder, InputStream parent, final Bucket bucket, BinaryStore<InputStream> cache )
+    public TinyDPImpl( DPBuilder builder, InputStream parent, final Bucket bucket, Store<InputStream> cache )
     {
         m_cache = cache;
         m_builder = builder;

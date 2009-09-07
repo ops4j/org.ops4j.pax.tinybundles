@@ -21,7 +21,7 @@ import java.io.InputStream;
 import org.ops4j.pax.swissbox.tinybundles.dp.intern.Bucket;
 import org.ops4j.pax.swissbox.tinybundles.dp.intern.TinyDPImpl;
 import org.ops4j.pax.swissbox.tinybundles.dp.intern.DPBuilder;
-import org.ops4j.store.TemporaryBinaryStore;
+import org.ops4j.store.StoreFactory;
 
 /**
  * Factory to use a TinyDP instance to construct Deployment Packages.
@@ -42,7 +42,7 @@ public class DP
      */
     public static TinyDP newDeploymentPackage()
     {
-        return new TinyDPImpl( new DPBuilder(), null, new Bucket(), new TemporaryBinaryStore() );
+        return new TinyDPImpl( new DPBuilder(), null, new Bucket(), StoreFactory.defaultStore() );
     }
 
     /**
@@ -54,7 +54,7 @@ public class DP
      */
     public static TinyDP newFixPackage( InputStream target )
     {
-        return new TinyDPImpl( new DPBuilder(), target, new Bucket(), new TemporaryBinaryStore() );
+        return new TinyDPImpl( new DPBuilder(), target, new Bucket(), StoreFactory.defaultStore() );
 
     }
 

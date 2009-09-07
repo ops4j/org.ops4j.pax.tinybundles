@@ -21,7 +21,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.HashSet;
-import org.ops4j.store.BinaryHandle;
+import org.ops4j.store.Handle;
 
 /**
  * Lightweight container that basically just "records" user's calls (addBundle, removeBundle .. etc).
@@ -49,7 +49,7 @@ public class Bucket
         m_store.remove( entry );
     }
 
-    public void store( String entry, BinaryHandle binaryHandle, DPContentType type, boolean includeContent )
+    public void store( String entry, Handle binaryHandle, DPContentType type, boolean includeContent )
     {
         if( !includeContent )
         {
@@ -62,7 +62,7 @@ public class Bucket
         m_store.put( entry, new TypedBinaryHandle( binaryHandle, type ) );
     }
 
-    public BinaryHandle getHandle( String entry )
+    public Handle getHandle( String entry )
     {
         return m_store.get( entry );
     }
@@ -72,13 +72,13 @@ public class Bucket
         return m_store.get( name ).getType() == bundle;
     }
 
-    private class TypedBinaryHandle implements BinaryHandle
+    private class TypedBinaryHandle implements Handle
     {
 
-        final private BinaryHandle m_handle;
+        final private Handle m_handle;
         final private DPContentType m_type;
 
-        public TypedBinaryHandle( BinaryHandle handle, DPContentType type )
+        public TypedBinaryHandle( Handle handle, DPContentType type )
         {
             m_handle = handle;
             m_type = type;

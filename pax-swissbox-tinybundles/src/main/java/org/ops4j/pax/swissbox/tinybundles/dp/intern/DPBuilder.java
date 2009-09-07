@@ -32,7 +32,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.ops4j.io.StreamUtils;
 import org.ops4j.pax.swissbox.tinybundles.dp.Constants;
-import org.ops4j.store.BinaryStore;
+import org.ops4j.store.Store;
 
 /**
  * @author Toni Menzel (tonit)
@@ -52,7 +52,7 @@ public class DPBuilder
      * @return The final deployment package as stream
      * @throws java.io.IOException
      */
-    public InputStream build( Map<String, String> headers, final BinaryStore<InputStream> cache, final Bucket meta )
+    public InputStream build( Map<String, String> headers, final Store<InputStream> cache, final Bucket meta )
         throws IOException
     {
         // 1. Manifest

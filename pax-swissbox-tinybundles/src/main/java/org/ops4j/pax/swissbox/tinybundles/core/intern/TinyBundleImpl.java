@@ -27,7 +27,7 @@ import org.apache.commons.logging.LogFactory;
 import org.ops4j.pax.swissbox.tinybundles.core.BuildableBundle;
 import org.ops4j.pax.swissbox.tinybundles.core.TinyBundle;
 import org.ops4j.pax.swissbox.tinybundles.core.metadata.RawBuilder;
-import org.ops4j.store.BinaryStore;
+import org.ops4j.store.Store;
 
 /**
  * Our default implementation of TinyBundle.
@@ -42,9 +42,9 @@ public class TinyBundleImpl implements TinyBundle
     private static Log LOG = LogFactory.getLog( TinyBundleImpl.class );
 
     private Map<String, URL> m_resources = new HashMap<String, URL>();
-    private BinaryStore<InputStream> m_store;
+    private Store<InputStream> m_store;
 
-    public TinyBundleImpl( BinaryStore<InputStream> bstore )
+    public TinyBundleImpl( Store<InputStream> bstore )
     {
         m_store = bstore;
     }
