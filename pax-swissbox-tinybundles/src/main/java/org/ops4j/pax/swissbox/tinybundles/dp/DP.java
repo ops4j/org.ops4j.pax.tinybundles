@@ -21,7 +21,7 @@ import java.io.InputStream;
 import org.ops4j.pax.swissbox.tinybundles.dp.intern.Bucket;
 import org.ops4j.pax.swissbox.tinybundles.dp.intern.TinyDPImpl;
 import org.ops4j.pax.swissbox.tinybundles.dp.intern.DPBuilder;
-import org.ops4j.pax.swissbox.tinybundles.store.TemporaryBinaryStore;
+import org.ops4j.store.TemporaryBinaryStore;
 
 /**
  * Factory to use a TinyDP instance to construct Deployment Packages.

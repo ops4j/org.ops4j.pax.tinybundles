@@ -23,9 +23,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.ops4j.pax.swissbox.samples.tinybundles.DPTestingHelper;
 import static org.ops4j.pax.swissbox.tinybundles.dp.DP.*;
-import org.ops4j.pax.swissbox.tinybundles.store.BinaryHandle;
-import org.ops4j.pax.swissbox.tinybundles.store.BinaryStore;
-import org.ops4j.pax.swissbox.tinybundles.store.TemporaryBinaryStore;
+import org.ops4j.store.BinaryStore;
+import org.ops4j.store.TemporaryBinaryStore;
+import org.ops4j.store.BinaryHandle;
 
 /**
  * @author Toni Menzel (tonit)

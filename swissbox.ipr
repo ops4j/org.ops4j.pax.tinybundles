@@ -413,7 +413,6 @@
         <w>deploymentpackage</w>
       </words>
     </dictionary>
-    <dictionary name="adreghiciu" />
   </component>
   <component name="ProjectFileVersion" converted="true" />
   <component name="ProjectKey">
@@ -451,6 +450,16 @@
     <option name="GENERATE_NO_WARNINGS" value="false" />
     <option name="GENERATE_IIOP_STUBS" value="false" />
     <option name="ADDITIONAL_OPTIONS_STRING" value="" />
+  </component>
+  <component name="SharedJiraServers">
+    <option name="servers">
+      <server>
+        <option name="serverId">
+          <ServerId />
+        </option>
+        <option name="url" value="http://issues.ops4j.org" />
+      </server>
+    </option>
   </component>
   <component name="SvnBranchConfigurationManager">
     <option name="myConfigurationMap">
@@ -827,6 +836,17 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/easymock/easymock/2.3/easymock-2.3-sources.jar!/" />
       </SOURCES>
     </library>
+    <library name="Maven: biz.aQute:bndlib:0.0.313">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/biz/aQute/bndlib/0.0.313/bndlib-0.0.313.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/biz/aQute/bndlib/0.0.313/bndlib-0.0.313-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/biz/aQute/bndlib/0.0.313/bndlib-0.0.313-sources.jar!/" />
+      </SOURCES>
+    </library>
     <library name="Maven: commons-logging:commons-logging:1.1">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/commons-logging/commons-logging/1.1/commons-logging-1.1.jar!/" />
@@ -882,59 +902,161 @@
         <root url="jar://$MAVEN_REPOSITORY$/javax/servlet/servlet-api/2.3/servlet-api-2.3-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: biz.aQute:bndlib:0.0.313">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/biz/aQute/bndlib/0.0.313/bndlib-0.0.313.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/biz/aQute/bndlib/0.0.313/bndlib-0.0.313-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/biz/aQute/bndlib/0.0.313/bndlib-0.0.313-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Maven: org.ops4j.pax.url:pax-url-mvn:1.1.0-SNAPSHOT">
       <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/url/pax-url-mvn/1.1.0-SNAPSHOT/pax-url-mvn-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/url/pax-url-mvn/1.1.0-SNAPSHOT/pax-url-mvn-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/url/pax-url-mvn/1.1.0-SNAPSHOT/pax-url-mvn-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/url/pax-url-mvn/1.1.0-SNAPSHOT/pax-url-mvn-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/url/pax-url-mvn/1.1.0-SNAPSHOT/pax-url-mvn-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/url/pax-url-mvn/1.1.0-SNAPSHOT/pax-url-mvn-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/url/pax-url-mvn/1.1.0-SNAPSHOT/pax-url-mvn-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/url/pax-url-mvn/1.1.0-SNAPSHOT/pax-url-mvn-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/url/pax-url-mvn/1.1.0-SNAPSHOT/pax-url-mvn-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/url/pax-url-mvn/1.1.0-SNAPSHOT/pax-url-mvn-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/url/pax-url-mvn/1.1.0-SNAPSHOT/pax-url-mvn-1.1.0-SNAPSHOT.jar!/" />
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/url/pax-url-mvn/1.1.0-SNAPSHOT/pax-url-mvn-1.1.0-SNAPSHOT.jar!/" />
       </CLASSES>
       <JAVADOC>
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/url/pax-url-mvn/1.1.0-SNAPSHOT/pax-url-mvn-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/url/pax-url-mvn/1.1.0-SNAPSHOT/pax-url-mvn-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/url/pax-url-mvn/1.1.0-SNAPSHOT/pax-url-mvn-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/url/pax-url-mvn/1.1.0-SNAPSHOT/pax-url-mvn-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/url/pax-url-mvn/1.1.0-SNAPSHOT/pax-url-mvn-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/url/pax-url-mvn/1.1.0-SNAPSHOT/pax-url-mvn-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/url/pax-url-mvn/1.1.0-SNAPSHOT/pax-url-mvn-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/url/pax-url-mvn/1.1.0-SNAPSHOT/pax-url-mvn-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/url/pax-url-mvn/1.1.0-SNAPSHOT/pax-url-mvn-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/url/pax-url-mvn/1.1.0-SNAPSHOT/pax-url-mvn-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/url/pax-url-mvn/1.1.0-SNAPSHOT/pax-url-mvn-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/url/pax-url-mvn/1.1.0-SNAPSHOT/pax-url-mvn-1.1.0-SNAPSHOT-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/url/pax-url-mvn/1.1.0-SNAPSHOT/pax-url-mvn-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/url/pax-url-mvn/1.1.0-SNAPSHOT/pax-url-mvn-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/url/pax-url-mvn/1.1.0-SNAPSHOT/pax-url-mvn-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/url/pax-url-mvn/1.1.0-SNAPSHOT/pax-url-mvn-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/url/pax-url-mvn/1.1.0-SNAPSHOT/pax-url-mvn-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/url/pax-url-mvn/1.1.0-SNAPSHOT/pax-url-mvn-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/url/pax-url-mvn/1.1.0-SNAPSHOT/pax-url-mvn-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/url/pax-url-mvn/1.1.0-SNAPSHOT/pax-url-mvn-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/url/pax-url-mvn/1.1.0-SNAPSHOT/pax-url-mvn-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/url/pax-url-mvn/1.1.0-SNAPSHOT/pax-url-mvn-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/url/pax-url-mvn/1.1.0-SNAPSHOT/pax-url-mvn-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/url/pax-url-mvn/1.1.0-SNAPSHOT/pax-url-mvn-1.1.0-SNAPSHOT-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.ops4j.base:ops4j-base-lang:1.1.0">
+    <library name="Maven: org.ops4j.pax.swissbox:pax-swissbox-optional-jcl:1.0.1-SNAPSHOT">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.0/ops4j-base-lang-1.1.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-optional-jcl/pom.xml!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-optional-jcl/pom.xml!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-optional-jcl/pom.xml!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-optional-jcl/pom.xml!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-optional-jcl/pom.xml!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-optional-jcl/pom.xml!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-optional-jcl/pom.xml!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.0/ops4j-base-lang-1.1.0-javadoc.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-optional-jcl/pom-javadoc.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-optional-jcl/pom-javadoc.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-optional-jcl/pom-javadoc.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-optional-jcl/pom-javadoc.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-optional-jcl/pom-javadoc.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-optional-jcl/pom-javadoc.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-optional-jcl/pom-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.0/ops4j-base-lang-1.1.0-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-optional-jcl/pom-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-optional-jcl/pom-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-optional-jcl/pom-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-optional-jcl/pom-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-optional-jcl/pom-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-optional-jcl/pom-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-optional-jcl/pom-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.ops4j.base:ops4j-base-io:1.1.0">
+    <library name="Maven: org.ops4j.pax.swissbox:pax-swissbox-bnd:1.0.1-SNAPSHOT">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-io/1.1.0/ops4j-base-io-1.1.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-bnd/pom.xml!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-bnd/pom.xml!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-bnd/pom.xml!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-bnd/pom.xml!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-bnd/pom.xml!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-bnd/pom.xml!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-bnd/pom.xml!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-bnd/pom.xml!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-bnd/pom.xml!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-bnd/pom.xml!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-io/1.1.0/ops4j-base-io-1.1.0-javadoc.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-bnd/pom-javadoc.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-bnd/pom-javadoc.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-bnd/pom-javadoc.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-bnd/pom-javadoc.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-bnd/pom-javadoc.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-bnd/pom-javadoc.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-bnd/pom-javadoc.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-bnd/pom-javadoc.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-bnd/pom-javadoc.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-bnd/pom-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-io/1.1.0/ops4j-base-io-1.1.0-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-bnd/pom-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-bnd/pom-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-bnd/pom-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-bnd/pom-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-bnd/pom-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-bnd/pom-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-bnd/pom-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-bnd/pom-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-bnd/pom-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-bnd/pom-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.ops4j.base:ops4j-base-util-property:1.1.0">
+    <library name="Maven: org.ops4j.pax.swissbox:pax-swissbox-tinybundles:1.0.1-SNAPSHOT">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-util-property/1.1.0/ops4j-base-util-property-1.1.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-tinybundles/pom.xml!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-tinybundles/pom.xml!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-tinybundles/pom.xml!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-tinybundles/pom.xml!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-tinybundles/pom.xml!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-tinybundles/pom.xml!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-tinybundles/pom.xml!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-tinybundles/pom.xml!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-util-property/1.1.0/ops4j-base-util-property-1.1.0-javadoc.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-tinybundles/pom-javadoc.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-tinybundles/pom-javadoc.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-tinybundles/pom-javadoc.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-tinybundles/pom-javadoc.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-tinybundles/pom-javadoc.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-tinybundles/pom-javadoc.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-tinybundles/pom-javadoc.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-tinybundles/pom-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-util-property/1.1.0/ops4j-base-util-property-1.1.0-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-tinybundles/pom-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-tinybundles/pom-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-tinybundles/pom-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-tinybundles/pom-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-tinybundles/pom-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-tinybundles/pom-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-tinybundles/pom-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-tinybundles/pom-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.ops4j.pax.swissbox:pax-swissbox-extender:1.0.1-SNAPSHOT">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-extender/pom.xml!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-extender/pom.xml!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-extender/pom-javadoc.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-extender/pom-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-extender/pom-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-extender/pom-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.ops4j.pax.swissbox:pax-swissbox-lifecycle:1.0.1-SNAPSHOT">
@@ -942,30 +1064,222 @@
         <root url="jar://$PROJECT_DIR$/pax-swissbox-lifecycle/pom.xml!/" />
         <root url="jar://$PROJECT_DIR$/pax-swissbox-lifecycle/pom.xml!/" />
         <root url="jar://$PROJECT_DIR$/pax-swissbox-lifecycle/pom.xml!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-lifecycle/pom.xml!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-lifecycle/pom.xml!/" />
       </CLASSES>
       <JAVADOC>
         <root url="jar://$PROJECT_DIR$/pax-swissbox-lifecycle/pom-javadoc.jar!/" />
         <root url="jar://$PROJECT_DIR$/pax-swissbox-lifecycle/pom-javadoc.jar!/" />
         <root url="jar://$PROJECT_DIR$/pax-swissbox-lifecycle/pom-javadoc.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-lifecycle/pom-javadoc.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-lifecycle/pom-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-lifecycle/pom-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/pax-swissbox-lifecycle/pom-sources.jar!/" />
         <root url="jar://$PROJECT_DIR$/pax-swissbox-lifecycle/pom-sources.jar!/" />
         <root url="jar://$PROJECT_DIR$/pax-swissbox-lifecycle/pom-sources.jar!/" />
         <root url="jar://$PROJECT_DIR$/pax-swissbox-lifecycle/pom-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.ops4j.pax.swissbox:pax-swissbox-optional-jcl:1.0.1-SNAPSHOT">
+    <library name="Maven: org.ops4j.base:ops4j-base-lang:1.1.1-SNAPSHOT">
       <CLASSES>
-        <root url="jar://$PROJECT_DIR$/pax-swissbox-optional-jcl/pom.xml!/" />
-        <root url="jar://$PROJECT_DIR$/pax-swissbox-optional-jcl/pom.xml!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$PROJECT_DIR$/pax-swissbox-optional-jcl/pom-javadoc.jar!/" />
-        <root url="jar://$PROJECT_DIR$/pax-swissbox-optional-jcl/pom-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$PROJECT_DIR$/pax-swissbox-optional-jcl/pom-sources.jar!/" />
-        <root url="jar://$PROJECT_DIR$/pax-swissbox-optional-jcl/pom-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-lang/1.1.1-SNAPSHOT/ops4j-base-lang-1.1.1-SNAPSHOT-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.ops4j.base:ops4j-base-util-property:1.1.1-SNAPSHOT">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-util-property/1.1.1-SNAPSHOT/ops4j-base-util-property-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-util-property/1.1.1-SNAPSHOT/ops4j-base-util-property-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-util-property/1.1.1-SNAPSHOT/ops4j-base-util-property-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-util-property/1.1.1-SNAPSHOT/ops4j-base-util-property-1.1.1-SNAPSHOT.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-util-property/1.1.1-SNAPSHOT/ops4j-base-util-property-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-util-property/1.1.1-SNAPSHOT/ops4j-base-util-property-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-util-property/1.1.1-SNAPSHOT/ops4j-base-util-property-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-util-property/1.1.1-SNAPSHOT/ops4j-base-util-property-1.1.1-SNAPSHOT-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-util-property/1.1.1-SNAPSHOT/ops4j-base-util-property-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-util-property/1.1.1-SNAPSHOT/ops4j-base-util-property-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-util-property/1.1.1-SNAPSHOT/ops4j-base-util-property-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-util-property/1.1.1-SNAPSHOT/ops4j-base-util-property-1.1.1-SNAPSHOT-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.ops4j.base:ops4j-base-io:1.1.1-SNAPSHOT">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-io/1.1.1-SNAPSHOT/ops4j-base-io-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-io/1.1.1-SNAPSHOT/ops4j-base-io-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-io/1.1.1-SNAPSHOT/ops4j-base-io-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-io/1.1.1-SNAPSHOT/ops4j-base-io-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-io/1.1.1-SNAPSHOT/ops4j-base-io-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-io/1.1.1-SNAPSHOT/ops4j-base-io-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-io/1.1.1-SNAPSHOT/ops4j-base-io-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-io/1.1.1-SNAPSHOT/ops4j-base-io-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-io/1.1.1-SNAPSHOT/ops4j-base-io-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-io/1.1.1-SNAPSHOT/ops4j-base-io-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-io/1.1.1-SNAPSHOT/ops4j-base-io-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-io/1.1.1-SNAPSHOT/ops4j-base-io-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-io/1.1.1-SNAPSHOT/ops4j-base-io-1.1.1-SNAPSHOT.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-io/1.1.1-SNAPSHOT/ops4j-base-io-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-io/1.1.1-SNAPSHOT/ops4j-base-io-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-io/1.1.1-SNAPSHOT/ops4j-base-io-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-io/1.1.1-SNAPSHOT/ops4j-base-io-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-io/1.1.1-SNAPSHOT/ops4j-base-io-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-io/1.1.1-SNAPSHOT/ops4j-base-io-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-io/1.1.1-SNAPSHOT/ops4j-base-io-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-io/1.1.1-SNAPSHOT/ops4j-base-io-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-io/1.1.1-SNAPSHOT/ops4j-base-io-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-io/1.1.1-SNAPSHOT/ops4j-base-io-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-io/1.1.1-SNAPSHOT/ops4j-base-io-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-io/1.1.1-SNAPSHOT/ops4j-base-io-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-io/1.1.1-SNAPSHOT/ops4j-base-io-1.1.1-SNAPSHOT-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-io/1.1.1-SNAPSHOT/ops4j-base-io-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-io/1.1.1-SNAPSHOT/ops4j-base-io-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-io/1.1.1-SNAPSHOT/ops4j-base-io-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-io/1.1.1-SNAPSHOT/ops4j-base-io-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-io/1.1.1-SNAPSHOT/ops4j-base-io-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-io/1.1.1-SNAPSHOT/ops4j-base-io-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-io/1.1.1-SNAPSHOT/ops4j-base-io-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-io/1.1.1-SNAPSHOT/ops4j-base-io-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-io/1.1.1-SNAPSHOT/ops4j-base-io-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-io/1.1.1-SNAPSHOT/ops4j-base-io-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-io/1.1.1-SNAPSHOT/ops4j-base-io-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-io/1.1.1-SNAPSHOT/ops4j-base-io-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-io/1.1.1-SNAPSHOT/ops4j-base-io-1.1.1-SNAPSHOT-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.ops4j.base:ops4j-base-store:1.1.1-SNAPSHOT">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-store/1.1.1-SNAPSHOT/ops4j-base-store-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-store/1.1.1-SNAPSHOT/ops4j-base-store-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-store/1.1.1-SNAPSHOT/ops4j-base-store-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-store/1.1.1-SNAPSHOT/ops4j-base-store-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-store/1.1.1-SNAPSHOT/ops4j-base-store-1.1.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-store/1.1.1-SNAPSHOT/ops4j-base-store-1.1.1-SNAPSHOT.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-store/1.1.1-SNAPSHOT/ops4j-base-store-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-store/1.1.1-SNAPSHOT/ops4j-base-store-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-store/1.1.1-SNAPSHOT/ops4j-base-store-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-store/1.1.1-SNAPSHOT/ops4j-base-store-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-store/1.1.1-SNAPSHOT/ops4j-base-store-1.1.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-store/1.1.1-SNAPSHOT/ops4j-base-store-1.1.1-SNAPSHOT-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-store/1.1.1-SNAPSHOT/ops4j-base-store-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-store/1.1.1-SNAPSHOT/ops4j-base-store-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-store/1.1.1-SNAPSHOT/ops4j-base-store-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-store/1.1.1-SNAPSHOT/ops4j-base-store-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-store/1.1.1-SNAPSHOT/ops4j-base-store-1.1.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-store/1.1.1-SNAPSHOT/ops4j-base-store-1.1.1-SNAPSHOT-sources.jar!/" />
       </SOURCES>
     </library>
   </component>

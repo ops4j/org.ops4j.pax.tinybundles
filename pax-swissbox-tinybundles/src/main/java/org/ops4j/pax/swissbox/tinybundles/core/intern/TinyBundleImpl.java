@@ -27,8 +27,7 @@ import org.apache.commons.logging.LogFactory;
 import org.ops4j.pax.swissbox.tinybundles.core.BuildableBundle;
 import org.ops4j.pax.swissbox.tinybundles.core.TinyBundle;
 import org.ops4j.pax.swissbox.tinybundles.core.metadata.RawBuilder;
-import org.ops4j.pax.swissbox.tinybundles.store.TemporaryBinaryStore;
-import org.ops4j.pax.swissbox.tinybundles.store.BinaryStore;
+import org.ops4j.store.BinaryStore;
 
 /**
  * Our default implementation of TinyBundle.

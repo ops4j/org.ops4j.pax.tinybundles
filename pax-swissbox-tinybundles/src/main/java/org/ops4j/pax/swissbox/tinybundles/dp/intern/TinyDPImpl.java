@@ -32,10 +32,9 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.osgi.framework.Version;
 import org.ops4j.pax.swissbox.tinybundles.core.BuildableBundle;
-import static org.ops4j.pax.swissbox.tinybundles.core.TinyBundles.*;
 import org.ops4j.pax.swissbox.tinybundles.dp.Constants;
 import org.ops4j.pax.swissbox.tinybundles.dp.TinyDP;
-import org.ops4j.pax.swissbox.tinybundles.store.BinaryStore;
+import org.ops4j.store.BinaryStore;
 
 /**
  * Implementation that also allows Fix-Packs (See Constructors)
@@ -148,7 +147,7 @@ public class TinyDPImpl implements TinyDP
     public TinyDP setBundle( String s, BuildableBundle buildableBundle )
         throws IOException
     {
-        return setBundle( s, buildableBundle.build( ) );
+        return setBundle( s, buildableBundle.build() );
     }
 
     public TinyDP setBundle( String name, String inp )

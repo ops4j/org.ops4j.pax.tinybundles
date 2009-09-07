@@ -2,6 +2,14 @@
 <module relativePaths="true" MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
   <component name="FacetManager">
     <facet type="Osmorc" name="OSGi">
+      <configuration osmorcControlsManifest="true" manifestLocation="" jarfileLocation="$MODULE_DIR$/target/samples-manifest-extender.jar" useBndFile="false" bndFileLocation="" bundleActivator="" bundleSymbolicName="org.ops4j.pax.swissbox.samples.samples-manifest-extender" bundleVersion="1.0.1-SNAPSHOT" ignoreFilePattern="" useProjectDefaultManifestFileLocation="true" alwaysRebuildBundleJAR="false">
+        <additionalProperties>
+          <property key="_include" value="-osgi.bnd" />
+        </additionalProperties>
+        <additionalJARContents />
+      </configuration>
+    </facet>
+    <facet type="Osmorc" name="OSGi">
       <configuration osmorcControlsManifest="true" manifestLocation="" jarfileLocation="$MODULE_DIR$/target/samples-manifest-extender.jar" useBndFile="false" bndFileLocation="" bundleActivator="" bundleSymbolicName="org.ops4j.pax.swissbox.samples.samples-manifest-extender" bundleVersion="1.1.0-SNAPSHOT" ignoreFilePattern="" useProjectDefaultManifestFileLocation="true" alwaysRebuildBundleJAR="false">
         <additionalProperties>
           <property key="_include" value="-osgi.bnd" />
@@ -24,7 +32,7 @@
     <orderEntry type="module" module-name="pax-swissbox-optional-jcl" />
     <orderEntry type="module" module-name="pax-swissbox-extender" />
     <orderEntry type="module" module-name="pax-swissbox-lifecycle" exported="" />
-    <orderEntry type="library" exported="" name="Maven: org.ops4j.base:ops4j-base-lang:1.1.0" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.ops4j.base:ops4j-base-lang:1.1.1-SNAPSHOT" level="project" />
   </component>
 </module>
 

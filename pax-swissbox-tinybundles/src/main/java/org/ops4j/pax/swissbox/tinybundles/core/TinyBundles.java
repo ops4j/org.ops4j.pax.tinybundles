@@ -22,7 +22,7 @@ import org.ops4j.pax.swissbox.tinybundles.core.intern.CoreBuildImpl;
 import org.ops4j.pax.swissbox.tinybundles.core.intern.TinyBundleImpl;
 import org.ops4j.pax.swissbox.tinybundles.core.metadata.BndBuilder;
 import org.ops4j.pax.swissbox.tinybundles.core.metadata.RawBuilder;
-import org.ops4j.pax.swissbox.tinybundles.store.TemporaryBinaryStore;
+import org.ops4j.store.TemporaryBinaryStore;
 
 /**
  * This is the humane api factory class that is meant to be imported statically with TinyBundles.*
