@@ -50,12 +50,13 @@ public class BndBuilder implements BuildableBundle
         return this;
     }
 
-    public InputStream build(  )
+    public InputStream build()
     {
         InputStream in = new CoreBuildImpl().make( m_resources, new HashMap<String, String>() );
         try
         {
-            return BndUtils.createBundle( in, m_directives, "BuildByTinyBundles" );
+
+            return BndUtils.createBundle( in, m_directives, "BuildByTinyBundles" + UIDProvider.getUID() );
         }
         catch( IOException e )
         {
