@@ -23,9 +23,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.ops4j.pax.swissbox.samples.tinybundles.DPTestingHelper;
 import static org.ops4j.pax.swissbox.tinybundles.dp.DP.*;
-import org.ops4j.store.BinaryStore;
-import org.ops4j.store.TemporaryBinaryStore;
-import org.ops4j.store.BinaryHandle;
+import org.ops4j.store.Handle;
+import org.ops4j.store.Store;
+import org.ops4j.store.StoreFactory;
 
 /**
  * @author Toni Menzel (tonit)
@@ -45,9 +45,9 @@ public class DeploymentPackageTest
     public void testMinimalCreate()
         throws IOException
     {
-        BinaryStore<InputStream> cache = new TemporaryBinaryStore();
+        Store<InputStream> cache = StoreFactory.defaultStore();
 
-        BinaryHandle original = cache.store( newDeploymentPackage()
+        Handle original = cache.store( newDeploymentPackage()
             .setSymbolicName( "MyFirstDeploymentPackage" )
             .setVersion( "1.0.0" )
             .build()
@@ -63,9 +63,9 @@ public class DeploymentPackageTest
     public void testOneCreate()
         throws IOException
     {
-        BinaryStore<InputStream> cache = new TemporaryBinaryStore();
+        Store<InputStream> cache = StoreFactory.defaultStore();
 
-        BinaryHandle original = cache.store( newDeploymentPackage()
+        Handle original = cache.store( newDeploymentPackage()
             .setSymbolicName( "MyFirstDeploymentPackage" )
             .setVersion( "1.0.0" )
             .setBundle( "t1", "mvn:org.ops4j.pax.url/pax-url-mvn/1.1.0-SNAPSHOT" )
@@ -82,9 +82,9 @@ public class DeploymentPackageTest
     public void createDPAndDeleteItemInFixPack()
         throws IOException
     {
-        BinaryStore<InputStream> cache = new TemporaryBinaryStore();
+        Store<InputStream> cache = StoreFactory.defaultStore();
 
-        BinaryHandle original = cache.store( newDeploymentPackage()
+        Handle original = cache.store( newDeploymentPackage()
             .setSymbolicName( "MyFirstDeploymentPackage" )
             .setVersion( "1.0.0" )
             .setResource( "log4j.properties", getClass().getResourceAsStream( "/log4j.properties" ) )
@@ -98,7 +98,7 @@ public class DeploymentPackageTest
         DPTestingHelper.verifyNonMissing( cache.load( original ), "log4j.properties", "t1", "t2" );
         DPTestingHelper.verifyBundleContents( cache.load( original ), "t1", "t2" );
 
-        BinaryHandle fix = cache.store( newFixPackage( cache.load( original ) ).remove( "t1" ).build() );
+        Handle fix = cache.store( newFixPackage( cache.load( original ) ).remove( "t1" ).build() );
 
         DPTestingHelper.verifyStandardHeaders( cache.load( fix ), true );
 
@@ -111,9 +111,9 @@ public class DeploymentPackageTest
     public void createDPAndChangeItemInFixPack()
         throws IOException
     {
-        BinaryStore<InputStream> cache = new TemporaryBinaryStore();
+        Store<InputStream> cache = StoreFactory.defaultStore();
 
-        BinaryHandle target = cache.store( newDeploymentPackage()
+        Handle target = cache.store( newDeploymentPackage()
             .setSymbolicName( "MyFirstDeploymentPackage" )
             .setVersion( "1.0.0" )
             .setResource( "log4j.properties", getClass().getResourceAsStream( "/log4j.properties" ) )
@@ -127,7 +127,7 @@ public class DeploymentPackageTest
         DPTestingHelper.verifyNonMissing( cache.load( target ), "log4j.properties", "t1", "t2", "t3" );
         DPTestingHelper.verifyBundleContents( cache.load( target ), "t1", "t2", "t3" );
 
-        BinaryHandle fix = cache.store(
+        Handle fix = cache.store(
             newFixPackage( cache.load( target ) )
                 .setBundle( "t2", "mvn:org.ops4j.pax.url/pax-url-war/1.1.0-SNAPSHOT" ) // replace wrap by war ! Fix!
                 .remove( "t1" )
