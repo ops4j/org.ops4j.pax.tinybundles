@@ -32,9 +32,9 @@ import java.io.InputStream;
 public interface BuildableBundle
 {
 
-    BuildableBundle set( String key, String value );
+    //BuildableBundle set( String key, String value );
 
-    InputStream build( );
+    InputStream build( Map<String, URL> resources, Map<String, String> headers );
 
-    BuildableBundle setResources( Map<String, URL> resources );
+    //BuildableBundle setResources( Map<String, URL> resources );
 }

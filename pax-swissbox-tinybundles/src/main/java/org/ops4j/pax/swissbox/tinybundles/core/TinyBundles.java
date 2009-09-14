@@ -18,7 +18,6 @@
 package org.ops4j.pax.swissbox.tinybundles.core;
 
 import java.io.InputStream;
-import org.ops4j.pax.swissbox.tinybundles.core.intern.CoreBuildImpl;
 import org.ops4j.pax.swissbox.tinybundles.core.intern.TinyBundleImpl;
 import org.ops4j.pax.swissbox.tinybundles.core.metadata.BndBuilder;
 import org.ops4j.pax.swissbox.tinybundles.core.metadata.RawBuilder;
@@ -46,13 +45,14 @@ public class TinyBundles
     }
 
     /**
-     * @return content ready to be built as a flat stream.
+     *
+     * @param in
+     * @return
      */
-    public static BundleAs<InputStream> asStream()
+     public static TinyBundle modifyBundle( InputStream in )
     {
-        return new CoreBuildImpl();
+        return new TinyBundleImpl( in, StoreFactory.defaultStore() );
     }
-
 
     public static BuildableBundle withBnd()
     {

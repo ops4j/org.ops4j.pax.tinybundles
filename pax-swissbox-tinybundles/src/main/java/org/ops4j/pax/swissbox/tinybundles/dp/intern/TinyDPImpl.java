@@ -32,6 +32,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.osgi.framework.Version;
 import org.ops4j.pax.swissbox.tinybundles.core.BuildableBundle;
+import org.ops4j.pax.swissbox.tinybundles.core.TinyBundle;
 import org.ops4j.pax.swissbox.tinybundles.dp.Constants;
 import org.ops4j.pax.swissbox.tinybundles.dp.TinyDP;
 import org.ops4j.store.Store;
@@ -144,10 +145,10 @@ public class TinyDPImpl implements TinyDP
         }
     }
 
-    public TinyDP setBundle( String s, BuildableBundle buildableBundle )
+    public TinyDP setBundle( String s, TinyBundle bundle )
         throws IOException
     {
-        return setBundle( s, buildableBundle.build() );
+        return setBundle( s, bundle.build() );
     }
 
     public TinyDP setBundle( String name, String inp )

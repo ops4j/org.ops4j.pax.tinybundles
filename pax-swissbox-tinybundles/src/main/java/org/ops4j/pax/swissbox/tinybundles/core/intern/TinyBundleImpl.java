@@ -17,16 +17,21 @@
  */
 package org.ops4j.pax.swissbox.tinybundles.core.intern;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
-import java.io.InputStream;
-import java.io.IOException;
+import java.util.jar.JarInputStream;
+import java.util.jar.JarEntry;
+import java.util.jar.Manifest;
+import java.util.jar.Attributes;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.ops4j.pax.swissbox.tinybundles.core.BuildableBundle;
 import org.ops4j.pax.swissbox.tinybundles.core.TinyBundle;
 import org.ops4j.pax.swissbox.tinybundles.core.metadata.RawBuilder;
+import org.ops4j.store.Handle;
 import org.ops4j.store.Store;
 
 /**
@@ -42,6 +47,8 @@ public class TinyBundleImpl implements TinyBundle
     private static Log LOG = LogFactory.getLog( TinyBundleImpl.class );
 
     private Map<String, URL> m_resources = new HashMap<String, URL>();
+    private Map<String, String> m_headers = new HashMap<String, String>();
+
     private Store<InputStream> m_store;
 
     public TinyBundleImpl( Store<InputStream> bstore )
@@ -49,20 +56,72 @@ public class TinyBundleImpl implements TinyBundle
         m_store = bstore;
     }
 
+    public TinyBundleImpl( InputStream in, Store<InputStream> bstore )
+    {
+        m_store = bstore;
+        if( in != null )
+        {
+            try
+            {
+                // 1. store to disk
+                Handle handle = m_store.store( in );
+
+                JarInputStream jarOut = new JarInputStream( m_store.load( handle ) );
+                // 2. read meta data and wire with this.
+                // TODO: reading out just main headers will remove the other parts. Fix this with
+                // TODO change m_headers to type Manifest natively.
+                Manifest manifest = jarOut.getManifest();
+                Attributes att = manifest.getMainAttributes();
+                for( Object o : att.keySet() )
+                {
+                    String k = o.toString();
+                    String v = att.getValue( k );
+                    set( k, v );
+                }
+
+                // 3. read data
+                JarEntry entry = null;
+                while( ( entry = jarOut.getNextJarEntry() ) != null )
+                {
+                    add( entry.getName(), jarOut );
+                }
+
+                // done.
+            } catch( IOException e )
+            {
+                throw new RuntimeException( "Problem loading bundle.", e );
+            }
+        }
+    }
+
+    /**
+     * @{@inheritDoc}
+     */
     public TinyBundle add( Class clazz )
     {
-        String name = clazz.getName().replaceAll( "\\.", "/" ) + ".class";
+        String name = mapClassToEntry( clazz.getName() );
         getClass().getResource( "/" + name );
         add( name, getClass().getResource( "/" + name ) );
         return this;
     }
 
+    private String mapClassToEntry( String clazzname )
+    {
+        return clazzname.replaceAll( "\\.", "/" ) + ".class";
+    }
+
+    /**
+     * @{@inheritDoc}
+     */
     public TinyBundle add( String name, URL url )
     {
         m_resources.put( name, url );
         return this;
     }
 
+    /**
+     * @{@inheritDoc}
+     */
     public TinyBundle add( String name, InputStream content )
     {
         try
@@ -75,14 +134,47 @@ public class TinyBundleImpl implements TinyBundle
 
     }
 
-    public BuildableBundle prepare( BuildableBundle builder )
+    /**
+     * @{@inheritDoc}
+     */
+    public InputStream build( BuildableBundle builder )
     {
-        return builder.setResources( m_resources );
+        return builder.build( m_resources, m_headers );
     }
 
-    public BuildableBundle prepare()
+    /**
+     * @{@inheritDoc}
+     */
+    public InputStream build()
     {
-        return new RawBuilder().setResources( m_resources );
+        return new RawBuilder().build( m_resources, m_headers );
+    }
+
+    /**
+     * @{@inheritDoc}
+     */
+    public TinyBundle set( String key, String value )
+    {
+        m_headers.put( key, value );
+        return this;
+    }
+
+    /**
+     * @{@inheritDoc}
+     */
+    public TinyBundle removeResource( String key )
+    {
+        m_resources.remove( key );
+        return this;
+    }
+
+    /**
+     * @{@inheritDoc}
+     */
+    public TinyBundle removeHeader( String key )
+    {
+        m_headers.remove( key );
+        return this;
     }
 
 }

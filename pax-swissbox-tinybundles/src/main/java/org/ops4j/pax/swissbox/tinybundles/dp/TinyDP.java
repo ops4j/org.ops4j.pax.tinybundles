@@ -20,6 +20,7 @@ package org.ops4j.pax.swissbox.tinybundles.dp;
 import java.io.IOException;
 import java.io.InputStream;
 import org.ops4j.pax.swissbox.tinybundles.core.BuildableBundle;
+import org.ops4j.pax.swissbox.tinybundles.core.TinyBundle;
 
 /**
  * Humane API for constructing Deployment Packages.
@@ -80,7 +81,7 @@ public interface TinyDP
      * @return this (fluent api)
      * @throws java.io.IOException in case of an IO error when processing inp
      */
-    TinyDP setBundle( String name, BuildableBundle inp )
+    TinyDP setBundle( String name, TinyBundle inp )
         throws IOException;
 
     /**

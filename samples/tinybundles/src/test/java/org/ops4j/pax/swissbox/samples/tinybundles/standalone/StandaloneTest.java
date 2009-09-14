@@ -52,13 +52,11 @@ public class StandaloneTest
             .add( MyFirstActivator.class )
             .add( HelloWorld.class )
             .add( HelloWorldImpl.class )
-            .prepare(
-                with()
-                    .set( Constants.BUNDLE_SYMBOLICNAME, "MyFirstTinyBundle" )
-                    .set( Constants.EXPORT_PACKAGE, "org.ops4j.pax.tinybundles.demo" )
-                    .set( Constants.IMPORT_PACKAGE, "org.ops4j.pax.tinybundles.demo" )
-                    .set( Constants.BUNDLE_ACTIVATOR, MyFirstActivator.class.getName() )
-            ).build( );
+            .set( Constants.BUNDLE_SYMBOLICNAME, "MyFirstTinyBundle" )
+            .set( Constants.EXPORT_PACKAGE, "org.ops4j.pax.tinybundles.demo" )
+            .set( Constants.IMPORT_PACKAGE, "org.ops4j.pax.tinybundles.demo" )
+            .set( Constants.BUNDLE_ACTIVATOR, MyFirstActivator.class.getName() )
+            .build();
 
         // test output
         JarInputStream jout = new JarInputStream( inp );
@@ -91,13 +89,13 @@ public class StandaloneTest
             .add( MyFirstActivator.class )
             .add( HelloWorld.class )
             .add( HelloWorldImpl.class )
-            .prepare(
+            .set( Constants.BUNDLE_SYMBOLICNAME, "MyFirstTinyBundle" )
+            .set( Constants.EXPORT_PACKAGE, "org.ops4j.pax.tinybundles.demo" )
+            .set( Constants.IMPORT_PACKAGE, "org.ops4j.pax.tinybundles.demo" )
+            .set( Constants.BUNDLE_ACTIVATOR, MyFirstActivator.class.getName() )
+            .build(
                 withBnd()
-                    .set( Constants.BUNDLE_SYMBOLICNAME, "MyFirstTinyBundle" )
-                    .set( Constants.EXPORT_PACKAGE, "org.ops4j.pax.tinybundles.demo" )
-                    .set( Constants.IMPORT_PACKAGE, "org.ops4j.pax.tinybundles.demo" )
-                    .set( Constants.BUNDLE_ACTIVATOR, MyFirstActivator.class.getName() )
-            ).build( );
+            );
 
         // test output
         JarInputStream jout = new JarInputStream( inp );

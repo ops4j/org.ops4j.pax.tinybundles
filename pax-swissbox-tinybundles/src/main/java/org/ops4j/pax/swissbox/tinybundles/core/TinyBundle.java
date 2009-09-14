@@ -66,7 +66,7 @@ public interface TinyBundle
      *
      * @return Next step in the bundle making process.
      */
-    BuildableBundle prepare( BuildableBundle builder );
+    InputStream build( BuildableBundle builder );
 
     /**
      * When you are done adding stuff to *this* you can call this method to go to next step.
@@ -74,6 +74,13 @@ public interface TinyBundle
      *
      * @return Next step in the bundle making process.
      */
-    BuildableBundle prepare();
+    InputStream build();
+
+    TinyBundle set( String key, String value );
+
+    TinyBundle removeResource( String key );
+
+    TinyBundle removeHeader( String key );
+
 
 }

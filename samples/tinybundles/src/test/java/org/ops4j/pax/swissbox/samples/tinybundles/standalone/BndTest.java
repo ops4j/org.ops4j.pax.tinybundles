@@ -44,12 +44,10 @@ public class BndTest
             .add( MyFirstActivator.class )
             .add( HelloWorld.class )
             .add( HelloWorldImpl.class )
-            .prepare(
-                withBnd()
-                    .set( Constants.BUNDLE_SYMBOLICNAME, "MyFirstTinyBundle" )
-                    .set( Constants.EXPORT_PACKAGE, "org.ops4j.pax.tinybundles.demo" )
-                    .set( Constants.BUNDLE_ACTIVATOR, MyFirstActivator.class.getName() )
-            ).build( );
+            .set( Constants.BUNDLE_SYMBOLICNAME, "MyFirstTinyBundle" )
+            .set( Constants.EXPORT_PACKAGE, "org.ops4j.pax.tinybundles.demo" )
+            .set( Constants.BUNDLE_ACTIVATOR, MyFirstActivator.class.getName() )
+            .build( withBnd() );
 
         // test output
         JarInputStream jout = new JarInputStream( inp );
@@ -58,6 +56,35 @@ public class BndTest
                       man.getMainAttributes().getValue( Constants.IMPORT_PACKAGE )
         );
         assertEquals( "org.ops4j.pax.tinybundles.demo", man.getMainAttributes().getValue( Constants.EXPORT_PACKAGE ) );
+
+        jout.close();
+    }
+
+    @Test
+    public void makeAndChange()
+        throws IOException
+    {
+        InputStream inp = newBundle()
+            .add( MyFirstActivator.class )
+            .add( HelloWorld.class )
+            .add( HelloWorldImpl.class )
+            .set( Constants.BUNDLE_SYMBOLICNAME, "MyFirstTinyBundle" )
+            .set( Constants.EXPORT_PACKAGE, "org.ops4j.pax.tinybundles.demo" )
+            .set( Constants.BUNDLE_ACTIVATOR, MyFirstActivator.class.getName() )
+            .build( withBnd() );
+
+        InputStream inp2 = modifyBundle( inp )
+            .set( Constants.BUNDLE_SYMBOLICNAME, "Toni" )
+            .build();
+
+        // test output
+        JarInputStream jout = new JarInputStream( inp2 );
+        Manifest man = jout.getManifest();
+        assertEquals( "org.ops4j.pax.tinybundles.demo;resolution:=optional,org.osgi.framework;resolution:=optional",
+                      man.getMainAttributes().getValue( Constants.IMPORT_PACKAGE )
+        );
+        assertEquals( "org.ops4j.pax.tinybundles.demo", man.getMainAttributes().getValue( Constants.EXPORT_PACKAGE ) );
+        assertEquals( "Toni", man.getMainAttributes().getValue( Constants.BUNDLE_SYMBOLICNAME ) );
 
         jout.close();
     }

@@ -25,8 +25,6 @@ import java.util.Map;
 import java.util.Properties;
 import org.ops4j.pax.swissbox.bnd.BndUtils;
 import org.ops4j.pax.swissbox.tinybundles.core.BuildableBundle;
-import org.ops4j.pax.swissbox.tinybundles.core.BundleAs;
-import org.ops4j.pax.swissbox.tinybundles.core.intern.CoreBuildImpl;
 
 /**
  * @author Toni Menzel (tonit)
@@ -35,28 +33,14 @@ import org.ops4j.pax.swissbox.tinybundles.core.intern.CoreBuildImpl;
 public class BndBuilder implements BuildableBundle
 {
 
-    private Properties m_directives = new Properties();
-    private Map<String, URL> m_resources;
-
-    public BuildableBundle set( String key, String value )
+    public InputStream build( Map<String, URL> resources, Map<String, String> headers )
     {
-        m_directives.put( key, value );
-        return this;
-    }
-
-    public BuildableBundle setResources( Map<String, URL> resources )
-    {
-        m_resources = resources;
-        return this;
-    }
-
-    public InputStream build()
-    {
-        InputStream in = new CoreBuildImpl().make( m_resources, new HashMap<String, String>() );
+        InputStream in = new RawBuilder().build( resources, new HashMap<String, String>() );
         try
         {
-
-            return BndUtils.createBundle( in, m_directives, "BuildByTinyBundles" + UIDProvider.getUID() );
+            Properties p = new Properties();
+            p.putAll( headers );
+            return BndUtils.createBundle( in, p, "BuildByTinyBundles" + UIDProvider.getUID() );
         }
         catch( IOException e )
         {
