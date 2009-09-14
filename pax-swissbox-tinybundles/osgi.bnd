@@ -4,19 +4,12 @@ Bundle-Version>:\
 Bundle-SymbolicName:\
   ${bundle.symbolicName}; singleton:=true
 
-Import-Package:\
-  ${bundle.namespace}.core; version="${pom.version}",\
-  org.apache.commons.logging; version="1.0.4"; resolution:=optional,\
-  org.osgi.framework; version="[1.0.0,2.0.0)",\
-  javax.xml.transform,\
-  javax.xml.transform.stream
-
 Private-Package:\
   ${bundle.namespace}.core.intern; version="${pom.version}",\
   ${bundle.namespace}.core.targets; version="${pom.version}",\
   ${bundle.namespace}.core.metadata; version="${pom.version}",\
-  ${bundle.namespace}.dp.intern; version="${pom.version}",\
-  org.ops4j.store.*
+  ${bundle.namespace}.dp.intern; version="${pom.version}"
+
 
  Ignore-Package: ${bundle.namespace}.dp.intern.legacy
 
@@ -24,16 +17,3 @@ Private-Package:\
 Export-Package:\
   ${bundle.namespace}.core; version="${pom.version}",\
   ${bundle.namespace}.dp; version="${pom.version}"
-
-
-
-Embed-Dependency:\
-  *; scope=compile; type=!pom; inline=true
-
-Embed-Transitive: true
-
--removeheaders:\
-  Include-Resource,\
-  Private-Package,\
-  Embed-Dependency,\
-  Embed-Transitive
