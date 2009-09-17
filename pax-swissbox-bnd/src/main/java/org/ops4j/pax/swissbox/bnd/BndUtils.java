@@ -70,7 +70,7 @@ public class BndUtils
      * @param instructions   bnd specific processing instructions. Cannot be null.
      * @param jarInfo        information about the jar to be processed. Usually the jar url. Cannot be null or empty.
      *
-     * @return an input strim for the generated bundle
+     * @return an input stream for the generated bundle
      *
      * @throws NullArgumentException if any of the parameters is null
      * @throws IOException           re-thron during jar processing
@@ -80,11 +80,34 @@ public class BndUtils
                                             final String jarInfo )
         throws IOException
     {
+        return createBundle( jarInputStream, instructions, jarInfo, OverwriteMode.KEEP );
+    }
+
+    /**
+     * Processes the input jar and generates the necessary OSGi headers using specified instructions.
+     *
+     * @param jarInputStream input stream for the jar to be processed. Cannot be null.
+     * @param instructions   bnd specific processing instructions. Cannot be null.
+     * @param jarInfo        information about the jar to be processed. Usually the jar url. Cannot be null or empty.
+     * @param overwriteMode  manifets overwrite mode
+     *
+     * @return an input stream for the generated bundle
+     *
+     * @throws NullArgumentException if any of the parameters is null
+     * @throws IOException           re-thron during jar processing
+     */
+    public static InputStream createBundle( final InputStream jarInputStream,
+                                            final Properties instructions,
+                                            final String jarInfo,
+                                            final OverwriteMode overwriteMode )
+        throws IOException
+    {
         NullArgumentException.validateNotNull( jarInputStream, "Jar URL" );
         NullArgumentException.validateNotNull( instructions, "Instructions" );
         NullArgumentException.validateNotEmpty( jarInfo, "Jar info" );
 
         LOG.debug( "Creating bundle for [" + jarInfo + "]" );
+        LOG.debug( "Overwrite mode: " + overwriteMode );
         LOG.trace( "Using instructions " + instructions );
 
         final Jar jar = new Jar( "dot", jarInputStream );
@@ -92,13 +115,14 @@ public class BndUtils
 
         // Make the jar a bundle if it is not already a bundle
         if( manifest == null
+            || OverwriteMode.KEEP != overwriteMode
             || ( manifest.getMainAttributes().getValue( Analyzer.EXPORT_PACKAGE ) == null
                  && manifest.getMainAttributes().getValue( Analyzer.IMPORT_PACKAGE ) == null )
             )
         {
             // Do not use instructions as default for properties because it looks like BND uses the props
             // via some other means then getProperty() and so the instructions will not be used at all
-            // So, just cyo instructions to properties
+            // So, just copy instructions to properties
             final Properties properties = new Properties();
             properties.putAll( instructions );
 
@@ -107,8 +131,11 @@ public class BndUtils
             final Analyzer analyzer = new Analyzer();
             analyzer.setJar( jar );
             analyzer.setProperties( properties );
+            if( manifest != null && OverwriteMode.MERGE == overwriteMode )
+            {
+                analyzer.mergeManifest( manifest );
+            }
             checkMandatoryProperties( analyzer, jar, jarInfo );
-            analyzer.mergeManifest( manifest );
             analyzer.calcManifest();
         }
 
