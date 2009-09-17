@@ -64,7 +64,7 @@ public class BndUtils
     }
 
     /**
-     * Precesses the input jar and generates the necessary OSGi headers using specified instructions.
+     * Processes the input jar and generates the necessary OSGi headers using specified instructions.
      *
      * @param jarInputStream input stream for the jar to be processed. Cannot be null.
      * @param instructions   bnd specific processing instructions. Cannot be null.
@@ -72,7 +72,7 @@ public class BndUtils
      *
      * @return an input strim for the generated bundle
      *
-     * @throws NullArgumentException if any of the paramters is null
+     * @throws NullArgumentException if any of the parameters is null
      * @throws IOException           re-thron during jar processing
      */
     public static InputStream createBundle( final InputStream jarInputStream,
@@ -96,7 +96,7 @@ public class BndUtils
                  && manifest.getMainAttributes().getValue( Analyzer.IMPORT_PACKAGE ) == null )
             )
         {
-            // Do not use instrauctions as default for properties because it looks like BND uses the props
+            // Do not use instructions as default for properties because it looks like BND uses the props
             // via some other means then getProperty() and so the instructions will not be used at all
             // So, just cyo instructions to properties
             final Properties properties = new Properties();
