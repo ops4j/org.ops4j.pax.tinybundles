@@ -68,7 +68,7 @@ public class DeploymentPackageTest
         Handle original = cache.store( newDeploymentPackage()
             .setSymbolicName( "MyFirstDeploymentPackage" )
             .setVersion( "1.0.0" )
-            .setBundle( "t1", "mvn:org.ops4j.pax.url/pax-url-mvn/1.1.0-SNAPSHOT" )
+            .setBundle( "t1", "mvn:org.ops4j.pax.url/pax-url-mvn/1.1.0" )
             .build()
         );
 
@@ -88,8 +88,8 @@ public class DeploymentPackageTest
             .setSymbolicName( "MyFirstDeploymentPackage" )
             .setVersion( "1.0.0" )
             .setResource( "log4j.properties", getClass().getResourceAsStream( "/log4j.properties" ) )
-            .setBundle( "t1", "mvn:org.ops4j.pax.url/pax-url-mvn/1.1.0-SNAPSHOT" )
-            .setBundle( "t2", "mvn:org.ops4j.pax.url/pax-url-wrap/1.1.0-SNAPSHOT" )
+            .setBundle( "t1", "mvn:org.ops4j.pax.url/pax-url-mvn/1.1.0" )
+            .setBundle( "t2", "mvn:org.ops4j.pax.url/pax-url-wrap/1.1.0" )
             .build()
         );
 
@@ -117,9 +117,9 @@ public class DeploymentPackageTest
             .setSymbolicName( "MyFirstDeploymentPackage" )
             .setVersion( "1.0.0" )
             .setResource( "log4j.properties", getClass().getResourceAsStream( "/log4j.properties" ) )
-            .setBundle( "t1", "mvn:org.ops4j.pax.url/pax-url-mvn/1.1.0-SNAPSHOT" )
-            .setBundle( "t2", "mvn:org.ops4j.pax.url/pax-url-wrap/1.1.0-SNAPSHOT" )
-            .setBundle( "t3", "mvn:org.ops4j.pax.url/pax-url-link/1.1.0-SNAPSHOT" )
+            .setBundle( "t1", "mvn:org.ops4j.pax.url/pax-url-mvn/1.1.0" )
+            .setBundle( "t2", "mvn:org.ops4j.pax.url/pax-url-wrap/1.1.0" )
+            .setBundle( "t3", "mvn:org.ops4j.pax.url/pax-url-link/1.1.0" )
 
             .build()
         );
@@ -129,7 +129,7 @@ public class DeploymentPackageTest
 
         Handle fix = cache.store(
             newFixPackage( cache.load( target ) )
-                .setBundle( "t2", "mvn:org.ops4j.pax.url/pax-url-war/1.1.0-SNAPSHOT" ) // replace wrap by war ! Fix!
+                .setBundle( "t2", "mvn:org.ops4j.pax.url/pax-url-war/1.1.0" ) // replace wrap by war ! Fix!
                 .remove( "t1" )
                 .build()
         );
