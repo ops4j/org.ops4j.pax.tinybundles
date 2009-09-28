@@ -65,10 +65,10 @@ public abstract class BundleEntryScanner<T>
      *                    it is considered to be root of the bundle.
      * @param filePattern The file name pattern for selecting entries in the specified path. The pattern
      *                    is only matched against the last element of the entry path and it supports
-     *                    substring matching, as specified in the Filter specification, using the
+     *                    sub-string matching, as specified in the Filter specification, using the
      *                    wild-card character ("*"). If null is specified, this is
      *                    equivalent to "*" and matches all files.
-     * @param recurse     If true, recurse into subdirectories. Otherwise only return entries from the
+     * @param recurse     If true, recurse into sub-directories. Otherwise only return entries from the
      *                    given directory
      *
      * @see BundleEntryScanner#BundleEntryScanner(String, String, String, String, String, boolean)
@@ -95,10 +95,10 @@ public abstract class BundleEntryScanner<T>
      *                                  it is considered to be root of the bundle.
      * @param filePattern               The file name pattern for selecting entries in the specified path. The pattern
      *                                  is only matched against the last element of the entry path and it supports
-     *                                  substring matching, as specified in the Filter specification, using the
+     *                                  sub-string matching, as specified in the Filter specification, using the
      *                                  wild-card character ("*"). If null is specified, this is
      *                                  equivalent to "*" and matches all files.
-     * @param recurse                   If true, recurse into subdirectories. Otherwise only return entries from the
+     * @param recurse                   If true, recurse into sub-directories. Otherwise only return entries from the
      *                                  given directory
      *
      * @see Bundle#findEntries(String, String, boolean)
@@ -179,7 +179,7 @@ public abstract class BundleEntryScanner<T>
      * header. It will return the default recurse if:
      * - file pattern manifest header is null
      * - header is not set
-     * - headr is not a string
+     * - header is not a string
      * - header is not true or false (case insensitive)
      * - header is empty
      *

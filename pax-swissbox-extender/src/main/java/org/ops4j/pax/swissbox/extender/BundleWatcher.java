@@ -34,10 +34,10 @@ import org.ops4j.lang.NullArgumentException;
 import org.ops4j.pax.swissbox.lifecycle.AbstractLifecycle;
 
 /**
- * Watches bundles lifecycle events. Once a bundle becomes active a scanning process will be performed and each bundle
+ * Watches bundles life cycle events. Once a bundle becomes active a scanning process will be performed and each bundle
  * resource found during scanning will be registered. Once a bundle stops the registered resources for that bundle will
  * be unregistered.
- * If the bundle watcher is stopped all bundle resources will be unregistred.
+ * If the bundle watcher is stopped all bundle resources will be unregistered.
  *
  * @author Alin Dreghiciu
  * @since October 14, 2007
@@ -52,11 +52,11 @@ public class BundleWatcher<T>
     private static final Log LOG = LogFactory.getLog( BundleWatcher.class );
 
     /**
-     * Bundle context in use. Constructor paramater. Cannot be null.
+     * Bundle context in use. Constructor parameter. Cannot be null.
      */
     private final BundleContext m_context;
     /**
-     * Bundle scanner used to scan bundles. Constructor paramater. Cannot be null.
+     * Bundle scanner used to scan bundles. Constructor parameter. Cannot be null.
      */
     private final BundleScanner<T> m_scanner;
     /**
@@ -68,7 +68,7 @@ public class BundleWatcher<T>
      */
     private Map<Bundle, List<T>> m_mappings;
     /**
-     * Syncronous listner for bundle events.
+     * Synchronous listener for bundle events.
      */
     private BundleListener m_bundleListener;
 
@@ -88,7 +88,7 @@ public class BundleWatcher<T>
      *
      * @param context   a bundle context. Cannot be null.
      * @param scanner   a bundle scanner. Cannot be null.
-     * @param observers vararg list of observers
+     * @param observers list of observers
      */
     public BundleWatcher( final BundleContext context,
                           final BundleScanner<T> scanner,
@@ -149,7 +149,7 @@ public class BundleWatcher<T>
     }
 
     /**
-     * Unregister the bundle listener, releases resources
+     * Un-register the bundle listener, releases resources
      */
     @Override
     protected void onStop()
@@ -194,10 +194,10 @@ public class BundleWatcher<T>
     }
 
     /**
-     * Unregisters each entry from the unregistered bundle by first notifing the observers. If an exception appears
+     * Un-registers each entry from the unregistered bundle by first notifying the observers. If an exception appears
      * during notification, it is ignored.
      *
-     * @param bundle the unregistred bundle
+     * @param bundle the un-registred bundle
      */
     private void unregister( final Bundle bundle )
     {
@@ -205,7 +205,7 @@ public class BundleWatcher<T>
         final List<T> resources = m_mappings.get( bundle );
         if( resources != null && resources.size() > 0 )
         {
-            LOG.debug( "Unregistering " + resources );
+            LOG.debug( "Un-registering " + resources );
             for( BundleObserver<T> observer : m_observers )
             {
                 try
@@ -214,7 +214,7 @@ public class BundleWatcher<T>
                 }
                 catch( Throwable ignore )
                 {
-                    LOG.error( "Ignored exception during unregister", ignore );
+                    LOG.error( "Ignored exception during un-register", ignore );
                 }
             }
         }

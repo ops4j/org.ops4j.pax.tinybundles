@@ -41,16 +41,16 @@ public class RegexKeyManifestFilter
     /**
      * Constructor.
      *
-     * @param regex a regular expression. Cannot be null or empty.
+     * @param regexp a regular expression. Cannot be null or empty.
      *
-     * @throws NullArgumentException  - If regex is null or empty
+     * @throws NullArgumentException  - If regexp is null or empty
      * @throws PatternSyntaxException - If the expression's syntax is invalid
      */
-    public RegexKeyManifestFilter( final String regex )
+    public RegexKeyManifestFilter( final String regexp )
     {
-        NullArgumentException.validateNotEmpty( regex, true, "Regular expression" );
+        NullArgumentException.validateNotEmpty( regexp, true, "Regular expression" );
 
-        m_pattern = Pattern.compile( regex );
+        m_pattern = Pattern.compile( regexp );
     }
 
     public Map<String, String> match( final Map<String, String> entries )

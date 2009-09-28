@@ -58,7 +58,7 @@ public class BundleURLScanner
     }
 
     /**
-     * Creates an URL for the entry (same as the param)
+     * Creates an URL for the entry (same as the parameter)
      *
      * @param bundle bundle that contains the entries
      * @param entry  found entry

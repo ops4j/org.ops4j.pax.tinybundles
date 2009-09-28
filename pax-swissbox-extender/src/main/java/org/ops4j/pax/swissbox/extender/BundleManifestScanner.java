@@ -58,7 +58,7 @@ public class BundleManifestScanner
     }
 
     /**
-     * Scans bundle manifest for mathes agains configured manifest headers.
+     * Scans bundle manifest for matches against configured manifest headers.
      *
      * @param bundle bundle to be scanned
      *

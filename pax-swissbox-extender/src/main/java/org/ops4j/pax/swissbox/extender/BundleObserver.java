@@ -30,15 +30,15 @@ public interface BundleObserver<T>
 {
 
     /**
-     * Called when a bundle gets started and containes the desired entries.
+     * Called when a bundle gets started and contains the desired entries.
      *
-     * @param bundle  startd bundle
+     * @param bundle  started bundle
      * @param entries list of watched entries
      */
     void addingEntries( Bundle bundle, List<T> entries );
 
     /**
-     * Called when a bunle gets stopped.
+     * Called when a bundle gets stopped.
      *
      * @param bundle  stopped bundle
      * @param entries list of watched entries for that bundle
