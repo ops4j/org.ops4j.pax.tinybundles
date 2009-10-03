@@ -4,16 +4,17 @@ Bundle-Version>:\
 Bundle-SymbolicName:\
   ${bundle.symbolicName}; singleton:=true
 
-Private-Package:\
-  ${bundle.namespace}.core.intern; version="${pom.version}",\
-  ${bundle.namespace}.core.targets; version="${pom.version}",\
-  ${bundle.namespace}.core.metadata; version="${pom.version}",\
-  ${bundle.namespace}.dp.intern; version="${pom.version}"
-
-
- Ignore-Package: ${bundle.namespace}.dp.intern.legacy
-
-
 Export-Package:\
   ${bundle.namespace}.core; version="${pom.version}",\
   ${bundle.namespace}.dp; version="${pom.version}"
+  
+Private-Package:\
+  ${bundle.namespace}.core.intern,\
+  ${bundle.namespace}.core.targets,\
+  ${bundle.namespace}.core.metadata,\
+  ${bundle.namespace}.dp.intern,\
+
+Ignore-Package: ${bundle.namespace}.dp.intern.legacy
+
+-versionpolicy:\
+  [${version;==;${@}},${version;+;${@}})
