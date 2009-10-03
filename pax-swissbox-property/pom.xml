@@ -5,16 +5,16 @@
   <parent>
     <groupId>org.ops4j.pax</groupId>
     <artifactId>swissbox</artifactId>
-    <version>1.2.1-SNAPSHOT</version>
+    <version>1.3.0-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
 
   <groupId>org.ops4j.pax.swissbox</groupId>
   <artifactId>pax-swissbox-property</artifactId>
-  <version>1.2.1-SNAPSHOT</version>
+  <version>1.3.0-SNAPSHOT</version>
   <packaging>bundle</packaging>
 
-  <name>OPS4J Pax Swissbox - Property</name>
+  <name>OPS4J Pax Swissbox :: Property</name>
   <description>
     OPS4J Pax Swissbox - Utilities related to properties in osgi.
     Detailed information to be found at http://wiki.ops4j.org/confluence/x/OARN.

@@ -5,16 +5,16 @@
   <parent>
     <groupId>org.ops4j.pax</groupId>
     <artifactId>swissbox</artifactId>
-    <version>1.2.1-SNAPSHOT</version>
+    <version>1.3.0-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
 
   <groupId>org.ops4j.pax.swissbox</groupId>
   <artifactId>pax-swissbox-core</artifactId>
-  <version>1.2.1-SNAPSHOT</version>
+  <version>1.3.0-SNAPSHOT</version>
   <packaging>bundle</packaging>
 
-  <name>OPS4J Pax Swissbox - OSGi Core</name>
+  <name>OPS4J Pax Swissbox :: OSGi Core</name>
   <description>
     OPS4J Pax Swissbox - Utilities related to OSGi core framework.
     Detailed information to be found at http://wiki.ops4j.org/confluence/x/MgRN.
@@ -38,7 +38,7 @@
     <dependency>
       <groupId>org.ops4j.pax.swissbox</groupId>
       <artifactId>pax-swissbox-lifecycle</artifactId>
-      <version>1.2.1-SNAPSHOT</version>
+      <version>1.3.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.ops4j.base</groupId>
