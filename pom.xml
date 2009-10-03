@@ -32,7 +32,7 @@
   </issueManagement>
 
   <properties>
-    <dependency.base.version>1.2.1</dependency.base.version>
+    <dependency.base.version>1.2.2-SNAPSHOT</dependency.base.version>
   </properties>
 
   <build>
