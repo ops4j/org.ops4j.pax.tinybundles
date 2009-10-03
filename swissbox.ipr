@@ -421,6 +421,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/pax-swissbox-bnd/pax-swissbox-bnd.iml" filepath="$PROJECT_DIR$/pax-swissbox-bnd/pax-swissbox-bnd.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pax-swissbox-converter/pax-swissbox-converter.iml" filepath="$PROJECT_DIR$/pax-swissbox-converter/pax-swissbox-converter.iml" />
       <module fileurl="file://$PROJECT_DIR$/pax-swissbox-core/pax-swissbox-core.iml" filepath="$PROJECT_DIR$/pax-swissbox-core/pax-swissbox-core.iml" />
       <module fileurl="file://$PROJECT_DIR$/pax-swissbox-extender/pax-swissbox-extender.iml" filepath="$PROJECT_DIR$/pax-swissbox-extender/pax-swissbox-extender.iml" />
       <module fileurl="file://$PROJECT_DIR$/pax-swissbox-lifecycle/pax-swissbox-lifecycle.iml" filepath="$PROJECT_DIR$/pax-swissbox-lifecycle/pax-swissbox-lifecycle.iml" />
