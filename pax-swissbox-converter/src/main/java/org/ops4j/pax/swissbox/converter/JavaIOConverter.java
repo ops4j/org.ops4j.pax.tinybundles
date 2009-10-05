@@ -23,6 +23,8 @@ import static org.ops4j.pax.swissbox.converter.helpers.ImmutableCompositeConvert
 import org.ops4j.pax.swissbox.converter.helpers.WrapperConverter;
 import static org.ops4j.pax.swissbox.converter.java.io.ToInputStreamConverter.*;
 import static org.ops4j.pax.swissbox.converter.java.io.ToOutputStreamConverter.*;
+import org.ops4j.pax.swissbox.converter.java.io.ToPrintStreamConverter;
+import static org.ops4j.pax.swissbox.converter.java.io.ToPrintStreamConverter.*;
 import static org.ops4j.pax.swissbox.converter.java.io.ToReaderConverter.*;
 import static org.ops4j.pax.swissbox.converter.java.io.ToURIConverter.*;
 import static org.ops4j.pax.swissbox.converter.java.io.ToURLConverter.*;
@@ -49,7 +51,8 @@ public class JavaIOConverter
                 toInputStreamConverter(),
                 toOutputStreamConverter(),
                 toReaderConverter(),
-                toWriterConverter()
+                toWriterConverter(),
+                toPrintStreamConverter()
             )
         );
     }
@@ -63,7 +66,8 @@ public class JavaIOConverter
                 toInputStreamConverter( escape ),
                 toOutputStreamConverter( escape ),
                 toReaderConverter( escape ),
-                toWriterConverter( escape )
+                toWriterConverter( escape ),
+                toPrintStreamConverter( escape )
             )
         );
     }
