@@ -26,9 +26,6 @@ import static org.ops4j.pax.swissbox.converter.java.lang.FromNullConverter.*;
 /**
  * JAVADOC
  *
- * NOTICE: This class contains code originally developed by "Apache Geronimo Project", OSGi Blueprint Implementation.
- *
- * @author <a href="mailto:dev@geronimo.apache.org">Apache Geronimo Project</a>
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
  */
 public class ToStringConverter
