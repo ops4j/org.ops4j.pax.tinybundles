@@ -26,6 +26,8 @@ import static org.ops4j.pax.swissbox.converter.java.lang.FromNullConverter.*;
 import static org.ops4j.pax.swissbox.converter.java.lang.FromStringConverter.*;
 import static org.ops4j.pax.swissbox.converter.java.lang.FromStringToClassConverter.*;
 import static org.ops4j.pax.swissbox.converter.java.lang.ToNumberConverter.*;
+import org.ops4j.pax.swissbox.converter.java.lang.ToStringConverter;
+import static org.ops4j.pax.swissbox.converter.java.lang.ToStringConverter.*;
 import org.ops4j.pax.swissbox.converter.loader.Loader;
 
 /**
@@ -47,7 +49,8 @@ public class JavaLangConverter
                 fromNullConverter(),
                 assignableConverter(),
                 toNumberConverter(),
-                fromStringConverter()
+                fromStringConverter(),
+                toStringConverter()
             )
         );
     }
@@ -60,7 +63,8 @@ public class JavaLangConverter
                 assignableConverter(),
                 toNumberConverter(),
                 fromStringConverter(),
-                fromStringToClassConverter( loader )
+                fromStringToClassConverter( loader ),
+                toStringConverter()
             )
         );
     }
