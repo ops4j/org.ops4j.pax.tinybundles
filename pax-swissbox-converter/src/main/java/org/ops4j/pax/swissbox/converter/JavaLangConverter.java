@@ -25,6 +25,8 @@ import static org.ops4j.pax.swissbox.converter.java.lang.AssignableConverter.*;
 import static org.ops4j.pax.swissbox.converter.java.lang.FromNullConverter.*;
 import static org.ops4j.pax.swissbox.converter.java.lang.FromStringConverter.*;
 import static org.ops4j.pax.swissbox.converter.java.lang.FromStringToClassConverter.*;
+import org.ops4j.pax.swissbox.converter.java.lang.ToCharSequenceConverter;
+import static org.ops4j.pax.swissbox.converter.java.lang.ToCharSequenceConverter.*;
 import static org.ops4j.pax.swissbox.converter.java.lang.ToNumberConverter.*;
 import org.ops4j.pax.swissbox.converter.java.lang.ToStringConverter;
 import static org.ops4j.pax.swissbox.converter.java.lang.ToStringConverter.*;
@@ -50,7 +52,8 @@ public class JavaLangConverter
                 assignableConverter(),
                 toNumberConverter(),
                 fromStringConverter(),
-                toStringConverter()
+                toStringConverter(),
+                toCharSequenceConverter()
             )
         );
     }
@@ -64,7 +67,8 @@ public class JavaLangConverter
                 toNumberConverter(),
                 fromStringConverter(),
                 fromStringToClassConverter( loader ),
-                toStringConverter()
+                toStringConverter(),
+                toCharSequenceConverter()
             )
         );
     }
