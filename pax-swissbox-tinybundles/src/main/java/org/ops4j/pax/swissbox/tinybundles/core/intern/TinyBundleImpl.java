@@ -100,8 +100,17 @@ public class TinyBundleImpl implements TinyBundle
     public TinyBundle add( Class clazz )
     {
         String name = mapClassToEntry( clazz.getName() );
-        getClass().getResource( "/" + name );
         add( name, getClass().getResource( "/" + name ) );
+        return this;
+    }
+
+    /**
+     * @{@inheritDoc}
+     */
+    public TinyBundle remove( Class content )
+    {
+        String name = mapClassToEntry( content.getName() );
+        removeResource( name );
         return this;
     }
 

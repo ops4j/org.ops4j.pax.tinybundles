@@ -60,6 +60,16 @@ public interface TinyBundle
     TinyBundle add( Class content );
 
     /**
+     * remove a class to the current bundle.
+     *
+     * @param content class to be removed
+     *
+     * @return *this*
+     */
+    TinyBundle remove( Class content );
+
+
+    /**
      * When you are done adding stuff to *this* you can call this method to go to next step.
      *
      * @param builder Instance may be retrieved from {TinyBundles} factory methods.
