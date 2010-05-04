@@ -168,7 +168,7 @@ public class BndUtils
                 }
                 catch( IOException e )
                 {
-                    throw new RuntimeException( "Bundle cannot be generated", e );
+                    LOG.warn( "Bundle cannot be generated" );
                 }
                 finally
                 {
