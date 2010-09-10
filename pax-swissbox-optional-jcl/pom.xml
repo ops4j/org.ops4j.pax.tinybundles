@@ -5,13 +5,13 @@
   <parent>
     <groupId>org.ops4j.pax</groupId>
     <artifactId>swissbox</artifactId>
-    <version>1.3.0-SNAPSHOT</version>
+    <version>1.3.0</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
 
   <groupId>org.ops4j.pax.swissbox</groupId>
   <artifactId>pax-swissbox-optional-jcl</artifactId>
-  <version>1.3.0-SNAPSHOT</version>
+  <version>1.3.0</version>
   <packaging>bundle</packaging>
 
   <name>OPS4J Pax Swissbox :: Optional JCL</name>
