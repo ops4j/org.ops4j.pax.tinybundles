@@ -35,7 +35,7 @@
         <dependency>
             <groupId>biz.aQute</groupId>
             <artifactId>bndlib</artifactId>
-            <version>0.0.313</version>
+            <version>0.0.357</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -66,11 +66,5 @@
 
     </dependencies>
 
-    <repositories>
-        <repository>
-            <id>aQute</id>
-            <url>http://www.aQute.biz/repo</url>
-        </repository>
-    </repositories>
 
 </project>
