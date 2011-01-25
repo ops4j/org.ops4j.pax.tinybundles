@@ -25,11 +25,15 @@ import java.io.PipedOutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URLDecoder;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Properties;
 import java.util.jar.Manifest;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import aQute.lib.osgi.Analyzer;
+import aQute.lib.osgi.Constants;
 import aQute.lib.osgi.Jar;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -53,7 +57,10 @@ public class BndUtils
      * Regex pattern for matching instructions when specified in url.
      */
     private static final Pattern INSTRUCTIONS_PATTERN =
-        Pattern.compile( "([a-zA-Z_0-9-]+)=([-!\"'()*+,.0-9A-Z_a-z%;:=/]+)" );
+        Pattern.compile( "([a-zA-Z_0-9-]+)=([-!\"'()\\[\\]*+,.0-9A-Z_a-z%;:=/\\s]+)" ); //added [] and whitespace \s
+    
+    private static final Pattern CAMELCASE_PATTERN = 
+    	Pattern.compile( "/\\b([A-Z][a-z]*){2,}\\b/");
 
     /**
      * Utility class. Ment to be used using static methods
@@ -254,7 +261,7 @@ public class BndUtils
                         if( matcher.matches() )
                         {
                             instructions.setProperty(
-                                matcher.group( 1 ),
+                                verifyKey(matcher.group( 1 )),
                                 URLDecoder.decode( matcher.group( 2 ), "UTF-8" )
                             );
                         }
@@ -276,7 +283,31 @@ public class BndUtils
         return instructions;
     }
 
-    /**
+    private static String verifyKey(String key) {
+		List<String> list = new ArrayList<String>(Arrays.asList(Constants.headers));
+		//patch the header list for an additional Web-ContextPath
+		list.add("Web-ContextPath");
+		if (list.contains(key)) {
+			return key;
+    	} else {
+			//this is not a key contained in the headers list
+			//either a specialized Camel-Case
+			//which is forwarded
+			if (CAMELCASE_PATTERN.matcher(key).matches()) { 
+				return key;
+    		} else {
+				//no Camel Case check if it exists in list 
+    			for (String header : list) {
+					if (header.equalsIgnoreCase(key)) {
+						return header;
+					}
+				}
+    			return key;
+			}
+		}
+	}
+
+	/**
      * Creates an MalformedURLException with a message and a cause.
      *
      * @param message exception message

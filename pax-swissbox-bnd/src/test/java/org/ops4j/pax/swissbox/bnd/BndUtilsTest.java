@@ -79,4 +79,20 @@ public class BndUtilsTest
         assertEquals( "two", p.getProperty( "sec" ) );
     }
 
+    @Test
+    public void versionRangeImportInstructionTest()
+    	throws MalformedURLException
+	{
+		Properties p = BndUtils.parseInstructions( "Import-Package=javax.servlet.*;version=\"[2.3.0,3)\"" );
+		assertEquals( "javax.servlet.*;version=\"[2.3.0,3)\"", p.getProperty("Import-Package"));
+	}
+    
+    @Test
+    public void whiteSpaceInstructionTest()
+    	throws MalformedURLException
+    {
+    	Properties p = BndUtils.parseInstructions( "Export-Package=*; version=\"2.4.0\"");
+    	assertEquals( "*; version=\"2.4.0\"", p.getProperty( "Export-Package" ) );
+    }
+    
 }
