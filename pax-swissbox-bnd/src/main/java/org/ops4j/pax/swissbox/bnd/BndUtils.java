@@ -57,7 +57,7 @@ public class BndUtils
      * Regex pattern for matching instructions when specified in url.
      */
     private static final Pattern INSTRUCTIONS_PATTERN =
-        Pattern.compile( "([a-zA-Z_0-9-]+)=([-!\"'()\\[\\]*+,.0-9A-Z_a-z%;:=/\\s]+)" ); //added [] and whitespace \s
+    	Pattern.compile("([a-zA-Z_0-9-]+)=([\\-!\"'()\\[\\]*+,.0-9A-Z_a-z%;:=/\\s]+)" ); //added [] and whitespace \s
     
     private static final Pattern CAMELCASE_PATTERN = 
     	Pattern.compile( "/\\b([A-Z][a-z]*){2,}\\b/");
