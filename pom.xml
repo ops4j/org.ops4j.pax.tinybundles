@@ -22,9 +22,9 @@
   <url>http://www.ops4j.org/projects/pax/swissbox</url>
 
   <scm>
-    <connection>scm:svn:https://scm.ops4j.org/repos/ops4j/projects/pax/swissbox</connection>
-    <developerConnection>scm:svn:https://scm.ops4j.org/repos/ops4j/projects/pax/swissbox</developerConnection>
-    <url>scm:svn:https://scm.ops4j.org/repos/ops4j/qa/pax/master-3.1.2/swissbox</url>
+    <connection>scm:git:git://github.com/ops4j/org.ops4j.pax.swissbox.git</connection>
+    <developerConnection>scm:git:https://github.com/ops4j/org.ops4j.pax.swissbox.git</developerConnection>
+    <url>scm:git:https://github.com/ops4j/org.ops4j.pax.swissbox.git</url>
   </scm>
 
   <issueManagement>
