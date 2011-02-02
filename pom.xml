@@ -23,7 +23,7 @@
 
   <scm>
     <connection>scm:git:git://github.com/ops4j/org.ops4j.pax.swissbox.git</connection>
-    <developerConnection>scm:git:https://github.com/ops4j/org.ops4j.pax.swissbox.git</developerConnection>
+    <developerConnection>${release-paxurl-altGitSWISSBOX}</developerConnection>
     <url>scm:git:https://github.com/ops4j/org.ops4j.pax.swissbox.git</url>
   </scm>
 
@@ -33,6 +33,8 @@
   </issueManagement>
 
   <properties>
+    <release-paxurl-altGitSWISSBOX>scm:git:ssh://git@github.com/ops4j/org.ops4j.pax.swissbox.git</release-paxurl-altGitSWISSBOX>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <dependency.base.version>1.2.2</dependency.base.version>
   </properties>
 
@@ -74,7 +76,6 @@
 
   <dependencyManagement>
     <dependencies>
-      
       <!-- OPS4J Base -->
       <dependency>
         <groupId>org.ops4j.base</groupId>
@@ -204,3 +205,4 @@
   </profiles>
 
 </project>
+
