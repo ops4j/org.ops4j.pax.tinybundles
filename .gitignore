@@ -1,5 +1,1 @@
-
-*.project
-*.classpath
-*.settings
-*target
+*.iml*.ipr*.iws*.project*.classpath*.settings*target
