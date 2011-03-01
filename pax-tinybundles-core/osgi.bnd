@@ -1,20 +1,1 @@
-Bundle-Version>:\
-  ${pom.version}
-
-Bundle-SymbolicName:\
-  ${bundle.symbolicName}; singleton:=true
-
-Export-Package:\
-  ${bundle.namespace}.core; version="${pom.version}",\
-  ${bundle.namespace}.dp; version="${pom.version}"
-  
-Private-Package:\
-  ${bundle.namespace}.core.intern,\
-  ${bundle.namespace}.core.targets,\
-  ${bundle.namespace}.core.metadata,\
-  ${bundle.namespace}.dp.intern,\
-
-Ignore-Package: ${bundle.namespace}.dp.intern.legacy
-
--versionpolicy:\
-  [${version;==;${@}},${version;+;${@}})
+Bundle-Version>:\  ${pom.version}Bundle-SymbolicName:\  ${bundle.symbolicName}; singleton:=trueExport-Package:\  ${bundle.namespace}.core; version="${pom.version}",\  ${bundle.namespace}.dp; version="${pom.version}"  Private-Package:\  ${bundle.namespace}.core.intern,\  ${bundle.namespace}.core.metadata,\  ${bundle.namespace}.dp.intern,\    org.ops4j.store.intern,\    org.ops4j.store,\    aQute.bnd.help,\    aQute.bnd.service.action,\    aQute.bnd.test,\    aQute.lib.osgi.eclipse,\    aQute.bnd.build,\    org.ops4j.monitors,\    aQute.lib.osgi,\    org.ops4j.lang,\    org.ops4j.monitors.stream,\    org.ops4j.io,\    org.ops4j.monitors.exception,\    aQute.bnd.annotation,\    aQute.bnd.make,\    aQute.bnd.service,\    aQute.libg.generics,\    aQute.libg.header,\    aQute.libg.qtokens,\    aQute.libg.reporter,\    aQute.libg.sed,\    aQute.libg.version Import-Package:\    !org.apache.avalon.framework.logger,\	!org.apache.log,\	!org.apache.log4j,\	!aQute.service.scripting,\	!javax.xml.parsers,\	!org.apache.commons.logging,\	!org.w3c.dom,\	!org.xml.sax,\	*Embed-Dependency:\  *; scope=compile; type=!pom; inline=true-versionpolicy:\  [${version;==;${@}},${version;+;${@}})
