@@ -1,0 +1,1 @@
+package org.ops4j.pax.tinybundles.core;import org.ops4j.pax.tinybundles.core.builders.AsyncRawBuilder;/** * */public class CoreAsyncTest extends CoreTest {    @Override    BuildableBundle getStrategy()    {        return new AsyncRawBuilder();    }}
