@@ -1,1 +1,10 @@
-target.settings.project.classpath*.iws*.ipr*.iml
+.DS_Stores
+.svn
+exam.iws
+target
+*.iml
+*.ipr
+*.iws
+.classpath
+.project
+.settings
