@@ -11,7 +11,7 @@
     <groupId>org.ops4j.pax</groupId>
     <artifactId>tinybundles</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
+    <packaging>bundle</packaging>
 
     <name>OPS4J Pax Tinybundles</name>
 
@@ -32,32 +32,23 @@
         <release-paxurl-altGitTINYBUNDLES>scm:git:ssh://git@github.com/ops4j/org.ops4j.pax.tinybundles.git</release-paxurl-altGitTINYBUNDLES>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <dependency.base.version>1.2.3-SNAPSHOT</dependency.base.version>
+        <bundle.symbolicName>org.ops4j.pax.tinybundles</bundle.symbolicName>
+        <bundle.namespace>org.ops4j.pax.tinybundles</bundle.namespace>
     </properties>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <plugins>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>retrotranslator-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>translate-project</goal>
-                        </goals>
-                        <configuration>
-                            <classifier>jdk14</classifier>
-                            <embed>jdk14</embed>
-                            <attach>true</attach>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>2.7</version>
                 <configuration>
-                    <aggregate>true</aggregate>
                     <docletArtifact>
                         <groupId>com.google.doclava</groupId>
                         <artifactId>doclava</artifactId>
@@ -78,22 +69,19 @@
                     <additionalJOption>-J-Xmx1024m</additionalJOption>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <version>2.3.4</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <_include>-osgi.bnd</_include>
+                    </instructions>
+                </configuration>
+            </plugin>
         </plugins>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.felix</groupId>
-                    <artifactId>maven-bundle-plugin</artifactId>
-                    <version>2.3.4</version>
-                    <extensions>true</extensions>
-                    <configuration>
-                        <instructions>
-                            <_include>-osgi.bnd</_include>
-                        </instructions>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
+
     </build>
 
     <developers>
@@ -109,18 +97,55 @@
         </developer>
     </developers>
 
-    <profiles>
-        <profile>
-            <id>default</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <modules>
-                <module>pax-tinybundles-core</module>
-                <!-- <module>pax-tinybundles-dp</module> -->
-            </modules>
-        </profile>
-    </profiles>
+    <description>
+        Tiny Bundles is a library to create and modify adhoc bundles and other OSGi resources using fluent Java API.
+    </description>
+
+    <dependencies>
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <version>1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.core</artifactId>
+            <version>4.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.6.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.ops4j.base</groupId>
+            <artifactId>ops4j-base-store</artifactId>
+            <version>1.2.3</version>
+        </dependency>
+        <dependency>
+            <groupId>biz.aQute</groupId>
+            <artifactId>bndlib</artifactId>
+            <version>1.15.0</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+            <version>4.8.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>1.8.5</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <scope>test</scope>
+            <version>1.6.1</version>
+        </dependency>
+    </dependencies>
 
 </project>
 
