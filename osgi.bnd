@@ -6,32 +6,6 @@ Bundle-SymbolicName:\
 
 Export-Package:\
   ${bundle.namespace}.core; version="${pom.version}"
-  
-Private-Package:\
-  ${bundle.namespace}.core.intern,\
-  ${bundle.namespace}.core.builders,\
-    org.ops4j.store.intern,\
-    org.ops4j.store,\
-    aQute.bnd.help,\
-    aQute.bnd.service.action,\
-    aQute.bnd.test,\
-    aQute.lib.osgi.eclipse,\
-    aQute.bnd.build,\
-    org.ops4j.monitors,\
-    aQute.lib.osgi,\
-    org.ops4j.lang,\
-    org.ops4j.monitors.stream,\
-    org.ops4j.io,\
-    org.ops4j.monitors.exception,\
-    aQute.bnd.annotation,\
-    aQute.bnd.make,\
-    aQute.bnd.service,\
-    aQute.libg.generics,\
-    aQute.libg.header,\
-    aQute.libg.qtokens,\
-    aQute.libg.reporter,\
-    aQute.libg.sed,\
-    aQute.libg.version
 
  Import-Package:\
     !org.apache.avalon.framework.logger,\
@@ -52,7 +26,9 @@ Private-Package:\
 	*
 
 Embed-Dependency:\
-  *; scope=compile; type=!pom; inline=true
+  *; scope=compile; type=!pom; inline=false
+
+Embed-Transitive: true
 
 -versionpolicy:\
   [${version;==;${@}},${version;+;${@}})
