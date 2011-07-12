@@ -134,7 +134,7 @@ public class BndBuilder implements BuildableBundle {
             {
                 try {
                     jar.write( pout );
-                } catch( IOException e ) {
+                } catch( Exception e ) {
                 //    LOG.warn( "Bundle cannot be generated",e );
                 } finally {
                     try {
