@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.tinybundles.core.builders;
+package org.ops4j.pax.tinybundles.core.intern;
 
 import java.io.File;
 import java.io.FileInputStream;
