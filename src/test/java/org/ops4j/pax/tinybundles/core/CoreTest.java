@@ -17,9 +17,6 @@
  */
 package org.ops4j.pax.tinybundles.core;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.jar.JarInputStream;
@@ -27,7 +24,6 @@ import java.util.jar.Manifest;
 import junit.framework.Assert;
 import org.junit.Test;
 import org.osgi.framework.Constants;
-import org.ops4j.io.StreamUtils;
 import org.ops4j.pax.tinybundles.core.intern.Info;
 import org.ops4j.pax.tinybundles.demo.HelloWorld;
 import org.ops4j.pax.tinybundles.demo.intern.HelloWorldImpl;
@@ -53,7 +49,7 @@ public abstract class CoreTest {
     private static final String HEADER_TINYBUNDLES_VERSION = "TinybundlesVersion";
     private static final String HEADER_BUILT_BY = "Built-By";
 
-    abstract BuildableBundle getStrategy();
+    abstract BuildStrategy getStrategy();
 
     @Test
     public void doubleTest()
@@ -72,7 +68,7 @@ public abstract class CoreTest {
     private void makeBundle( String caption )
         throws IOException
     {
-        InputStream inp = bundle( getStrategy() )
+        InputStream inp = bundle(  )
             .add( MyFirstActivator.class )
             .add( HelloWorld.class )
             .add( HelloWorldImpl.class )
@@ -80,7 +76,7 @@ public abstract class CoreTest {
             .set( Constants.EXPORT_PACKAGE, "demo" )
             .set( Constants.IMPORT_PACKAGE, "demo" )
             .set( Constants.BUNDLE_ACTIVATOR, MyFirstActivator.class.getName() )
-            .build();
+            .build(getStrategy());
         read( inp, caption );
     }
 
@@ -102,7 +98,7 @@ public abstract class CoreTest {
     public void createTest()
         throws IOException
     {
-        InputStream inp = bundle( getStrategy() )
+        InputStream inp = bundle(  )
             .add( MyFirstActivator.class )
             .add( HelloWorld.class )
             .add( HelloWorldImpl.class )
@@ -110,7 +106,7 @@ public abstract class CoreTest {
             .set( Constants.EXPORT_PACKAGE, "demo" )
             .set( Constants.IMPORT_PACKAGE, "demo" )
             .set( Constants.BUNDLE_ACTIVATOR, MyFirstActivator.class.getName() )
-            .build();
+            .build(getStrategy());
         inp.close();
 
         // test output
@@ -127,7 +123,7 @@ public abstract class CoreTest {
     public void defaultSetProps()
         throws IOException
     {
-        InputStream inp = bundle( getStrategy() ).build();
+        InputStream inp = bundle(  ).build(getStrategy());
         // test output
         JarInputStream jout = new JarInputStream( inp );
         Manifest man = jout.getManifest();
@@ -142,7 +138,7 @@ public abstract class CoreTest {
     public void modifyTest()
         throws IOException
     {
-        InputStream inp1 = bundle( getStrategy() )
+        InputStream inp1 = bundle(  )
             .add( MyFirstActivator.class )
             .add( HelloWorld.class )
             .add( HelloWorldImpl.class )
@@ -150,11 +146,11 @@ public abstract class CoreTest {
             .set( Constants.EXPORT_PACKAGE, "demo" )
             .set( Constants.IMPORT_PACKAGE, "demo" )
             .set( Constants.BUNDLE_ACTIVATOR, MyFirstActivator.class.getName() )
-            .build();
+            .build(getStrategy());
 
-        InputStream inp2 = bundle( getStrategy() ).read( inp1 )
+        InputStream inp2 = bundle(  ).read( inp1 )
             .set( Constants.EXPORT_PACKAGE, "bacon" )
-            .build();
+            .build(getStrategy());
 
         // test output
         JarInputStream jout = new JarInputStream( inp2 );

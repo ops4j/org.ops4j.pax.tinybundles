@@ -26,7 +26,7 @@ import java.util.jar.JarInputStream;
 import java.util.jar.JarEntry;
 import java.util.jar.Manifest;
 import java.util.jar.Attributes;
-import org.ops4j.pax.tinybundles.core.BuildableBundle;
+import org.ops4j.pax.tinybundles.core.BuildStrategy;
 import org.ops4j.pax.tinybundles.core.TinyBundle;
 import org.ops4j.store.Handle;
 import org.ops4j.store.Store;
@@ -45,12 +45,9 @@ public class TinyBundleImpl implements TinyBundle {
 
     final private Store<InputStream> m_store;
 
-    final private BuildableBundle m_builder;
-
-    public TinyBundleImpl( BuildableBundle builder, Store<InputStream> bstore )
+    public TinyBundleImpl( Store<InputStream> bstore )
     {
         m_store = bstore;
-        m_builder = builder;
     }
 
     /**
@@ -138,9 +135,9 @@ public class TinyBundleImpl implements TinyBundle {
     /**
      * @{@inheritDoc}
      */
-    public InputStream build()
+    public InputStream build( BuildStrategy builder )
     {
-        return m_builder.build( m_resources, m_headers );
+        return builder.build( m_resources, m_headers );
     }
 
     /**

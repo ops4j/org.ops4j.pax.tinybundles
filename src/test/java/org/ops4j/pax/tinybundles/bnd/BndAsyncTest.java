@@ -17,7 +17,7 @@
  */
 package org.ops4j.pax.tinybundles.bnd;
 
-import org.ops4j.pax.tinybundles.core.BuildableBundle;
+import org.ops4j.pax.tinybundles.core.BuildStrategy;
 import org.ops4j.pax.tinybundles.core.intern.AsyncRawBuilder;
 import org.ops4j.pax.tinybundles.core.intern.BndBuilder;
 
@@ -27,7 +27,7 @@ import org.ops4j.pax.tinybundles.core.intern.BndBuilder;
 public class BndAsyncTest extends BndTest {
 
     @Override
-    BuildableBundle getStrategy()
+    BuildStrategy getStrategy()
     {
         return new BndBuilder( new AsyncRawBuilder() );
     }

@@ -19,14 +19,13 @@ package org.ops4j.pax.tinybundles.bnd;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
 import java.util.jar.Manifest;
 import java.util.zip.ZipEntry;
 
 import org.junit.Test;
 import org.osgi.framework.Constants;
-import org.ops4j.pax.tinybundles.core.BuildableBundle;
+import org.ops4j.pax.tinybundles.core.BuildStrategy;
 import org.ops4j.pax.tinybundles.core.intern.Info;
 import org.ops4j.pax.tinybundles.demo.HelloWorld;
 import org.ops4j.pax.tinybundles.demo.intern.HelloWorldImpl;
@@ -41,7 +40,7 @@ import static org.ops4j.pax.tinybundles.core.TinyBundles.*;
  */
 public abstract class BndTest {
 
-    abstract BuildableBundle getStrategy();
+    abstract BuildStrategy getStrategy();
 
     /**
      * Make sure BND independent headers are not affected by bnds activity.
@@ -50,7 +49,7 @@ public abstract class BndTest {
     public void bndIndependendProps()
         throws IOException
     {
-        InputStream inp = bundle( getStrategy() ).build();
+        InputStream inp = bundle( ).build( getStrategy() );
 
         // test output
         JarInputStream jout = new JarInputStream( inp );
@@ -66,13 +65,13 @@ public abstract class BndTest {
     public void createTestAllDefault()
         throws IOException
     {
-        InputStream inp = bundle( getStrategy() )
+        InputStream inp = bundle(  )
             .add( MyFirstActivator.class )
             .add( HelloWorld.class )
             .add( HelloWorldImpl.class )
             .set( Constants.BUNDLE_SYMBOLICNAME, "MyFirstTinyBundle" )
             .set( Constants.BUNDLE_ACTIVATOR, MyFirstActivator.class.getName() )
-            .build();
+            .build( getStrategy() );
 
         // test output
         JarInputStream jout = new JarInputStream( inp );
@@ -88,14 +87,14 @@ public abstract class BndTest {
     public void createTestExport()
         throws IOException
     {
-        InputStream inp = bundle( getStrategy() )
+        InputStream inp = bundle( )
             .add( MyFirstActivator.class )
             .add( HelloWorld.class )
             .add( HelloWorldImpl.class )
             .set( Constants.BUNDLE_SYMBOLICNAME, "MyFirstTinyBundle" )
             .set( Constants.EXPORT_PACKAGE, HelloWorld.class.getPackage().getName() )
             .set( Constants.BUNDLE_ACTIVATOR, MyFirstActivator.class.getName() )
-            .build();
+            .build( getStrategy() );
 
         // test output
         JarInputStream jout = new JarInputStream( inp );
@@ -111,7 +110,7 @@ public abstract class BndTest {
     public void embedDependency()
         throws IOException
     {
-        InputStream inp = bundle( getStrategy() )
+        InputStream inp = bundle( )
             .add( MyFirstActivator.class )
             .add( HelloWorld.class )
             .add( HelloWorldImpl.class )
@@ -121,7 +120,7 @@ public abstract class BndTest {
             .set( Constants.BUNDLE_ACTIVATOR, MyFirstActivator.class.getName() )
             .set( "Bundle-Classpath", ".,ant-1.8.1.jar" )
             .set( "Include-Resource","@/Users/tonit/devel/gradle/lib/ant-1.8.1.jar")
-            .build();
+            .build(getStrategy());
 
         // test output
         JarInputStream jout = new JarInputStream( inp );
@@ -143,19 +142,19 @@ public abstract class BndTest {
     public void modifyTest()
         throws IOException
     {
-        InputStream inp1 = bundle( getStrategy() )
+        InputStream inp1 = bundle(  )
             .add( MyFirstActivator.class )
             .add( HelloWorld.class )
             .add( HelloWorldImpl.class )
             .set( Constants.BUNDLE_SYMBOLICNAME, "MyFirstTinyBundle" )
             .set( Constants.BUNDLE_ACTIVATOR, MyFirstActivator.class.getName() )
-            .build();
+            .build(getStrategy());
 
         // Add an export:
-        InputStream inp2 = bundle( getStrategy() ).read( inp1 )
+        InputStream inp2 = bundle(  ).read( inp1 )
             .set( Constants.EXPORT_PACKAGE, HelloWorld.class.getPackage().getName() )
             .set( "another", "property" )
-            .build();
+            .build(getStrategy());
 
         // test output
         JarInputStream jout = new JarInputStream( inp2 );

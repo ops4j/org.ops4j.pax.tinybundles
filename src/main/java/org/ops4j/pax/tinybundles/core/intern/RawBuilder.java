@@ -28,13 +28,13 @@ import java.util.jar.Manifest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.ops4j.io.StreamUtils;
-import org.ops4j.pax.tinybundles.core.BuildableBundle;
+import org.ops4j.pax.tinybundles.core.BuildStrategy;
 
 /**
  * @author Toni Menzel (tonit)
  * @since Apr 20, 2009
  */
-public abstract class RawBuilder implements BuildableBundle {
+public abstract class RawBuilder implements BuildStrategy {
 
     private static Logger LOG = LoggerFactory.getLogger( RawBuilder.class );
     private static final String BUILT_BY = "Built-By";
@@ -61,7 +61,6 @@ public abstract class RawBuilder implements BuildableBundle {
             InputStream inp = entryset.getValue().openStream();
             StreamUtils.copyStream( inp, jarOut, false );
             inp.close();
-         //   jarOut.closeEntry();
         }
     }
 

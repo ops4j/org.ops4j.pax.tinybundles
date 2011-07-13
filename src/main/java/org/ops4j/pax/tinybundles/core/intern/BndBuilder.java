@@ -33,19 +33,19 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.ops4j.io.StreamUtils;
 import org.ops4j.lang.NullArgumentException;
-import org.ops4j.pax.tinybundles.core.BuildableBundle;
+import org.ops4j.pax.tinybundles.core.BuildStrategy;
 
 /**
  * @author Toni Menzel (tonit)
  * @since Apr 20, 2009
  */
-public class BndBuilder implements BuildableBundle {
+public class BndBuilder implements BuildStrategy {
 
     private static Logger LOG = LoggerFactory.getLogger( BndBuilder.class );
 
-    final private BuildableBundle m_builder;
+    final private BuildStrategy m_builder;
 
-    public BndBuilder( BuildableBundle builder )
+    public BndBuilder( BuildStrategy builder )
     {
         m_builder = builder;
     }

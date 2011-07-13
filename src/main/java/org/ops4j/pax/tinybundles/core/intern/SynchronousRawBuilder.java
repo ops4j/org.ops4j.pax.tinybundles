@@ -30,6 +30,8 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Alternative, early flushing version.
+ * 
+ * @deprecated
  */
 public class SynchronousRawBuilder extends RawBuilder {
 
