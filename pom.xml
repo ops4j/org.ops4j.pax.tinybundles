@@ -10,7 +10,7 @@
 
     <groupId>org.ops4j.pax.tinybundles</groupId>
     <artifactId>tinybundles</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
     <packaging>bundle</packaging>
 
     <name>OPS4J Pax Tinybundles</name>
