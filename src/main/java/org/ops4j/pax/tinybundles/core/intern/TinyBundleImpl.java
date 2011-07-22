@@ -103,7 +103,11 @@ public class TinyBundleImpl implements TinyBundle {
     public TinyBundle add( Class<?> clazz, InnerClassStrategy strategy )
     {
         String name = mapClassToEntry( clazz.getName() );
-        URL resource = getClass().getResource( "/" + name );
+        URL resource = clazz.getResource( "/" + name );
+        
+        if (resource == null) {
+            throw new IllegalArgumentException( "Class " + clazz.getName() + " not found! (resource: " + name + " )" );
+        }
         add( name, resource );
 
         final String expression;
