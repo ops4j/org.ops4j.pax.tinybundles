@@ -107,7 +107,7 @@ public class BndBuilder implements BuildStrategy {
         throws IOException
     {
         File f = File.createTempFile( "mylitte","jar" );
-        System.out.println("Write: " + f.getAbsolutePath());
+        LOG.debug("Write: " + f.getAbsolutePath());
         FileOutputStream fout = new FileOutputStream( f );
         StreamUtils.copyStream( in, fout, true );
         return new FileInputStream( f );
