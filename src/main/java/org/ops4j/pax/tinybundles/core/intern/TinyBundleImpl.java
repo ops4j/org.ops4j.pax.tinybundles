@@ -58,14 +58,13 @@ public class TinyBundleImpl implements TinyBundle {
     /**
      * {@inheritDoc}
      */
-    public TinyBundle read( InputStream in )
+    public TinyBundle read( InputStream in, boolean readData )
     {
         if( in != null ) {
             try {
                 // 1. store to disk
-                Handle handle = m_store.store( in );
 
-                JarInputStream jarOut = new JarInputStream( m_store.load( handle ) );
+                JarInputStream jarOut = new JarInputStream( in );
                 // 2. read meta data and wire with this.
                 // TODO: reading out just main headers will remove the other parts. Fix this with
                 // TODO change m_headers to type Manifest natively.
@@ -78,17 +77,23 @@ public class TinyBundleImpl implements TinyBundle {
                 }
 
                 // 3. read data
-                JarEntry entry = null;
-                while( ( entry = jarOut.getNextJarEntry() ) != null ) {
-                    add( entry.getName(), jarOut );
+                if( readData ) {
+                    JarEntry entry = null;
+                    while( ( entry = jarOut.getNextJarEntry() ) != null ) {
+                        add( entry.getName(), jarOut );
+                    }
                 }
-
                 // done.
             } catch( IOException e ) {
                 throw new RuntimeException( "Problem loading bundle.", e );
             }
         }
         return this;
+    }
+
+    public TinyBundle read( InputStream in )
+    {
+        return read( in, true );
     }
 
     /**
@@ -104,8 +109,8 @@ public class TinyBundleImpl implements TinyBundle {
     {
         String name = mapClassToEntry( clazz.getName() );
         URL resource = clazz.getResource( "/" + name );
-        
-        if (resource == null) {
+
+        if( resource == null ) {
             throw new IllegalArgumentException( "Class " + clazz.getName() + " not found! (resource: " + name + " )" );
         }
         add( name, resource );
@@ -183,7 +188,7 @@ public class TinyBundleImpl implements TinyBundle {
     /**
      * @{@inheritDoc}
      */
-    public InputStream build(  )
+    public InputStream build()
     {
         return withClassicBuilder().build( m_resources, m_headers );
     }
@@ -222,5 +227,14 @@ public class TinyBundleImpl implements TinyBundle {
         m_headers.remove( key );
         return this;
     }
+
+    /**
+     * @{@inheritDoc}
+     */
+    public String getHeader( String key )
+    {
+        return m_headers.get( key );
+    }
+
 
 }
