@@ -35,7 +35,6 @@ import org.ops4j.store.StoreFactory;
 public class TinyBundles {
 
     public final static BuildStrategy STRATEGY_ASYNC = new AsyncRawBuilder();
-    public final static BuildStrategy STRATEGY_SYNCHRONUOUS = new SynchronousRawBuilder();
 
     private static final Store<InputStream> m_store = StoreFactory.defaultStore();
 
