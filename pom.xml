@@ -31,7 +31,7 @@
     <properties>
         <release-paxurl-altGitTINYBUNDLES>scm:git:ssh://git@github.com/ops4j/org.ops4j.pax.tinybundles.git</release-paxurl-altGitTINYBUNDLES>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <dependency.base.version>1.2.3-SNAPSHOT</dependency.base.version>
+        <dependency.base.version>1.4.0</dependency.base.version>
         <bundle.symbolicName>org.ops4j.pax.tinybundles</bundle.symbolicName>
         <bundle.namespace>org.ops4j.pax.tinybundles</bundle.namespace>
     </properties>
@@ -111,7 +111,7 @@
         <dependency>
             <groupId>org.ops4j.base</groupId>
             <artifactId>ops4j-base-store</artifactId>
-            <version>1.2.3</version>
+            <version>${dependency.base.version}</version>
         </dependency>
         <dependency>
             <groupId>biz.aQute.bnd</groupId>
