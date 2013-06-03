@@ -17,10 +17,12 @@
  */
 package org.ops4j.pax.tinybundles.core;
 
+import java.io.IOException;
 import java.io.InputStream;
+
+import org.ops4j.lang.Ops4jException;
 import org.ops4j.pax.tinybundles.core.intern.AsyncRawBuilder;
 import org.ops4j.pax.tinybundles.core.intern.BndBuilder;
-import org.ops4j.pax.tinybundles.core.intern.SynchronousRawBuilder;
 import org.ops4j.pax.tinybundles.core.intern.TinyBundleImpl;
 import org.ops4j.store.Store;
 import org.ops4j.store.StoreFactory;
@@ -36,7 +38,7 @@ public class TinyBundles {
 
     public final static BuildStrategy STRATEGY_ASYNC = new AsyncRawBuilder();
 
-    private static final Store<InputStream> m_store = StoreFactory.defaultStore();
+    private static Store<InputStream> m_store;
 
     /**
      * {@see #bundle(BuildableBundle, org.ops4j.store.Store)}
@@ -89,11 +91,23 @@ public class TinyBundles {
 
     /**
      * Access to the default store instance. (this is low level. Don't bother).
+     * The default store is unique per VM.
      *
      * @return store instance that is used when user does not give its own Store instance upon {@link #bundle()}
      */
-    public static Store<InputStream> getDefaultStore()
+    public static synchronized Store<InputStream> getDefaultStore()
     {
-        return m_store;
+        try 
+        {
+            if(m_store == null) 
+            {
+                m_store = StoreFactory.anonymousStore();
+            }
+            return m_store;
+        }
+        catch( IOException e ) 
+        {
+            throw new Ops4jException( e );
+        }            
     }
 }
