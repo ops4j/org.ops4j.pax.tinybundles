@@ -19,7 +19,7 @@
 
     <scm>
         <connection>scm:git:git://github.com/ops4j/org.ops4j.pax.tinybundles.git</connection>
-        <developerConnection>${release-paxurl-altGitTINYBUNDLES}</developerConnection>
+        <developerConnection>scm:git:ssh://git@github.com/ops4j/org.ops4j.pax.tinybundles.git</developerConnection>
         <url>scm:git:https://github.com/ops4j/org.ops4j.pax.tinybundles.git</url>
     </scm>
 
@@ -29,7 +29,6 @@
     </issueManagement>
 
     <properties>
-        <release-paxurl-altGitTINYBUNDLES>scm:git:ssh://git@github.com/ops4j/org.ops4j.pax.tinybundles.git</release-paxurl-altGitTINYBUNDLES>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <dependency.base.version>1.4.0</dependency.base.version>
         <bundle.symbolicName>org.ops4j.pax.tinybundles</bundle.symbolicName>
@@ -110,11 +109,13 @@
             <groupId>org.ops4j.base</groupId>
             <artifactId>ops4j-base-store</artifactId>
             <version>${dependency.base.version}</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>biz.aQute.bnd</groupId>
             <artifactId>bndlib</artifactId>
             <version>2.1.0</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.osgi</groupId>

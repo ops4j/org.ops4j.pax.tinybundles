@@ -1,34 +1,14 @@
-Bundle-Version>:\
-  ${pom.version}
-
 Bundle-SymbolicName:\
   ${bundle.symbolicName}; singleton:=true
 
 Export-Package:\
-  ${bundle.namespace}.core; version="${pom.version}"
+  ${bundle.namespace}.core
 
  Import-Package:\
-    !org.apache.avalon.framework.logger,\
-	!org.apache.log,\
-	!org.apache.log4j,\
-	!aQute.service.scripting,\
-	!javax.xml.parsers,\
-	!org.apache.commons.logging,\
-	!org.w3c.dom,\
-	!org.xml.sax,\
-	!org.slf4j.impl,\
-	!javax.naming,\
-	!javax.security.auth.x500,\
-	!javax.xml.namespace,\
-	!javax.xml.transform,\
-	!javax.xml.transform.stream,\
-	!javax.xml.xpath,\
-	*
+    !junit.framework,\
+    *
 
 Embed-Dependency:\
   *; scope=compile; type=!pom; inline=false
 
 Embed-Transitive: true
-
--versionpolicy:\
-  [${version;==;${@}},${version;+;${@}})
