@@ -27,13 +27,16 @@ import java.io.PipedOutputStream;
 import java.net.URL;
 import java.util.Map;
 import java.util.Properties;
-import aQute.lib.osgi.Analyzer;
-import aQute.lib.osgi.Jar;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.jar.Manifest;
+
 import org.ops4j.io.StreamUtils;
 import org.ops4j.lang.NullArgumentException;
 import org.ops4j.pax.tinybundles.core.BuildStrategy;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import aQute.bnd.osgi.Analyzer;
+import aQute.bnd.osgi.Jar;
 
 /**
  * @author Toni Menzel (tonit)
@@ -98,7 +101,8 @@ public class BndBuilder implements BuildStrategy {
         analyzer.mergeManifest( jar.getManifest() );
 
         checkMandatoryProperties( analyzer, jar, symbolicName );
-        analyzer.calcManifest();
+        Manifest manifest = analyzer.calcManifest();
+        jar.setManifest( manifest );
 
         return createInputStream( jar );
     }
