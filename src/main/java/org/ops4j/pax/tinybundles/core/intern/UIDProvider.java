@@ -25,6 +25,12 @@ import java.util.UUID;
 public class UIDProvider
 {
 
+	/**
+	 * Returns a string-representation of a randomly generated
+	 * UUID.
+	 * 
+	 * @return String-representation of a UUID.
+	 */
     public static String getUID()
     {
         return UUID.randomUUID().toString();

@@ -17,24 +17,26 @@
  */
 package org.ops4j.pax.tinybundles.core.intern;
 
+import static org.ops4j.pax.tinybundles.core.TinyBundles.withClassicBuilder;
+
 import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.jar.JarInputStream;
-import java.util.jar.JarEntry;
-import java.util.jar.Manifest;
 import java.util.jar.Attributes;
+import java.util.jar.JarEntry;
+import java.util.jar.JarInputStream;
+import java.util.jar.Manifest;
+
+import org.ops4j.lang.Ops4jException;
 import org.ops4j.pax.tinybundles.core.BuildStrategy;
 import org.ops4j.pax.tinybundles.core.InnerClassStrategy;
 import org.ops4j.pax.tinybundles.core.TinyBundle;
-import org.ops4j.store.Handle;
 import org.ops4j.store.Store;
-
-import static org.ops4j.pax.tinybundles.core.TinyBundles.*;
 
 /**
  * Our default implementation of TinyBundle.
@@ -127,7 +129,15 @@ public class TinyBundleImpl implements TinyBundle {
         }
 
         String path = resource.getPath();
-        File classFile = new File( path );
+        File classFile;
+        try
+        {
+            classFile = new File( resource.toURI() );
+        }
+        catch ( URISyntaxException exc )
+        {
+            throw new Ops4jException( exc );
+        }
         File[] innerClassFiles = classFile.getParentFile().listFiles( new FileFilter() {
             public boolean accept( File f )
             {
