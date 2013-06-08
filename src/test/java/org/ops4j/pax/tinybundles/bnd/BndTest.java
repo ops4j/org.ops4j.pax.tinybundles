@@ -31,7 +31,7 @@ import org.ops4j.pax.tinybundles.demo.HelloWorld;
 import org.ops4j.pax.tinybundles.demo.intern.HelloWorldImpl;
 import org.ops4j.pax.tinybundles.demo.intern.MyFirstActivator;
 
-import static junit.framework.Assert.*;
+import static org.junit.Assert.*;
 import static org.ops4j.pax.tinybundles.core.TinyBundles.*;
 
 /**

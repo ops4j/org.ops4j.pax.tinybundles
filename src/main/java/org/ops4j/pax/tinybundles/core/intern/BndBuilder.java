@@ -154,7 +154,7 @@ public class BndBuilder implements BuildStrategy {
     }
 
     /**
-     * Check if manadatory properties are present, otherwise generate default.
+     * Check if mandatory properties are present, otherwise generate default.
      *
      * @param analyzer     bnd analyzer
      * @param jar          bnd jar

@@ -22,29 +22,23 @@ import java.net.URL;
 
 /**
  * @author Harald Wellmann
- *
+ * 
  */
 public class ClassDescriptor
 {
     private String resourcePath;
     private URL url;
-    
-    /**
-     * 
-     */
+
     public ClassDescriptor()
     {
-        // TODO Auto-generated constructor stub
     }
-    
-    public ClassDescriptor(String resourcePath, URL url)
+
+    public ClassDescriptor( String resourcePath, URL url )
     {
         this.resourcePath = resourcePath;
         this.url = url;
     }
-    
-    
-    
+
     /**
      * @return the resourcePath
      */
@@ -52,6 +46,7 @@ public class ClassDescriptor
     {
         return resourcePath;
     }
+
     /**
      * @param resourcePath the resourcePath to set
      */
@@ -59,6 +54,7 @@ public class ClassDescriptor
     {
         this.resourcePath = resourcePath;
     }
+
     /**
      * @return the url
      */
@@ -66,6 +62,7 @@ public class ClassDescriptor
     {
         return url;
     }
+
     /**
      * @param url the url to set
      */
@@ -73,6 +70,5 @@ public class ClassDescriptor
     {
         this.url = url;
     }
-    
-    
+
 }

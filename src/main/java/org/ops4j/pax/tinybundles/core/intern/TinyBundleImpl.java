@@ -109,7 +109,7 @@ public class TinyBundleImpl implements TinyBundle {
 
     public TinyBundle add( Class<?> clazz, InnerClassStrategy strategy )
     {
-        String name = mapClassToEntry( clazz.getName() );
+        String name = ClassFinder.asResource( clazz );
         URL resource = clazz.getResource( "/" + name );
 
         if( resource == null ) {
@@ -146,14 +146,9 @@ public class TinyBundleImpl implements TinyBundle {
      */
     public TinyBundle remove( Class<?> content )
     {
-        String name = mapClassToEntry( content.getName() );
+        String name = ClassFinder.asResource( content );
         removeResource( name );
         return this;
-    }
-
-    private String mapClassToEntry( String clazzname )
-    {
-        return clazzname.replace( '.', '/' ) + ".class";
     }
 
     /**
@@ -227,6 +222,4 @@ public class TinyBundleImpl implements TinyBundle {
     {
         return m_headers.get( key );
     }
-
-
 }
