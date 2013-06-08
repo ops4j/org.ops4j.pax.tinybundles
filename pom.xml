@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
@@ -25,12 +26,13 @@
 
     <issueManagement>
         <system>jira</system>
-        <url>http://team.ops4j.org/jira/browse/PAXTB</url>
+        <url>http://team.ops4j.org/browse/PAXTB</url>
     </issueManagement>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <dependency.base.version>1.4.0</dependency.base.version>
+        <dependency.slf4j.version>1.6.1</dependency.slf4j.version>
         <bundle.symbolicName>org.ops4j.pax.tinybundles</bundle.symbolicName>
         <bundle.namespace>org.ops4j.pax.tinybundles</bundle.namespace>
     </properties>
@@ -51,12 +53,34 @@
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
                 <extensions>true</extensions>
-                <configuration>
-                    <instructions>
-                        <Bundle-SymbolicName>${bundle.symbolicName}</Bundle-SymbolicName>
-                        <Export-Package>${bundle.namespace}.core</Export-Package>
-                    </instructions>
-                </configuration>
+                <executions>
+                    <!-- default bundle without embedded dependencies -->
+                    <execution>
+                        <id>default-bundle</id>
+                        <goals>
+                            <goal>bundle</goal>
+                        </goals>
+                        <configuration>
+                            <instructions>
+                                <Bundle-SymbolicName>${bundle.symbolicName}</Bundle-SymbolicName>
+                                <Export-Package>${bundle.namespace}.core</Export-Package>
+                            </instructions>
+                        </configuration>
+                    </execution>
+                    <!-- alternative bundle with embedded dependencies, except OSGi and SLF4J -->
+                    <execution>
+                        <id>embedded</id>
+                        <goals>
+                            <goal>bundle</goal>
+                        </goals>
+                        <configuration>
+                            <classifier>embedded</classifier>
+                            <instructions>
+                                <_include>-osgi.bnd</_include>
+                            </instructions>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
 
@@ -73,6 +97,16 @@
             </roles>
             <timezone>UTC+1</timezone>
         </developer>
+        <developer>
+            <id>hwellmann</id>
+            <name>Harald Wellmann</name>
+            <email>harald.wellmann@gmx.de</email>
+            <organization>independent software developer</organization>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <timezone>UTC+1</timezone>
+        </developer>
     </developers>
 
     <description>
@@ -83,7 +117,8 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>1.6.1</version>
+            <version>${dependency.slf4j.version}</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.ops4j.base</groupId>
@@ -110,7 +145,7 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
-            <version>1.6.1</version>
+            <version>${dependency.slf4j.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
