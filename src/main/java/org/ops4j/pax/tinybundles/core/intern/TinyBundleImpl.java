@@ -19,12 +19,10 @@ package org.ops4j.pax.tinybundles.core.intern;
 
 import static org.ops4j.pax.tinybundles.core.TinyBundles.withClassicBuilder;
 
-import java.io.File;
-import java.io.FileFilter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.jar.Attributes;
@@ -36,6 +34,8 @@ import org.ops4j.lang.Ops4jException;
 import org.ops4j.pax.tinybundles.core.BuildStrategy;
 import org.ops4j.pax.tinybundles.core.InnerClassStrategy;
 import org.ops4j.pax.tinybundles.core.TinyBundle;
+import org.ops4j.pax.tinybundles.finder.ClassDescriptor;
+import org.ops4j.pax.tinybundles.finder.ClassFinder;
 import org.ops4j.store.Store;
 
 /**
@@ -117,47 +117,29 @@ public class TinyBundleImpl implements TinyBundle {
         }
         add( name, resource );
 
-        final String expression;
+        Collection<ClassDescriptor> embeddedClasses;
+        try {
+        ClassFinder finder = new ClassFinder();
         if( strategy == InnerClassStrategy.ALL ) {
-            expression = clazz.getSimpleName() + "\\$.+\\.class";
+            embeddedClasses = finder.findAllEmbeddedClasses( clazz );
         }
         else if( strategy == InnerClassStrategy.ANONYMOUS ) {
-            expression = clazz.getSimpleName() + "\\$[$0-9]+\\.class";
+            embeddedClasses = finder.findAnonymousClasses( clazz );
         }
         else {
             return this;
         }
-
-        String path = resource.getPath();
-        File classFile;
-        try
-        {
-            classFile = new File( resource.toURI() );
         }
-        catch ( URISyntaxException exc )
-        {
-            throw new Ops4jException( exc );
+        catch (IOException exc) {
+            throw new Ops4jException(exc);
         }
-        File[] innerClassFiles = classFile.getParentFile().listFiles( new FileFilter() {
-            public boolean accept( File f )
-            {
-                return f.getName().matches( expression );
-            }
-        }
-        );
-
-        if( innerClassFiles == null ) {
-            return this;
-        }
-
-        int basePathIndex = path.lastIndexOf( name );
-        for( File f : innerClassFiles ) {
-            String classPath = f.getPath().substring( basePathIndex );
-            add( classPath, getClass().getResource( "/" + classPath ) );
+        for( ClassDescriptor descriptor : embeddedClasses ) {
+            m_resources.put( descriptor.getResourcePath(), descriptor.getUrl() );
         }
 
         return this;
     }
+    
 
     /**
      * {@inheritDoc}
@@ -171,7 +153,7 @@ public class TinyBundleImpl implements TinyBundle {
 
     private String mapClassToEntry( String clazzname )
     {
-        return clazzname.replaceAll( "\\.", "/" ) + ".class";
+        return clazzname.replace( '.', '/' ) + ".class";
     }
 
     /**
