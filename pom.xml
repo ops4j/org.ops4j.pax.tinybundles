@@ -17,6 +17,7 @@
     <name>OPS4J Pax Tinybundles</name>
 
     <url>http://team.ops4j.org/wiki/display/ops4j/Tinybundles</url>
+    <inceptionYear>2007</inceptionYear>
 
     <scm>
         <connection>scm:git:git://github.com/ops4j/org.ops4j.pax.tinybundles.git</connection>
@@ -82,6 +83,23 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <artifactId>maven-remote-resources-plugin</artifactId>
+                <version>1.4</version>
+                <executions>
+                    <execution>
+                        <id>process-remote-resources</id>
+                        <goals>
+                            <goal>process</goal>
+                        </goals>
+                        <configuration>
+                            <resourceBundles>
+                                <resourceBundle>org.ops4j.resources:ops4j-jar-txt-resource-bundle:1.0.0</resourceBundle>
+                            </resourceBundles>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>            
         </plugins>
 
     </build>
@@ -118,6 +136,7 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>${dependency.slf4j.version}</version>
+            <!-- scope is "provided" to avoid embedding -->
             <scope>provided</scope>
         </dependency>
         <dependency>
