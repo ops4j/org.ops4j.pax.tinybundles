@@ -17,6 +17,10 @@
  */
 package org.ops4j.pax.tinybundles.bnd;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.ops4j.pax.tinybundles.core.TinyBundles.bundle;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.jar.JarInputStream;
@@ -24,15 +28,12 @@ import java.util.jar.Manifest;
 import java.util.zip.ZipEntry;
 
 import org.junit.Test;
-import org.osgi.framework.Constants;
 import org.ops4j.pax.tinybundles.core.BuildStrategy;
 import org.ops4j.pax.tinybundles.core.intern.Info;
 import org.ops4j.pax.tinybundles.demo.HelloWorld;
 import org.ops4j.pax.tinybundles.demo.intern.HelloWorldImpl;
 import org.ops4j.pax.tinybundles.demo.intern.MyFirstActivator;
-
-import static org.junit.Assert.*;
-import static org.ops4j.pax.tinybundles.core.TinyBundles.*;
+import org.osgi.framework.Constants;
 
 /**
  * @author Toni Menzel (tonit)
@@ -55,7 +56,7 @@ public abstract class BndTest {
         JarInputStream jout = new JarInputStream( inp );
         Manifest man = jout.getManifest();
         assertEquals( "Header Originally-Created-By", "pax-tinybundles-" + Info.getPaxTinybundlesVersion(), man.getMainAttributes().getValue( "Originally-Created-By" ) );
-        assertEquals( "Header Tool", "Bnd-2.3.0.201405100607", man.getMainAttributes().getValue( "Tool" ) );
+        assertEquals( "Header Tool", "Bnd-2.4.0.201411031534", man.getMainAttributes().getValue( "Tool" ) );
         assertEquals( "Header TinybundlesVersion", "pax-tinybundles-" + Info.getPaxTinybundlesVersion(), man.getMainAttributes().getValue( "TinybundlesVersion" ) );
         assertEquals( System.getProperty( "user.name" ), man.getMainAttributes().getValue( "Built-By" ) );
         jout.close();
@@ -105,7 +106,7 @@ public abstract class BndTest {
         assertEquals( HelloWorld.class.getPackage().getName(), man.getMainAttributes().getValue( Constants.EXPORT_PACKAGE ) );
         jout.close();
     }
-    
+
     @Test
     public void embedDependency()
         throws IOException
