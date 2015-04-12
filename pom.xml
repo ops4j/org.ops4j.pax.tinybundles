@@ -10,7 +10,7 @@
 
     <groupId>org.ops4j.pax.tinybundles</groupId>
     <artifactId>tinybundles</artifactId>
-    <version>2.1.1</version>
+    <version>2.1.2-SNAPSHOT</version>
     <packaging>bundle</packaging>
 
     <name>OPS4J Pax Tinybundles</name>
@@ -22,7 +22,7 @@
         <connection>scm:git:git://github.com/ops4j/org.ops4j.pax.tinybundles.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/ops4j/org.ops4j.pax.tinybundles.git</developerConnection>
         <url>scm:git:https://github.com/ops4j/org.ops4j.pax.tinybundles.git</url>
-        <tag>tinybundles-2.1.1</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <issueManagement>
