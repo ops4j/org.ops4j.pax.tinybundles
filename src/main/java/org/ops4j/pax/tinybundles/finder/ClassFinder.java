@@ -27,9 +27,13 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Enumeration;
+import java.util.Iterator;
 import java.util.List;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
+
+import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
 
 /**
  * @author Harald Wellmann
@@ -83,8 +87,32 @@ public class ClassFinder
             }
             return findEmbeddedClasses( classFile, pattern );
         }
-        throw new IllegalStateException( "unsupported protocol " + classUrl.getProtocol() );
+        else 
+        {
+            Bundle bundle = FrameworkUtil.getBundle(klass);
+            String path = klass.getPackage().getName().replace( '.', '/' );
+            String filePattern = klass.getSimpleName() + "$*";
+            Enumeration<URL> urls = bundle.findEntries(path, filePattern, false);
+            return findEmbeddedClasses( urls, pattern );
+        }
+//        throw new IllegalStateException( "unsupported protocol " + classUrl.getProtocol() );
     }
+    
+    public List<ClassDescriptor> findEmbeddedClasses( Enumeration<URL> urls, String pattern )
+            throws MalformedURLException
+        {
+            String filePattern = "/" + pattern;
+            List<ClassDescriptor> descriptors = new ArrayList<ClassDescriptor>();
+            while (urls.hasMoreElements()) {
+                URL url = urls.nextElement();
+                if (url.getFile().matches(filePattern)){
+                    ClassDescriptor descriptor =
+                            new ClassDescriptor( url.getFile(), url );
+                        descriptors.add( descriptor );
+                }
+            }
+            return descriptors;
+        }
 
     public List<ClassDescriptor> findEmbeddedClasses( File file, String pattern )
         throws MalformedURLException
