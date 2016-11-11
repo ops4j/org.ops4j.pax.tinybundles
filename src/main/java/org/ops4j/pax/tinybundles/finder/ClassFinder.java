@@ -90,29 +90,40 @@ public class ClassFinder
         else 
         {
             Bundle bundle = FrameworkUtil.getBundle(klass);
-            String path = klass.getPackage().getName().replace( '.', '/' );
-            String filePattern = klass.getSimpleName() + "$*";
-            Enumeration<URL> urls = bundle.findEntries(path, filePattern, false);
-            return findEmbeddedClasses( urls, pattern );
+            if (bundle != null) {
+                String path = klass.getPackage().getName().replace('.', '/');
+                String filePattern = klass.getSimpleName() + "$*";
+                Enumeration<URL> urls = bundle.findEntries(path, filePattern, false);
+                if (urls != null)
+                {
+                    return findEmbeddedClasses(urls, pattern);
+                } else {
+                    return new ArrayList<ClassDescriptor>();
+                }
+            }
+            else
+            {
+                throw new IllegalArgumentException( "No bundle found for class " + klass + ". Unsupported woven or system package classes");
+            }
         }
 //        throw new IllegalStateException( "unsupported protocol " + classUrl.getProtocol() );
     }
     
     public List<ClassDescriptor> findEmbeddedClasses( Enumeration<URL> urls, String pattern )
             throws MalformedURLException
-        {
-            String filePattern = "/" + pattern;
-            List<ClassDescriptor> descriptors = new ArrayList<ClassDescriptor>();
-            while (urls.hasMoreElements()) {
-                URL url = urls.nextElement();
-                if (url.getFile().matches(filePattern)){
-                    ClassDescriptor descriptor =
-                            new ClassDescriptor( url.getFile(), url );
-                        descriptors.add( descriptor );
-                }
+    {
+        String filePattern = "/" + pattern;
+        List<ClassDescriptor> descriptors = new ArrayList<ClassDescriptor>();
+        while (urls.hasMoreElements()) {
+            URL url = urls.nextElement();
+            if (url.getFile().matches(filePattern)){
+                ClassDescriptor descriptor =
+                        new ClassDescriptor( url.getFile(), url );
+                    descriptors.add( descriptor );
             }
-            return descriptors;
         }
+        return descriptors;
+    }
 
     public List<ClassDescriptor> findEmbeddedClasses( File file, String pattern )
         throws MalformedURLException
