@@ -103,7 +103,7 @@ public abstract class BndTest {
         //calculated import + re-import
         assertEquals( HelloWorld.class.getPackage().getName() + ",org.osgi.framework", man.getMainAttributes().getValue( Constants.IMPORT_PACKAGE ) );
         // export:
-        assertEquals( HelloWorld.class.getPackage().getName(), man.getMainAttributes().getValue( Constants.EXPORT_PACKAGE ) );
+        assertEquals( HelloWorld.class.getPackage().getName() + ";version=\"0.0.0\"", man.getMainAttributes().getValue( Constants.EXPORT_PACKAGE ) );
         jout.close();
     }
 
@@ -129,7 +129,7 @@ public abstract class BndTest {
         //calculated import + re-import
         assertEquals( HelloWorld.class.getPackage().getName() + ",org.osgi.framework", man.getMainAttributes().getValue( Constants.IMPORT_PACKAGE ) );
         // export:
-        assertEquals( HelloWorld.class.getPackage().getName(), man.getMainAttributes().getValue( Constants.EXPORT_PACKAGE ) );
+        assertEquals( HelloWorld.class.getPackage().getName() + ";version=\"0.0.0\"", man.getMainAttributes().getValue( Constants.EXPORT_PACKAGE ) );
         System.out.println("Private: " + man.getMainAttributes().getValue("Private-Package"));
         System.out.println("Private: " + man.getMainAttributes().getValue("Bundle-Classpath"));
         ZipEntry entry ;
@@ -163,7 +163,7 @@ public abstract class BndTest {
         assertEquals( "property", man.getMainAttributes().getValue( "another" ) );
 
         // export
-        assertEquals( HelloWorld.class.getPackage().getName(), man.getMainAttributes().getValue( Constants.EXPORT_PACKAGE ) );
+        assertEquals( HelloWorld.class.getPackage().getName() + ";version=\"0.0.0\"", man.getMainAttributes().getValue( Constants.EXPORT_PACKAGE ) );
         // import should be re-calculated with new export
         assertEquals( HelloWorld.class.getPackage().getName() + ",org.osgi.framework", man.getMainAttributes().getValue( Constants.IMPORT_PACKAGE ) );
 

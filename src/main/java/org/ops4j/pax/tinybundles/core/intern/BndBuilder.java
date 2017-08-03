@@ -17,6 +17,7 @@
  */
 package org.ops4j.pax.tinybundles.core.intern;
 
+import aQute.bnd.osgi.Builder;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -92,7 +93,7 @@ public class BndBuilder implements BuildStrategy {
         final Properties properties = new Properties();
         properties.putAll( instructions );
 
-        final Analyzer analyzer = new Analyzer();
+        final Builder analyzer = new Builder();
         analyzer.setJar( jar );
         analyzer.setProperties( properties );
 
