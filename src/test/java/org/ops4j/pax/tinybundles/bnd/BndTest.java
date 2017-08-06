@@ -154,6 +154,7 @@ public abstract class BndTest {
         // Add an export:
         InputStream inp2 = bundle(  ).read( inp1 )
             .set( Constants.EXPORT_PACKAGE, HelloWorld.class.getPackage().getName() )
+            .set( Constants.IMPORT_PACKAGE, "*" )
             .set( "another", "property" )
             .build(getStrategy());
 

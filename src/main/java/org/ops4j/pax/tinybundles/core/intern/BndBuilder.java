@@ -165,19 +165,6 @@ public class BndBuilder implements BuildStrategy {
                                            final Jar jar,
                                            final String symbolicName )
     {
-        final String importPackage = analyzer.getProperty( Analyzer.IMPORT_PACKAGE );
-
-        // imports must be generated for sure. Thats why we use BND at all.
-
-        //if( importPackage == null || importPackage.trim().length() == 0 ) {
-        analyzer.setProperty( Analyzer.IMPORT_PACKAGE, "*" );
-        // }
-
-        // automatic export:
-        final String exportPackage = analyzer.getProperty( Analyzer.EXPORT_PACKAGE );
-        if( exportPackage == null || exportPackage.trim().length() == 0 ) {
-            //  analyzer.setProperty( Analyzer.EXPORT_PACKAGE, analyzer.calculateExportsFromContents( jar ) );
-        }
         final String localSymbolicName = analyzer.getProperty( Analyzer.BUNDLE_SYMBOLICNAME, symbolicName );
         analyzer.setProperty( Analyzer.BUNDLE_SYMBOLICNAME, generateSymbolicName( localSymbolicName ) );
     }
