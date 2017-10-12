@@ -38,7 +38,6 @@ import org.ops4j.pax.tinybundles.core.BuildStrategy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import aQute.bnd.component.DSAnnotations;
 import aQute.bnd.osgi.Analyzer;
 import aQute.bnd.osgi.Jar;
 
@@ -57,7 +56,6 @@ public class BndBuilder implements BuildStrategy {
     {
         m_builder = builder;
         plugins = new HashSet<Object>();
-        //plugins.add(new DSAnnotations());
     }
     
     public BndBuilder addPlugin(Object plugin) {
