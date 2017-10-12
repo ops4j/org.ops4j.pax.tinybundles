@@ -31,6 +31,7 @@ import org.junit.Test;
 import org.ops4j.pax.tinybundles.core.BuildStrategy;
 import org.ops4j.pax.tinybundles.core.intern.Info;
 import org.ops4j.pax.tinybundles.demo.HelloWorld;
+import org.ops4j.pax.tinybundles.demo.ds.DsService;
 import org.ops4j.pax.tinybundles.demo.intern.HelloWorldImpl;
 import org.ops4j.pax.tinybundles.demo.intern.MyFirstActivator;
 import org.osgi.framework.Constants;
@@ -62,6 +63,20 @@ public abstract class BndTest {
         jout.close();
     }
 
+    @Test
+    public void bndDeclarativeServices()
+        throws IOException
+    {
+        InputStream inp = bundle( ).add(DsService.class).build( getStrategy() );
+
+        // test output
+        JarInputStream jout = new JarInputStream( inp );
+        Manifest man = jout.getManifest();
+        assertEquals( "OSGI-INF/org.ops4j.pax.tinybundles.demo.ds.DsService.xml", man.getMainAttributes().getValue( "Service-Component" ) );
+
+        jout.close();
+    }
+    
     @Test
     public void createTestAllDefault()
         throws IOException
