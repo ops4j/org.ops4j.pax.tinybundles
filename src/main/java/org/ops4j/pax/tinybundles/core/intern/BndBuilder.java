@@ -26,8 +26,10 @@ import java.io.InputStream;
 import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
 import java.net.URL;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
 import java.util.jar.Manifest;
 
 import org.ops4j.io.StreamUtils;
@@ -36,6 +38,7 @@ import org.ops4j.pax.tinybundles.core.BuildStrategy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import aQute.bnd.component.DSAnnotations;
 import aQute.bnd.osgi.Analyzer;
 import aQute.bnd.osgi.Jar;
 
@@ -48,10 +51,18 @@ public class BndBuilder implements BuildStrategy {
     private static Logger LOG = LoggerFactory.getLogger( BndBuilder.class );
 
     final private BuildStrategy m_builder;
+    final private Set<Object> plugins;
 
     public BndBuilder( BuildStrategy builder )
     {
         m_builder = builder;
+        plugins = new HashSet<Object>();
+        //plugins.add(new DSAnnotations());
+    }
+    
+    public BndBuilder addPlugin(Object plugin) {
+    		plugins.add(plugin);
+    		return this;
     }
 
     public InputStream build( Map<String, URL> resources, Map<String, String> headers )
@@ -96,6 +107,10 @@ public class BndBuilder implements BuildStrategy {
         final Builder analyzer = new Builder();
         analyzer.setJar( jar );
         analyzer.setProperties( properties );
+        
+        for (Object plugin : plugins) {
+        		analyzer.addBasicPlugin(plugin);
+		}
 
         // throw away already existing headers that we overwrite:
 

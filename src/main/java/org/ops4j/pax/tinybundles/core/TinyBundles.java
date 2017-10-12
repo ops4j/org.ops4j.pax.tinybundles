@@ -76,7 +76,7 @@ public class TinyBundles {
     /**
      * @return a strategy to be used with {@link TinyBundle#build(BuildStrategy)} using BND with default strategy.
      */
-    public static BuildStrategy withBnd()
+    public static BndBuilder withBnd()
     {
         return new BndBuilder( withClassicBuilder() );
     }
