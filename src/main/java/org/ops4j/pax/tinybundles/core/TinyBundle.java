@@ -64,6 +64,20 @@ public interface TinyBundle {
      * @param content
      */
     TinyBundle add( Class<?> content, InnerClassStrategy strategy );
+    
+    /**
+     * Add a class to the current bundle and set it as Activator
+     *
+     * @param content
+     */
+    TinyBundle activator(Class<?> activator);
+    
+    /**
+     * Set symbolic name of bundle
+     * 
+     * @param name
+     */
+    TinyBundle symbolicName(String name);
 
     /**
      * remove a class to the current bundle.

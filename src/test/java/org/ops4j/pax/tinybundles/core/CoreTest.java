@@ -94,6 +94,19 @@ public abstract class CoreTest {
     }
 
     @Test
+    public void testActivatorAndSymbolicName()
+        throws IOException
+    {
+        InputStream bundle = bundle()
+                .symbolicName("my")
+                .activator(MyFirstActivator.class)
+                .build( getStrategy() );
+        Manifest man = getBundleManifest( bundle );
+        assertEquals( "my", man.getMainAttributes().getValue( Constants.BUNDLE_SYMBOLICNAME ) );
+        assertEquals( MyFirstActivator.class.getName(), man.getMainAttributes().getValue( Constants.BUNDLE_ACTIVATOR ) );
+    }
+    
+    @Test
     public void testDefaultPropertiesAreSetCorrectly()
         throws IOException
     {

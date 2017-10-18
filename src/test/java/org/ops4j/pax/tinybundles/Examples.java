@@ -26,6 +26,18 @@ public class Examples {
             .set( Constants.BUNDLE_ACTIVATOR, MyFirstActivator.class.getName() )
             .build( );
     }
+    
+    @Test
+    public void testExampleActivator() {
+        InputStream inp = bundle()
+            .activator(MyFirstActivator.class )
+            .add( HelloWorld.class )
+            .add( HelloWorldImpl.class )
+            .symbolicName("Hello World Bundle" )
+            .set( Constants.EXPORT_PACKAGE, "demo" )
+            .set( Constants.IMPORT_PACKAGE, "demo" )
+            .build( );
+    }
 
     @Test
     public void testExampleWithExplicitBuilder() {

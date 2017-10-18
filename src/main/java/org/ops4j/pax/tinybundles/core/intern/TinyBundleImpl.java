@@ -37,6 +37,7 @@ import org.ops4j.pax.tinybundles.core.TinyBundle;
 import org.ops4j.pax.tinybundles.finder.ClassDescriptor;
 import org.ops4j.pax.tinybundles.finder.ClassFinder;
 import org.ops4j.store.Store;
+import org.osgi.framework.Constants;
 
 /**
  * Our default implementation of TinyBundle.
@@ -144,6 +145,23 @@ public class TinyBundleImpl implements TinyBundle {
     /**
      * {@inheritDoc}
      */
+    public TinyBundle activator(Class<?> activator) {
+        this.add(activator);
+        this.set(Constants.BUNDLE_ACTIVATOR, activator.getName());
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public TinyBundle symbolicName(String name) {
+        this.set(Constants.BUNDLE_SYMBOLICNAME, name);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public TinyBundle remove( Class<?> content )
     {
         String name = ClassFinder.asResource( content );
@@ -222,4 +240,5 @@ public class TinyBundleImpl implements TinyBundle {
     {
         return m_headers.get( key );
     }
+
 }
