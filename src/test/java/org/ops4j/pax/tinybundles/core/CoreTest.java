@@ -48,14 +48,12 @@ import org.osgi.framework.Constants;
  * @author Toni Menzel (tonit)
  * @since Apr 9, 2009
  */
-public abstract class CoreTest {
+public class CoreTest {
 
     private static final String HEADER_CREATED_BY = "Created-By";
     private static final String HEADER_TOOL = "Tool";
     private static final String HEADER_TINYBUNDLES_VERSION = "TinybundlesVersion";
     private static final String HEADER_BUILT_BY = "Built-By";
-
-    abstract BuildStrategy getStrategy();
 
     @Test
     public void testCreatingMultipleBundles()
@@ -81,7 +79,7 @@ public abstract class CoreTest {
             .set( Constants.EXPORT_PACKAGE, "demo" )
             .set( Constants.IMPORT_PACKAGE, "demo" )
             .set( Constants.BUNDLE_ACTIVATOR, MyFirstActivator.class.getName() )
-            .build( getStrategy() );
+            .build();
     }
 
     private static void assertManifestAttributes( InputStream inp, String caption )
@@ -100,7 +98,7 @@ public abstract class CoreTest {
         InputStream bundle = bundle()
                 .symbolicName("my")
                 .activator(MyFirstActivator.class)
-                .build( getStrategy() );
+                .build();
         Manifest man = getBundleManifest( bundle );
         assertEquals( "my", man.getMainAttributes().getValue( Constants.BUNDLE_SYMBOLICNAME ) );
         assertEquals( MyFirstActivator.class.getName(), man.getMainAttributes().getValue( Constants.BUNDLE_ACTIVATOR ) );
@@ -110,7 +108,7 @@ public abstract class CoreTest {
     public void testDefaultPropertiesAreSetCorrectly()
         throws IOException
     {
-        Manifest man = getBundleManifest( bundle().build( getStrategy() ) );
+        Manifest man = getBundleManifest( bundle().build() );
         assertEquals( "Header " + HEADER_CREATED_BY, "pax-tinybundles-" + Info.getPaxTinybundlesVersion(), man.getMainAttributes().getValue( HEADER_CREATED_BY ) );
         assertEquals( "Header " + HEADER_TOOL, "pax-tinybundles-" + Info.getPaxTinybundlesVersion(), man.getMainAttributes().getValue( HEADER_TOOL ) );
         assertEquals( "Header " + HEADER_TINYBUNDLES_VERSION, "pax-tinybundles-" + Info.getPaxTinybundlesVersion(), man.getMainAttributes().getValue( HEADER_TINYBUNDLES_VERSION ) );
@@ -130,12 +128,12 @@ public abstract class CoreTest {
             .set( Constants.EXPORT_PACKAGE, "demo" )
             .set( Constants.IMPORT_PACKAGE, "demo" )
             .set( Constants.BUNDLE_ACTIVATOR, MyFirstActivator.class.getName() )
-            .build( getStrategy() );
+            .build();
 
         // create a new bundle from the original and modify it
         InputStream modifiedBundle = bundle().read( originalBundle )
             .set( Constants.EXPORT_PACKAGE, "bacon" )
-            .build( getStrategy() );
+            .build();
 
         Manifest modifiedMan = getBundleManifest(modifiedBundle);
         assertEquals( "demo", modifiedMan.getMainAttributes().getValue( Constants.IMPORT_PACKAGE ) );

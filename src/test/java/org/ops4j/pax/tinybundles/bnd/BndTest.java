@@ -29,6 +29,7 @@ import java.util.zip.ZipEntry;
 
 import org.junit.Test;
 import org.ops4j.pax.tinybundles.core.BuildStrategy;
+import org.ops4j.pax.tinybundles.core.TinyBundles;
 import org.ops4j.pax.tinybundles.core.intern.Info;
 import org.ops4j.pax.tinybundles.demo.HelloWorld;
 import org.ops4j.pax.tinybundles.demo.ds.DsService;
@@ -40,9 +41,11 @@ import org.osgi.framework.Constants;
  * @author Toni Menzel (tonit)
  * @since Apr 20, 2009
  */
-public abstract class BndTest {
+public class BndTest {
 
-    abstract BuildStrategy getStrategy();
+    BuildStrategy getStrategy() {
+        return TinyBundles.withBnd();
+    }
 
     /**
      * Make sure BND independent headers are not affected by bnds activity.
