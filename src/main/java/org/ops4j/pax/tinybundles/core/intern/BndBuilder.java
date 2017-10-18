@@ -107,8 +107,8 @@ public class BndBuilder implements BuildStrategy {
         analyzer.setProperties( properties );
         
         for (Object plugin : plugins) {
-        		analyzer.addBasicPlugin(plugin);
-		}
+            analyzer.addBasicPlugin(plugin);
+        }
 
         // throw away already existing headers that we overwrite:
 

@@ -27,7 +27,7 @@ package org.ops4j.pax.tinybundles.core;
  *
  */
 public enum InnerClassStrategy {
-	
-	NONE, ALL, ANONYMOUS
+
+    NONE, ALL, ANONYMOUS
 
 }

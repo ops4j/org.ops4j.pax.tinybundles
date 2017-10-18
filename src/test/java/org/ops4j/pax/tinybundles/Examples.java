@@ -12,8 +12,9 @@ import static org.ops4j.pax.tinybundles.core.TinyBundles.*;
 /**
  * Simple examples that showcase the regular usage of Tinybundles.
  */
+@SuppressWarnings("unused")
 public class Examples {
-
+    
     @Test
     public void testExampleSimple() {
         InputStream inp = bundle()

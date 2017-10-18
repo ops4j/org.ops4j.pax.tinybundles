@@ -52,6 +52,7 @@ public class ClassFinder
         return findAllEmbeddedClasses( klass, resourcePrefix );
     }
 
+    @SuppressWarnings("unchecked")
     public Collection<ClassDescriptor> findAllEmbeddedClasses( Class<?> klass, String pattern )
         throws IOException
     {

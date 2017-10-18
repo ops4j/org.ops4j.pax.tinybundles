@@ -61,9 +61,9 @@ public class CoreTest {
     {
             for( int i = 0; i < 100; i++ ) {
             String symbolicName = "bundle_" + i;
-			assertManifestAttributes(
-					createTestBundle( symbolicName ), 
-					symbolicName );
+            assertManifestAttributes(
+                    createTestBundle( symbolicName ), 
+                    symbolicName );
 
         }
     }
@@ -199,10 +199,10 @@ public class CoreTest {
     }
 
     private static Manifest getBundleManifest(InputStream bundle) throws IOException {
-    	JarInputStream jarInputStream = new JarInputStream( bundle );
-		Manifest manifest = jarInputStream.getManifest();
-		jarInputStream.close();
-		return manifest;
+        JarInputStream jarInputStream = new JarInputStream( bundle );
+        Manifest manifest = jarInputStream.getManifest();
+        jarInputStream.close();
+        return manifest;
     }
 
 }
