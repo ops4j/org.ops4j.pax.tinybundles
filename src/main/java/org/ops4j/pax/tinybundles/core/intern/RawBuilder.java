@@ -19,6 +19,7 @@ package org.ops4j.pax.tinybundles.core.intern;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URL;
 import java.util.Map;
 import java.util.Set;
@@ -27,7 +28,6 @@ import java.util.jar.JarOutputStream;
 import java.util.jar.Manifest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.ops4j.io.StreamUtils;
 import org.ops4j.pax.tinybundles.core.BuildStrategy;
 
 /**
@@ -59,8 +59,16 @@ public abstract class RawBuilder implements BuildStrategy {
             LOG.debug( "Copying resource " + entry.getName() );
             jarOut.putNextEntry( entry );
             InputStream inp = entryset.getValue().openStream();
-            StreamUtils.copyStream( inp, jarOut, false );
+            copy( inp, jarOut);
             inp.close();
+        }
+    }
+    
+    private void copy(InputStream source, OutputStream sink) throws IOException {
+        byte[] buf = new byte[1024];
+        int n;
+        while ((n = source.read(buf)) > 0) {
+            sink.write(buf, 0, n);
         }
     }
 

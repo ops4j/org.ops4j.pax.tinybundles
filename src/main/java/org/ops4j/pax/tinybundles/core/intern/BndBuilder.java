@@ -17,28 +17,28 @@
  */
 package org.ops4j.pax.tinybundles.core.intern;
 
-import aQute.bnd.osgi.Builder;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Properties;
 import java.util.Set;
 import java.util.jar.Manifest;
 
-import org.ops4j.io.StreamUtils;
-import org.ops4j.lang.NullArgumentException;
 import org.ops4j.pax.tinybundles.core.BuildStrategy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import aQute.bnd.osgi.Analyzer;
+import aQute.bnd.osgi.Builder;
 import aQute.bnd.osgi.Jar;
 
 /**
@@ -93,9 +93,9 @@ public class BndBuilder implements BuildStrategy {
     private InputStream createBundle( InputStream jarInputStream, Properties instructions, String symbolicName )
         throws Exception
     {
-        NullArgumentException.validateNotNull( jarInputStream, "Jar URL" );
-        NullArgumentException.validateNotNull( instructions, "Instructions" );
-        NullArgumentException.validateNotEmpty( symbolicName, "Jar info" );
+        Objects.requireNonNull( jarInputStream, "Jar URL" );
+        Objects.requireNonNull( instructions, "Instructions" );
+        Objects.requireNonNull( symbolicName, "Jar info" );
 
         final Jar jar = new Jar( "dot", sink( jarInputStream ) );
 
@@ -126,8 +126,7 @@ public class BndBuilder implements BuildStrategy {
     {
         File f = File.createTempFile( "mylitte","jar" );
         LOG.debug("Write: " + f.getAbsolutePath());
-        FileOutputStream fout = new FileOutputStream( f );
-        StreamUtils.copyStream( in, fout, true );
+        Files.copy( in, f.toPath(), StandardCopyOption.REPLACE_EXISTING);
         return new FileInputStream( f );
     }
 

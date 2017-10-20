@@ -20,7 +20,6 @@ package org.ops4j.pax.tinybundles.core;
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.ops4j.lang.Ops4jException;
 import org.ops4j.pax.tinybundles.core.intern.AsyncRawBuilder;
 import org.ops4j.pax.tinybundles.core.intern.BndBuilder;
 import org.ops4j.pax.tinybundles.core.intern.TinyBundleImpl;
@@ -107,7 +106,7 @@ public class TinyBundles {
         }
         catch( IOException e ) 
         {
-            throw new Ops4jException( e );
+            throw new RuntimeException("Error creating Store", e );
         }            
     }
 }

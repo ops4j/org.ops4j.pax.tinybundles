@@ -30,7 +30,6 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
 import java.util.jar.Manifest;
 
-import org.ops4j.lang.Ops4jException;
 import org.ops4j.pax.tinybundles.core.BuildStrategy;
 import org.ops4j.pax.tinybundles.core.InnerClassStrategy;
 import org.ops4j.pax.tinybundles.core.TinyBundle;
@@ -136,7 +135,7 @@ public class TinyBundleImpl implements TinyBundle {
         }
         }
         catch (IOException exc) {
-            throw new Ops4jException(exc);
+            throw new RuntimeException(exc);
         }
         for( ClassDescriptor descriptor : embeddedClasses ) {
             m_resources.put( descriptor.getResourcePath(), descriptor.getUrl() );
