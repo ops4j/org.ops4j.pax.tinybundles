@@ -72,11 +72,15 @@ public class TinyBundleImpl implements TinyBundle {
                 // TODO: reading out just main headers will remove the other parts. Fix this with
                 // TODO change m_headers to type Manifest natively.
                 Manifest manifest = jarOut.getManifest();
-                Attributes att = manifest.getMainAttributes();
-                for( Object o : att.keySet() ) {
-                    String k = o.toString();
-                    String v = att.getValue( k );
-                    set( k, v );
+                if (manifest != null)
+                {
+                    Attributes att = manifest.getMainAttributes();
+                    for ( Object o : att.keySet() )
+                    {
+                        String k = o.toString();
+                        String v = att.getValue( k );
+                        set( k, v );
+                    }
                 }
 
                 // 3. read data
