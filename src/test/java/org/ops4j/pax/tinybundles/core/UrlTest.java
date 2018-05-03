@@ -25,6 +25,7 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.Paths;
 
 import org.junit.Test;
 
@@ -39,6 +40,7 @@ public class UrlTest
     {
         String urlString = "file:/home/hwellmann/My%20Documents/doc.txt";
         URL url = new URL( urlString );
-        assertThat( new File( url.toURI() ).toString(), is( "/home/hwellmann/My Documents/doc.txt" ) );
+
+        assertThat( new File( url.toURI() ).toString(), is( Paths.get("/home/hwellmann/My Documents/doc.txt" ).toString()) );
     }
 }
