@@ -22,12 +22,17 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.ops4j.pax.tinybundles.core.TinyBundles.bundle;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Map;
 import java.util.jar.Attributes;
 import java.util.jar.JarInputStream;
+import java.util.jar.JarOutputStream;
 import java.util.jar.Manifest;
 
 import org.junit.Test;
@@ -91,6 +96,19 @@ public class CoreTest {
         assertEquals( caption, attrs.getValue( Constants.BUNDLE_SYMBOLICNAME ) );
     }
 
+    @Test
+    public void testReadBundleWithoutManifestDoesNotThrowException() throws Exception {
+    	File file = File.createTempFile("test", ".jar");
+		createEmptyJar(file);
+		TinyBundles.bundle().read(new FileInputStream(file));
+    }
+
+	private void createEmptyJar(File file) throws FileNotFoundException, IOException {
+		FileOutputStream out = new FileOutputStream(file);
+    	JarOutputStream jarOut = new JarOutputStream(out);
+    	jarOut.close();
+	}
+    
     @Test
     public void testActivatorAndSymbolicName()
         throws IOException
