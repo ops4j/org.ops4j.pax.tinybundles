@@ -17,15 +17,11 @@
  */
 package org.ops4j.pax.tinybundles.core.intern;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
@@ -97,7 +93,7 @@ public class BndBuilder implements BuildStrategy {
         Objects.requireNonNull( instructions, "Instructions" );
         Objects.requireNonNull( symbolicName, "Jar info" );
 
-        final Jar jar = new Jar( "dot", sink( jarInputStream ) );
+        final Jar jar = new Jar( "dot", jarInputStream );
 
         final Properties properties = new Properties();
         properties.putAll( instructions );
@@ -119,15 +115,6 @@ public class BndBuilder implements BuildStrategy {
         jar.setManifest( manifest );
 
         return createInputStream( jar );
-    }
-
-    private InputStream sink( InputStream in )
-        throws IOException
-    {
-        File f = File.createTempFile( "mylitte","jar" );
-        LOG.debug("Write: " + f.getAbsolutePath());
-        Files.copy( in, f.toPath(), StandardCopyOption.REPLACE_EXISTING);
-        return new FileInputStream( f );
     }
 
     /**

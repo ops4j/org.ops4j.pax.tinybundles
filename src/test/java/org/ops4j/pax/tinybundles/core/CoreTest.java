@@ -99,6 +99,7 @@ public class CoreTest {
     @Test
     public void testReadBundleWithoutManifestDoesNotThrowException() throws Exception {
     	File file = File.createTempFile("test", ".jar");
+    	file.deleteOnExit();
 		createEmptyJar(file);
 		TinyBundles.bundle().read(new FileInputStream(file));
     }
