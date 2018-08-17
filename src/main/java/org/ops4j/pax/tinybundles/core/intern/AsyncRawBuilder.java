@@ -38,34 +38,39 @@ public class AsyncRawBuilder extends RawBuilder {
                              final Map<String, String> headers )
     {
         LOG.debug( "make()" );
-        final PipedInputStream pin = new PipedInputStream();
         try {
-            final PipedOutputStream pout = new PipedOutputStream( pin );
-            final JarOutputStream jarOut = new JarOutputStream( pout );
-
-            new Thread() {
-                @Override
-                public void run()
-                {
-                    try {
-                        build( resources, headers, jarOut );
-                    } catch( IOException e ) {
-                       // Someone may close this one before stuff has been flushed.
-                    } finally {
-                        try {
-                            jarOut.close();
-                        }catch(IOException e) {
-                         //   LOG.warn( "Close ?",e );
-                        }
-                        LOG.trace( "Copy thread finished." );
-                    }
-                }
-            }.start();
-        } catch( IOException e ) {
-            LOG.error( "Problem..", e );
-        }
-
-        return ( pin );
+        	final PipedInputStream pin = new PipedInputStream();
+			final PipedOutputStream pout = new PipedOutputStream( pin );
+			new Thread() {
+				public void run()
+				{
+					buildFrom(resources, headers, pout);
+				}
+			}.start();
+			return pin;
+		} catch (IOException e) {
+			throw new RuntimeException("Error opening pipe.", e);
+		}
     }
+    
+	private void buildFrom(
+			final Map<String, URL> resources, 
+			final Map<String, String> headers,
+			final PipedOutputStream pout )
+	{
+		try (
+			JarOutputStream jarOut = new JarOutputStream( pout )
+		)
+		{
+			build( resources, headers, jarOut );
+		} catch( IOException e ) {
+			if (!"Pipe closed".equals(e.getMessage()))
+			{
+				LOG.error( "Problem while writing jar.", e );
+			}
+		} finally {
+			LOG.trace( "Copy thread finished." );
+		}
+	}
 
 }

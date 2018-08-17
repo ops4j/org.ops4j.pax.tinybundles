@@ -58,9 +58,10 @@ public abstract class RawBuilder implements BuildStrategy {
             entry = new JarEntry( entryset.getKey() );
             LOG.debug( "Copying resource " + entry.getName() );
             jarOut.putNextEntry( entry );
-            InputStream inp = entryset.getValue().openStream();
-            copy( inp, jarOut);
-            inp.close();
+            try (InputStream inp = entryset.getValue().openStream()) 
+            {
+            	copy( inp, jarOut);
+            }
         }
     }
     

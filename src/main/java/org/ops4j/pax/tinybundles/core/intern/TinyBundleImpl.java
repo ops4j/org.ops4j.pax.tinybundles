@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.jar.Attributes;
@@ -62,40 +63,40 @@ public class TinyBundleImpl implements TinyBundle {
      */
     public TinyBundle read( InputStream in, boolean readData )
     {
-        if( in != null ) {
-            try {
-                // 1. store to disk
-
-                JarInputStream jarOut = new JarInputStream( in );
-                // 2. read meta data and wire with this.
-                // TODO: reading out just main headers will remove the other parts. Fix this with
-                // TODO change m_headers to type Manifest natively.
-                Manifest manifest = jarOut.getManifest();
-                if (manifest != null)
-                {
-                    Attributes att = manifest.getMainAttributes();
-                    for ( Object o : att.keySet() )
-                    {
-                        String k = o.toString();
-                        String v = att.getValue( k );
-                        set( k, v );
-                    }
-                }
-
-                // 3. read data
-                if( readData ) {
-                    JarEntry entry = null;
-                    while( ( entry = jarOut.getNextJarEntry() ) != null ) {
-                        add( entry.getName(), jarOut );
-                    }
-                }
-                // done.
-            } catch( IOException e ) {
-                throw new RuntimeException( "Problem loading bundle.", e );
-            }
-        }
+    	if( in != null )
+    	{
+    		try (JarInputStream jarIn = new JarInputStream( in ))
+    		{
+    			addManifestAttribs(jarIn);
+    			if( readData )
+    			{
+    				addContents(jarIn);
+    			}
+    		} catch( IOException e ) {
+    			throw new RuntimeException( "Problem loading bundle.", e );
+    		}
+    	}
         return this;
     }
+
+	private void addManifestAttribs(JarInputStream jarIn) {
+    	// TODO: reading out just main headers will remove the other parts. Fix this with
+    	// TODO change m_headers to type Manifest natively.
+		Manifest manifest = jarIn.getManifest();
+		Attributes att = manifest.getMainAttributes();
+		for( Object o : att.keySet() ) {
+			String k = o.toString();
+			String v = att.getValue( k );
+			set( k, v );
+		}
+	}
+
+	private void addContents(JarInputStream jarIn) throws IOException {
+		JarEntry entry = null;
+		while( ( entry = jarIn.getNextJarEntry() ) != null ) {
+			add( entry.getName(), jarIn );
+		}
+	}
 
     public TinyBundle read( InputStream in )
     {
@@ -121,29 +122,30 @@ public class TinyBundleImpl implements TinyBundle {
         }
         add( name, resource );
 
-        Collection<ClassDescriptor> embeddedClasses;
-        try {
-        ClassFinder finder = new ClassFinder();
-        if( strategy == InnerClassStrategy.ALL ) {
-            embeddedClasses = finder.findAllEmbeddedClasses( clazz );
+        Collection<ClassDescriptor> innerClasses = findInnerClasses(clazz, strategy);
+        for( ClassDescriptor descriptor : innerClasses ) {
+        	m_resources.put( descriptor.getResourcePath(), descriptor.getUrl() );
         }
-        else if( strategy == InnerClassStrategy.ANONYMOUS ) {
-            embeddedClasses = finder.findAnonymousClasses( clazz );
-        }
-        else {
-            return this;
-        }
-        }
-        catch (IOException exc) {
-            throw new RuntimeException(exc);
-        }
-        for( ClassDescriptor descriptor : embeddedClasses ) {
-            m_resources.put( descriptor.getResourcePath(), descriptor.getUrl() );
-        }
-
         return this;
     }
-    
+
+	private Collection<ClassDescriptor> findInnerClasses(Class<?> clazz, InnerClassStrategy strategy) {
+		try {
+			ClassFinder finder = new ClassFinder();
+			if (strategy == InnerClassStrategy.NONE) {
+				return Collections.emptyList();
+			} else if (strategy == InnerClassStrategy.ALL ) {
+				return finder.findAllEmbeddedClasses( clazz );
+			} else if (strategy == InnerClassStrategy.ANONYMOUS ) {
+				return finder.findAnonymousClasses( clazz );
+			} else {
+				throw new IllegalArgumentException("Unsupported strategy" + strategy);
+			}
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
 
     /**
      * {@inheritDoc}
