@@ -49,23 +49,30 @@ public abstract class RawBuilder implements BuildStrategy {
     protected void build( Map<String, URL> resources, Map<String, String> headers, JarOutputStream jarOut )
         throws IOException
     {
-        JarEntry entry = new JarEntry( ENTRY_MANIFEST );
-        jarOut.putNextEntry( entry );
-        getManifest( headers.entrySet() ).write( jarOut );
-        jarOut.closeEntry();
-
-        for( Map.Entry<String, URL> entryset : resources.entrySet() ) {
-            entry = new JarEntry( entryset.getKey() );
-            LOG.debug( "Copying resource " + entry.getName() );
-            jarOut.putNextEntry( entry );
-            try (InputStream inp = entryset.getValue().openStream()) 
-            {
-            	copy( inp, jarOut);
-            }
+		addManifest(headers, jarOut);
+        for( Map.Entry<String, URL> entry : resources.entrySet() ) {
+        	addResource(jarOut, entry);
         }
     }
-    
-    private void copy(InputStream source, OutputStream sink) throws IOException {
+
+	private void addManifest(Map<String, String> headers, JarOutputStream jarOut) throws IOException {
+		JarEntry entry = new JarEntry( ENTRY_MANIFEST );
+	    jarOut.putNextEntry( entry );
+	    getManifest( headers.entrySet() ).write( jarOut );
+	    jarOut.closeEntry();
+	}
+
+	private void addResource(JarOutputStream jarOut, Map.Entry<String, URL> entryset) throws IOException {
+		JarEntry  entry = new JarEntry( entryset.getKey() );
+		LOG.debug( "Copying resource " + entry.getName() );
+		jarOut.putNextEntry( entry );
+		try (InputStream inp = entryset.getValue().openStream()) 
+		{
+			copy( inp, jarOut);
+		}
+	}
+
+	private void copy(InputStream source, OutputStream sink) throws IOException {
         byte[] buf = new byte[1024];
         int n;
         while ((n = source.read(buf)) > 0) {
