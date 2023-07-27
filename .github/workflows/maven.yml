@@ -16,5 +16,6 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-java@v3
         with:
+          distribution: 'temurin'
           java-version: ${{ matrix.java-version }}
       - run: mvn -B package --no-transfer-progress --file pom.xml
