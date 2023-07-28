@@ -29,13 +29,12 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.jar.Manifest;
 
-import org.ops4j.pax.tinybundles.core.BuildStrategy;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import aQute.bnd.osgi.Analyzer;
 import aQute.bnd.osgi.Builder;
 import aQute.bnd.osgi.Jar;
+import org.ops4j.pax.tinybundles.core.BuildStrategy;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author Toni Menzel (tonit)
@@ -43,35 +42,32 @@ import aQute.bnd.osgi.Jar;
  */
 public class BndBuilder implements BuildStrategy {
 
-    private static Logger LOG = LoggerFactory.getLogger( BndBuilder.class );
+    private static Logger LOG = LoggerFactory.getLogger(BndBuilder.class);
 
     final private BuildStrategy m_builder;
     final private Set<Object> plugins;
 
-    public BndBuilder( BuildStrategy builder )
-    {
+    public BndBuilder(BuildStrategy builder) {
         m_builder = builder;
         plugins = new HashSet<Object>();
     }
-    
+
     public BndBuilder addPlugin(Object plugin) {
-    		plugins.add(plugin);
-    		return this;
+        plugins.add(plugin);
+        return this;
     }
 
-    public InputStream build( Map<String, URL> resources, Map<String, String> headers )
-    {
-        return wrapWithBnd( headers, m_builder.build( resources, headers ) );
+    public InputStream build(Map<String, URL> resources, Map<String, String> headers) {
+        return wrapWithBnd(headers, m_builder.build(resources, headers));
     }
 
-    private InputStream wrapWithBnd( Map<String, String> headers, InputStream in )
-    {
+    private InputStream wrapWithBnd(Map<String, String> headers, InputStream in) {
         try {
             Properties p = new Properties();
-            p.putAll( headers );
-            return createBundle( in, p, "BuildByTinyBundles" + UIDProvider.getUID() );
-        } catch( Exception e ) {
-            throw new RuntimeException( e );
+            p.putAll(headers);
+            return createBundle(in, p, "BuildByTinyBundles" + UIDProvider.getUID());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -81,40 +77,37 @@ public class BndBuilder implements BuildStrategy {
      * @param jarInputStream On what to operate.
      * @param instructions   BND instructions from user API
      * @param symbolicName   Mandatory Header. In case user does not set it.
-     *
      * @return Bundle Jar Stream
-     *
      * @throws Exception Problems go here
      */
-    private InputStream createBundle( InputStream jarInputStream, Properties instructions, String symbolicName )
-        throws Exception
-    {
-        Objects.requireNonNull( jarInputStream, "Jar URL" );
-        Objects.requireNonNull( instructions, "Instructions" );
-        Objects.requireNonNull( symbolicName, "Jar info" );
+    private InputStream createBundle(InputStream jarInputStream, Properties instructions, String symbolicName)
+        throws Exception {
+        Objects.requireNonNull(jarInputStream, "Jar URL");
+        Objects.requireNonNull(instructions, "Instructions");
+        Objects.requireNonNull(symbolicName, "Jar info");
 
-        final Jar jar = new Jar( "dot", jarInputStream );
+        final Jar jar = new Jar("dot", jarInputStream);
 
         final Properties properties = new Properties();
-        properties.putAll( instructions );
+        properties.putAll(instructions);
 
         final Builder analyzer = new Builder();
-        analyzer.setJar( jar );
-        analyzer.setProperties( properties );
-        
+        analyzer.setJar(jar);
+        analyzer.setProperties(properties);
+
         for (Object plugin : plugins) {
             analyzer.addBasicPlugin(plugin);
         }
 
         // throw away already existing headers that we overwrite:
 
-        analyzer.mergeManifest( jar.getManifest() );
+        analyzer.mergeManifest(jar.getManifest());
 
-        checkMandatoryProperties( analyzer, jar, symbolicName );
+        checkMandatoryProperties(analyzer, jar, symbolicName);
         Manifest manifest = analyzer.calcManifest();
-        jar.setManifest( manifest );
+        jar.setManifest(manifest);
 
-        return createInputStream( jar );
+        return createInputStream(jar);
     }
 
     /**
@@ -122,29 +115,24 @@ public class BndBuilder implements BuildStrategy {
      * This is done in a thread so we can return quickly.
      *
      * @param jar the wrapped jar
-     *
      * @return an input stream for the wrapped jar
-     *
      * @throws java.io.IOException re-thrown
      */
-    private PipedInputStream createInputStream( final Jar jar )
-        throws IOException
-    {
+    private PipedInputStream createInputStream(final Jar jar) throws IOException {
         final PipedInputStream pin = new PipedInputStream();
-        final PipedOutputStream pout = new PipedOutputStream( pin );
+        final PipedOutputStream pout = new PipedOutputStream(pin);
 
         new Thread() {
-            public void run()
-            {
+            public void run() {
                 try {
-                    jar.write( pout );
-                } catch( Exception e ) {
-                //    LOG.warn( "Bundle cannot be generated",e );
+                    jar.write(pout);
+                } catch (Exception e) {
+                    //    LOG.warn( "Bundle cannot be generated",e );
                 } finally {
                     try {
                         pout.close();
-                    } catch( IOException e ) {
-                        LOG.warn( "Close ?", e );
+                    } catch (IOException e) {
+                        LOG.warn("Close ?", e);
                     }
                 }
             }
@@ -160,23 +148,19 @@ public class BndBuilder implements BuildStrategy {
      * @param jar          bnd jar
      * @param symbolicName bundle symbolic name
      */
-    private void checkMandatoryProperties( final Analyzer analyzer,
-                                           final Jar jar,
-                                           final String symbolicName )
-    {
-        final String localSymbolicName = analyzer.getProperty( Analyzer.BUNDLE_SYMBOLICNAME, symbolicName );
-        analyzer.setProperty( Analyzer.BUNDLE_SYMBOLICNAME, generateSymbolicName( localSymbolicName ) );
+    private void checkMandatoryProperties(final Analyzer analyzer, final Jar jar, final String symbolicName) {
+        final String localSymbolicName = analyzer.getProperty(Analyzer.BUNDLE_SYMBOLICNAME, symbolicName);
+        analyzer.setProperty(Analyzer.BUNDLE_SYMBOLICNAME, generateSymbolicName(localSymbolicName));
     }
 
     /**
      * Processes symbolic name and replaces osgi spec invalid characters with "_".
      *
      * @param symbolicName bundle symbolic name
-     *
      * @return a valid symbolic name
      */
-    private static String generateSymbolicName( final String symbolicName )
-    {
-        return symbolicName.replaceAll( "[^a-zA-Z_0-9.-]", "_" );
+    private static String generateSymbolicName(final String symbolicName) {
+        return symbolicName.replaceAll("[^a-zA-Z_0-9.-]", "_");
     }
+
 }

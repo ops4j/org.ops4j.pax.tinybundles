@@ -17,9 +17,9 @@
  */
 package org.ops4j.pax.tinybundles.core;
 
+import java.io.InputStream;
 import java.net.URL;
 import java.util.Map;
-import java.io.InputStream;
 
 /**
  * Build strategy.
@@ -36,8 +36,8 @@ public interface BuildStrategy {
      *
      * @param resources resources to be considered in the build.
      * @param headers   headers to be considered in the build
-     *
      * @return an {@link InputStream} containing built assembly (usually a jar/bundle in this context)
      */
-    InputStream build( Map<String, URL> resources, Map<String, String> headers );
+    InputStream build(Map<String, URL> resources, Map<String, String> headers);
+
 }

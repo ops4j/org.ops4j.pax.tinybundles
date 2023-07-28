@@ -22,19 +22,16 @@ import java.net.URL;
 
 /**
  * @author Harald Wellmann
- * 
  */
-public class ClassDescriptor
-{
+public class ClassDescriptor {
+
     private String resourcePath;
     private URL url;
 
-    public ClassDescriptor()
-    {
+    public ClassDescriptor() {
     }
 
-    public ClassDescriptor( String resourcePath, URL url )
-    {
+    public ClassDescriptor(String resourcePath, URL url) {
         this.resourcePath = resourcePath;
         this.url = url;
     }
@@ -42,32 +39,28 @@ public class ClassDescriptor
     /**
      * @return the resourcePath
      */
-    public String getResourcePath()
-    {
+    public String getResourcePath() {
         return resourcePath;
     }
 
     /**
      * @param resourcePath the resourcePath to set
      */
-    public void setResourcePath( String resourcePath )
-    {
+    public void setResourcePath(String resourcePath) {
         this.resourcePath = resourcePath;
     }
 
     /**
      * @return the url
      */
-    public URL getUrl()
-    {
+    public URL getUrl() {
         return url;
     }
 
     /**
      * @param url the url to set
      */
-    public void setUrl( URL url )
-    {
+    public void setUrl(URL url) {
         this.url = url;
     }
 

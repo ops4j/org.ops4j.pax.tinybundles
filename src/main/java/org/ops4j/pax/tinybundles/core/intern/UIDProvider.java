@@ -22,17 +22,16 @@ import java.util.UUID;
 /**
  * @author Toni Menzel
  */
-public class UIDProvider
-{
+public class UIDProvider {
 
     /**
      * Returns a string-representation of a randomly generated
      * UUID.
-     * 
+     *
      * @return String-representation of a UUID.
      */
-    public static String getUID()
-    {
+    public static String getUID() {
         return UUID.randomUUID().toString();
     }
+
 }

@@ -29,26 +29,22 @@ import org.osgi.framework.ServiceRegistration;
  * @author Toni Menzel (tonit)
  * @since Apr 9, 2009
  */
-public class MyFirstActivator implements BundleActivator
-{
+public class MyFirstActivator implements BundleActivator {
 
     private ServiceRegistration ref;
 
-    public void start( BundleContext bundleContext )
-        throws Exception
-    {
+    public void start(BundleContext bundleContext) throws Exception {
         Dictionary<String, String> dict = new Hashtable<String, String>();
 
-        ref = bundleContext.registerService( HelloWorld.class.getName(), new HelloWorldImpl(), dict );
-        System.out.println( "waiting for 10seks.." );
-        Thread.sleep( 10000 );
-        System.out.println( "DONE" );
+        ref = bundleContext.registerService(HelloWorld.class.getName(), new HelloWorldImpl(), dict);
+        System.out.println("waiting for 10seks..");
+        Thread.sleep(10000);
+        System.out.println("DONE");
 
     }
 
-    public void stop( BundleContext bundleContext )
-        throws Exception
-    {
+    public void stop(BundleContext bundleContext) throws Exception {
         ref.unregister();
     }
+
 }

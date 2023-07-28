@@ -44,47 +44,40 @@ public class TinyBundles {
      *
      * @return a new instance of {@link TinyBundle}.
      */
-    public static TinyBundle bundle()
-    {
-        return bundle( getDefaultStore() );
+    public static TinyBundle bundle() {
+        return bundle(getDefaultStore());
     }
 
     /**
      * Start with a fresh bundle with this factory method.
      * You can then chain methodcalls thanks to the humane nature of {@link TinyBundle} interface.
      *
-     * @param store    cache backend
-     *
+     * @param store cache backend
      * @return a new instance of {@link TinyBundle}.
      */
-    public static TinyBundle bundle( Store<InputStream> store )
-    {
-        return new TinyBundleImpl( store );
+    public static TinyBundle bundle(Store<InputStream> store) {
+        return new TinyBundleImpl(store);
     }
 
     /**
      * @param inner builder strategy when using bnd.
-     *
      * @return a strategy to be used with {@link TinyBundle#build(BuildStrategy)} using BND with underying (given) strategy overwrite.
      */
-    public static BuildStrategy withBnd( BuildStrategy inner )
-    {
-        return new BndBuilder( inner );
+    public static BuildStrategy withBnd(BuildStrategy inner) {
+        return new BndBuilder(inner);
     }
 
     /**
      * @return a strategy to be used with {@link TinyBundle#build(BuildStrategy)} using BND with default strategy.
      */
-    public static BndBuilder withBnd()
-    {
-        return new BndBuilder( withClassicBuilder() );
+    public static BndBuilder withBnd() {
+        return new BndBuilder(withClassicBuilder());
     }
 
-     /**
+    /**
      * @return a strategy to be used with {@link TinyBundle#build(BuildStrategy)} using no extra manifest computation logic.
      */
-    public static BuildStrategy withClassicBuilder()
-    {
+    public static BuildStrategy withClassicBuilder() {
         return STRATEGY_ASYNC;
     }
 
@@ -94,19 +87,15 @@ public class TinyBundles {
      *
      * @return store instance that is used when user does not give its own Store instance upon {@link #bundle()}
      */
-    public static synchronized Store<InputStream> getDefaultStore()
-    {
-        try 
-        {
-            if(m_store == null) 
-            {
+    public static synchronized Store<InputStream> getDefaultStore() {
+        try {
+            if (m_store == null) {
                 m_store = StoreFactory.anonymousStore();
             }
             return m_store;
+        } catch (IOException e) {
+            throw new RuntimeException("Error creating Store", e);
         }
-        catch( IOException e ) 
-        {
-            throw new RuntimeException("Error creating Store", e );
-        }            
     }
+
 }

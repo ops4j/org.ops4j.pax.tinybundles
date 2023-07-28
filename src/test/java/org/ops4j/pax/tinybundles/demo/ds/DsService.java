@@ -20,11 +20,14 @@ package org.ops4j.pax.tinybundles.demo.ds;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 
-@Component(immediate=true)
-public class DsService
-{
+@Component(
+    immediate = true
+)
+public class DsService {
+
     @Activate
     public void activate() {
         System.out.println("Activated");
     }
+
 }

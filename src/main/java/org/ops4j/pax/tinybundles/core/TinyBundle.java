@@ -17,8 +17,8 @@
  */
 package org.ops4j.pax.tinybundles.core;
 
-import java.net.URL;
 import java.io.InputStream;
+import java.net.URL;
 
 /**
  * Main type when making bundles with the {@link TinyBundles} library.
@@ -34,47 +34,44 @@ public interface TinyBundle {
      *
      * @param name    final path inside the jar
      * @param content content to be copied into bundle.
-     *
      * @return *this*
      */
-    TinyBundle add( String name, URL content );
+    TinyBundle add(String name, URL content);
 
     /**
      * Add a resource to the current bundle (to be built).
      *
      * @param name    final path inside the jar
      * @param content content to be copied into bundle.
-     *
      * @return *this*
      */
-    TinyBundle add( String name, InputStream content );
+    TinyBundle add(String name, InputStream content);
 
     /**
      * Add a class to the current bundle. Uses InnerClassStrategy.ALL
      *
      * @param content content to be copied into bundle.
-     *
      * @return {@literal this}
      */
-    TinyBundle add( Class<?> content );
+    TinyBundle add(Class<?> content);
 
     /**
      * Add a class to the current bundle.
      *
      * @param content
      */
-    TinyBundle add( Class<?> content, InnerClassStrategy strategy );
-    
+    TinyBundle add(Class<?> content, InnerClassStrategy strategy);
+
     /**
      * Add a class to the current bundle and set it as Activator
      *
      * @param content
      */
     TinyBundle activator(Class<?> activator);
-    
+
     /**
      * Set symbolic name of bundle
-     * 
+     *
      * @param name
      */
     TinyBundle symbolicName(String name);
@@ -83,20 +80,18 @@ public interface TinyBundle {
      * remove a class to the current bundle.
      *
      * @param content class to be removed
-     *
      * @return *this*
      */
-    TinyBundle remove( Class<?> content );
+    TinyBundle remove(Class<?> content);
 
     /**
      * When you are done adding stuff to *this* you can call this method to go to next step.
      * The BND based builder will be used for your convenience.
      *
      * @param builder builder to be used.
-     *
      * @return Next step in the bundle making process.
      */
-    InputStream build( BuildStrategy builder );
+    InputStream build(BuildStrategy builder);
 
     /**
      * Shortcut to {@link TinyBundle#build(BuildStrategy)} witth buildstrategy = TinyBundles.withClassicBuilder().
@@ -111,51 +106,47 @@ public interface TinyBundle {
      *
      * @param key   a key
      * @param value a value
-     *
      * @return {@literal this}
      */
-    TinyBundle set( String key, String value );
+    TinyBundle set(String key, String value);
 
     /**
      * Remove a previously added resource.
      * Usually usefull if you loaded an existing bundle into {@link TinyBundles} before.
      *
      * @param key a key as String
-     *
      * @return {@literal this}
      */
-    TinyBundle removeResource( String key );
+    TinyBundle removeResource(String key);
 
     /**
      * Remove a previously added header.
      * Usually usefull if you loaded an existing bundle into {@link TinyBundles} before.
      *
      * @param key a key as String
-     *
      * @return {@literal this}
      */
-    TinyBundle removeHeader( String key );
+    TinyBundle removeHeader(String key);
 
     /**
      * Read an existing bundle or jar into Tinybundles for modification.
      *
      * @param input stream of JarInputStream
-     *
      * @return {@literal this}
      */
-    TinyBundle read( InputStream input );
+    TinyBundle read(InputStream input);
 
     /**
      * Read an existing bundle or jar into Tinybundles for modification.
      *
      * @param input stream of JarInputStream
-     *
      * @return {@literal this}
      */
-    TinyBundle read( InputStream input, boolean readData );
+    TinyBundle read(InputStream input, boolean readData);
 
     /**
      * Get header value.
      */
-    public String getHeader( String key );
+    public String getHeader(String key);
+
 }

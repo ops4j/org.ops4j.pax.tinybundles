@@ -24,6 +24,7 @@ import java.io.PipedOutputStream;
 import java.net.URL;
 import java.util.Map;
 import java.util.jar.JarOutputStream;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,45 +33,34 @@ import org.slf4j.LoggerFactory;
  */
 public class AsyncRawBuilder extends RawBuilder {
 
-    private static Logger LOG = LoggerFactory.getLogger( RawBuilder.class );
+    private static Logger LOG = LoggerFactory.getLogger(RawBuilder.class);
 
-    public InputStream build( final Map<String, URL> resources,
-                             final Map<String, String> headers )
-    {
-        LOG.debug( "make()" );
+    public InputStream build(final Map<String, URL> resources, final Map<String, String> headers) {
+        LOG.debug("make()");
         try {
-        	final PipedInputStream pin = new PipedInputStream();
-			final PipedOutputStream pout = new PipedOutputStream( pin );
-			new Thread() {
-				public void run()
-				{
-					buildFrom(resources, headers, pout);
-				}
-			}.start();
-			return pin;
-		} catch (IOException e) {
-			throw new RuntimeException("Error opening pipe.", e);
-		}
+            final PipedInputStream pin = new PipedInputStream();
+            final PipedOutputStream pout = new PipedOutputStream(pin);
+            new Thread() {
+                public void run() {
+                    buildFrom(resources, headers, pout);
+                }
+            }.start();
+            return pin;
+        } catch (IOException e) {
+            throw new RuntimeException("Error opening pipe.", e);
+        }
     }
-    
-	private void buildFrom(
-			final Map<String, URL> resources, 
-			final Map<String, String> headers,
-			final PipedOutputStream pout )
-	{
-		try (
-			JarOutputStream jarOut = new JarOutputStream( pout )
-		)
-		{
-			build( resources, headers, jarOut );
-		} catch( IOException e ) {
-			if (!"Pipe closed".equals(e.getMessage()))
-			{
-				LOG.error( "Problem while writing jar.", e );
-			}
-		} finally {
-			LOG.trace( "Copy thread finished." );
-		}
-	}
+
+    private void buildFrom(final Map<String, URL> resources, final Map<String, String> headers, final PipedOutputStream pout) {
+        try (JarOutputStream jarOut = new JarOutputStream(pout)) {
+            build(resources, headers, jarOut);
+        } catch (IOException e) {
+            if (!"Pipe closed".equals(e.getMessage())) {
+                LOG.error("Problem while writing jar.", e);
+            }
+        } finally {
+            LOG.trace("Copy thread finished.");
+        }
+    }
 
 }
