@@ -15,7 +15,7 @@
 
   <name>OPS4J Pax Tinybundles</name>
 
-  <url>http://team.ops4j.org/wiki/display/ops4j/Tinybundles</url>
+  <url>https://github.com/ops4j/org.ops4j.pax.tinybundles</url>
   <inceptionYear>2007</inceptionYear>
 
   <scm>
@@ -26,8 +26,8 @@
   </scm>
 
   <issueManagement>
-    <system>jira</system>
-    <url>http://team.ops4j.org/browse/PAXTB</url>
+    <system>GitHub</system>
+    <url>https://github.com/ops4j/org.ops4j.pax.tinybundles/issues</url>
   </issueManagement>
 
   <properties>
