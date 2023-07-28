@@ -58,7 +58,7 @@ public class BndTest {
         JarInputStream jout = new JarInputStream(inp);
         Manifest man = jout.getManifest();
         assertEquals("Header Originally-Created-By", "pax-tinybundles-" + Info.getPaxTinybundlesVersion(), man.getMainAttributes().getValue("Originally-Created-By"));
-        assertEquals("Header Tool", "Bnd-5.2.0.202010142003", man.getMainAttributes().getValue("Tool"));
+        assertEquals("Header Tool", "Bnd-6.4.1.202306080939", man.getMainAttributes().getValue("Tool"));
         assertEquals("Header TinybundlesVersion", "pax-tinybundles-" + Info.getPaxTinybundlesVersion(), man.getMainAttributes().getValue("TinybundlesVersion"));
         assertEquals(System.getProperty("user.name"), man.getMainAttributes().getValue("Built-By"));
         jout.close();
