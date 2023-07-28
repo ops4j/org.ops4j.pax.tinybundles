@@ -32,8 +32,6 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <dependency.base.version>1.5.1</dependency.base.version>
-    <dependency.slf4j.version>1.6.1</dependency.slf4j.version>
     <bundle.symbolicName>org.ops4j.pax.tinybundles</bundle.symbolicName>
     <bundle.namespace>org.ops4j.pax.tinybundles</bundle.namespace>
   </properties>
@@ -49,6 +47,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.11.0</version>
         <configuration>
           <source>1.7</source>
           <target>1.7</target>
@@ -57,6 +56,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.5.0</version>
         <configuration>
           <attach>true</attach>
           <quiet>true</quiet>
@@ -67,6 +67,7 @@
       <plugin>
         <groupId>org.apache.felix</groupId>
         <artifactId>maven-bundle-plugin</artifactId>
+        <version>5.1.9</version>
         <extensions>true</extensions>
         <executions>
           <!-- default bundle without embedded dependencies -->
@@ -98,8 +99,9 @@
         </executions>
       </plugin>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-remote-resources-plugin</artifactId>
-        <version>1.4</version>
+        <version>3.1.0</version>
         <executions>
           <execution>
             <id>process-remote-resources</id>
@@ -148,14 +150,13 @@
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
-      <version>${dependency.slf4j.version}</version>
-      <!-- scope is "provided" to avoid embedding -->
+      <version>1.7.36</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.ops4j.base</groupId>
       <artifactId>ops4j-base-store</artifactId>
-      <version>${dependency.base.version}</version>
+      <version>1.5.1</version>
     </dependency>
     <dependency>
       <groupId>biz.aQute.bnd</groupId>
@@ -166,23 +167,24 @@
       <groupId>org.osgi</groupId>
       <artifactId>org.osgi.service.component.annotations</artifactId>
       <version>1.4.0</version>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.osgi</groupId>
       <artifactId>org.osgi.framework</artifactId>
-      <version>1.9.0</version>
+      <version>1.10.0</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.12</version>
+      <version>4.13.2</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-simple</artifactId>
-      <version>${dependency.slf4j.version}</version>
+      <version>1.7.36</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
