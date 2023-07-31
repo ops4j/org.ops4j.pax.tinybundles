@@ -83,19 +83,6 @@
               </instructions>
             </configuration>
           </execution>
-          <!-- alternative bundle with embedded dependencies, except OSGi and SLF4J -->
-          <execution>
-            <id>embedded</id>
-            <goals>
-              <goal>bundle</goal>
-            </goals>
-            <configuration>
-              <classifier>embedded</classifier>
-              <instructions>
-                <_include>-osgi.bnd</_include>
-              </instructions>
-            </configuration>
-          </execution>
         </executions>
       </plugin>
       <plugin>
