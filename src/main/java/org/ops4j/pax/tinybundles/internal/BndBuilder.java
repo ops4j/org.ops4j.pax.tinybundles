@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.tinybundles.core.intern;
+package org.ops4j.pax.tinybundles.internal;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,7 +32,7 @@ import java.util.jar.Manifest;
 import aQute.bnd.osgi.Analyzer;
 import aQute.bnd.osgi.Builder;
 import aQute.bnd.osgi.Jar;
-import org.ops4j.pax.tinybundles.core.BuildStrategy;
+import org.ops4j.pax.tinybundles.BuildStrategy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2009 Toni Menzel.
+ * Copyright 2011 Rafael Liu.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,23 +15,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.tinybundles.core.intern;
-
-import java.util.UUID;
+package org.ops4j.pax.tinybundles;
 
 /**
- * @author Toni Menzel
+ * The strategy used when a class added has inner classes.
+ * NONE means no other class will be added. ALL means all
+ * inner classes are added recursively. ANONYMOUS mean
+ * only anynomous classes will be added.
+ *
+ * @author <a href="mailto:rafaelliu@gmail.com">Rafael Liu</a>
  */
-public class UIDProvider {
+public enum InnerClassStrategy {
 
-    /**
-     * Returns a string-representation of a randomly generated
-     * UUID.
-     *
-     * @return String-representation of a UUID.
-     */
-    public static String getUID() {
-        return UUID.randomUUID().toString();
-    }
+    NONE, ALL, ANONYMOUS
 
 }

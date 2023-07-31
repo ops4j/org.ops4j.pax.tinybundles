@@ -15,14 +15,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.tinybundles.core;
+package org.ops4j.pax.tinybundles;
 
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.ops4j.pax.tinybundles.core.intern.AsyncRawBuilder;
-import org.ops4j.pax.tinybundles.core.intern.BndBuilder;
-import org.ops4j.pax.tinybundles.core.intern.TinyBundleImpl;
+import org.ops4j.pax.tinybundles.internal.AsyncRawBuilder;
+import org.ops4j.pax.tinybundles.internal.BndBuilder;
+import org.ops4j.pax.tinybundles.internal.TinyBundleImpl;
 import org.ops4j.store.Store;
 import org.ops4j.store.StoreFactory;
 

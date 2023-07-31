@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.tinybundles.core.intern;
+package org.ops4j.pax.tinybundles.internal;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -29,15 +29,13 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
 import java.util.jar.Manifest;
 
-import org.ops4j.pax.tinybundles.core.BuildStrategy;
-import org.ops4j.pax.tinybundles.core.InnerClassStrategy;
-import org.ops4j.pax.tinybundles.core.TinyBundle;
-import org.ops4j.pax.tinybundles.finder.ClassDescriptor;
-import org.ops4j.pax.tinybundles.finder.ClassFinder;
+import org.ops4j.pax.tinybundles.BuildStrategy;
+import org.ops4j.pax.tinybundles.InnerClassStrategy;
+import org.ops4j.pax.tinybundles.TinyBundle;
 import org.ops4j.store.Store;
 import org.osgi.framework.Constants;
 
-import static org.ops4j.pax.tinybundles.core.TinyBundles.withClassicBuilder;
+import static org.ops4j.pax.tinybundles.TinyBundles.withClassicBuilder;
 
 /**
  * Our default implementation of TinyBundle.

@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package org.ops4j.pax.tinybundles.finder;
+package org.ops4j.pax.tinybundles.internal;
 
 import java.net.URL;
 

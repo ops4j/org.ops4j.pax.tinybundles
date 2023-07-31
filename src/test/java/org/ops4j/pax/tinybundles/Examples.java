@@ -8,9 +8,9 @@ import org.ops4j.pax.tinybundles.demo.intern.HelloWorldImpl;
 import org.ops4j.pax.tinybundles.demo.intern.MyFirstActivator;
 import org.osgi.framework.Constants;
 
-import static org.ops4j.pax.tinybundles.core.TinyBundles.bundle;
-import static org.ops4j.pax.tinybundles.core.TinyBundles.withBnd;
-import static org.ops4j.pax.tinybundles.core.TinyBundles.withClassicBuilder;
+import static org.ops4j.pax.tinybundles.TinyBundles.bundle;
+import static org.ops4j.pax.tinybundles.TinyBundles.withBnd;
+import static org.ops4j.pax.tinybundles.TinyBundles.withClassicBuilder;
 
 /**
  * Simple examples that showcase the regular usage of Tinybundles.

@@ -79,7 +79,7 @@
             <configuration>
               <instructions>
                 <Bundle-SymbolicName>${bundle.symbolicName}</Bundle-SymbolicName>
-                <Export-Package>${bundle.namespace}.core</Export-Package>
+                <Export-Package>${bundle.namespace}</Export-Package>
               </instructions>
             </configuration>
           </execution>

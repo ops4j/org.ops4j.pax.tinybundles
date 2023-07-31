@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.tinybundles.core;
+package org.ops4j.pax.tinybundles;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -31,7 +31,11 @@ import java.util.jar.JarOutputStream;
 import java.util.jar.Manifest;
 
 import org.junit.Test;
-import org.ops4j.pax.tinybundles.core.intern.Info;
+import org.ops4j.pax.tinybundles.BuildStrategy;
+import org.ops4j.pax.tinybundles.InnerClassStrategy;
+import org.ops4j.pax.tinybundles.TinyBundle;
+import org.ops4j.pax.tinybundles.TinyBundles;
+import org.ops4j.pax.tinybundles.internal.Info;
 import org.ops4j.pax.tinybundles.demo.DemoAnonymousInnerClass;
 import org.ops4j.pax.tinybundles.demo.HelloWorld;
 import org.ops4j.pax.tinybundles.demo.intern.HelloWorldImpl;
@@ -41,7 +45,7 @@ import org.osgi.framework.Constants;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.ops4j.pax.tinybundles.core.TinyBundles.bundle;
+import static org.ops4j.pax.tinybundles.TinyBundles.bundle;
 
 /**
  * This is a standalone test.
@@ -152,9 +156,9 @@ public class CoreTest {
     @Test
     public void allInnerClassesTest() throws IOException {
         TinyBundle b = bundle();
-        b.add(DemoAnonymousInnerClass.class, InnerClassStrategy.ALL);
+        b.add(DemoAnonymousInnerClass.class, org.ops4j.pax.tinybundles.InnerClassStrategy.ALL);
         b.build(
-            new BuildStrategy() {
+            new org.ops4j.pax.tinybundles.BuildStrategy() {
                 public InputStream build(Map<String, URL> resources, Map<String, String> headers) {
                     assertTrue(resources.containsKey("org/ops4j/pax/tinybundles/demo/DemoAnonymousInnerClass.class"));
                     assertTrue(resources.containsKey("org/ops4j/pax/tinybundles/demo/DemoAnonymousInnerClass$1.class"));
@@ -168,8 +172,8 @@ public class CoreTest {
 
     @Test
     public void anonymousInnerClassesTest() throws IOException {
-        bundle().add(DemoAnonymousInnerClass.class, InnerClassStrategy.ANONYMOUS).build(
-            new BuildStrategy() {
+        bundle().add(DemoAnonymousInnerClass.class, org.ops4j.pax.tinybundles.InnerClassStrategy.ANONYMOUS).build(
+            new org.ops4j.pax.tinybundles.BuildStrategy() {
                 public InputStream build(Map<String, URL> resources, Map<String, String> headers) {
                     assertTrue(resources.containsKey("org/ops4j/pax/tinybundles/demo/DemoAnonymousInnerClass.class"));
                     assertTrue(resources.containsKey("org/ops4j/pax/tinybundles/demo/DemoAnonymousInnerClass$1.class"));

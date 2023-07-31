@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.tinybundles.bnd;
+package org.ops4j.pax.tinybundles;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,9 +24,9 @@ import java.util.jar.Manifest;
 import java.util.zip.ZipEntry;
 
 import org.junit.Test;
-import org.ops4j.pax.tinybundles.core.BuildStrategy;
-import org.ops4j.pax.tinybundles.core.TinyBundles;
-import org.ops4j.pax.tinybundles.core.intern.Info;
+import org.ops4j.pax.tinybundles.BuildStrategy;
+import org.ops4j.pax.tinybundles.TinyBundles;
+import org.ops4j.pax.tinybundles.internal.Info;
 import org.ops4j.pax.tinybundles.demo.HelloWorld;
 import org.ops4j.pax.tinybundles.demo.ds.DsService;
 import org.ops4j.pax.tinybundles.demo.intern.HelloWorldImpl;
@@ -35,7 +35,7 @@ import org.osgi.framework.Constants;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
-import static org.ops4j.pax.tinybundles.core.TinyBundles.bundle;
+import static org.ops4j.pax.tinybundles.TinyBundles.bundle;
 
 /**
  * @author Toni Menzel (tonit)

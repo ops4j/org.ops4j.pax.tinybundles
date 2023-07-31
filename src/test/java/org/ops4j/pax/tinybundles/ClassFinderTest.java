@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package org.ops4j.pax.tinybundles.core;
+package org.ops4j.pax.tinybundles;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -28,8 +28,8 @@ import aQute.bnd.build.Container;
 import org.junit.Before;
 import org.junit.Test;
 import org.ops4j.pax.tinybundles.demo.DemoAnonymousInnerClass;
-import org.ops4j.pax.tinybundles.finder.ClassDescriptor;
-import org.ops4j.pax.tinybundles.finder.ClassFinder;
+import org.ops4j.pax.tinybundles.internal.ClassDescriptor;
+import org.ops4j.pax.tinybundles.internal.ClassFinder;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
