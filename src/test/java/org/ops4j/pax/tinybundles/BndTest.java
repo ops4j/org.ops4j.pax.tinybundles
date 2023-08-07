@@ -24,8 +24,6 @@ import java.util.jar.Manifest;
 import java.util.zip.ZipEntry;
 
 import org.junit.Test;
-import org.ops4j.pax.tinybundles.BuildStrategy;
-import org.ops4j.pax.tinybundles.TinyBundles;
 import org.ops4j.pax.tinybundles.internal.Info;
 import org.ops4j.pax.tinybundles.demo.HelloWorld;
 import org.ops4j.pax.tinybundles.demo.ds.DsService;
@@ -43,8 +41,8 @@ import static org.ops4j.pax.tinybundles.TinyBundles.bundle;
  */
 public class BndTest {
 
-    BuildStrategy getStrategy() {
-        return TinyBundles.withBnd();
+    Builder getBuilder() {
+        return TinyBundles.withBndBuilder();
     }
 
     /**
@@ -52,7 +50,7 @@ public class BndTest {
      */
     @Test
     public void bndIndependendProps() throws IOException {
-        InputStream inp = bundle().build(getStrategy());
+        InputStream inp = bundle().build(getBuilder());
 
         // test output
         JarInputStream jout = new JarInputStream(inp);
@@ -66,7 +64,7 @@ public class BndTest {
 
     @Test
     public void bndDeclarativeServices() throws IOException {
-        InputStream inp = bundle().add(DsService.class).build(getStrategy());
+        InputStream inp = bundle().add(DsService.class).build(getBuilder());
 
         // test output
         JarInputStream jout = new JarInputStream(inp);
@@ -84,7 +82,7 @@ public class BndTest {
             .add(HelloWorldImpl.class)
             .set(Constants.BUNDLE_SYMBOLICNAME, "MyFirstTinyBundle")
             .set(Constants.BUNDLE_ACTIVATOR, MyFirstActivator.class.getName())
-            .build(getStrategy());
+            .build(getBuilder());
 
         // test output
         JarInputStream jout = new JarInputStream(inp);
@@ -105,7 +103,7 @@ public class BndTest {
             .set(Constants.BUNDLE_SYMBOLICNAME, "MyFirstTinyBundle")
             .set(Constants.EXPORT_PACKAGE, HelloWorld.class.getPackage().getName())
             .set(Constants.BUNDLE_ACTIVATOR, MyFirstActivator.class.getName())
-            .build(getStrategy());
+            .build(getBuilder());
 
         // test output
         JarInputStream jout = new JarInputStream(inp);
@@ -129,7 +127,7 @@ public class BndTest {
             .set(Constants.BUNDLE_ACTIVATOR, MyFirstActivator.class.getName())
             .set("Bundle-Classpath", ".,ant-1.8.1.jar")
             .set("Include-Resource", "@/Users/tonit/devel/gradle/lib/ant-1.8.1.jar")
-            .build(getStrategy());
+            .build(getBuilder());
 
         // test output
         JarInputStream jout = new JarInputStream(inp);
@@ -155,14 +153,14 @@ public class BndTest {
             .add(HelloWorldImpl.class)
             .set(Constants.BUNDLE_SYMBOLICNAME, "MyFirstTinyBundle")
             .set(Constants.BUNDLE_ACTIVATOR, MyFirstActivator.class.getName())
-            .build(getStrategy());
+            .build(getBuilder());
 
         // Add an export:
         InputStream inp2 = bundle().read(inp1)
             .set(Constants.EXPORT_PACKAGE, HelloWorld.class.getPackage().getName())
             .set(Constants.IMPORT_PACKAGE, "*")
             .set("another", "property")
-            .build(getStrategy());
+            .build(getBuilder());
 
         // test output
         JarInputStream jout = new JarInputStream(inp2);

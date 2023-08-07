@@ -94,10 +94,10 @@ public interface TinyBundle {
      * @param builder builder to be used.
      * @return Next step in the bundle making process.
      */
-    InputStream build(BuildStrategy builder);
+    InputStream build(Builder builder);
 
     /**
-     * Shortcut to {@link TinyBundle#build(BuildStrategy)} witth buildstrategy = TinyBundles.withClassicBuilder().
+     * Shortcut to {@link TinyBundle#build(Builder)} with builder = TinyBundles.withClassicBuilder().
      *
      * @return Next step in the bundle making process.
      */

@@ -24,7 +24,7 @@ import java.util.Map;
 import org.osgi.annotation.versioning.ProviderType;
 
 /**
- * Build strategy.
+ * Builder.
  * Implementors should be stateless so builders can be shared.
  * Usually the "build" action is an atomic, functional operation.
  *
@@ -32,7 +32,7 @@ import org.osgi.annotation.versioning.ProviderType;
  * @since Apr 20, 2009
  */
 @ProviderType
-public interface BuildStrategy {
+public interface Builder {
 
     /**
      * perform the actual build.

@@ -29,13 +29,13 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
 import java.util.jar.Manifest;
 
-import org.ops4j.pax.tinybundles.BuildStrategy;
+import org.ops4j.pax.tinybundles.Builder;
 import org.ops4j.pax.tinybundles.InnerClassStrategy;
 import org.ops4j.pax.tinybundles.TinyBundle;
 import org.ops4j.store.Store;
 import org.osgi.framework.Constants;
 
-import static org.ops4j.pax.tinybundles.TinyBundles.withClassicBuilder;
+import static org.ops4j.pax.tinybundles.TinyBundles.withRawBuilder;
 
 /**
  * Our default implementation of TinyBundle.
@@ -189,13 +189,13 @@ public class TinyBundleImpl implements TinyBundle {
      * @{@inheritDoc}
      */
     public InputStream build() {
-        return withClassicBuilder().build(m_resources, m_headers);
+        return withRawBuilder().build(m_resources, m_headers);
     }
 
     /**
      * @{@inheritDoc}
      */
-    public InputStream build(BuildStrategy builder) {
+    public InputStream build(Builder builder) {
         return builder.build(m_resources, m_headers);
     }
 

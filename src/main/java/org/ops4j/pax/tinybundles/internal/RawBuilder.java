@@ -27,7 +27,7 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarOutputStream;
 import java.util.jar.Manifest;
 
-import org.ops4j.pax.tinybundles.BuildStrategy;
+import org.ops4j.pax.tinybundles.Builder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,7 +35,7 @@ import org.slf4j.LoggerFactory;
  * @author Toni Menzel (tonit)
  * @since Apr 20, 2009
  */
-public abstract class RawBuilder implements BuildStrategy {
+public abstract class RawBuilder implements Builder {
 
     private static Logger LOG = LoggerFactory.getLogger(RawBuilder.class);
     private static final String BUILT_BY = "Built-By";

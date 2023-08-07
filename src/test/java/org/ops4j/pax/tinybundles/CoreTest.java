@@ -31,10 +31,6 @@ import java.util.jar.JarOutputStream;
 import java.util.jar.Manifest;
 
 import org.junit.Test;
-import org.ops4j.pax.tinybundles.BuildStrategy;
-import org.ops4j.pax.tinybundles.InnerClassStrategy;
-import org.ops4j.pax.tinybundles.TinyBundle;
-import org.ops4j.pax.tinybundles.TinyBundles;
 import org.ops4j.pax.tinybundles.internal.Info;
 import org.ops4j.pax.tinybundles.demo.DemoAnonymousInnerClass;
 import org.ops4j.pax.tinybundles.demo.HelloWorld;
@@ -158,7 +154,7 @@ public class CoreTest {
         TinyBundle b = bundle();
         b.add(DemoAnonymousInnerClass.class, org.ops4j.pax.tinybundles.InnerClassStrategy.ALL);
         b.build(
-            new org.ops4j.pax.tinybundles.BuildStrategy() {
+            new Builder() {
                 public InputStream build(Map<String, URL> resources, Map<String, String> headers) {
                     assertTrue(resources.containsKey("org/ops4j/pax/tinybundles/demo/DemoAnonymousInnerClass.class"));
                     assertTrue(resources.containsKey("org/ops4j/pax/tinybundles/demo/DemoAnonymousInnerClass$1.class"));
@@ -173,7 +169,7 @@ public class CoreTest {
     @Test
     public void anonymousInnerClassesTest() throws IOException {
         bundle().add(DemoAnonymousInnerClass.class, org.ops4j.pax.tinybundles.InnerClassStrategy.ANONYMOUS).build(
-            new org.ops4j.pax.tinybundles.BuildStrategy() {
+            new Builder() {
                 public InputStream build(Map<String, URL> resources, Map<String, String> headers) {
                     assertTrue(resources.containsKey("org/ops4j/pax/tinybundles/demo/DemoAnonymousInnerClass.class"));
                     assertTrue(resources.containsKey("org/ops4j/pax/tinybundles/demo/DemoAnonymousInnerClass$1.class"));
@@ -188,7 +184,7 @@ public class CoreTest {
     @Test
     public void noInnerClassesTest() throws IOException {
         bundle().add(DemoAnonymousInnerClass.class, InnerClassStrategy.NONE).build(
-            new BuildStrategy() {
+            new Builder() {
                 public InputStream build(Map<String, URL> resources, Map<String, String> headers) {
                     assertTrue(resources.containsKey("org/ops4j/pax/tinybundles/demo/DemoAnonymousInnerClass.class"));
                     assertFalse(resources.containsKey("org/ops4j/pax/tinybundles/demo/DemoAnonymousInnerClass$1.class"));

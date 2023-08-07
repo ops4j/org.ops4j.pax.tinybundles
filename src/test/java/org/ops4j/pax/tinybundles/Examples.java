@@ -9,8 +9,8 @@ import org.ops4j.pax.tinybundles.demo.intern.MyFirstActivator;
 import org.osgi.framework.Constants;
 
 import static org.ops4j.pax.tinybundles.TinyBundles.bundle;
-import static org.ops4j.pax.tinybundles.TinyBundles.withBnd;
-import static org.ops4j.pax.tinybundles.TinyBundles.withClassicBuilder;
+import static org.ops4j.pax.tinybundles.TinyBundles.withBndBuilder;
+import static org.ops4j.pax.tinybundles.TinyBundles.withRawBuilder;
 
 /**
  * Simple examples that showcase the regular usage of Tinybundles.
@@ -53,7 +53,7 @@ public class Examples {
             .set(Constants.EXPORT_PACKAGE, "demo")
             .set(Constants.IMPORT_PACKAGE, "demo")
             .set(Constants.BUNDLE_ACTIVATOR, MyFirstActivator.class.getName())
-            .build(withClassicBuilder());
+            .build(withRawBuilder());
     }
 
     @Test
@@ -66,7 +66,7 @@ public class Examples {
             .set(Constants.EXPORT_PACKAGE, "")
             .set(Constants.IMPORT_PACKAGE, "*")
             .set(Constants.BUNDLE_ACTIVATOR, MyFirstActivator.class.getName())
-            .build(withBnd());
+            .build(withBndBuilder());
     }
 
 }

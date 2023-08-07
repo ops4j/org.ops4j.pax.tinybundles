@@ -37,7 +37,7 @@ import org.osgi.annotation.versioning.ProviderType;
 @ProviderType
 public class TinyBundles {
 
-    public final static BuildStrategy STRATEGY_ASYNC = new AsyncRawBuilder();
+    public final static Builder ASYNC_RAW_BUILDER = new AsyncRawBuilder();
 
     private static Store<InputStream> m_store;
 
@@ -62,25 +62,25 @@ public class TinyBundles {
     }
 
     /**
-     * @param inner builder strategy when using bnd.
-     * @return a strategy to be used with {@link TinyBundle#build(BuildStrategy)} using BND with underlying (given) strategy overwrite.
+     * @param inner builder when using bnd builder.
+     * @return a builder to be used with {@link TinyBundle#build(Builder)} using BND with underlying (given) builder overwrite.
      */
-    public static BuildStrategy withBnd(BuildStrategy inner) {
+    public static Builder withBndBuilder(Builder inner) {
         return new BndBuilder(inner);
     }
 
     /**
-     * @return a strategy to be used with {@link TinyBundle#build(BuildStrategy)} using BND with default strategy.
+     * @return a builder to be used with {@link TinyBundle#build(Builder)} using BND with default builder.
      */
-    public static BndBuilder withBnd() {
-        return new BndBuilder(withClassicBuilder());
+    public static BndBuilder withBndBuilder() {
+        return new BndBuilder(withRawBuilder());
     }
 
     /**
-     * @return a strategy to be used with {@link TinyBundle#build(BuildStrategy)} using no extra manifest computation logic.
+     * @return a builder to be used with {@link TinyBundle#build(Builder)} using no extra manifest computation logic.
      */
-    public static BuildStrategy withClassicBuilder() {
-        return STRATEGY_ASYNC;
+    public static Builder withRawBuilder() {
+        return ASYNC_RAW_BUILDER;
     }
 
     /**

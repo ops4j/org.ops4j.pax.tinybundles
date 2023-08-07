@@ -30,9 +30,8 @@ import java.util.Set;
 import java.util.jar.Manifest;
 
 import aQute.bnd.osgi.Analyzer;
-import aQute.bnd.osgi.Builder;
 import aQute.bnd.osgi.Jar;
-import org.ops4j.pax.tinybundles.BuildStrategy;
+import org.ops4j.pax.tinybundles.Builder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,14 +39,14 @@ import org.slf4j.LoggerFactory;
  * @author Toni Menzel (tonit)
  * @since Apr 20, 2009
  */
-public class BndBuilder implements BuildStrategy {
+public class BndBuilder implements Builder {
 
     private static Logger LOG = LoggerFactory.getLogger(BndBuilder.class);
 
-    final private BuildStrategy m_builder;
+    final private Builder m_builder;
     final private Set<Object> plugins;
 
-    public BndBuilder(BuildStrategy builder) {
+    public BndBuilder(Builder builder) {
         m_builder = builder;
         plugins = new HashSet<Object>();
     }
@@ -90,7 +89,7 @@ public class BndBuilder implements BuildStrategy {
         final Properties properties = new Properties();
         properties.putAll(instructions);
 
-        final Builder analyzer = new Builder();
+        final aQute.bnd.osgi.Builder analyzer = new aQute.bnd.osgi.Builder();
         analyzer.setJar(jar);
         analyzer.setProperties(properties);
 
