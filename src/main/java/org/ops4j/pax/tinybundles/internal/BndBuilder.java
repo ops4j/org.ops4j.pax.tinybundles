@@ -80,8 +80,7 @@ public class BndBuilder implements BuildStrategy {
      * @return Bundle Jar Stream
      * @throws Exception Problems go here
      */
-    private InputStream createBundle(InputStream jarInputStream, Properties instructions, String symbolicName)
-        throws Exception {
+    private InputStream createBundle(InputStream jarInputStream, Properties instructions, String symbolicName) throws Exception {
         Objects.requireNonNull(jarInputStream, "Jar URL");
         Objects.requireNonNull(instructions, "Instructions");
         Objects.requireNonNull(symbolicName, "Jar info");
