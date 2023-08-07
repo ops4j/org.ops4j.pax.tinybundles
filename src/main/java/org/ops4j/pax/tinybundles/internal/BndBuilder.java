@@ -111,8 +111,8 @@ public class BndBuilder implements BuildStrategy {
     }
 
     /**
-     * Creates an piped input stream for the wrapped jar.
-     * This is done in a thread so we can return quickly.
+     * Creates a piped input stream for the wrapped jar.
+     * This is done in a thread, so we can return quickly.
      *
      * @param jar the wrapped jar
      * @return an input stream for the wrapped jar

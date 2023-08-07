@@ -115,7 +115,7 @@ public interface TinyBundle {
 
     /**
      * Remove a previously added resource.
-     * Usually usefull if you loaded an existing bundle into {@link TinyBundles} before.
+     * Usually useful if you loaded an existing bundle into {@link TinyBundles} before.
      *
      * @param key a key as String
      * @return {@literal this}
@@ -124,7 +124,7 @@ public interface TinyBundle {
 
     /**
      * Remove a previously added header.
-     * Usually usefull if you loaded an existing bundle into {@link TinyBundles} before.
+     * Usually useful if you loaded an existing bundle into {@link TinyBundles} before.
      *
      * @param key a key as String
      * @return {@literal this}

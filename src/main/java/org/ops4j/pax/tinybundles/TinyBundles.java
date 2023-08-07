@@ -52,7 +52,7 @@ public class TinyBundles {
 
     /**
      * Start with a fresh bundle with this factory method.
-     * You can then chain methodcalls thanks to the humane nature of {@link TinyBundle} interface.
+     * You can then chain method calls thanks to the humane nature of {@link TinyBundle} interface.
      *
      * @param store cache backend
      * @return a new instance of {@link TinyBundle}.
@@ -63,7 +63,7 @@ public class TinyBundles {
 
     /**
      * @param inner builder strategy when using bnd.
-     * @return a strategy to be used with {@link TinyBundle#build(BuildStrategy)} using BND with underying (given) strategy overwrite.
+     * @return a strategy to be used with {@link TinyBundle#build(BuildStrategy)} using BND with underlying (given) strategy overwrite.
      */
     public static BuildStrategy withBnd(BuildStrategy inner) {
         return new BndBuilder(inner);

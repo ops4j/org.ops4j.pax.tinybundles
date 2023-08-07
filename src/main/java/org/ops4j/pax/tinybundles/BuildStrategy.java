@@ -26,7 +26,7 @@ import org.osgi.annotation.versioning.ProviderType;
 /**
  * Build strategy.
  * Implementors should be stateless so builders can be shared.
- * Usually the "build" action is a atomic, functional operation.
+ * Usually the "build" action is an atomic, functional operation.
  *
  * @author Toni Menzel (tonit)
  * @since Apr 20, 2009
