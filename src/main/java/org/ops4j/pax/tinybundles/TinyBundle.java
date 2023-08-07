@@ -20,6 +20,8 @@ package org.ops4j.pax.tinybundles;
 import java.io.InputStream;
 import java.net.URL;
 
+import org.osgi.annotation.versioning.ProviderType;
+
 /**
  * Main type when making bundles with the {@link TinyBundles} library.
  * Get an instance from {@link TinyBundles} Factory, add resources and call {@link #build()} to go to the final step.
@@ -27,6 +29,7 @@ import java.net.URL;
  * @author Toni Menzel (tonit)
  * @since Apr 9, 2009
  */
+@ProviderType
 public interface TinyBundle {
 
     /**

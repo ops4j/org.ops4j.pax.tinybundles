@@ -21,6 +21,8 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.Map;
 
+import org.osgi.annotation.versioning.ProviderType;
+
 /**
  * Build strategy.
  * Implementors should be stateless so builders can be shared.
@@ -29,6 +31,7 @@ import java.util.Map;
  * @author Toni Menzel (tonit)
  * @since Apr 20, 2009
  */
+@ProviderType
 public interface BuildStrategy {
 
     /**

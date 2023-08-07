@@ -11,7 +11,6 @@
   <groupId>org.ops4j.pax.tinybundles</groupId>
   <artifactId>tinybundles</artifactId>
   <version>4.0.0-SNAPSHOT</version>
-  <packaging>bundle</packaging>
 
   <name>OPS4J Pax Tinybundles</name>
 
@@ -32,8 +31,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <bundle.symbolicName>org.ops4j.pax.tinybundles</bundle.symbolicName>
-    <bundle.namespace>org.ops4j.pax.tinybundles</bundle.namespace>
+    <project.build.outputTimestamp>0</project.build.outputTimestamp>
   </properties>
 
   <build>
@@ -65,25 +63,37 @@
         </configuration>
       </plugin>
       <plugin>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>maven-bundle-plugin</artifactId>
-        <version>5.1.9</version>
-        <extensions>true</extensions>
+        <groupId>biz.aQute.bnd</groupId>
+        <artifactId>bnd-maven-plugin</artifactId>
+        <version>6.4.0</version>
         <executions>
-          <!-- default bundle without embedded dependencies -->
           <execution>
-            <id>default-bundle</id>
             <goals>
-              <goal>bundle</goal>
+              <goal>bnd-process</goal>
             </goals>
-            <configuration>
-              <instructions>
-                <Bundle-SymbolicName>${bundle.symbolicName}</Bundle-SymbolicName>
-                <Export-Package>${bundle.namespace}</Export-Package>
-              </instructions>
-            </configuration>
           </execution>
         </executions>
+      </plugin>
+      <plugin>
+        <groupId>biz.aQute.bnd</groupId>
+        <artifactId>bnd-baseline-maven-plugin</artifactId>
+        <version>6.4.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>baseline</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+          </archive>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -149,6 +159,13 @@
       <groupId>biz.aQute.bnd</groupId>
       <artifactId>biz.aQute.bndlib</artifactId>
       <version>6.4.1</version>
+    </dependency>
+    <!-- OSGi -->
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.annotation.versioning</artifactId>
+      <version>1.1.2</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.osgi</groupId>

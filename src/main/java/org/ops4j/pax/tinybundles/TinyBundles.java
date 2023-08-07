@@ -25,6 +25,7 @@ import org.ops4j.pax.tinybundles.internal.BndBuilder;
 import org.ops4j.pax.tinybundles.internal.TinyBundleImpl;
 import org.ops4j.store.Store;
 import org.ops4j.store.StoreFactory;
+import org.osgi.annotation.versioning.ProviderType;
 
 /**
  * Statically usable Tinybundles API.
@@ -33,6 +34,7 @@ import org.ops4j.store.StoreFactory;
  * @author Toni Menzel
  * @since 1.0.0
  */
+@ProviderType
 public class TinyBundles {
 
     public final static BuildStrategy STRATEGY_ASYNC = new AsyncRawBuilder();
