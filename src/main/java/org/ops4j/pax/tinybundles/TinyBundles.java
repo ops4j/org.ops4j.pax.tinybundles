@@ -72,7 +72,7 @@ public class TinyBundles {
     /**
      * @return a builder to be used with {@link TinyBundle#build(Builder)} using BND with default builder.
      */
-    public static BndBuilder withBndBuilder() {
+    public static Builder withBndBuilder() {
         return new BndBuilder(withRawBuilder());
     }
 

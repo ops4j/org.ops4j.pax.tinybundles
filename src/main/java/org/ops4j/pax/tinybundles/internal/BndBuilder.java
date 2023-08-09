@@ -22,11 +22,9 @@ import java.io.InputStream;
 import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
 import java.net.URL;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Properties;
-import java.util.Set;
 import java.util.jar.Manifest;
 
 import aQute.bnd.osgi.Analyzer;
@@ -44,16 +42,9 @@ public class BndBuilder implements Builder {
     private static Logger LOG = LoggerFactory.getLogger(BndBuilder.class);
 
     final private Builder m_builder;
-    final private Set<Object> plugins;
 
     public BndBuilder(Builder builder) {
         m_builder = builder;
-        plugins = new HashSet<Object>();
-    }
-
-    public BndBuilder addPlugin(Object plugin) {
-        plugins.add(plugin);
-        return this;
     }
 
     public InputStream build(Map<String, URL> resources, Map<String, String> headers) {
@@ -92,10 +83,6 @@ public class BndBuilder implements Builder {
         final aQute.bnd.osgi.Builder analyzer = new aQute.bnd.osgi.Builder();
         analyzer.setJar(jar);
         analyzer.setProperties(properties);
-
-        for (Object plugin : plugins) {
-            analyzer.addBasicPlugin(plugin);
-        }
 
         // throw away already existing headers that we overwrite:
 
