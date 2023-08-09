@@ -65,21 +65,21 @@ public class TinyBundles {
      * @param inner builder when using bnd builder.
      * @return a builder to be used with {@link TinyBundle#build(Builder)} using BND with underlying (given) builder overwrite.
      */
-    public static Builder withBndBuilder(Builder inner) {
+    public static Builder bndBuilder(Builder inner) {
         return new BndBuilder(inner);
     }
 
     /**
      * @return a builder to be used with {@link TinyBundle#build(Builder)} using BND with default builder.
      */
-    public static Builder withBndBuilder() {
-        return new BndBuilder(withRawBuilder());
+    public static Builder bndBuilder() {
+        return new BndBuilder(rawBuilder());
     }
 
     /**
      * @return a builder to be used with {@link TinyBundle#build(Builder)} using no extra manifest computation logic.
      */
-    public static Builder withRawBuilder() {
+    public static Builder rawBuilder() {
         return ASYNC_RAW_BUILDER;
     }
 

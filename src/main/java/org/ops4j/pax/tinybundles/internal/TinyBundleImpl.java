@@ -35,7 +35,7 @@ import org.ops4j.pax.tinybundles.TinyBundle;
 import org.ops4j.store.Store;
 import org.osgi.framework.Constants;
 
-import static org.ops4j.pax.tinybundles.TinyBundles.withRawBuilder;
+import static org.ops4j.pax.tinybundles.TinyBundles.rawBuilder;
 
 /**
  * Our default implementation of TinyBundle.
@@ -189,7 +189,7 @@ public class TinyBundleImpl implements TinyBundle {
      * @{@inheritDoc}
      */
     public InputStream build() {
-        return withRawBuilder().build(m_resources, m_headers);
+        return rawBuilder().build(m_resources, m_headers);
     }
 
     /**

@@ -42,7 +42,7 @@ import static org.ops4j.pax.tinybundles.TinyBundles.bundle;
 public class BndTest {
 
     Builder getBuilder() {
-        return TinyBundles.withBndBuilder();
+        return TinyBundles.bndBuilder();
     }
 
     /**
