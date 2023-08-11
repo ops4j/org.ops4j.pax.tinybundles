@@ -113,6 +113,37 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <version>3.1.2</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>integration-test</goal>
+              <goal>verify</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <redirectTestOutputToFile>true</redirectTestOutputToFile>
+          <systemPropertyVariables combine.children="append">
+            <bundle.filename>${basedir}/target/${project.build.finalName}.jar</bundle.filename>
+          </systemPropertyVariables>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.servicemix.tooling</groupId>
+        <artifactId>depends-maven-plugin</artifactId>
+        <version>1.5.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>generate-depends-file</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 
@@ -145,22 +176,30 @@
 
   <dependencies>
     <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-      <version>1.7.36</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
       <groupId>org.ops4j.base</groupId>
       <artifactId>ops4j-base-store</artifactId>
       <version>1.5.1</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>biz.aQute.bnd</groupId>
       <artifactId>biz.aQute.bndlib</artifactId>
       <version>6.4.1</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>biz.aQute.bnd</groupId>
+      <artifactId>biz.aQute.bnd.util</artifactId>
+      <version>6.4.1</version>
+      <scope>provided</scope>
     </dependency>
     <!-- OSGi -->
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.annotation.bundle</artifactId>
+      <version>2.0.0</version>
+      <scope>provided</scope>
+    </dependency>
     <dependency>
       <groupId>org.osgi</groupId>
       <artifactId>org.osgi.annotation.versioning</artifactId>
@@ -180,15 +219,78 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.service.repository</artifactId>
+      <version>1.1.0</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.util.function</artifactId>
+      <version>1.2.0</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.util.promise</artifactId>
+      <version>1.2.0</version>
+      <scope>provided</scope>
+    </dependency>
+    <!-- Apache Felix -->
+    <dependency>
+      <groupId>org.apache.felix</groupId>
+      <artifactId>org.apache.felix.framework</artifactId>
+      <version>7.0.5</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- logging -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.7.36</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <version>1.7.36</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- testing -->
+    <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.13.2</version>
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-simple</artifactId>
-      <version>1.7.36</version>
+      <groupId>org.ops4j.pax.exam</groupId>
+      <artifactId>pax-exam</artifactId>
+      <version>4.13.3</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.exam</groupId>
+      <artifactId>pax-exam-cm</artifactId>
+      <version>4.13.3</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.exam</groupId>
+      <artifactId>pax-exam-container-forked</artifactId>
+      <version>4.13.3</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.exam</groupId>
+      <artifactId>pax-exam-junit4</artifactId>
+      <version>4.13.3</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.exam</groupId>
+      <artifactId>pax-exam-link-mvn</artifactId>
+      <version>4.13.3</version>
       <scope>test</scope>
     </dependency>
   </dependencies>

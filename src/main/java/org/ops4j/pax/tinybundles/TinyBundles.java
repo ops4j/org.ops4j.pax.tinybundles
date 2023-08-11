@@ -17,15 +17,14 @@
  */
 package org.ops4j.pax.tinybundles;
 
-import java.io.IOException;
 import java.io.InputStream;
+import java.util.ServiceLoader;
 
-import org.ops4j.pax.tinybundles.internal.AsyncRawBuilder;
-import org.ops4j.pax.tinybundles.internal.BndBuilder;
-import org.ops4j.pax.tinybundles.internal.TinyBundleImpl;
 import org.ops4j.store.Store;
-import org.ops4j.store.StoreFactory;
 import org.osgi.annotation.versioning.ProviderType;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
+import org.osgi.framework.ServiceReference;
 
 /**
  * Statically usable Tinybundles API.
@@ -37,9 +36,19 @@ import org.osgi.annotation.versioning.ProviderType;
 @ProviderType
 public class TinyBundles {
 
-    public final static Builder ASYNC_RAW_BUILDER = new AsyncRawBuilder();
-
-    private static Store<InputStream> m_store;
+    private static TinyBundlesFactory factory() {
+        try {
+            return ServiceLoader.load(TinyBundlesFactory.class).iterator().next();
+        } catch (Exception e) { //
+        }
+        try {
+            final Bundle bundle = FrameworkUtil.getBundle(TinyBundles.class.getClassLoader()).get();
+            final ServiceReference<TinyBundlesFactory> serviceReference = bundle.getBundleContext().getServiceReference(TinyBundlesFactory.class);
+            return bundle.getBundleContext().getService(serviceReference);
+        } catch (Exception e) { //
+        }
+        throw new IllegalStateException("Unable to get an instance of " + TinyBundlesFactory.class.getName());
+    }
 
     /**
      * {@see #bundle(BuildableBundle, org.ops4j.store.Store)}
@@ -47,7 +56,7 @@ public class TinyBundles {
      * @return a new instance of {@link TinyBundle}.
      */
     public static TinyBundle bundle() {
-        return bundle(getDefaultStore());
+        return factory().bundle();
     }
 
     /**
@@ -57,47 +66,30 @@ public class TinyBundles {
      * @param store cache backend
      * @return a new instance of {@link TinyBundle}.
      */
-    public static TinyBundle bundle(Store<InputStream> store) {
-        return new TinyBundleImpl(store);
+    public static TinyBundle bundle(final Store<InputStream> store) {
+        return factory().bundle(store);
     }
 
     /**
      * @param inner builder when using bnd builder.
      * @return a builder to be used with {@link TinyBundle#build(Builder)} using BND with underlying (given) builder overwrite.
      */
-    public static Builder bndBuilder(Builder inner) {
-        return new BndBuilder(inner);
+    public static Builder bndBuilder(final Builder inner) {
+        return factory().bndBuilder(inner);
     }
 
     /**
      * @return a builder to be used with {@link TinyBundle#build(Builder)} using BND with default builder.
      */
     public static Builder bndBuilder() {
-        return new BndBuilder(rawBuilder());
+        return factory().bndBuilder(rawBuilder());
     }
 
     /**
      * @return a builder to be used with {@link TinyBundle#build(Builder)} using no extra manifest computation logic.
      */
     public static Builder rawBuilder() {
-        return ASYNC_RAW_BUILDER;
-    }
-
-    /**
-     * Access to the default store instance. (this is low level. Don't bother).
-     * The default store is unique per VM.
-     *
-     * @return store instance that is used when user does not give its own Store instance upon {@link #bundle()}
-     */
-    public static synchronized Store<InputStream> getDefaultStore() {
-        try {
-            if (m_store == null) {
-                m_store = StoreFactory.anonymousStore();
-            }
-            return m_store;
-        } catch (IOException e) {
-            throw new RuntimeException("Error creating Store", e);
-        }
+        return factory().rawBuilder();
     }
 
 }
