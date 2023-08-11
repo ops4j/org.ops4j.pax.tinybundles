@@ -37,14 +37,15 @@ import org.slf4j.LoggerFactory;
  */
 public abstract class RawBuilder implements Builder {
 
-    private static Logger LOG = LoggerFactory.getLogger(RawBuilder.class);
+    private final Logger logger = LoggerFactory.getLogger(RawBuilder.class);
+
     private static final String BUILT_BY = "Built-By";
+
     private static final String ENTRY_MANIFEST = "META-INF/MANIFEST.MF";
 
     private static final String TOOL = "Tool";
-    private static final String CREATED_BY = "Created-By";
 
-    abstract public InputStream build(Map<String, URL> resources, Map<String, String> headers);
+    private static final String CREATED_BY = "Created-By";
 
     // This is what implementations need to call.
     protected void build(Map<String, URL> resources, Map<String, String> headers, JarOutputStream jarOut) throws IOException {
@@ -63,7 +64,7 @@ public abstract class RawBuilder implements Builder {
 
     private void addResource(JarOutputStream jarOut, Map.Entry<String, URL> entryset) throws IOException {
         JarEntry entry = new JarEntry(entryset.getKey());
-        LOG.debug("Copying resource " + entry.getName());
+        logger.debug("Copying resource {}", entry.getName());
         jarOut.putNextEntry(entry);
         try (InputStream inp = entryset.getValue().openStream()) {
             copy(inp, jarOut);
@@ -86,22 +87,21 @@ public abstract class RawBuilder implements Builder {
      * @return a fresh manifest instance
      */
     private Manifest getManifest(Set<Map.Entry<String, String>> headers) {
-        LOG.debug("Creating manifest from added headers.");
-        Manifest man = new Manifest();
+        logger.debug("Creating manifest from added headers.");
+        Manifest manifest = new Manifest();
         String cre = "pax-tinybundles-" + Info.getPaxTinybundlesVersion();
 
-        man.getMainAttributes().putValue("Manifest-Version", "1.0");
-        man.getMainAttributes().putValue(BUILT_BY, System.getProperty("user.name"));
-        man.getMainAttributes().putValue(CREATED_BY, cre);
-        man.getMainAttributes().putValue(TOOL, cre);
-        man.getMainAttributes().putValue("TinybundlesVersion", cre);
+        manifest.getMainAttributes().putValue("Manifest-Version", "1.0");
+        manifest.getMainAttributes().putValue(BUILT_BY, System.getProperty("user.name"));
+        manifest.getMainAttributes().putValue(CREATED_BY, cre);
+        manifest.getMainAttributes().putValue(TOOL, cre);
+        manifest.getMainAttributes().putValue("TinybundlesVersion", cre);
 
         for (Map.Entry<String, String> entry : headers) {
-            LOG.debug(entry.getKey() + " = " + entry.getValue());
-
-            man.getMainAttributes().putValue(entry.getKey(), entry.getValue());
+            logger.debug("{} = {}", entry.getKey(), entry.getValue());
+            manifest.getMainAttributes().putValue(entry.getKey(), entry.getValue());
         }
-        return man;
+        return manifest;
     }
 
 }

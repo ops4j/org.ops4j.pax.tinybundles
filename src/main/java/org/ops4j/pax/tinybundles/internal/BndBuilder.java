@@ -25,6 +25,7 @@ import java.net.URL;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Properties;
+import java.util.UUID;
 import java.util.jar.Manifest;
 
 import aQute.bnd.osgi.Analyzer;
@@ -39,23 +40,23 @@ import org.slf4j.LoggerFactory;
  */
 public class BndBuilder implements Builder {
 
-    private static Logger LOG = LoggerFactory.getLogger(BndBuilder.class);
+    private final Logger logger = LoggerFactory.getLogger(BndBuilder.class);
 
-    final private Builder m_builder;
+    private final Builder builder;
 
     public BndBuilder(Builder builder) {
-        m_builder = builder;
+        this.builder = builder;
     }
 
     public InputStream build(Map<String, URL> resources, Map<String, String> headers) {
-        return wrapWithBnd(headers, m_builder.build(resources, headers));
+        return wrapWithBnd(headers, builder.build(resources, headers));
     }
 
     private InputStream wrapWithBnd(Map<String, String> headers, InputStream in) {
         try {
             Properties p = new Properties();
             p.putAll(headers);
-            return createBundle(in, p, "BuildByTinyBundles" + UIDProvider.getUID());
+            return createBundle(in, p, "BuildByTinyBundles" + UUID.randomUUID());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -117,7 +118,7 @@ public class BndBuilder implements Builder {
                     try {
                         pout.close();
                     } catch (IOException e) {
-                        LOG.warn("Close ?", e);
+                        logger.warn("Close ?", e);
                     }
                 }
             }

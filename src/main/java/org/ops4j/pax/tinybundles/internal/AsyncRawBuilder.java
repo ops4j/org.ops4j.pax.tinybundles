@@ -33,10 +33,10 @@ import org.slf4j.LoggerFactory;
  */
 public class AsyncRawBuilder extends RawBuilder {
 
-    private static Logger LOG = LoggerFactory.getLogger(RawBuilder.class);
+    private final Logger logger = LoggerFactory.getLogger(RawBuilder.class);
 
     public InputStream build(final Map<String, URL> resources, final Map<String, String> headers) {
-        LOG.debug("make()");
+        logger.debug("make()");
         try {
             final PipedInputStream pin = new PipedInputStream();
             final PipedOutputStream pout = new PipedOutputStream(pin);
@@ -56,10 +56,10 @@ public class AsyncRawBuilder extends RawBuilder {
             build(resources, headers, jarOut);
         } catch (IOException e) {
             if (!"Pipe closed".equals(e.getMessage())) {
-                LOG.error("Problem while writing jar.", e);
+                logger.error("Problem while writing jar.", e);
             }
         } finally {
-            LOG.trace("Copy thread finished.");
+            logger.trace("Copy thread finished.");
         }
     }
 

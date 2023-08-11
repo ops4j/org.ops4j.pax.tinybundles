@@ -24,11 +24,11 @@ import java.util.jar.Manifest;
 import java.util.zip.ZipEntry;
 
 import org.junit.Test;
-import org.ops4j.pax.tinybundles.internal.Info;
 import org.ops4j.pax.tinybundles.demo.HelloWorld;
 import org.ops4j.pax.tinybundles.demo.ds.DsService;
 import org.ops4j.pax.tinybundles.demo.intern.HelloWorldImpl;
 import org.ops4j.pax.tinybundles.demo.intern.MyFirstActivator;
+import org.ops4j.pax.tinybundles.internal.Info;
 import org.osgi.framework.Constants;
 
 import static org.junit.Assert.assertEquals;

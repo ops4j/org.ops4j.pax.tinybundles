@@ -148,6 +148,6 @@ public interface TinyBundle {
     /**
      * Get header value.
      */
-    public String getHeader(String key);
+    String getHeader(String key);
 
 }

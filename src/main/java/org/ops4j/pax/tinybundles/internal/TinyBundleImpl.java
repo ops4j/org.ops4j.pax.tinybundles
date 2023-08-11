@@ -46,13 +46,14 @@ import static org.ops4j.pax.tinybundles.TinyBundles.rawBuilder;
  */
 public class TinyBundleImpl implements TinyBundle {
 
-    private Map<String, URL> m_resources = new HashMap<String, URL>();
-    private Map<String, String> m_headers = new HashMap<String, String>();
+    private final Map<String, URL> resources = new HashMap<>();
 
-    final private Store<InputStream> m_store;
+    private final Map<String, String> headers = new HashMap<>();
 
-    public TinyBundleImpl(Store<InputStream> bstore) {
-        m_store = bstore;
+    private final Store<InputStream> store;
+
+    public TinyBundleImpl(final Store<InputStream> store) {
+        this.store = store;
     }
 
     public TinyBundle read(InputStream in, boolean readData) {
@@ -111,7 +112,7 @@ public class TinyBundleImpl implements TinyBundle {
 
         Collection<ClassDescriptor> innerClasses = findInnerClasses(clazz, strategy);
         for (ClassDescriptor descriptor : innerClasses) {
-            m_resources.put(descriptor.getResourcePath(), descriptor.getUrl());
+            resources.put(descriptor.getResourcePath(), descriptor.getUrl());
         }
         return this;
     }
@@ -152,43 +153,43 @@ public class TinyBundleImpl implements TinyBundle {
     }
 
     public TinyBundle add(String name, URL url) {
-        m_resources.put(name, url);
+        resources.put(name, url);
         return this;
     }
 
     public TinyBundle add(String name, InputStream content) {
         try {
-            return add(name, m_store.getLocation(m_store.store(content)).toURL());
+            return add(name, store.getLocation(store.store(content)).toURL());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     public InputStream build() {
-        return rawBuilder().build(m_resources, m_headers);
+        return rawBuilder().build(resources, headers);
     }
 
     public InputStream build(Builder builder) {
-        return builder.build(m_resources, m_headers);
+        return builder.build(resources, headers);
     }
 
     public TinyBundle set(String key, String value) {
-        m_headers.put(key, value);
+        headers.put(key, value);
         return this;
     }
 
     public TinyBundle removeResource(String key) {
-        m_resources.remove(key);
+        resources.remove(key);
         return this;
     }
 
     public TinyBundle removeHeader(String key) {
-        m_headers.remove(key);
+        headers.remove(key);
         return this;
     }
 
     public String getHeader(String key) {
-        return m_headers.get(key);
+        return headers.get(key);
     }
 
 }

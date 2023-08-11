@@ -15,7 +15,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.ops4j.pax.tinybundles.internal;
 
 import java.net.URL;
@@ -25,13 +24,11 @@ import java.net.URL;
  */
 public class ClassDescriptor {
 
-    private String resourcePath;
-    private URL url;
+    private final String resourcePath;
 
-    public ClassDescriptor() {
-    }
+    private final URL url;
 
-    public ClassDescriptor(String resourcePath, URL url) {
+    public ClassDescriptor(final String resourcePath, final URL url) {
         this.resourcePath = resourcePath;
         this.url = url;
     }
@@ -40,16 +37,13 @@ public class ClassDescriptor {
         return resourcePath;
     }
 
-    public void setResourcePath(String resourcePath) {
-        this.resourcePath = resourcePath;
-    }
-
     public URL getUrl() {
         return url;
     }
 
-    public void setUrl(URL url) {
-        this.url = url;
+    @Override
+    public String toString() {
+        return String.format("ClassDescriptor{resourcePath='%s', url='%s'}", resourcePath, url);
     }
 
 }

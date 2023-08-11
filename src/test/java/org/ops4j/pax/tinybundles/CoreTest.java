@@ -66,8 +66,8 @@ public class CoreTest {
             String symbolicName = "bundle_" + i;
             assertManifestAttributes(
                 createTestBundle(symbolicName),
-                symbolicName);
-
+                symbolicName
+            );
         }
     }
 
