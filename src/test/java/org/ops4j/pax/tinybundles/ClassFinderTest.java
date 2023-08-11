@@ -62,11 +62,6 @@ public class ClassFinderTest {
         verify(descriptors, true, "aQute/bnd/build/Container$1.class");
     }
 
-    /**
-     * @param descriptors
-     * @param string
-     * @param string2
-     */
     private void verify(Collection<ClassDescriptor> descriptors, boolean complete, String... resources) {
         Map<String, ClassDescriptor> descriptorMap = new HashMap<String, ClassDescriptor>();
         for (ClassDescriptor descriptor : descriptors) {

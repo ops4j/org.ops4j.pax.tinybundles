@@ -39,7 +39,7 @@ import static org.ops4j.pax.tinybundles.TinyBundles.rawBuilder;
 
 /**
  * Our default implementation of TinyBundle.
- * An instance should be retrieved via DefaultTinybundleProvider.newBundle() factory method.
+ * An instance should be retrieved via TinyBundles.bundle() factory method.
  *
  * @author Toni Menzel (tonit)
  * @since Apr 9, 2009
@@ -55,9 +55,6 @@ public class TinyBundleImpl implements TinyBundle {
         m_store = bstore;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public TinyBundle read(InputStream in, boolean readData) {
         if (in != null) {
             try (JarInputStream jarIn = new JarInputStream(in)) {
@@ -98,9 +95,6 @@ public class TinyBundleImpl implements TinyBundle {
         return read(in, true);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public TinyBundle add(Class<?> clazz) {
         add(clazz, InnerClassStrategy.ALL);
         return this;
@@ -140,43 +134,28 @@ public class TinyBundleImpl implements TinyBundle {
     }
 
 
-    /**
-     * {@inheritDoc}
-     */
     public TinyBundle activator(Class<?> activator) {
         this.add(activator);
         this.set(Constants.BUNDLE_ACTIVATOR, activator.getName());
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public TinyBundle symbolicName(String name) {
         this.set(Constants.BUNDLE_SYMBOLICNAME, name);
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public TinyBundle remove(Class<?> content) {
         String name = ClassFinder.asResource(content);
         removeResource(name);
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public TinyBundle add(String name, URL url) {
         m_resources.put(name, url);
         return this;
     }
 
-    /**
-     * @{@inheritDoc}
-     */
     public TinyBundle add(String name, InputStream content) {
         try {
             return add(name, m_store.getLocation(m_store.store(content)).toURL());
@@ -185,47 +164,29 @@ public class TinyBundleImpl implements TinyBundle {
         }
     }
 
-    /**
-     * @{@inheritDoc}
-     */
     public InputStream build() {
         return rawBuilder().build(m_resources, m_headers);
     }
 
-    /**
-     * @{@inheritDoc}
-     */
     public InputStream build(Builder builder) {
         return builder.build(m_resources, m_headers);
     }
 
-    /**
-     * @{@inheritDoc}
-     */
     public TinyBundle set(String key, String value) {
         m_headers.put(key, value);
         return this;
     }
 
-    /**
-     * @{@inheritDoc}
-     */
     public TinyBundle removeResource(String key) {
         m_resources.remove(key);
         return this;
     }
 
-    /**
-     * @{@inheritDoc}
-     */
     public TinyBundle removeHeader(String key) {
         m_headers.remove(key);
         return this;
     }
 
-    /**
-     * @{@inheritDoc}
-     */
     public String getHeader(String key) {
         return m_headers.get(key);
     }

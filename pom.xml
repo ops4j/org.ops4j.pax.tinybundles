@@ -12,7 +12,8 @@
   <artifactId>tinybundles</artifactId>
   <version>4.0.0-SNAPSHOT</version>
 
-  <name>OPS4J Pax Tinybundles</name>
+  <name>OPS4J Pax TinyBundles</name>
+  <description>TinyBundles is a library to create and modify OSGi bundles on the fly using fluent Java API.</description>
 
   <url>https://github.com/ops4j/org.ops4j.pax.tinybundles</url>
   <inceptionYear>2007</inceptionYear>
@@ -59,7 +60,6 @@
           <attach>true</attach>
           <quiet>true</quiet>
           <encoding>UTF-8</encoding>
-          <additionalparam>-Xdoclint:none</additionalparam>
         </configuration>
       </plugin>
       <plugin>
@@ -169,10 +169,6 @@
       <timezone>UTC+1</timezone>
     </developer>
   </developers>
-
-  <description>
-    Tiny Bundles is a library to create and modify adhoc bundles and other OSGi resources using fluent Java API.
-  </description>
 
   <dependencies>
     <dependency>

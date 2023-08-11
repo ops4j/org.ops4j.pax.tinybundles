@@ -68,7 +68,7 @@ public interface TinyBundle {
     /**
      * Add a class to the current bundle and set it as Activator
      *
-     * @param content
+     * @param activator
      */
     TinyBundle activator(Class<?> activator);
 
@@ -89,7 +89,6 @@ public interface TinyBundle {
 
     /**
      * When you are done adding stuff to *this* you can call this method to go to next step.
-     * The BND based builder will be used for your convenience.
      *
      * @param builder builder to be used.
      * @return Next step in the bundle making process.
@@ -97,7 +96,7 @@ public interface TinyBundle {
     InputStream build(Builder builder);
 
     /**
-     * Shortcut to {@link TinyBundle#build(Builder)} with builder = TinyBundles.withClassicBuilder().
+     * Build bundle with default builder.
      *
      * @return Next step in the bundle making process.
      */
@@ -105,7 +104,6 @@ public interface TinyBundle {
 
     /**
      * Set header values that go into the Manifest.
-     * Note that if BND is used to build this bundle, those instructions will be passed to BND as is.
      *
      * @param key   a key
      * @param value a value
@@ -132,7 +130,7 @@ public interface TinyBundle {
     TinyBundle removeHeader(String key);
 
     /**
-     * Read an existing bundle or jar into Tinybundles for modification.
+     * Read an existing bundle or jar into TinyBundles for modification.
      *
      * @param input stream of JarInputStream
      * @return {@literal this}
@@ -140,7 +138,7 @@ public interface TinyBundle {
     TinyBundle read(InputStream input);
 
     /**
-     * Read an existing bundle or jar into Tinybundles for modification.
+     * Read an existing bundle or jar into TinyBundles for modification.
      *
      * @param input stream of JarInputStream
      * @return {@literal this}

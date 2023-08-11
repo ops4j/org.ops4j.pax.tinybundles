@@ -62,10 +62,10 @@ public class BndBuilder implements Builder {
     }
 
     /**
-     * All the BND magic happens here.
+     * All the bnd magic happens here.
      *
      * @param jarInputStream On what to operate.
-     * @param instructions   BND instructions from user API
+     * @param instructions   bnd instructions from user API
      * @param symbolicName   Mandatory Header. In case user does not set it.
      * @return Bundle Jar Stream
      * @throws Exception Problems go here

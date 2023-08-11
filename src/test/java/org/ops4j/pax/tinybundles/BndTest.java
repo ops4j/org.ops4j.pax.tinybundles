@@ -43,7 +43,7 @@ import static org.ops4j.pax.tinybundles.TinyBundles.bundle;
 public class BndTest {
 
     /**
-     * Make sure BND independent headers are not affected by bnds activity.
+     * Make sure bnd independent headers are not affected by bnd's activity.
      */
     @Test
     public void bndIndependendProps() throws IOException {

@@ -27,8 +27,8 @@ import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceReference;
 
 /**
- * Statically usable Tinybundles API.
- * Usually the entry point for using Tinybundles.
+ * Statically usable TinyBundles API.
+ * Usually the entry point for using TinyBundles.
  *
  * @author Toni Menzel
  * @since 1.0.0
@@ -72,14 +72,14 @@ public class TinyBundles {
 
     /**
      * @param inner builder when using bnd builder.
-     * @return a builder to be used with {@link TinyBundle#build(Builder)} using BND with underlying (given) builder overwrite.
+     * @return a builder to be used with {@link TinyBundle#build(Builder)} using bnd with given builder.
      */
     public static Builder bndBuilder(final Builder inner) {
         return factory().bndBuilder(inner);
     }
 
     /**
-     * @return a builder to be used with {@link TinyBundle#build(Builder)} using BND with default builder.
+     * @return a builder to be used with {@link TinyBundle#build(Builder)} using bnd with raw builder.
      */
     public static Builder bndBuilder() {
         return factory().bndBuilder(rawBuilder());

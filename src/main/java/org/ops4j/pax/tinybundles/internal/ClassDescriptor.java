@@ -36,30 +36,18 @@ public class ClassDescriptor {
         this.url = url;
     }
 
-    /**
-     * @return the resourcePath
-     */
     public String getResourcePath() {
         return resourcePath;
     }
 
-    /**
-     * @param resourcePath the resourcePath to set
-     */
     public void setResourcePath(String resourcePath) {
         this.resourcePath = resourcePath;
     }
 
-    /**
-     * @return the url
-     */
     public URL getUrl() {
         return url;
     }
 
-    /**
-     * @param url the url to set
-     */
     public void setUrl(URL url) {
         this.url = url;
     }
