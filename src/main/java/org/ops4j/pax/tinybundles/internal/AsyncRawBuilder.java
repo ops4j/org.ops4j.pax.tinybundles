@@ -33,18 +33,14 @@ import org.slf4j.LoggerFactory;
  */
 public class AsyncRawBuilder extends RawBuilder {
 
-    private final Logger logger = LoggerFactory.getLogger(RawBuilder.class);
+    private final Logger logger = LoggerFactory.getLogger(AsyncRawBuilder.class);
 
     public InputStream build(final Map<String, URL> resources, final Map<String, String> headers) {
-        logger.debug("make()");
+        logger.debug("building...");
         try {
             final PipedInputStream pin = new PipedInputStream();
             final PipedOutputStream pout = new PipedOutputStream(pin);
-            new Thread() {
-                public void run() {
-                    buildFrom(resources, headers, pout);
-                }
-            }.start();
+            new Thread(() -> buildFrom(resources, headers, pout)).start();
             return pin;
         } catch (IOException e) {
             throw new RuntimeException("Error opening pipe.", e);
