@@ -82,9 +82,11 @@ public class ClassFinderTest {
         Class<?> klass = Pattern.class;
         ClassFinder finder = new ClassFinder();
         Collection<ClassDescriptor> descriptors = finder.findAllEmbeddedClasses(klass);
-        verify(descriptors, false, "java/util/regex/Pattern$6.class",
+        verify(descriptors, false,
+            "java/util/regex/Pattern$1.class",
             "java/util/regex/Pattern$CharProperty.class",
-            "java/util/regex/Pattern$CharProperty$1.class");
+            "java/util/regex/Pattern$Dollar.class"
+        );
     }
 
     @Test
@@ -92,7 +94,9 @@ public class ClassFinderTest {
         Class<?> klass = Pattern.class;
         ClassFinder finder = new ClassFinder();
         Collection<ClassDescriptor> descriptors = finder.findAnonymousClasses(klass);
-        verify(descriptors, false, "java/util/regex/Pattern$6.class");
+        verify(descriptors, false,
+            "java/util/regex/Pattern$1.class"
+        );
     }
 
     @Test

@@ -15,29 +15,38 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.ops4j.pax.tinybundles.internal;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.JarURLConnection;
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
+import java.util.stream.Stream;
 
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author Harald Wellmann
  */
 public class ClassFinder {
+
+    private final Logger logger = LoggerFactory.getLogger(ClassFinder.class);
 
     public Collection<ClassDescriptor> findAllEmbeddedClasses(Class<?> klass) throws IOException {
         String resourcePrefix = klass.getName().replace('.', '/') + "\\$.*";
@@ -56,6 +65,7 @@ public class ClassFinder {
             classLoader = ClassLoader.getSystemClassLoader();
         }
         URL classUrl = classLoader.getResource(asResource(klass));
+        logger.debug("Finding all embedded classes for class '{}' with pattern '{}'", classUrl, pattern);
         if (classUrl.getProtocol().equals("jar")) {
 
             String jarPath = classUrl.getFile();
@@ -73,7 +83,9 @@ public class ClassFinder {
                 throw new IllegalStateException(exc);
             }
             return findEmbeddedClasses(classFile, pattern);
-        } else {
+        } else if (classUrl.getProtocol().equals("jrt")) {
+            return findEmbeddedClassesInJavaModule(classUrl, pattern);
+        } else if (classUrl.getProtocol().equals("bundle") || classUrl.getProtocol().equals("bundleresource")) {
             Bundle bundle = FrameworkUtil.getBundle(klass);
             if (bundle != null) {
                 String path = klass.getPackage().getName().replace('.', '/');
@@ -87,8 +99,9 @@ public class ClassFinder {
             } else {
                 throw new IllegalArgumentException("No bundle found for class " + klass + ". Unsupported woven or system package classes");
             }
+        } else {
+            throw new IllegalStateException("Unsupported protocol " + classUrl.getProtocol());
         }
-//        throw new IllegalStateException( "unsupported protocol " + classUrl.getProtocol() );
     }
 
     public List<ClassDescriptor> findEmbeddedClasses(Enumeration<URL> urls, String pattern) throws MalformedURLException {
@@ -138,6 +151,34 @@ public class ClassFinder {
         }
         jarFile.close();
         return descriptors;
+    }
+
+    public List<ClassDescriptor> findEmbeddedClassesInJavaModule(URL classUrl, String pattern) throws IOException {
+        final List<ClassDescriptor> descriptors = new ArrayList<>();
+        final String classPath = classUrl.getPath();
+        final String packagePath = classPath.substring(0, classPath.lastIndexOf("/"));
+        final String module = classPath.substring(0, classPath.indexOf("/", 1)).substring(1);
+        final String jrtPattern = String.format("/modules/%s/%s", module, pattern);
+        final FileSystem fileSystem = FileSystems.getFileSystem(URI.create("jrt:/"));
+        try (Stream<Path> stream = Files.list(fileSystem.getPath("/modules", packagePath))) {
+            stream.forEach(path -> {
+                try {
+                    if (path.toString().matches(jrtPattern)) {
+                        final String resourcePath = removeJrtModulePrefix(path, module);
+                        final ClassDescriptor descriptor = new ClassDescriptor(resourcePath, path.toUri().toURL());
+                        logger.debug("Adding {}", descriptor);
+                        descriptors.add(descriptor);
+                    }
+                } catch (MalformedURLException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+        }
+        return descriptors;
+    }
+
+    private static String removeJrtModulePrefix(final Path path, final String module) {
+        return path.toString().replaceFirst(String.format("/modules/%s/", module), "");
     }
 
     public static String asResource(Class<?> klass) {
