@@ -52,7 +52,7 @@ public class AsyncRawBuilder extends RawBuilder {
             build(resources, headers, jarOut);
         } catch (IOException e) {
             if (!"Pipe closed".equals(e.getMessage())) {
-                logger.error("Problem while writing jar.", e);
+                throw new RuntimeException("Problem while writing jar.", e);
             }
         } finally {
             logger.trace("Copy thread finished.");
