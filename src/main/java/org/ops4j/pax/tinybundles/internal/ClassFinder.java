@@ -165,7 +165,8 @@ public class ClassFinder {
                 try {
                     if (path.toString().matches(jrtPattern)) {
                         final String resourcePath = removeJrtModulePrefix(path, module);
-                        final ClassDescriptor descriptor = new ClassDescriptor(resourcePath, path.toUri().toURL());
+                        final URL url = sanitizeJrtUrl(path.toUri().toURL());
+                        final ClassDescriptor descriptor = new ClassDescriptor(resourcePath, url);
                         logger.debug("Adding {}", descriptor);
                         descriptors.add(descriptor);
                     }
@@ -179,6 +180,15 @@ public class ClassFinder {
 
     private static String removeJrtModulePrefix(final Path path, final String module) {
         return path.toString().replaceFirst(String.format("/modules/%s/", module), "");
+    }
+
+    // Fix for bug in JDK 9, 10, 11 and 12. https://bugs.openjdk.org/browse/JDK-8227076
+    private static URL sanitizeJrtUrl(final URL url) throws MalformedURLException {
+        if (url.toString().startsWith("jrt:/modules/")) {
+            return new URL(url.toString().replaceFirst("jrt:/modules/", "jrt:/"));
+        } else {
+            return url;
+        }
     }
 
     public static String asResource(Class<?> klass) {
