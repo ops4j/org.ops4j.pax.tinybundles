@@ -42,6 +42,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.ops4j.pax.tinybundles.TinyBundles.bundle;
+import static org.ops4j.pax.tinybundles.TinyBundles.rawBuilder;
 
 /**
  * This is a standalone test.
@@ -80,7 +81,7 @@ public class CoreTest {
             .set(Constants.EXPORT_PACKAGE, "demo")
             .set(Constants.IMPORT_PACKAGE, "demo")
             .set(Constants.BUNDLE_ACTIVATOR, HelloWorldActivator.class.getName())
-            .build();
+            .build(rawBuilder());
     }
 
     private static void assertManifestAttributes(InputStream inp, String caption)
@@ -110,7 +111,7 @@ public class CoreTest {
         InputStream bundle = bundle()
             .symbolicName("my")
             .activator(HelloWorldActivator.class)
-            .build();
+            .build(rawBuilder());
         Manifest man = getBundleManifest(bundle);
         assertEquals("my", man.getMainAttributes().getValue(Constants.BUNDLE_SYMBOLICNAME));
         assertEquals(HelloWorldActivator.class.getName(), man.getMainAttributes().getValue(Constants.BUNDLE_ACTIVATOR));
@@ -118,7 +119,7 @@ public class CoreTest {
 
     @Test
     public void testDefaultPropertiesAreSetCorrectly() throws IOException {
-        Manifest man = getBundleManifest(bundle().build());
+        Manifest man = getBundleManifest(bundle().build(rawBuilder()));
         assertEquals("Header " + HEADER_CREATED_BY, "pax-tinybundles-" + Info.getPaxTinybundlesVersion(), man.getMainAttributes().getValue(HEADER_CREATED_BY));
         assertEquals("Header " + HEADER_TOOL, "pax-tinybundles-" + Info.getPaxTinybundlesVersion(), man.getMainAttributes().getValue(HEADER_TOOL));
         assertEquals("Header " + HEADER_TINYBUNDLES_VERSION, "pax-tinybundles-" + Info.getPaxTinybundlesVersion(), man.getMainAttributes().getValue(HEADER_TINYBUNDLES_VERSION));
@@ -136,12 +137,12 @@ public class CoreTest {
             .set(Constants.EXPORT_PACKAGE, "demo")
             .set(Constants.IMPORT_PACKAGE, "demo")
             .set(Constants.BUNDLE_ACTIVATOR, HelloWorldActivator.class.getName())
-            .build();
+            .build(rawBuilder());
 
         // create a new bundle from the original and modify it
         InputStream modifiedBundle = bundle().read(originalBundle)
             .set(Constants.EXPORT_PACKAGE, "bacon")
-            .build();
+            .build(rawBuilder());
 
         Manifest modifiedMan = getBundleManifest(modifiedBundle);
         assertEquals("demo", modifiedMan.getMainAttributes().getValue(Constants.IMPORT_PACKAGE));
