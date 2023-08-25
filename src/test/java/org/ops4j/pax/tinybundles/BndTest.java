@@ -27,7 +27,7 @@ import org.junit.Test;
 import org.ops4j.pax.tinybundles.demo.HelloWorld;
 import org.ops4j.pax.tinybundles.demo.ds.DsService;
 import org.ops4j.pax.tinybundles.demo.intern.HelloWorldImpl;
-import org.ops4j.pax.tinybundles.demo.intern.MyFirstActivator;
+import org.ops4j.pax.tinybundles.demo.intern.HelloWorldActivator;
 import org.ops4j.pax.tinybundles.internal.Info;
 import org.osgi.framework.Constants;
 
@@ -74,11 +74,11 @@ public class BndTest {
     @Test
     public void createTestAllDefault() throws IOException {
         InputStream inp = bundle()
-            .add(MyFirstActivator.class)
+            .add(HelloWorldActivator.class)
             .add(HelloWorld.class)
             .add(HelloWorldImpl.class)
             .set(Constants.BUNDLE_SYMBOLICNAME, "MyFirstTinyBundle")
-            .set(Constants.BUNDLE_ACTIVATOR, MyFirstActivator.class.getName())
+            .set(Constants.BUNDLE_ACTIVATOR, HelloWorldActivator.class.getName())
             .build(bndBuilder());
 
         // test output
@@ -94,12 +94,12 @@ public class BndTest {
     @Test
     public void createTestExport() throws IOException {
         InputStream inp = bundle()
-            .add(MyFirstActivator.class)
+            .add(HelloWorldActivator.class)
             .add(HelloWorld.class)
             .add(HelloWorldImpl.class)
             .set(Constants.BUNDLE_SYMBOLICNAME, "MyFirstTinyBundle")
             .set(Constants.EXPORT_PACKAGE, HelloWorld.class.getPackage().getName())
-            .set(Constants.BUNDLE_ACTIVATOR, MyFirstActivator.class.getName())
+            .set(Constants.BUNDLE_ACTIVATOR, HelloWorldActivator.class.getName())
             .build(bndBuilder());
 
         // test output
@@ -115,13 +115,13 @@ public class BndTest {
     @Test
     public void embedDependency() throws IOException {
         InputStream inp = bundle()
-            .add(MyFirstActivator.class)
+            .add(HelloWorldActivator.class)
             .add(HelloWorld.class)
             .add(HelloWorldImpl.class)
             .set(Constants.BUNDLE_SYMBOLICNAME, "MyFirstTinyBundle")
             .set(Constants.EXPORT_PACKAGE, HelloWorld.class.getPackage().getName())
-            .set(Constants.BUNDLE_ACTIVATOR, MyFirstActivator.class.getName())
-            .set(Constants.BUNDLE_ACTIVATOR, MyFirstActivator.class.getName())
+            .set(Constants.BUNDLE_ACTIVATOR, HelloWorldActivator.class.getName())
+            .set(Constants.BUNDLE_ACTIVATOR, HelloWorldActivator.class.getName())
             .set("Bundle-Classpath", ".,ant-1.8.1.jar")
             .set("Include-Resource", "@/Users/tonit/devel/gradle/lib/ant-1.8.1.jar")
             .build(bndBuilder());
@@ -145,11 +145,11 @@ public class BndTest {
     @Test
     public void modifyTest() throws IOException {
         InputStream inp1 = bundle()
-            .add(MyFirstActivator.class)
+            .add(HelloWorldActivator.class)
             .add(HelloWorld.class)
             .add(HelloWorldImpl.class)
             .set(Constants.BUNDLE_SYMBOLICNAME, "MyFirstTinyBundle")
-            .set(Constants.BUNDLE_ACTIVATOR, MyFirstActivator.class.getName())
+            .set(Constants.BUNDLE_ACTIVATOR, HelloWorldActivator.class.getName())
             .build(bndBuilder());
 
         // Add an export:

@@ -29,7 +29,7 @@ import org.osgi.framework.ServiceRegistration;
  * @author Toni Menzel (tonit)
  * @since Apr 9, 2009
  */
-public class MyFirstActivator implements BundleActivator {
+public class HelloWorldActivator implements BundleActivator {
 
     private ServiceRegistration ref;
 

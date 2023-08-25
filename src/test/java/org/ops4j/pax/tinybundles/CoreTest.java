@@ -35,7 +35,7 @@ import org.ops4j.pax.tinybundles.internal.Info;
 import org.ops4j.pax.tinybundles.demo.DemoAnonymousInnerClass;
 import org.ops4j.pax.tinybundles.demo.HelloWorld;
 import org.ops4j.pax.tinybundles.demo.intern.HelloWorldImpl;
-import org.ops4j.pax.tinybundles.demo.intern.MyFirstActivator;
+import org.ops4j.pax.tinybundles.demo.intern.HelloWorldActivator;
 import org.osgi.framework.Constants;
 
 import static org.junit.Assert.assertEquals;
@@ -73,13 +73,13 @@ public class CoreTest {
 
     private InputStream createTestBundle(String caption) throws IOException {
         return bundle()
-            .add(MyFirstActivator.class)
+            .add(HelloWorldActivator.class)
             .add(HelloWorld.class)
             .add(HelloWorldImpl.class)
             .set(Constants.BUNDLE_SYMBOLICNAME, caption)
             .set(Constants.EXPORT_PACKAGE, "demo")
             .set(Constants.IMPORT_PACKAGE, "demo")
-            .set(Constants.BUNDLE_ACTIVATOR, MyFirstActivator.class.getName())
+            .set(Constants.BUNDLE_ACTIVATOR, HelloWorldActivator.class.getName())
             .build();
     }
 
@@ -109,11 +109,11 @@ public class CoreTest {
     public void testActivatorAndSymbolicName() throws IOException {
         InputStream bundle = bundle()
             .symbolicName("my")
-            .activator(MyFirstActivator.class)
+            .activator(HelloWorldActivator.class)
             .build();
         Manifest man = getBundleManifest(bundle);
         assertEquals("my", man.getMainAttributes().getValue(Constants.BUNDLE_SYMBOLICNAME));
-        assertEquals(MyFirstActivator.class.getName(), man.getMainAttributes().getValue(Constants.BUNDLE_ACTIVATOR));
+        assertEquals(HelloWorldActivator.class.getName(), man.getMainAttributes().getValue(Constants.BUNDLE_ACTIVATOR));
     }
 
     @Test
@@ -129,13 +129,13 @@ public class CoreTest {
     public void modifyTest() throws IOException {
         // create a bundle
         InputStream originalBundle = bundle()
-            .add(MyFirstActivator.class)
+            .add(HelloWorldActivator.class)
             .add(HelloWorld.class)
             .add(HelloWorldImpl.class)
             .set(Constants.BUNDLE_SYMBOLICNAME, "MyFirstTinyBundle")
             .set(Constants.EXPORT_PACKAGE, "demo")
             .set(Constants.IMPORT_PACKAGE, "demo")
-            .set(Constants.BUNDLE_ACTIVATOR, MyFirstActivator.class.getName())
+            .set(Constants.BUNDLE_ACTIVATOR, HelloWorldActivator.class.getName())
             .build();
 
         // create a new bundle from the original and modify it

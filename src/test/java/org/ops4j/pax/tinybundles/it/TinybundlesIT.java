@@ -34,7 +34,7 @@ import org.ops4j.pax.tinybundles.demo.DemoAnonymousInnerClass;
 import org.ops4j.pax.tinybundles.demo.HelloWorld;
 import org.ops4j.pax.tinybundles.demo.ds.DsService;
 import org.ops4j.pax.tinybundles.demo.intern.HelloWorldImpl;
-import org.ops4j.pax.tinybundles.demo.intern.MyFirstActivator;
+import org.ops4j.pax.tinybundles.demo.intern.HelloWorldActivator;
 import org.osgi.framework.Constants;
 
 import static org.junit.Assert.assertEquals;
@@ -49,7 +49,7 @@ public class TinybundlesIT extends TinybundlesTestSupport {
 
     private static void fill(final TinyBundle bundle) {
         bundle
-            .add(MyFirstActivator.class)
+            .add(HelloWorldActivator.class)
             .add(HelloWorld.class)
             .add(HelloWorldImpl.class)
             .add(DsService.class)
@@ -58,7 +58,7 @@ public class TinybundlesIT extends TinybundlesTestSupport {
             .set(Constants.BUNDLE_SYMBOLICNAME, BUNDLE_SYMBOLICNAME)
             .set(Constants.EXPORT_PACKAGE, "")
             .set(Constants.IMPORT_PACKAGE, "*")
-            .set(Constants.BUNDLE_ACTIVATOR, MyFirstActivator.class.getName());
+            .set(Constants.BUNDLE_ACTIVATOR, HelloWorldActivator.class.getName());
     }
 
     @Test
