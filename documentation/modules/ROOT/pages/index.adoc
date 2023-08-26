@@ -54,3 +54,5 @@ import static org.ops4j.pax.tinybundles.TinyBundles.bundle;
 ----
     InputStream inputStream = bundle.build();
 ----
+
+See xref:examples.adoc[] for more detailed examples showing usage of fluent API.
