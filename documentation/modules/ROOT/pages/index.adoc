@@ -1,2 +1,56 @@
 = Pax TinyBundles
 :navtitle: Pax TinyBundles
+
+https://github.com/ops4j/org.ops4j.pax.tinybundles[TinyBundles] is a library to create and modify https://www.osgi.org/[OSGi] bundles on the fly using fluent Java API.
+
+The API is exposed via an OSGi service `TinyBundlesFactory` and static methods in `TinyBundles`.
+
+TinyBundles provides two builders to compile bundles: Raw builder and https://bnd.bndtools.org/[bnd] builder.
+Since TinyBundles 4.0.0 bnd builder is the default.
+Bnd builder supports processing of https://docs.osgi.org/specification/osgi.cmpn/8.0.0/service.component.html[Declarative Services] https://docs.osgi.org/specification/osgi.cmpn/8.0.0/service.component.html#service.component-component.annotations[component annotations].
+
+== Using TinyBundles
+
+1. Add TinyBundles dependency
++
+[,xml]
+----
+    <dependency>
+      <groupId>org.ops4j.pax.tinybundles</groupId>
+      <artifactId>tinybundles</artifactId>
+      <version>4.0.0</version>
+    </dependency>
+----
+2. Import `TinyBundles`
++
+[,java]
+----
+import static org.ops4j.pax.tinybundles.TinyBundles.bundle;
+----
+3. Create an empty TinyBundle
++
+[,java]
+----
+    TinyBundle bundle = bundle();
+----
+4. Prepare the bundle
+    - Optionally fill the bundle up from an existing bundle or plain Java archive
++
+[,java]
+----
+    JarInputStream source = new JarInputStream(…);
+    bundle.read(source);
+----
+    - Set bundle headers and add/remove classes
++
+[,java]
+----
+    bundle.set(Constants.BUNDLE_VENDOR, "OPS4J");
+    bundle.add(HelloWorld.class);
+----
+5. Build the bundle
++
+[,java]
+----
+    InputStream inputStream = bundle.build();
+----
