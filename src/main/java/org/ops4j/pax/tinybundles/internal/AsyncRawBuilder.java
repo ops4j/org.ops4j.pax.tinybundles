@@ -55,7 +55,7 @@ public class AsyncRawBuilder extends RawBuilder {
                 throw new RuntimeException("Problem while writing jar.", e);
             }
         } finally {
-            logger.trace("Copy thread finished.");
+            logger.debug("Copy thread finished.");
         }
     }
 
