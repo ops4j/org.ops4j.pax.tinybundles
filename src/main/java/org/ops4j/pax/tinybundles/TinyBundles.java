@@ -36,6 +36,9 @@ import org.osgi.framework.ServiceReference;
 @ProviderType
 public class TinyBundles {
 
+    private TinyBundles() { //
+    }
+
     private static TinyBundlesFactory factory() {
         try {
             return ServiceLoader.load(TinyBundlesFactory.class).iterator().next();

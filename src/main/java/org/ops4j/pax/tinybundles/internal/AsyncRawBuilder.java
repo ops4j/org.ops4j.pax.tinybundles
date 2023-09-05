@@ -35,6 +35,7 @@ public class AsyncRawBuilder extends RawBuilder {
 
     private final Logger logger = LoggerFactory.getLogger(AsyncRawBuilder.class);
 
+    @Override
     public InputStream build(final Map<String, URL> resources, final Map<String, String> headers) {
         logger.debug("building...");
         try {

@@ -19,6 +19,7 @@ package org.ops4j.pax.tinybundles.internal;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Objects;
 
 import org.ops4j.pax.tinybundles.Builder;
 import org.ops4j.pax.tinybundles.TinyBundle;
@@ -37,7 +38,7 @@ public class DefaultTinyBundlesFactory implements TinyBundlesFactory {
 
     private synchronized Store<InputStream> defaultStore() {
         try {
-            if (store == null) {
+            if (Objects.isNull(store)) {
                 store = StoreFactory.anonymousStore();
             }
             return store;

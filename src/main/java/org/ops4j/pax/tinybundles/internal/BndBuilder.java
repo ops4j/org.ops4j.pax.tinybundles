@@ -23,7 +23,6 @@ import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
 import java.net.URL;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Properties;
 import java.util.UUID;
 import java.util.jar.Manifest;
@@ -31,6 +30,7 @@ import java.util.jar.Manifest;
 import aQute.bnd.osgi.Analyzer;
 import aQute.bnd.osgi.Jar;
 import org.ops4j.pax.tinybundles.Builder;
+import org.osgi.framework.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,19 +44,20 @@ public class BndBuilder implements Builder {
 
     private final Builder builder;
 
-    public BndBuilder(Builder builder) {
+    public BndBuilder(final Builder builder) {
         this.builder = builder;
     }
 
-    public InputStream build(Map<String, URL> resources, Map<String, String> headers) {
+    @Override
+    public InputStream build(final Map<String, URL> resources, final Map<String, String> headers) {
         return wrapWithBnd(headers, builder.build(resources, headers));
     }
 
-    private InputStream wrapWithBnd(Map<String, String> headers, InputStream in) {
+    private InputStream wrapWithBnd(final Map<String, String> headers, final InputStream inputStream) {
         try {
-            Properties p = new Properties();
-            p.putAll(headers);
-            return createBundle(in, p, "BuildByTinyBundles" + UUID.randomUUID());
+            final Properties instructions = new Properties();
+            instructions.putAll(headers);
+            return createBundle(inputStream, instructions, String.format("BuildByTinyBundles%s", UUID.randomUUID()));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -65,32 +66,24 @@ public class BndBuilder implements Builder {
     /**
      * All the bnd magic happens here.
      *
-     * @param jarInputStream On what to operate.
-     * @param instructions   bnd instructions from user API
-     * @param symbolicName   Mandatory Header. In case user does not set it.
+     * @param inputStream  On what to operate.
+     * @param instructions bnd instructions from user API
+     * @param symbolicName Mandatory Header. In case user does not set it.
      * @return Bundle Jar Stream
      * @throws Exception Problems go here
      */
-    private InputStream createBundle(InputStream jarInputStream, Properties instructions, String symbolicName) throws Exception {
-        Objects.requireNonNull(jarInputStream, "Jar URL");
-        Objects.requireNonNull(instructions, "Instructions");
-        Objects.requireNonNull(symbolicName, "Jar info");
-
-        final Jar jar = new Jar("dot", jarInputStream);
-
+    private InputStream createBundle(final InputStream inputStream, final Properties instructions, final String symbolicName) throws Exception {
+        final Jar jar = new Jar("dot", inputStream);
         final Properties properties = new Properties();
         properties.putAll(instructions);
 
-        final aQute.bnd.osgi.Builder analyzer = new aQute.bnd.osgi.Builder();
-        analyzer.setJar(jar);
-        analyzer.setProperties(properties);
-
+        aQute.bnd.osgi.Builder builder = new aQute.bnd.osgi.Builder();
+        builder.setJar(jar);
+        builder.setProperties(properties);
         // throw away already existing headers that we overwrite:
-
-        analyzer.mergeManifest(jar.getManifest());
-
-        checkMandatoryProperties(analyzer, jar, symbolicName);
-        Manifest manifest = analyzer.calcManifest();
+        builder.mergeManifest(jar.getManifest());
+        ensureSanitizedSymbolicName(builder, symbolicName);
+        final Manifest manifest = builder.calcManifest();
         jar.setManifest(manifest);
 
         return createInputStream(jar);
@@ -102,51 +95,38 @@ public class BndBuilder implements Builder {
      *
      * @param jar the wrapped jar
      * @return an input stream for the wrapped jar
-     * @throws java.io.IOException re-thrown
      */
     private PipedInputStream createInputStream(final Jar jar) throws IOException {
         final PipedInputStream pin = new PipedInputStream();
         final PipedOutputStream pout = new PipedOutputStream(pin);
 
-        new Thread() {
-            public void run() {
+        new Thread(() -> {
+            try {
+                jar.write(pout);
+            } catch (Exception e) {
+                //    LOG.warn( "Bundle cannot be generated",e );
+            } finally {
                 try {
-                    jar.write(pout);
-                } catch (Exception e) {
-                    //    LOG.warn( "Bundle cannot be generated",e );
-                } finally {
-                    try {
-                        pout.close();
-                    } catch (IOException e) {
-                        logger.warn("Close ?", e);
-                    }
+                    pout.close();
+                } catch (IOException e) {
+                    logger.warn("Close ?", e);
                 }
             }
-        }.start();
+        }).start();
 
         return pin;
     }
 
     /**
-     * Check if mandatory properties are present, otherwise generate default.
+     * Processes symbolic name and replaces OSGi spec invalid characters with "_".
      *
-     * @param analyzer     bnd analyzer
-     * @param jar          bnd jar
-     * @param symbolicName bundle symbolic name
+     * @param analyzer            bnd analyzer
+     * @param defaultSymbolicName bundle symbolic name
      */
-    private void checkMandatoryProperties(final Analyzer analyzer, final Jar jar, final String symbolicName) {
-        final String localSymbolicName = analyzer.getProperty(Analyzer.BUNDLE_SYMBOLICNAME, symbolicName);
-        analyzer.setProperty(Analyzer.BUNDLE_SYMBOLICNAME, generateSymbolicName(localSymbolicName));
-    }
-
-    /**
-     * Processes symbolic name and replaces osgi spec invalid characters with "_".
-     *
-     * @param symbolicName bundle symbolic name
-     * @return a valid symbolic name
-     */
-    private static String generateSymbolicName(final String symbolicName) {
-        return symbolicName.replaceAll("[^a-zA-Z_0-9.-]", "_");
+    private void ensureSanitizedSymbolicName(final Analyzer analyzer, final String defaultSymbolicName) {
+        final String symbolicName = analyzer.getProperty(Constants.BUNDLE_SYMBOLICNAME, defaultSymbolicName);
+        final String sanitizedSymbolicName = symbolicName.replaceAll("[^a-zA-Z_0-9.-]", "_");
+        analyzer.setProperty(Constants.BUNDLE_SYMBOLICNAME, sanitizedSymbolicName);
     }
 
 }

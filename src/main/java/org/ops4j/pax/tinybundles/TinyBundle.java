@@ -39,7 +39,7 @@ public interface TinyBundle {
      * @param content content to be copied into bundle.
      * @return *this*
      */
-    TinyBundle add(String name, URL content);
+    TinyBundle add(final String name, final URL content);
 
     /**
      * Add a resource to the current bundle (to be built).
@@ -48,44 +48,44 @@ public interface TinyBundle {
      * @param content content to be copied into bundle.
      * @return *this*
      */
-    TinyBundle add(String name, InputStream content);
+    TinyBundle add(final String name, final InputStream content);
 
     /**
      * Add a class to the current bundle. Uses InnerClassStrategy.ALL
      *
-     * @param content content to be copied into bundle.
+     * @param clazz content to be copied into bundle.
      * @return {@literal this}
      */
-    TinyBundle add(Class<?> content);
+    TinyBundle add(final Class<?> clazz);
 
     /**
      * Add a class to the current bundle.
      *
-     * @param content
+     * @param clazz
      */
-    TinyBundle add(Class<?> content, InnerClassStrategy strategy);
+    TinyBundle add(final Class<?> clazz, final InnerClassStrategy strategy);
 
     /**
      * Add a class to the current bundle and set it as Activator
      *
      * @param activator
      */
-    TinyBundle activator(Class<?> activator);
+    TinyBundle activator(final Class<?> activator);
 
     /**
      * Set symbolic name of bundle
      *
      * @param name
      */
-    TinyBundle symbolicName(String name);
+    TinyBundle symbolicName(final String name);
 
     /**
      * remove a class to the current bundle.
      *
-     * @param content class to be removed
+     * @param clazz class to be removed
      * @return *this*
      */
-    TinyBundle remove(Class<?> content);
+    TinyBundle remove(final Class<?> clazz);
 
     /**
      * When you are done adding stuff to *this* you can call this method to go to next step.
@@ -93,7 +93,7 @@ public interface TinyBundle {
      * @param builder builder to be used.
      * @return Next step in the bundle making process.
      */
-    InputStream build(Builder builder);
+    InputStream build(final Builder builder);
 
     /**
      * Build bundle with default builder.
@@ -109,7 +109,7 @@ public interface TinyBundle {
      * @param value a value
      * @return {@literal this}
      */
-    TinyBundle set(String key, String value);
+    TinyBundle set(final String key, final String value);
 
     /**
      * Remove a previously added resource.
@@ -118,7 +118,7 @@ public interface TinyBundle {
      * @param key a key as String
      * @return {@literal this}
      */
-    TinyBundle removeResource(String key);
+    TinyBundle removeResource(final String key);
 
     /**
      * Remove a previously added header.
@@ -127,7 +127,15 @@ public interface TinyBundle {
      * @param key a key as String
      * @return {@literal this}
      */
-    TinyBundle removeHeader(String key);
+    TinyBundle removeHeader(final String key);
+
+    /**
+     * Read an existing bundle or jar into TinyBundles for modification.
+     *
+     * @param inputStream stream of JarInputStream
+     * @return {@literal this}
+     */
+    TinyBundle read(final InputStream inputStream);
 
     /**
      * Read an existing bundle or jar into TinyBundles for modification.
@@ -135,19 +143,11 @@ public interface TinyBundle {
      * @param input stream of JarInputStream
      * @return {@literal this}
      */
-    TinyBundle read(InputStream input);
-
-    /**
-     * Read an existing bundle or jar into TinyBundles for modification.
-     *
-     * @param input stream of JarInputStream
-     * @return {@literal this}
-     */
-    TinyBundle read(InputStream input, boolean readData);
+    TinyBundle read(final InputStream input, final boolean readContent);
 
     /**
      * Get header value.
      */
-    String getHeader(String key);
+    String getHeader(final String key);
 
 }

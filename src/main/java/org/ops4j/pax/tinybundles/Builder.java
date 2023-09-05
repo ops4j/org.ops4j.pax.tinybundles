@@ -41,6 +41,6 @@ public interface Builder {
      * @param headers   headers to be considered in the build
      * @return an {@link InputStream} containing built assembly (usually a jar/bundle in this context)
      */
-    InputStream build(Map<String, URL> resources, Map<String, String> headers);
+    InputStream build(final Map<String, URL> resources, final Map<String, String> headers);
 
 }

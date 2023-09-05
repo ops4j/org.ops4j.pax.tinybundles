@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.Objects;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.stream.Stream;
@@ -48,104 +49,106 @@ public class ClassFinder {
 
     private final Logger logger = LoggerFactory.getLogger(ClassFinder.class);
 
-    public Collection<ClassDescriptor> findAllEmbeddedClasses(Class<?> klass) throws IOException {
-        String resourcePrefix = klass.getName().replace('.', '/') + "\\$.*";
-        return findAllEmbeddedClasses(klass, resourcePrefix);
+    public Collection<ClassDescriptor> findAllEmbeddedClasses(final Class<?> clazz) throws IOException {
+        final String resourcePrefix = clazz.getName().replace('.', '/') + "\\$.*";
+        return findAllEmbeddedClasses(clazz, resourcePrefix);
     }
 
-    public Collection<ClassDescriptor> findAnonymousClasses(Class<?> klass) throws IOException {
-        String resourcePrefix = klass.getName().replace('.', '/') + "\\$\\d.*";
-        return findAllEmbeddedClasses(klass, resourcePrefix);
+    public Collection<ClassDescriptor> findAnonymousClasses(final Class<?> clazz) throws IOException {
+        final String resourcePrefix = clazz.getName().replace('.', '/') + "\\$\\d.*";
+        return findAllEmbeddedClasses(clazz, resourcePrefix);
     }
 
     @SuppressWarnings("unchecked")
-    public Collection<ClassDescriptor> findAllEmbeddedClasses(Class<?> klass, String pattern) throws IOException {
-        ClassLoader classLoader = klass.getClassLoader();
-        if (classLoader == null) {
+    public Collection<ClassDescriptor> findAllEmbeddedClasses(final Class<?> clazz, final String pattern) throws IOException {
+        ClassLoader classLoader = clazz.getClassLoader();
+        if (Objects.isNull(classLoader)) {
             classLoader = ClassLoader.getSystemClassLoader();
         }
-        URL classUrl = classLoader.getResource(asResource(klass));
+        final URL classUrl = classLoader.getResource(asResource(clazz));
         logger.debug("Finding all embedded classes for class '{}' with pattern '{}'", classUrl, pattern);
-        if (classUrl.getProtocol().equals("jar")) {
-
-            String jarPath = classUrl.getFile();
-            int bang = jarPath.indexOf("!");
-            if (bang > -1) {
-                jarPath = jarPath.substring(0, bang);
-            }
-            URL url = new URL("jar:" + jarPath + "!/");
-            return findEmbeddedClasses(url, pattern);
-        } else if (classUrl.getProtocol().equals("file")) {
-            File classFile;
-            try {
-                classFile = new File(classUrl.toURI());
-            } catch (URISyntaxException exc) {
-                throw new IllegalStateException(exc);
-            }
-            return findEmbeddedClasses(classFile, pattern);
-        } else if (classUrl.getProtocol().equals("jrt")) {
-            return findEmbeddedClassesInJavaModule(classUrl, pattern);
-        } else if (classUrl.getProtocol().equals("bundle") || classUrl.getProtocol().equals("bundleresource")) {
-            Bundle bundle = FrameworkUtil.getBundle(klass);
-            if (bundle != null) {
-                String path = klass.getPackage().getName().replace('.', '/');
-                String filePattern = klass.getSimpleName() + "$*";
-                Enumeration<URL> urls = bundle.findEntries(path, filePattern, false);
-                if (urls != null) {
-                    return findEmbeddedClasses(urls, pattern);
-                } else {
-                    return new ArrayList<ClassDescriptor>();
+        switch (classUrl.getProtocol()) {
+            case "jar":
+                String jarPath = classUrl.getFile();
+                final int bang = jarPath.indexOf("!");
+                if (bang > -1) {
+                    jarPath = jarPath.substring(0, bang);
                 }
-            } else {
-                throw new IllegalArgumentException("No bundle found for class " + klass + ". Unsupported woven or system package classes");
-            }
-        } else {
-            throw new IllegalStateException("Unsupported protocol " + classUrl.getProtocol());
+                final URL url = new URL(String.format("jar:%s!/", jarPath));
+                return findEmbeddedClasses(url, pattern);
+            case "file":
+                final File classFile;
+                try {
+                    classFile = new File(classUrl.toURI());
+                } catch (URISyntaxException e) {
+                    throw new IllegalStateException(e);
+                }
+                return findEmbeddedClasses(classFile, pattern);
+            case "jrt":
+                return findEmbeddedClassesInJavaModule(classUrl, pattern);
+            case "bundle":
+            case "bundleresource":
+                final Bundle bundle = FrameworkUtil.getBundle(clazz);
+                if (!Objects.isNull(bundle)) {
+                    final String path = clazz.getPackage().getName().replace('.', '/');
+                    final String filePattern = String.format("%s$*", clazz.getSimpleName());
+                    final Enumeration<URL> urls = bundle.findEntries(path, filePattern, false);
+                    if (!Objects.isNull(urls)) {
+                        return findEmbeddedClasses(urls, pattern);
+                    } else {
+                        return new ArrayList<>();
+                    }
+                } else {
+                    throw new IllegalArgumentException(String.format("No bundle found for class %s. Unsupported woven or system package class.", clazz));
+                }
+            default:
+                throw new IllegalStateException(String.format("Unsupported protocol %s", classUrl.getProtocol()));
         }
     }
 
-    public List<ClassDescriptor> findEmbeddedClasses(Enumeration<URL> urls, String pattern) throws MalformedURLException {
-        String filePattern = "/" + pattern;
-        List<ClassDescriptor> descriptors = new ArrayList<ClassDescriptor>();
+    public List<ClassDescriptor> findEmbeddedClasses(final Enumeration<URL> urls, final String pattern) {
+        final String filePattern = String.format("/%s", pattern);
+        final List<ClassDescriptor> descriptors = new ArrayList<>();
         while (urls.hasMoreElements()) {
-            URL url = urls.nextElement();
+            final URL url = urls.nextElement();
             if (url.getFile().matches(filePattern)) {
-                ClassDescriptor descriptor =
-                    new ClassDescriptor(url.getFile(), url);
+                final ClassDescriptor descriptor = new ClassDescriptor(url.getFile(), url);
+                logger.debug("Adding {}", descriptor);
                 descriptors.add(descriptor);
             }
         }
         return descriptors;
     }
 
-    public List<ClassDescriptor> findEmbeddedClasses(File file, String pattern) throws MalformedURLException {
-        File dir = file.getParentFile();
-        int slash = pattern.lastIndexOf('/');
-        String path = pattern.substring(0, slash + 1);
-        String filePattern = pattern.substring(slash + 1);
-
-        List<ClassDescriptor> descriptors = new ArrayList<ClassDescriptor>();
-        for (File f : dir.listFiles()) {
-            if (f.getName().matches(filePattern)) {
-                ClassDescriptor descriptor =
-                    new ClassDescriptor(path + f.getName(), f.toURI().toURL());
-                descriptors.add(descriptor);
+    public List<ClassDescriptor> findEmbeddedClasses(final File file, final String pattern) throws MalformedURLException {
+        final List<ClassDescriptor> descriptors = new ArrayList<>();
+        final File dir = file.getParentFile();
+        if (Objects.nonNull(dir)) {
+            final int slash = pattern.lastIndexOf('/');
+            final String path = pattern.substring(0, slash + 1);
+            final String filePattern = pattern.substring(slash + 1);
+            for (final File f : Objects.requireNonNull(dir.listFiles())) {
+                if (f.getName().matches(filePattern)) {
+                    final ClassDescriptor descriptor = new ClassDescriptor(path.concat(f.getName()), f.toURI().toURL());
+                    logger.debug("Adding {}", descriptor);
+                    descriptors.add(descriptor);
+                }
             }
         }
         return descriptors;
     }
 
-    public List<ClassDescriptor> findEmbeddedClasses(URL jarUrl, String pattern) throws IOException {
-        JarURLConnection connection = (JarURLConnection) jarUrl.openConnection();
-        JarFile jarFile = connection.getJarFile();
-        List<ClassDescriptor> descriptors = new ArrayList<ClassDescriptor>();
-        Enumeration<JarEntry> entries = jarFile.entries();
+    public List<ClassDescriptor> findEmbeddedClasses(final URL jarUrl, final String pattern) throws IOException {
+        final JarURLConnection connection = (JarURLConnection) jarUrl.openConnection();
+        final JarFile jarFile = connection.getJarFile();
+        final List<ClassDescriptor> descriptors = new ArrayList<>();
+        final Enumeration<JarEntry> entries = jarFile.entries();
         while (entries.hasMoreElements()) {
-            JarEntry entry = entries.nextElement();
+            final JarEntry entry = entries.nextElement();
             if (entry.getName().matches(pattern)) {
-                String entryUrl = jarUrl.toExternalForm() + entry.getName();
-                ClassDescriptor descriptor =
-                    new ClassDescriptor(entry.getName(), new URL(entryUrl));
+                final String entryUrl = jarUrl.toExternalForm() + entry.getName();
+                final ClassDescriptor descriptor = new ClassDescriptor(entry.getName(), new URL(entryUrl));
+                logger.debug("Adding {}", descriptor);
                 descriptors.add(descriptor);
             }
         }
@@ -153,7 +156,7 @@ public class ClassFinder {
         return descriptors;
     }
 
-    public List<ClassDescriptor> findEmbeddedClassesInJavaModule(URL classUrl, String pattern) throws IOException {
+    public List<ClassDescriptor> findEmbeddedClassesInJavaModule(final URL classUrl, final String pattern) throws IOException {
         final List<ClassDescriptor> descriptors = new ArrayList<>();
         final String classPath = classUrl.getPath();
         final String packagePath = classPath.substring(0, classPath.lastIndexOf("/"));
@@ -191,9 +194,8 @@ public class ClassFinder {
         }
     }
 
-    public static String asResource(Class<?> klass) {
-        String name = klass.getName().replace('.', '/') + ".class";
-        return name;
+    public static String asResource(final Class<?> clazz) {
+        return clazz.getName().replace('.', '/') + ".class";
     }
 
 }

@@ -48,34 +48,34 @@ public abstract class RawBuilder implements Builder {
     private static final String CREATED_BY = "Created-By";
 
     // This is what implementations need to call.
-    protected void build(Map<String, URL> resources, Map<String, String> headers, JarOutputStream jarOut) throws IOException {
+    protected void build(final Map<String, URL> resources, final Map<String, String> headers, final JarOutputStream jarOut) throws IOException {
         addManifest(headers, jarOut);
-        for (Map.Entry<String, URL> entry : resources.entrySet()) {
+        for (final Map.Entry<String, URL> entry : resources.entrySet()) {
             addResource(jarOut, entry);
         }
     }
 
-    private void addManifest(Map<String, String> headers, JarOutputStream jarOut) throws IOException {
-        JarEntry entry = new JarEntry(ENTRY_MANIFEST);
+    private void addManifest(final Map<String, String> headers, final JarOutputStream jarOut) throws IOException {
+        final JarEntry entry = new JarEntry(ENTRY_MANIFEST);
         jarOut.putNextEntry(entry);
         getManifest(headers.entrySet()).write(jarOut);
         jarOut.closeEntry();
     }
 
-    private void addResource(JarOutputStream jarOut, Map.Entry<String, URL> entryset) throws IOException {
-        JarEntry entry = new JarEntry(entryset.getKey());
-        logger.debug("Copying resource {}", entry.getName());
+    private void addResource(final JarOutputStream jarOut, final Map.Entry<String, URL> entrySet) throws IOException {
+        final JarEntry entry = new JarEntry(entrySet.getKey());
+        logger.debug("Copying resource {}, {}", entry.getName(), entrySet.getValue());
         jarOut.putNextEntry(entry);
-        try (InputStream inp = entryset.getValue().openStream()) {
-            copy(inp, jarOut);
+        try (InputStream inputStream = entrySet.getValue().openStream()) {
+            copy(inputStream, jarOut);
         }
     }
 
-    private void copy(InputStream source, OutputStream sink) throws IOException {
-        byte[] buf = new byte[1024];
+    private void copy(final InputStream source, final OutputStream sink) throws IOException {
+        final byte[] buffer = new byte[1024];
         int n;
-        while ((n = source.read(buf)) > 0) {
-            sink.write(buf, 0, n);
+        while ((n = source.read(buffer)) > 0) {
+            sink.write(buffer, 0, n);
         }
     }
 
@@ -86,18 +86,18 @@ public abstract class RawBuilder implements Builder {
      * @param headers headers will be merged into resulting manifest instance.
      * @return a fresh manifest instance
      */
-    private Manifest getManifest(Set<Map.Entry<String, String>> headers) {
+    private Manifest getManifest(final Set<Map.Entry<String, String>> headers) {
         logger.debug("Creating manifest from added headers.");
-        Manifest manifest = new Manifest();
-        String cre = "pax-tinybundles-" + Info.getPaxTinybundlesVersion();
+        final Manifest manifest = new Manifest();
+        final String tool = "pax-tinybundles-" + Info.getPaxTinybundlesVersion();
 
         manifest.getMainAttributes().putValue("Manifest-Version", "1.0");
         manifest.getMainAttributes().putValue(BUILT_BY, System.getProperty("user.name"));
-        manifest.getMainAttributes().putValue(CREATED_BY, cre);
-        manifest.getMainAttributes().putValue(TOOL, cre);
-        manifest.getMainAttributes().putValue("TinybundlesVersion", cre);
+        manifest.getMainAttributes().putValue(CREATED_BY, tool);
+        manifest.getMainAttributes().putValue(TOOL, tool);
+        manifest.getMainAttributes().putValue("TinybundlesVersion", tool);
 
-        for (Map.Entry<String, String> entry : headers) {
+        for (final Map.Entry<String, String> entry : headers) {
             logger.debug("{} = {}", entry.getKey(), entry.getValue());
             manifest.getMainAttributes().putValue(entry.getKey(), entry.getValue());
         }
