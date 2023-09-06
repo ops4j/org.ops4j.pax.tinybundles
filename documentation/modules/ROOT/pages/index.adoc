@@ -55,4 +55,6 @@ import static org.ops4j.pax.tinybundles.TinyBundles.bundle;
     InputStream inputStream = bundle.build();
 ----
 
+TinyBundles is often used with https://github.com/ops4j/org.ops4j.pax.exam2[Pax Exam] for testing. See https://github.com/ops4j/org.ops4j.pax.tinybundles/blob/master/src/test/java/org/ops4j/pax/tinybundles/it/TinybundlesTestSupport.java[TinybundlesTestSupport] on how to provision (incl. required dependencies) and https://github.com/ops4j/org.ops4j.pax.tinybundles/blob/master/src/test/java/org/ops4j/pax/tinybundles/it/DeclarativeServiceBndBundleBuildIT.java[DeclarativeServiceBndBundleBuildIT] on how to use.
+
 See xref:examples.adoc[] for more detailed examples showing usage of fluent API.
