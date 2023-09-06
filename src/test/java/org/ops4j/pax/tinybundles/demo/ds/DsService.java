@@ -17,17 +17,36 @@
  */
 package org.ops4j.pax.tinybundles.demo.ds;
 
+import java.io.Serializable;
+
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Deactivate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Component(
-    immediate = true
+    immediate = true,
+    service = Serializable.class,
+    property = {
+        "name=declarative"
+    }
 )
-public class DsService {
+public class DsService implements Serializable {
+
+    private final Logger logger = LoggerFactory.getLogger(DsService.class);
+
+    public DsService() { //
+    }
 
     @Activate
     public void activate() {
-        System.out.println("Activated");
+        logger.info("activating");
+    }
+
+    @Deactivate
+    public void deactivate() {
+        logger.info("deactivating");
     }
 
 }

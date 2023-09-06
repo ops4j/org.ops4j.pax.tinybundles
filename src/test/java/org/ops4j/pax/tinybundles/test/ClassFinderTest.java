@@ -15,8 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-package org.ops4j.pax.tinybundles;
+package org.ops4j.pax.tinybundles.test;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -33,7 +32,7 @@ import org.ops4j.pax.tinybundles.internal.ClassFinder;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * @author Harald Wellmann
@@ -42,6 +41,20 @@ public class ClassFinderTest {
 
     private ClassFinder finder;
 
+    private void verify(final Collection<ClassDescriptor> descriptors, final boolean complete, final String... resources) {
+        final Map<String, ClassDescriptor> descriptorMap = new HashMap<>();
+        for (final ClassDescriptor descriptor : descriptors) {
+            descriptorMap.put(descriptor.getResourcePath(), descriptor);
+        }
+        for (final String resource : resources) {
+            final ClassDescriptor descriptor = descriptorMap.remove(resource);
+            assertThat(String.format("%s not found", resource), descriptor, is(notNullValue()));
+        }
+        if (complete) {
+            assertThat(descriptorMap.isEmpty(), is(true));
+        }
+    }
+
     @Before
     public void setUp() {
         finder = new ClassFinder();
@@ -49,39 +62,27 @@ public class ClassFinderTest {
 
     @Test
     public void findAllEmbeddedClasses() throws IOException {
-        Class<?> klass = Container.class;
-        Collection<ClassDescriptor> descriptors = finder.findAllEmbeddedClasses(klass);
-        verify(descriptors, true, "aQute/bnd/build/Container$1.class",
-            "aQute/bnd/build/Container$TYPE.class");
+        final Class<?> clazz = Container.class;
+        final Collection<ClassDescriptor> descriptors = finder.findAllEmbeddedClasses(clazz);
+        verify(descriptors, true,
+            "aQute/bnd/build/Container$1.class",
+            "aQute/bnd/build/Container$TYPE.class"
+        );
     }
 
     @Test
     public void findAnonymousClasses() throws IOException {
-        Class<?> klass = Container.class;
-        Collection<ClassDescriptor> descriptors = finder.findAnonymousClasses(klass);
-        verify(descriptors, true, "aQute/bnd/build/Container$1.class");
-    }
-
-    private void verify(Collection<ClassDescriptor> descriptors, boolean complete, String... resources) {
-        Map<String, ClassDescriptor> descriptorMap = new HashMap<String, ClassDescriptor>();
-        for (ClassDescriptor descriptor : descriptors) {
-            descriptorMap.put(descriptor.getResourcePath(), descriptor);
-        }
-
-        for (String resource : resources) {
-            ClassDescriptor descriptor = descriptorMap.remove(resource);
-            assertThat(resource + " not found", descriptor, is(notNullValue()));
-        }
-        if (complete) {
-            assertThat(descriptorMap.isEmpty(), is(true));
-        }
+        final Class<?> clazz = Container.class;
+        final Collection<ClassDescriptor> descriptors = finder.findAnonymousClasses(clazz);
+        verify(descriptors, true,
+            "aQute/bnd/build/Container$1.class"
+        );
     }
 
     @Test
     public void findAllEmbeddedClassesFromJreClass() throws IOException {
-        Class<?> klass = Pattern.class;
-        ClassFinder finder = new ClassFinder();
-        Collection<ClassDescriptor> descriptors = finder.findAllEmbeddedClasses(klass);
+        final Class<?> clazz = Pattern.class;
+        final Collection<ClassDescriptor> descriptors = finder.findAllEmbeddedClasses(clazz);
         verify(descriptors, false,
             "java/util/regex/Pattern$1.class",
             "java/util/regex/Pattern$CharProperty.class",
@@ -91,9 +92,8 @@ public class ClassFinderTest {
 
     @Test
     public void findAnonymousClassesFromJreClass() throws IOException {
-        Class<?> klass = Pattern.class;
-        ClassFinder finder = new ClassFinder();
-        Collection<ClassDescriptor> descriptors = finder.findAnonymousClasses(klass);
+        final Class<?> clazz = Pattern.class;
+        final Collection<ClassDescriptor> descriptors = finder.findAnonymousClasses(clazz);
         verify(descriptors, false,
             "java/util/regex/Pattern$1.class"
         );
@@ -101,25 +101,25 @@ public class ClassFinderTest {
 
     @Test
     public void findAllEmbeddedClassesFromLocalClass() throws IOException {
-        Class<?> klass = DemoAnonymousInnerClass.class;
-        ClassFinder finder = new ClassFinder();
-        Collection<ClassDescriptor> descriptors = finder.findAllEmbeddedClasses(klass);
+        final Class<?> clazz = DemoAnonymousInnerClass.class;
+        final Collection<ClassDescriptor> descriptors = finder.findAllEmbeddedClasses(clazz);
         verify(descriptors, true,
             "org/ops4j/pax/tinybundles/demo/DemoAnonymousInnerClass$SomeInnerClass.class",
             "org/ops4j/pax/tinybundles/demo/DemoAnonymousInnerClass$1.class",
             "org/ops4j/pax/tinybundles/demo/DemoAnonymousInnerClass$1Local.class",
             "org/ops4j/pax/tinybundles/demo/DemoAnonymousInnerClass$SomeInnerClass$1.class",
-            "org/ops4j/pax/tinybundles/demo/DemoAnonymousInnerClass$SomeInnerClass$NestedInnerClass.class");
+            "org/ops4j/pax/tinybundles/demo/DemoAnonymousInnerClass$SomeInnerClass$NestedInnerClass.class"
+        );
     }
 
     @Test
     public void findAnonymousClassesFromLocalClass() throws IOException {
-        Class<?> klass = DemoAnonymousInnerClass.class;
-        ClassFinder finder = new ClassFinder();
-        Collection<ClassDescriptor> descriptors = finder.findAnonymousClasses(klass);
+        final Class<?> clazz = DemoAnonymousInnerClass.class;
+        final Collection<ClassDescriptor> descriptors = finder.findAnonymousClasses(clazz);
         verify(descriptors, true,
             "org/ops4j/pax/tinybundles/demo/DemoAnonymousInnerClass$1.class",
-            "org/ops4j/pax/tinybundles/demo/DemoAnonymousInnerClass$1Local.class");
+            "org/ops4j/pax/tinybundles/demo/DemoAnonymousInnerClass$1Local.class"
+        );
     }
 
 }

@@ -15,15 +15,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.tinybundles.demo.intern;
+package org.ops4j.pax.tinybundles.demo.internal;
 
 import java.util.Dictionary;
 import java.util.Hashtable;
+import java.util.Objects;
 
 import org.ops4j.pax.tinybundles.demo.HelloWorld;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author Toni Menzel (tonit)
@@ -31,20 +34,28 @@ import org.osgi.framework.ServiceRegistration;
  */
 public class HelloWorldActivator implements BundleActivator {
 
-    private ServiceRegistration ref;
+    private ServiceRegistration<HelloWorld> serviceRegistration;
 
-    public void start(BundleContext bundleContext) throws Exception {
-        Dictionary<String, String> dict = new Hashtable<String, String>();
+    private final Logger logger = LoggerFactory.getLogger(HelloWorldActivator.class);
 
-        ref = bundleContext.registerService(HelloWorld.class.getName(), new HelloWorldImpl(), dict);
-        System.out.println("waiting for 10seks..");
-        Thread.sleep(10000);
-        System.out.println("DONE");
-
+    public HelloWorldActivator() { //
     }
 
-    public void stop(BundleContext bundleContext) throws Exception {
-        ref.unregister();
+    @Override
+    public void start(final BundleContext bundleContext) {
+        logger.info("starting");
+        final Dictionary<String, String> properties = new Hashtable<>();
+        final HelloWorld service = new HelloWorldImpl();
+        serviceRegistration = bundleContext.registerService(HelloWorld.class, service, properties);
+        logger.info("serviceRegistration: {}", serviceRegistration);
+    }
+
+    @Override
+    public void stop(final BundleContext bundleContext) {
+        logger.info("stopping");
+        if (!Objects.isNull(serviceRegistration)) {
+            serviceRegistration.unregister();
+        }
     }
 
 }

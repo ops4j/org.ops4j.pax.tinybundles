@@ -20,17 +20,16 @@ package org.ops4j.pax.tinybundles.it;
 import java.io.File;
 import java.util.UUID;
 
-import org.ops4j.pax.exam.Configuration;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.options.SystemPropertyOption;
 import org.ops4j.pax.exam.options.UrlProvisionOption;
 import org.ops4j.pax.exam.util.PathUtils;
 
 import static org.ops4j.pax.exam.CoreOptions.bundle;
+import static org.ops4j.pax.exam.CoreOptions.composite;
 import static org.ops4j.pax.exam.CoreOptions.junitBundles;
 import static org.ops4j.pax.exam.CoreOptions.keepCaches;
 import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
-import static org.ops4j.pax.exam.CoreOptions.options;
 import static org.ops4j.pax.exam.CoreOptions.systemProperty;
 import static org.ops4j.pax.exam.CoreOptions.workingDirectory;
 
@@ -48,10 +47,21 @@ public abstract class TinybundlesTestSupport {
         return systemProperty("pax.exam.osgi.unresolved.fail").value("true");
     }
 
-    @Configuration
-    public Option[] configuration() {
-        return options(
-            testBundle("bundle.filename"),
+    protected static Option scr() {
+        return composite(
+            mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.configadmin").versionAsInProject(),
+            mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.metatype").versionAsInProject(),
+            mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.scr").versionAsInProject(),
+            mavenBundle().groupId("org.osgi").artifactId("org.osgi.service.component").versionAsInProject(),
+            mavenBundle().groupId("org.osgi").artifactId("org.osgi.util.function").versionAsInProject(),
+            mavenBundle().groupId("org.osgi").artifactId("org.osgi.util.promise").versionAsInProject()
+        );
+    }
+
+    protected Option baseConfiguration() {
+        return composite(
+            testBundle("bundle.filename"), // TinyBundles itself
+            // dependencies
             // org.ops4j.store – pulled in by Pax Exam (org.ops4j.base bundle)
             // bnd
             mavenBundle().groupId("biz.aQute.bnd").artifactId("biz.aQute.bndlib").versionAsInProject(),
