@@ -32,6 +32,7 @@ import org.ops4j.pax.tinybundles.internal.Info;
 import org.osgi.framework.Constants;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.ops4j.pax.tinybundles.TinyBundles.bundle;
 import static org.ops4j.pax.tinybundles.TinyBundles.rawBuilder;
@@ -43,14 +44,6 @@ import static org.ops4j.pax.tinybundles.test.JarHelper.getManifest;
  * @since Apr 9, 2009
  */
 public class RawTest {
-
-    private static final String HEADER_CREATED_BY = "Created-By";
-
-    private static final String HEADER_TOOL = "Tool";
-
-    private static final String HEADER_TINYBUNDLES_VERSION = "TinybundlesVersion";
-
-    private static final String HEADER_BUILT_BY = "Built-By";
 
     private static InputStream createTestBundle(final String symbolicName) {
         return bundle()
@@ -101,10 +94,9 @@ public class RawTest {
         final InputStream bundle = bundle()
             .build(rawBuilder());
         final Attributes attributes = getManifest(bundle).getMainAttributes();
-        assertThat(attributes.getValue(HEADER_CREATED_BY), is("pax-tinybundles-" + Info.getPaxTinybundlesVersion()));
-        assertThat(attributes.getValue(HEADER_TOOL), is("pax-tinybundles-" + Info.getPaxTinybundlesVersion()));
-        assertThat(attributes.getValue(HEADER_TINYBUNDLES_VERSION), is("pax-tinybundles-" + Info.getPaxTinybundlesVersion()));
-        assertThat(attributes.getValue(HEADER_BUILT_BY), is(System.getProperty("user.name")));
+        assertThat("Manifest Header: Created-By", attributes.getValue("Created-By"), is(nullValue()));
+        assertThat("Manifest Header: Built-By", attributes.getValue("Built-By"), is(nullValue()));
+        assertThat("Manifest Header: Pax-TinyBundles", attributes.getValue("Pax-TinyBundles"), is(Info.getPaxTinybundlesVersion()));
     }
 
     @Test

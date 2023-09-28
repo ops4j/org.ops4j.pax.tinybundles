@@ -50,13 +50,14 @@ public class BndTest {
      */
     @Test
     public void bndCustomHeaders() throws IOException {
+        final String createdBy = String.format("%s (%s)", System.getProperty("java.version"), System.getProperty("java.vendor"));
         final InputStream bundle = bundle()
             .build(bndBuilder());
         final Attributes attributes = getManifest(bundle).getMainAttributes();
-        assertThat("Header Originally-Created-By", attributes.getValue("Originally-Created-By"), is("pax-tinybundles-" + Info.getPaxTinybundlesVersion()));
-        assertThat("Header Tool", attributes.getValue("Tool"), is(BND));
-        assertThat("Header TinybundlesVersion", attributes.getValue("TinybundlesVersion"), is("pax-tinybundles-" + Info.getPaxTinybundlesVersion()));
-        assertThat(attributes.getValue("Built-By"), is(System.getProperty("user.name")));
+        assertThat(attributes.getValue("Created-By"), is(createdBy));
+        assertThat("Manifest Header: Built-By", attributes.getValue("Built-By"), is(nullValue()));
+        assertThat("Manifest Header: Tool", attributes.getValue("Tool"), is(BND));
+        assertThat("Manifest Header: Pax-TinyBundles", attributes.getValue("Pax-TinyBundles"), is(Info.getPaxTinybundlesVersion()));
     }
 
     @Test

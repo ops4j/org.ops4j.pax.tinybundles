@@ -38,13 +38,9 @@ import org.slf4j.LoggerFactory;
  */
 public abstract class AbstractBuilder implements Builder {
 
-    private static final String BUILT_BY = "Built-By";
-
     private static final String ENTRY_MANIFEST = "META-INF/MANIFEST.MF";
 
-    private static final String TOOL = "Tool";
-
-    private static final String CREATED_BY = "Created-By";
+    private static final String MANIFEST_HEADER_NAME = "Pax-TinyBundles";
 
     private final Logger logger = LoggerFactory.getLogger(AbstractBuilder.class);
 
@@ -104,14 +100,8 @@ public abstract class AbstractBuilder implements Builder {
     protected Manifest createManifest(final Set<Map.Entry<String, String>> headers) {
         logger.debug("Creating manifest from added headers.");
         final Manifest manifest = new Manifest();
-        final String tool = "pax-tinybundles-" + Info.getPaxTinybundlesVersion();
-
         manifest.getMainAttributes().putValue("Manifest-Version", "1.0");
-        manifest.getMainAttributes().putValue(BUILT_BY, System.getProperty("user.name"));
-        manifest.getMainAttributes().putValue(CREATED_BY, tool);
-        manifest.getMainAttributes().putValue(TOOL, tool);
-        manifest.getMainAttributes().putValue("TinybundlesVersion", tool);
-
+        manifest.getMainAttributes().putValue(MANIFEST_HEADER_NAME, Info.getPaxTinybundlesVersion());
         for (final Map.Entry<String, String> entry : headers) {
             logger.debug("{} = {}", entry.getKey(), entry.getValue());
             manifest.getMainAttributes().putValue(entry.getKey(), entry.getValue());
