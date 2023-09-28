@@ -28,8 +28,9 @@ import java.util.UUID;
 import java.util.jar.Manifest;
 
 import aQute.bnd.osgi.Analyzer;
+import aQute.bnd.osgi.Builder;
 import aQute.bnd.osgi.Jar;
-import org.ops4j.pax.tinybundles.Builder;
+import org.jetbrains.annotations.NotNull;
 import org.osgi.framework.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,60 +39,39 @@ import org.slf4j.LoggerFactory;
  * @author Toni Menzel (tonit)
  * @since Apr 20, 2009
  */
-public class BndBuilder implements Builder {
+public class BndBuilder extends AbstractBuilder {
 
     private final Logger logger = LoggerFactory.getLogger(BndBuilder.class);
 
-    private final Builder builder;
-
-    public BndBuilder(final Builder builder) {
-        this.builder = builder;
-    }
-
     @Override
-    public InputStream build(final Map<String, URL> resources, final Map<String, String> headers) {
-        return wrapWithBnd(headers, builder.build(resources, headers));
-    }
+    @NotNull
+    public InputStream build(@NotNull final Map<String, URL> resources, @NotNull final Map<String, String> headers) {
+        final PipedInputStream pin = new PipedInputStream();
+        try (PipedOutputStream pout = new PipedOutputStream(pin)) {
+            // creating the jar from pre-build stream instead of putting resources one by one
+            // allows finer control over added resources
+            new Thread(() -> build(resources, headers, pout)).start();
+            final Jar jar = new Jar("dot", pin);
+            jar.setManifest(createManifest(headers.entrySet()));
 
-    private InputStream wrapWithBnd(final Map<String, String> headers, final InputStream inputStream) {
-        try {
-            final Properties instructions = new Properties();
-            instructions.putAll(headers);
-            return createBundle(inputStream, instructions, String.format("BuildByTinyBundles%s", UUID.randomUUID()));
+            final Properties properties = new Properties();
+            properties.putAll(headers);
+            final Builder builder = new Builder();
+            builder.setJar(jar);
+            builder.setProperties(properties);
+            // throw away already existing headers that we overwrite:
+            builder.mergeManifest(jar.getManifest());
+            ensureSanitizedSymbolicName(builder);
+            final Manifest manifest = builder.calcManifest();
+            jar.setManifest(manifest);
+            return createInputStream(jar);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
     /**
-     * All the bnd magic happens here.
-     *
-     * @param inputStream  On what to operate.
-     * @param instructions bnd instructions from user API
-     * @param symbolicName Mandatory Header. In case user does not set it.
-     * @return Bundle Jar Stream
-     * @throws Exception Problems go here
-     */
-    private InputStream createBundle(final InputStream inputStream, final Properties instructions, final String symbolicName) throws Exception {
-        final Jar jar = new Jar("dot", inputStream);
-        final Properties properties = new Properties();
-        properties.putAll(instructions);
-
-        aQute.bnd.osgi.Builder builder = new aQute.bnd.osgi.Builder();
-        builder.setJar(jar);
-        builder.setProperties(properties);
-        // throw away already existing headers that we overwrite:
-        builder.mergeManifest(jar.getManifest());
-        ensureSanitizedSymbolicName(builder, symbolicName);
-        final Manifest manifest = builder.calcManifest();
-        jar.setManifest(manifest);
-
-        return createInputStream(jar);
-    }
-
-    /**
      * Creates a piped input stream for the wrapped jar.
-     * This is done in a thread, so we can return quickly.
      *
      * @param jar the wrapped jar
      * @return an input stream for the wrapped jar
@@ -118,12 +98,12 @@ public class BndBuilder implements Builder {
     }
 
     /**
-     * Processes symbolic name and replaces OSGi spec invalid characters with "_".
+     * Sanitizes symbolic name and replaces OSGi spec invalid characters with underscore (_).
      *
-     * @param analyzer            bnd analyzer
-     * @param defaultSymbolicName bundle symbolic name
+     * @param analyzer bnd analyzer
      */
-    private void ensureSanitizedSymbolicName(final Analyzer analyzer, final String defaultSymbolicName) {
+    private void ensureSanitizedSymbolicName(final Analyzer analyzer) {
+        final String defaultSymbolicName = String.format("BuildByTinyBundles-%s", UUID.randomUUID());
         final String symbolicName = analyzer.getProperty(Constants.BUNDLE_SYMBOLICNAME, defaultSymbolicName);
         final String sanitizedSymbolicName = symbolicName.replaceAll("[^a-zA-Z_0-9.-]", "_");
         analyzer.setProperty(Constants.BUNDLE_SYMBOLICNAME, sanitizedSymbolicName);

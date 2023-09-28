@@ -17,9 +17,7 @@
  */
 
 /**
- * Provides the classes necessary to create and modify OSGi bundles from java api.
- * <p>
- * The {@link org.ops4j.pax.tinybundles.TinyBundles} class is the factory to get everything started.
+ * Provides a fluent Java API to create and modify OSGi bundles on the fly.
  *
  * @since 1.0
  */

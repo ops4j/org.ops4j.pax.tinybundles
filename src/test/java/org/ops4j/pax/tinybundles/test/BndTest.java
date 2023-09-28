@@ -20,6 +20,7 @@ package org.ops4j.pax.tinybundles.test;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.jar.Attributes;
+import java.util.jar.JarInputStream;
 
 import org.junit.Test;
 import org.ops4j.pax.tinybundles.demo.HelloWorld;
@@ -61,7 +62,7 @@ public class BndTest {
     @Test
     public void bndDeclarativeServices() throws IOException {
         final InputStream bundle = bundle()
-            .add(DsService.class)
+            .addClass(DsService.class)
             .build(bndBuilder());
         final Attributes attributes = getManifest(bundle).getMainAttributes();
         assertThat(attributes.getValue("Service-Component"), is("OSGI-INF/org.ops4j.pax.tinybundles.demo.ds.DsService.xml"));
@@ -70,11 +71,11 @@ public class BndTest {
     @Test
     public void createTestAllDefault() throws IOException {
         final InputStream bundle = bundle()
-            .add(HelloWorldActivator.class)
-            .add(HelloWorld.class)
-            .add(HelloWorldImpl.class)
-            .set(Constants.BUNDLE_SYMBOLICNAME, "MyFirstTinyBundle")
-            .set(Constants.BUNDLE_ACTIVATOR, HelloWorldActivator.class.getName())
+            .addClass(HelloWorldActivator.class)
+            .addClass(HelloWorld.class)
+            .addClass(HelloWorldImpl.class)
+            .setHeader(Constants.BUNDLE_SYMBOLICNAME, "MyFirstTinyBundle")
+            .setHeader(Constants.BUNDLE_ACTIVATOR, HelloWorldActivator.class.getName())
             .build(bndBuilder());
         final Attributes attributes = getManifest(bundle).getMainAttributes();
         // calculated import
@@ -86,12 +87,12 @@ public class BndTest {
     @Test
     public void createTestExport() throws IOException {
         final InputStream bundle = bundle()
-            .add(HelloWorldActivator.class)
-            .add(HelloWorld.class)
-            .add(HelloWorldImpl.class)
-            .set(Constants.BUNDLE_SYMBOLICNAME, "MyFirstTinyBundle")
-            .set(Constants.EXPORT_PACKAGE, HelloWorld.class.getPackage().getName())
-            .set(Constants.BUNDLE_ACTIVATOR, HelloWorldActivator.class.getName())
+            .addClass(HelloWorldActivator.class)
+            .addClass(HelloWorld.class)
+            .addClass(HelloWorldImpl.class)
+            .setHeader(Constants.BUNDLE_SYMBOLICNAME, "MyFirstTinyBundle")
+            .setHeader(Constants.EXPORT_PACKAGE, HelloWorld.class.getPackage().getName())
+            .setHeader(Constants.BUNDLE_ACTIVATOR, HelloWorldActivator.class.getName())
             .build(bndBuilder());
         final Attributes attributes = getManifest(bundle).getMainAttributes();
         // calculated import and re-import
@@ -103,15 +104,14 @@ public class BndTest {
     @Test
     public void embedDependency() throws IOException {
         final InputStream bundle = bundle()
-            .add(HelloWorldActivator.class)
-            .add(HelloWorld.class)
-            .add(HelloWorldImpl.class)
-            .set(Constants.BUNDLE_SYMBOLICNAME, "MyFirstTinyBundle")
-            .set(Constants.EXPORT_PACKAGE, HelloWorld.class.getPackage().getName())
-            .set(Constants.BUNDLE_ACTIVATOR, HelloWorldActivator.class.getName())
-            .set(Constants.BUNDLE_ACTIVATOR, HelloWorldActivator.class.getName())
-            .set("Bundle-Classpath", ".,ant-1.8.1.jar")
-            .set("Include-Resource", "@/Users/tonit/devel/gradle/lib/ant-1.8.1.jar")
+            .addClass(HelloWorldActivator.class)
+            .addClass(HelloWorld.class)
+            .addClass(HelloWorldImpl.class)
+            .setHeader(Constants.BUNDLE_SYMBOLICNAME, "MyFirstTinyBundle")
+            .setHeader(Constants.EXPORT_PACKAGE, HelloWorld.class.getPackage().getName())
+            .setHeader(Constants.BUNDLE_ACTIVATOR, HelloWorldActivator.class.getName())
+            .setHeader("Bundle-Classpath", ".,ant-1.8.1.jar")
+            .setHeader("Include-Resource", "@/Users/tonit/devel/gradle/lib/ant-1.8.1.jar")
             .build(bndBuilder());
         final Attributes attributes = getManifest(bundle).getMainAttributes();
         // calculated import and re-import
@@ -123,18 +123,18 @@ public class BndTest {
     @Test
     public void modifyTest() throws IOException {
         final InputStream bundle1 = bundle()
-            .add(HelloWorldActivator.class)
-            .add(HelloWorld.class)
-            .add(HelloWorldImpl.class)
-            .set(Constants.BUNDLE_SYMBOLICNAME, "MyFirstTinyBundle")
-            .set(Constants.BUNDLE_ACTIVATOR, HelloWorldActivator.class.getName())
+            .addClass(HelloWorldActivator.class)
+            .addClass(HelloWorld.class)
+            .addClass(HelloWorldImpl.class)
+            .setHeader(Constants.BUNDLE_SYMBOLICNAME, "MyFirstTinyBundle")
+            .setHeader(Constants.BUNDLE_ACTIVATOR, HelloWorldActivator.class.getName())
             .build(bndBuilder());
         // Add an export:
         final InputStream bundle2 = bundle()
-            .read(bundle1)
-            .set(Constants.EXPORT_PACKAGE, HelloWorld.class.getPackage().getName())
-            .set(Constants.IMPORT_PACKAGE, "*")
-            .set("another", "property")
+            .readIn(new JarInputStream(bundle1))
+            .setHeader(Constants.EXPORT_PACKAGE, HelloWorld.class.getPackage().getName())
+            .setHeader(Constants.IMPORT_PACKAGE, "*")
+            .setHeader("another", "property")
             .build(bndBuilder());
         // test output
         final Attributes attributes = getManifest(bundle2).getMainAttributes();

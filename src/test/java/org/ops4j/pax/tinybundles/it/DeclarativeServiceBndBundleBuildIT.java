@@ -54,7 +54,7 @@ public class DeclarativeServiceBndBundleBuildIT extends TinybundlesTestSupport {
     private InputStream dsBundle() {
         return bundle()
             .symbolicName(BUNDLE_SYMBOLICNAME)
-            .add(DsService.class)
+            .addClass(DsService.class)
             .build(bndBuilder());
     }
 

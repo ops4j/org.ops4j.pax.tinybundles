@@ -21,12 +21,11 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.Map;
 
+import org.jetbrains.annotations.NotNull;
 import org.osgi.annotation.versioning.ProviderType;
 
 /**
- * Builder.
- * Implementors should be stateless so builders can be shared.
- * Usually the "build" action is an atomic, functional operation.
+ * Builder for TinyBundles. The builder is used by {@link TinyBundle} internally.
  *
  * @author Toni Menzel (tonit)
  * @since Apr 20, 2009
@@ -35,12 +34,13 @@ import org.osgi.annotation.versioning.ProviderType;
 public interface Builder {
 
     /**
-     * perform the actual build.
+     * Builds the bundle with given resources and headers.
      *
-     * @param resources resources to be considered in the build.
-     * @param headers   headers to be considered in the build
-     * @return an {@link InputStream} containing built assembly (usually a jar/bundle in this context)
+     * @param resources the resources to be considered in the build
+     * @param headers   the headers to be considered in the build
+     * @return the built assembly (bundle or jar)
      */
-    InputStream build(final Map<String, URL> resources, final Map<String, String> headers);
+    @NotNull
+    InputStream build(@NotNull final Map<String, URL> resources, @NotNull final Map<String, String> headers);
 
 }

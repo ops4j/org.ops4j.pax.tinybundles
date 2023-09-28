@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Objects;
 
+import org.jetbrains.annotations.NotNull;
 import org.ops4j.pax.tinybundles.Builder;
 import org.ops4j.pax.tinybundles.TinyBundle;
 import org.ops4j.pax.tinybundles.TinyBundlesFactory;
@@ -30,8 +31,6 @@ import org.ops4j.store.StoreFactory;
 public class DefaultTinyBundlesFactory implements TinyBundlesFactory {
 
     private Store<InputStream> store;
-
-    static final Builder asyncRawBuilder = new AsyncRawBuilder();
 
     public DefaultTinyBundlesFactory() { //
     }
@@ -48,28 +47,27 @@ public class DefaultTinyBundlesFactory implements TinyBundlesFactory {
     }
 
     @Override
+    @NotNull
     public TinyBundle bundle() {
         return new TinyBundleImpl(defaultStore());
     }
 
     @Override
-    public TinyBundle bundle(final Store<InputStream> store) {
+    @NotNull
+    public TinyBundle bundle(@NotNull final Store<InputStream> store) {
         return new TinyBundleImpl(store);
     }
 
     @Override
+    @NotNull
     public Builder rawBuilder() {
-        return asyncRawBuilder;
+        return new RawBuilder();
     }
 
     @Override
+    @NotNull
     public Builder bndBuilder() {
-        return new BndBuilder(rawBuilder());
-    }
-
-    @Override
-    public Builder bndBuilder(final Builder inner) {
-        return new BndBuilder(inner);
+        return new BndBuilder();
     }
 
 }

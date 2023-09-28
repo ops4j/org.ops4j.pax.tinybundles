@@ -27,8 +27,7 @@ import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceReference;
 
 /**
- * Statically usable TinyBundles API.
- * Usually the entry point for using TinyBundles.
+ * Statically usable TinyBundles factory.
  *
  * @author Toni Menzel
  * @since 1.0.0
@@ -54,42 +53,37 @@ public class TinyBundles {
     }
 
     /**
-     * {@see #bundle(BuildableBundle, org.ops4j.store.Store)}
+     * Creates a new {@link TinyBundle}.
      *
-     * @return a new instance of {@link TinyBundle}.
+     * @return the new tiny bundle
      */
     public static TinyBundle bundle() {
         return factory().bundle();
     }
 
     /**
-     * Start with a fresh bundle with this factory method.
-     * You can then chain method calls thanks to the humane nature of {@link TinyBundle} interface.
+     * Creates a new {@link TinyBundle}.
      *
-     * @param store cache backend
-     * @return a new instance of {@link TinyBundle}.
+     * @param store the cache backend to use
+     * @return the new tiny bundle
      */
     public static TinyBundle bundle(final Store<InputStream> store) {
         return factory().bundle(store);
     }
 
     /**
-     * @param inner builder when using bnd builder.
-     * @return a builder to be used with {@link TinyBundle#build(Builder)} using bnd with given builder.
-     */
-    public static Builder bndBuilder(final Builder inner) {
-        return factory().bndBuilder(inner);
-    }
-
-    /**
-     * @return a builder to be used with {@link TinyBundle#build(Builder)} using bnd with raw builder.
+     * Creates a new bnd builder.
+     *
+     * @return the new bnd builder
      */
     public static Builder bndBuilder() {
-        return factory().bndBuilder(rawBuilder());
+        return factory().bndBuilder();
     }
 
     /**
-     * @return a builder to be used with {@link TinyBundle#build(Builder)} using no extra manifest computation logic.
+     * Creates a new raw builder.
+     *
+     * @return the new raw builder
      */
     public static Builder rawBuilder() {
         return factory().rawBuilder();

@@ -33,7 +33,7 @@ public class InnerClassesTest {
 
     @Test
     public void allInnerClassesTest() {
-        bundle().add(DemoAnonymousInnerClass.class, InnerClassStrategy.ALL).build(
+        bundle().addClass(DemoAnonymousInnerClass.class, InnerClassStrategy.ALL).build(
             (resources, headers) -> {
                 assertThat(resources.keySet(), hasItems(
                         "org/ops4j/pax/tinybundles/demo/DemoAnonymousInnerClass.class",
@@ -49,7 +49,7 @@ public class InnerClassesTest {
 
     @Test
     public void anonymousInnerClassesTest() {
-        bundle().add(DemoAnonymousInnerClass.class, InnerClassStrategy.ANONYMOUS).build(
+        bundle().addClass(DemoAnonymousInnerClass.class, InnerClassStrategy.ANONYMOUS).build(
             (resources, headers) -> {
                 final Set<String> keys = resources.keySet();
                 assertThat(keys, hasItem("org/ops4j/pax/tinybundles/demo/DemoAnonymousInnerClass.class"));
@@ -63,7 +63,7 @@ public class InnerClassesTest {
 
     @Test
     public void noInnerClassesTest() {
-        bundle().add(DemoAnonymousInnerClass.class, InnerClassStrategy.NONE).build(
+        bundle().addClass(DemoAnonymousInnerClass.class, InnerClassStrategy.NONE).build(
             (resources, headers) -> {
                 final Set<String> keys = resources.keySet();
                 assertThat(keys, hasItem("org/ops4j/pax/tinybundles/demo/DemoAnonymousInnerClass.class"));

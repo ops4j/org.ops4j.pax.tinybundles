@@ -19,12 +19,16 @@ package org.ops4j.pax.tinybundles;
 
 import java.io.InputStream;
 import java.net.URL;
+import java.util.jar.JarInputStream;
+import java.util.jar.Manifest;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.osgi.annotation.versioning.ProviderType;
+import org.osgi.framework.BundleActivator;
 
 /**
- * Main type when making bundles with the {@link TinyBundles} library.
- * Get an instance from {@link TinyBundles} Factory, add resources and call {@link #build()} to go to the final step.
+ * TinyBundle provides a fluent API to create and modify OSGi bundles on the fly.
  *
  * @author Toni Menzel (tonit)
  * @since Apr 9, 2009
@@ -33,121 +37,142 @@ import org.osgi.annotation.versioning.ProviderType;
 public interface TinyBundle {
 
     /**
-     * Add a resource to the current bundle (to be built).
+     * Adds the class into the bundle and sets it as bundle activator.
      *
-     * @param name    final path inside the jar
-     * @param content content to be copied into bundle.
-     * @return *this*
+     * @param activator the bundle activator
+     * @return the tiny bundle
      */
-    TinyBundle add(final String name, final URL content);
+    @NotNull
+    TinyBundle activator(@NotNull final Class<? extends BundleActivator> activator);
 
     /**
-     * Add a resource to the current bundle (to be built).
+     * Sets the bundle symbolic name.
      *
-     * @param name    final path inside the jar
-     * @param content content to be copied into bundle.
-     * @return *this*
+     * @param symbolicName the bundle symbolic name
+     * @return the tiny bundle
      */
-    TinyBundle add(final String name, final InputStream content);
+    @NotNull
+    TinyBundle symbolicName(@NotNull final String symbolicName);
 
     /**
-     * Add a class to the current bundle. Uses InnerClassStrategy.ALL
+     * Adds the resource into the bundle.
      *
-     * @param clazz content to be copied into bundle.
-     * @return {@literal this}
+     * @param path     the path where the resource gets stored in the bundle
+     * @param resource the resource to be added
+     * @return the tiny bundle
      */
-    TinyBundle add(final Class<?> clazz);
+    @NotNull
+    TinyBundle addResource(@NotNull final String path, @NotNull final URL resource);
 
     /**
-     * Add a class to the current bundle.
+     * Adds the resource into the bundle.
      *
-     * @param clazz
+     * @param path     the path where the resource gets stored in the bundle
+     * @param resource the resource to be added
+     * @return the tiny bundle
      */
-    TinyBundle add(final Class<?> clazz, final InnerClassStrategy strategy);
+    @NotNull
+    TinyBundle addResource(@NotNull final String path, @NotNull final InputStream resource);
 
     /**
-     * Add a class to the current bundle and set it as Activator
+     * Removes a resource from the bundle.
      *
-     * @param activator
+     * @param path the path of the to be removed resource
+     * @return the tiny bundle
      */
-    TinyBundle activator(final Class<?> activator);
+    @NotNull
+    TinyBundle removeResource(@NotNull final String path);
 
     /**
-     * Set symbolic name of bundle
+     * Adds the class into the bundle with default {@link InnerClassStrategy#ALL} strategy.
      *
-     * @param name
+     * @param clazz the class to be added
+     * @return the tiny bundle
      */
-    TinyBundle symbolicName(final String name);
+    @NotNull
+    TinyBundle addClass(@NotNull final Class<?> clazz);
 
     /**
-     * remove a class to the current bundle.
+     * Adds the class into the bundle.
      *
-     * @param clazz class to be removed
-     * @return *this*
+     * @param clazz    the class to be added
+     * @param strategy the inner class strategy for the given class
+     * @return the tiny bundle
      */
-    TinyBundle remove(final Class<?> clazz);
+    @NotNull
+    TinyBundle addClass(@NotNull final Class<?> clazz, @NotNull final InnerClassStrategy strategy);
 
     /**
-     * When you are done adding stuff to *this* you can call this method to go to next step.
+     * Removes the class from the bundle.
      *
-     * @param builder builder to be used.
-     * @return Next step in the bundle making process.
+     * @param clazz the class to be removed
+     * @return the tiny bundle
      */
-    InputStream build(final Builder builder);
+    @NotNull
+    TinyBundle removeClass(@NotNull final Class<?> clazz);
 
     /**
-     * Build bundle with default builder.
+     * Sets the {@link Manifest}  header.
      *
-     * @return Next step in the bundle making process.
+     * @param name  the header name
+     * @param value the header value
+     * @return the tiny bundle
      */
+    @NotNull
+    TinyBundle setHeader(@NotNull final String name, @NotNull final String value);
+
+    /**
+     * Gets the {@link Manifest} header value for the given name.
+     *
+     * @param name the header name
+     * @return the header value or null if header is not present
+     */
+    @Nullable
+    String getHeader(@NotNull final String name);
+
+    /**
+     * Removes the {@link Manifest} header.
+     *
+     * @param name the name of the to be removed header
+     * @return the tiny bundle
+     */
+    @NotNull
+    TinyBundle removeHeader(@NotNull final String name);
+
+    /**
+     * Reads an existing bundle or jar into this TinyBundle.
+     *
+     * @param jar the stream of JarInputStream
+     * @return the tiny bundle
+     */
+    @NotNull
+    TinyBundle readIn(@NotNull final JarInputStream jar);
+
+    /**
+     * Reads an existing jar or bundle into this tiny bundle.
+     *
+     * @param jar         the source jar or bundle
+     * @param skipContent true to read jar content also, false to read {@link Manifest} only
+     * @return the tiny bundle
+     */
+    @NotNull
+    TinyBundle readIn(@NotNull final JarInputStream jar, final boolean skipContent);
+
+    /**
+     * Builds the bundle with default bnd {@link Builder}.
+     *
+     * @return the built bundle
+     */
+    @NotNull
     InputStream build();
 
     /**
-     * Set header values that go into the Manifest.
+     * Builds the bundle with given {@link Builder}.
      *
-     * @param key   a key
-     * @param value a value
-     * @return {@literal this}
+     * @param builder the builder to be used for building
+     * @return the built bundle
      */
-    TinyBundle set(final String key, final String value);
-
-    /**
-     * Remove a previously added resource.
-     * Usually useful if you loaded an existing bundle into {@link TinyBundles} before.
-     *
-     * @param key a key as String
-     * @return {@literal this}
-     */
-    TinyBundle removeResource(final String key);
-
-    /**
-     * Remove a previously added header.
-     * Usually useful if you loaded an existing bundle into {@link TinyBundles} before.
-     *
-     * @param key a key as String
-     * @return {@literal this}
-     */
-    TinyBundle removeHeader(final String key);
-
-    /**
-     * Read an existing bundle or jar into TinyBundles for modification.
-     *
-     * @param inputStream stream of JarInputStream
-     * @return {@literal this}
-     */
-    TinyBundle read(final InputStream inputStream);
-
-    /**
-     * Read an existing bundle or jar into TinyBundles for modification.
-     *
-     * @param input stream of JarInputStream
-     * @return {@literal this}
-     */
-    TinyBundle read(final InputStream input, final boolean readContent);
-
-    /**
-     * Get header value.
-     */
-    String getHeader(final String key);
+    @NotNull
+    InputStream build(@NotNull final Builder builder);
 
 }

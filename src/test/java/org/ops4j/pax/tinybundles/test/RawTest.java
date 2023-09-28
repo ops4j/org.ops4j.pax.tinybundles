@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.util.jar.Attributes;
+import java.util.jar.JarInputStream;
 
 import org.junit.Test;
 import org.ops4j.pax.tinybundles.demo.HelloWorld;
@@ -51,15 +52,15 @@ public class RawTest {
 
     private static final String HEADER_BUILT_BY = "Built-By";
 
-    private static InputStream createTestBundle(final String caption) {
+    private static InputStream createTestBundle(final String symbolicName) {
         return bundle()
-            .add(HelloWorldActivator.class)
-            .add(HelloWorld.class)
-            .add(HelloWorldImpl.class)
-            .set(Constants.BUNDLE_SYMBOLICNAME, caption)
-            .set(Constants.EXPORT_PACKAGE, "demo")
-            .set(Constants.IMPORT_PACKAGE, "demo")
-            .set(Constants.BUNDLE_ACTIVATOR, HelloWorldActivator.class.getName())
+            .addClass(HelloWorldActivator.class)
+            .addClass(HelloWorld.class)
+            .addClass(HelloWorldImpl.class)
+            .setHeader(Constants.BUNDLE_SYMBOLICNAME, symbolicName)
+            .setHeader(Constants.EXPORT_PACKAGE, "demo")
+            .setHeader(Constants.IMPORT_PACKAGE, "demo")
+            .setHeader(Constants.BUNDLE_ACTIVATOR, HelloWorldActivator.class.getName())
             .build(rawBuilder());
     }
 
@@ -80,7 +81,8 @@ public class RawTest {
         final File file = File.createTempFile("test", ".jar");
         file.deleteOnExit();
         createEmptyJar(file);
-        bundle().read(Files.newInputStream(file.toPath()));
+        final JarInputStream jarIn = new JarInputStream(Files.newInputStream(file.toPath()));
+        bundle().readIn(jarIn);
     }
 
     @Test
@@ -109,18 +111,18 @@ public class RawTest {
     public void modifyTest() throws IOException {
         // create a bundle
         final InputStream originalBundle = bundle()
-            .add(HelloWorldActivator.class)
-            .add(HelloWorld.class)
-            .add(HelloWorldImpl.class)
-            .set(Constants.BUNDLE_SYMBOLICNAME, "MyFirstTinyBundle")
-            .set(Constants.EXPORT_PACKAGE, "demo")
-            .set(Constants.IMPORT_PACKAGE, "demo")
-            .set(Constants.BUNDLE_ACTIVATOR, HelloWorldActivator.class.getName())
+            .addClass(HelloWorldActivator.class)
+            .addClass(HelloWorld.class)
+            .addClass(HelloWorldImpl.class)
+            .setHeader(Constants.BUNDLE_SYMBOLICNAME, "MyFirstTinyBundle")
+            .setHeader(Constants.EXPORT_PACKAGE, "demo")
+            .setHeader(Constants.IMPORT_PACKAGE, "demo")
+            .setHeader(Constants.BUNDLE_ACTIVATOR, HelloWorldActivator.class.getName())
             .build(rawBuilder());
         // create a new bundle from the original and modify it
         final InputStream modifiedBundle = bundle()
-            .read(originalBundle)
-            .set(Constants.EXPORT_PACKAGE, "bacon")
+            .readIn(new JarInputStream(originalBundle))
+            .setHeader(Constants.EXPORT_PACKAGE, "bacon")
             .build(rawBuilder());
         final Attributes attributes = getManifest(modifiedBundle).getMainAttributes();
         assertThat(attributes.getValue(Constants.IMPORT_PACKAGE), is("demo"));

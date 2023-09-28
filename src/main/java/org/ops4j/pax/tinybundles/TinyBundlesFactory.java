@@ -19,20 +19,47 @@ package org.ops4j.pax.tinybundles;
 
 import java.io.InputStream;
 
+import org.jetbrains.annotations.NotNull;
 import org.ops4j.store.Store;
 import org.osgi.annotation.versioning.ProviderType;
 
+/**
+ * TinyBundles factory (OSGi) service.
+ */
 @ProviderType
 public interface TinyBundlesFactory {
 
+    /**
+     * Creates a new {@link TinyBundle}.
+     *
+     * @return the new tiny bundle
+     */
+    @NotNull
     TinyBundle bundle();
 
-    TinyBundle bundle(final Store<InputStream> store);
+    /**
+     * Creates a new {@link TinyBundle}.
+     *
+     * @param store the cache backend to use
+     * @return the new tiny bundle
+     */
+    @NotNull
+    TinyBundle bundle(@NotNull final Store<InputStream> store);
 
-    Builder rawBuilder();
-
+    /**
+     * Creates a new bnd builder.
+     *
+     * @return the new bnd builder
+     */
+    @NotNull
     Builder bndBuilder();
 
-    Builder bndBuilder(final Builder inner);
+    /**
+     * Creates a new raw builder.
+     *
+     * @return the new raw builder
+     */
+    @NotNull
+    Builder rawBuilder();
 
 }

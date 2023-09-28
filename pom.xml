@@ -282,6 +282,13 @@
       <version>2.2.6</version>
       <scope>test</scope>
     </dependency>
+    <!-- nullability annotations -->
+    <dependency>
+      <groupId>org.jetbrains</groupId>
+      <artifactId>annotations</artifactId>
+      <version>24.0.1</version>
+      <scope>provided</scope>
+    </dependency>
     <!-- logging -->
     <dependency>
       <groupId>org.slf4j</groupId>

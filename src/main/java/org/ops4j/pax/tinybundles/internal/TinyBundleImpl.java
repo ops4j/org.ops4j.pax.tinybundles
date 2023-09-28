@@ -30,10 +30,13 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
 import java.util.jar.Manifest;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.ops4j.pax.tinybundles.Builder;
 import org.ops4j.pax.tinybundles.InnerClassStrategy;
 import org.ops4j.pax.tinybundles.TinyBundle;
 import org.ops4j.store.Store;
+import org.osgi.framework.BundleActivator;
 import org.osgi.framework.Constants;
 
 import static org.ops4j.pax.tinybundles.TinyBundles.bndBuilder;
@@ -68,14 +71,14 @@ public class TinyBundleImpl implements TinyBundle {
         for (final Object key : attributes.keySet()) {
             final String k = key.toString();
             final String v = attributes.getValue(k);
-            set(k, v);
+            setHeader(k, v);
         }
     }
 
     private void addContents(final JarInputStream jarIn) throws IOException {
         JarEntry entry;
         while (!Objects.isNull(entry = jarIn.getNextJarEntry())) {
-            add(entry.getName(), jarIn);
+            addResource(entry.getName(), jarIn);
         }
     }
 
@@ -97,40 +100,42 @@ public class TinyBundleImpl implements TinyBundle {
     }
 
     @Override
-    public TinyBundle read(final InputStream inputStream, final boolean readContent) {
-        if (!Objects.isNull(inputStream)) {
-            try (JarInputStream jarIn = new JarInputStream(inputStream)) {
-                addManifestAttributes(jarIn);
-                if (readContent) {
-                    addContents(jarIn);
-                }
-            } catch (IOException e) {
-                throw new RuntimeException("Problem loading bundle.", e);
+    @NotNull
+    public TinyBundle readIn(@NotNull final JarInputStream jar, final boolean skipContent) {
+        addManifestAttributes(jar);
+        try {
+            if (!skipContent) {
+                addContents(jar);
             }
+        } catch (IOException e) {
+            throw new RuntimeException("Problem loading bundle.", e);
         }
         return this;
     }
 
     @Override
-    public TinyBundle read(final InputStream inputStream) {
-        return read(inputStream, true);
+    @NotNull
+    public TinyBundle readIn(@NotNull final JarInputStream jar) {
+        return readIn(jar, false);
     }
 
     @Override
-    public TinyBundle add(final Class<?> clazz) {
-        add(clazz, InnerClassStrategy.ALL);
+    @NotNull
+    public TinyBundle addClass(@NotNull final Class<?> clazz) {
+        addClass(clazz, InnerClassStrategy.ALL);
         return this;
     }
 
     @Override
-    public TinyBundle add(final Class<?> clazz, final InnerClassStrategy strategy) {
-        final String name = ClassFinder.asResource(clazz);
-        final URL resource = clazz.getResource("/" + name);
+    @NotNull
+    public TinyBundle addClass(@NotNull final Class<?> clazz, @NotNull final InnerClassStrategy strategy) {
+        final String path = ClassFinder.asResource(clazz);
+        final URL resource = clazz.getResource("/" + path);
 
         if (Objects.isNull(resource)) {
-            throw new IllegalArgumentException(String.format("Class %s not found! (resource: %s )", clazz.getName(), name));
+            throw new IllegalArgumentException(String.format("Class %s not found! (resource: %s )", clazz.getName(), path));
         }
-        add(name, resource);
+        addResource(path, resource);
 
         final Collection<ClassDescriptor> innerClasses = findInnerClasses(clazz, strategy);
         for (final ClassDescriptor descriptor : innerClasses) {
@@ -140,71 +145,82 @@ public class TinyBundleImpl implements TinyBundle {
     }
 
     @Override
-    public TinyBundle activator(final Class<?> activator) {
-        this.add(activator);
-        this.set(Constants.BUNDLE_ACTIVATOR, activator.getName());
+    @NotNull
+    public TinyBundle activator(@NotNull final Class<? extends BundleActivator> activator) {
+        this.addClass(activator);
+        this.setHeader(Constants.BUNDLE_ACTIVATOR, activator.getName());
         return this;
     }
 
     @Override
-    public TinyBundle symbolicName(final String name) {
-        this.set(Constants.BUNDLE_SYMBOLICNAME, name);
+    @NotNull
+    public TinyBundle symbolicName(@NotNull final String symbolicName) {
+        this.setHeader(Constants.BUNDLE_SYMBOLICNAME, symbolicName);
         return this;
     }
 
     @Override
-    public TinyBundle remove(final Class<?> clazz) {
+    @NotNull
+    public TinyBundle removeClass(@NotNull final Class<?> clazz) {
         final String name = ClassFinder.asResource(clazz);
         removeResource(name);
         return this;
     }
 
     @Override
-    public TinyBundle add(final String name, final URL url) {
-        resources.put(name, url);
+    @NotNull
+    public TinyBundle addResource(@NotNull final String path, @NotNull final URL resource) {
+        resources.put(path, resource);
         return this;
     }
 
     @Override
-    public TinyBundle add(final String name, final InputStream content) {
+    @NotNull
+    public TinyBundle addResource(@NotNull final String path, @NotNull final InputStream resource) {
         try {
-            return add(name, store.getLocation(store.store(content)).toURL());
+            return addResource(path, store.getLocation(store.store(resource)).toURL());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     @Override
+    @NotNull
     public InputStream build() {
         return bndBuilder().build(resources, headers);
     }
 
     @Override
-    public InputStream build(final Builder builder) {
+    @NotNull
+    public InputStream build(@NotNull final Builder builder) {
         return builder.build(resources, headers);
     }
 
     @Override
-    public TinyBundle set(final String key, final String value) {
-        headers.put(key, value);
+    @NotNull
+    public TinyBundle setHeader(@NotNull final String name, @NotNull final String value) {
+        headers.put(name, value);
         return this;
     }
 
     @Override
-    public TinyBundle removeResource(final String key) {
+    @NotNull
+    public TinyBundle removeResource(@NotNull final String key) {
         resources.remove(key);
         return this;
     }
 
     @Override
-    public TinyBundle removeHeader(final String key) {
-        headers.remove(key);
+    @NotNull
+    public TinyBundle removeHeader(@NotNull final String name) {
+        headers.remove(name);
         return this;
     }
 
     @Override
-    public String getHeader(final String key) {
-        return headers.get(key);
+    @Nullable
+    public String getHeader(@NotNull final String name) {
+        return headers.get(name);
     }
 
 }
