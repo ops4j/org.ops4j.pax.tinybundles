@@ -18,10 +18,10 @@
 package org.ops4j.pax.tinybundles.test;
 
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.regex.Pattern;
 
 import aQute.bnd.build.Container;
 import org.junit.Before;
@@ -81,21 +81,22 @@ public class ClassFinderTest {
 
     @Test
     public void findAllEmbeddedClassesFromJreClass() throws IOException {
-        final Class<?> clazz = Pattern.class;
+        final Class<?> clazz = ObjectInputStream.class;
         final Collection<ClassDescriptor> descriptors = finder.findAllEmbeddedClasses(clazz);
         verify(descriptors, false,
-            "java/util/regex/Pattern$1.class",
-            "java/util/regex/Pattern$CharProperty.class",
-            "java/util/regex/Pattern$Dollar.class"
+            "java/io/ObjectInputStream$1.class",
+            "java/io/ObjectInputStream$ValidationList$1.class",
+            "java/io/ObjectInputStream$ValidationList$Callback.class",
+            "java/io/ObjectInputStream$ValidationList.class"
         );
     }
 
     @Test
     public void findAnonymousClassesFromJreClass() throws IOException {
-        final Class<?> clazz = Pattern.class;
+        final Class<?> clazz = ObjectInputStream.class;
         final Collection<ClassDescriptor> descriptors = finder.findAnonymousClasses(clazz);
         verify(descriptors, false,
-            "java/util/regex/Pattern$1.class"
+            "java/io/ObjectInputStream$1.class"
         );
     }
 
