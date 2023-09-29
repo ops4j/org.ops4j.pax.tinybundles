@@ -60,6 +60,7 @@
           <attach>true</attach>
           <quiet>true</quiet>
           <encoding>UTF-8</encoding>
+          <excludePackageNames>*.internal</excludePackageNames>
         </configuration>
       </plugin>
       <plugin>

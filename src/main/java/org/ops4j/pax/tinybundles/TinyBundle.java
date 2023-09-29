@@ -140,18 +140,18 @@ public interface TinyBundle {
     TinyBundle removeHeader(@NotNull final String name);
 
     /**
-     * Reads an existing bundle or jar into this TinyBundle.
+     * Reads an existing bundle or plain jar into this bundle.
      *
-     * @param jar the stream of JarInputStream
+     * @param jar the source bundle or jar
      * @return the tiny bundle
      */
     @NotNull
     TinyBundle readIn(@NotNull final JarInputStream jar);
 
     /**
-     * Reads an existing jar or bundle into this tiny bundle.
+     * Reads an existing bundle or plain jar into this bundle.
      *
-     * @param jar         the source jar or bundle
+     * @param jar         the source bundle or jar
      * @param skipContent true to read jar content also, false to read {@link Manifest} only
      * @return the tiny bundle
      */
