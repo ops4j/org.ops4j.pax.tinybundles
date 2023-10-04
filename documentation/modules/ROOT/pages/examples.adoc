@@ -6,12 +6,12 @@
 ----
         InputStream inputStream = bundle()
             .activator(HelloWorldActivator.class)
-            .add(HelloWorld.class)
-            .add(HelloWorldImpl.class)
-            .add(DsService.class)
+            .addClass(HelloWorld.class)
+            .addClass(HelloWorldImpl.class)
+            .addClass(DsService.class)
             .symbolicName("Hello World Bundle")
-            .set(Constants.EXPORT_PACKAGE, "")
-            .set(Constants.IMPORT_PACKAGE, "*")
+            .setHeader(Constants.EXPORT_PACKAGE, "")
+            .setHeader(Constants.IMPORT_PACKAGE, "*")
             .build(bndBuilder());
 ----
 - Setting `Bundle-Activator` and `Bundle-SymbolicName` via dedicated methods
@@ -23,13 +23,13 @@
 [,java]
 ----
         InputStream inputStream = bundle()
-            .add(HelloWorldActivator.class)
-            .add(HelloWorld.class)
-            .add(HelloWorldImpl.class)
-            .set(Constants.BUNDLE_SYMBOLICNAME, "Hello World Bundle")
-            .set(Constants.EXPORT_PACKAGE, "demo")
-            .set(Constants.IMPORT_PACKAGE, "demo")
-            .set(Constants.BUNDLE_ACTIVATOR, HelloWorldActivator.class.getName())
+            .addClass(HelloWorldActivator.class)
+            .addClass(HelloWorld.class)
+            .addClass(HelloWorldImpl.class)
+            .setHeader(Constants.BUNDLE_SYMBOLICNAME, "Hello World Bundle")
+            .setHeader(Constants.EXPORT_PACKAGE, "demo")
+            .setHeader(Constants.IMPORT_PACKAGE, "demo")
+            .setHeader(Constants.BUNDLE_ACTIVATOR, HelloWorldActivator.class.getName())
             .build(rawBuilder());
 ----
 - Setting `Bundle-Activator` and `Bundle-SymbolicName` manually

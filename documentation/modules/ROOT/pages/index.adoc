@@ -39,14 +39,14 @@ import static org.ops4j.pax.tinybundles.TinyBundles.bundle;
 [,java]
 ----
     JarInputStream source = new JarInputStream(…);
-    bundle.read(source);
+    bundle.readIn(source);
 ----
     - Set bundle headers and add/remove classes
 +
 [,java]
 ----
-    bundle.set(Constants.BUNDLE_VENDOR, "OPS4J");
-    bundle.add(HelloWorld.class);
+    bundle.setHeader(Constants.BUNDLE_VENDOR, "OPS4J");
+    bundle.addClass(HelloWorld.class);
 ----
 5. Build the bundle
 +
