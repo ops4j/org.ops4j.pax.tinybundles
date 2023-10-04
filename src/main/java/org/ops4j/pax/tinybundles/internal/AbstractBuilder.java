@@ -44,17 +44,11 @@ public abstract class AbstractBuilder implements Builder {
 
     private final Logger logger = LoggerFactory.getLogger(AbstractBuilder.class);
 
-    protected void build(final Map<String, URL> resources, final Map<String, String> headers, final PipedOutputStream pout) {
+    protected void build(final Map<String, URL> resources, final Map<String, String> headers, final PipedOutputStream pout, final CloseAwarePipedInputStream pin) {
         try (JarOutputStream jarOut = new JarOutputStream(pout)) {
             build(resources, headers, jarOut);
         } catch (IOException e) {
-            if (!"Pipe closed".equals(e.getMessage())) {
-                throw new RuntimeException("Problem while writing jar.", e);
-            } else {
-                logger.debug("Pipe closed.", e);
-            }
-        } finally {
-            logger.debug("Copy thread finished.");
+            handleBuildException(e, pin);
         }
     }
 
@@ -107,6 +101,14 @@ public abstract class AbstractBuilder implements Builder {
             manifest.getMainAttributes().putValue(entry.getKey(), entry.getValue());
         }
         return manifest;
+    }
+
+    protected void handleBuildException(final Exception e, final CloseAwarePipedInputStream pin) {
+        if (pin.isClosed()) {
+            logger.debug("Consumer stopped reading jar from stream before it was completely built.", e);
+        } else {
+            throw new RuntimeException("Problem while writing jar.", e);
+        }
     }
 
 }

@@ -17,6 +17,7 @@
  */
 package org.ops4j.pax.tinybundles.internal;
 
+import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PipedInputStream;
@@ -46,28 +47,32 @@ public class BndBuilder extends AbstractBuilder {
     @Override
     @NotNull
     public InputStream build(@NotNull final Map<String, URL> resources, @NotNull final Map<String, String> headers) {
-        final PipedInputStream pin = new PipedInputStream();
+        final CloseAwarePipedInputStream pin = new CloseAwarePipedInputStream();
         try (PipedOutputStream pout = new PipedOutputStream(pin)) {
-            // creating the jar from pre-build stream instead of putting resources one by one
+            new Thread(() -> build(resources, headers, pout, pin)).start();
+            // creating the jar from pre-built stream instead of putting resources one by one
             // allows finer control over added resources
-            new Thread(() -> build(resources, headers, pout)).start();
-            final Jar jar = new Jar("dot", pin);
-            jar.setManifest(createManifest(headers.entrySet()));
-
-            final Properties properties = new Properties();
-            properties.putAll(headers);
-            final Builder builder = new Builder();
-            builder.setJar(jar);
-            builder.setProperties(properties);
-            // throw away already existing headers that we overwrite:
-            builder.mergeManifest(jar.getManifest());
-            ensureSanitizedSymbolicName(builder);
-            final Manifest manifest = builder.calcManifest();
-            jar.setManifest(manifest);
-            return createInputStream(jar);
+            final Jar jar = buildJar(pin, headers);
+            return write(jar);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private Jar buildJar(final InputStream inputStream, final Map<String, String> headers) throws Exception {
+        final Jar jar = new Jar("tiny bundle", inputStream);
+        jar.setManifest(createManifest(headers.entrySet()));
+        final Properties properties = new Properties();
+        properties.putAll(headers);
+        final Builder builder = new Builder();
+        builder.setJar(jar);
+        builder.setProperties(properties);
+        // throw away already existing headers that we overwrite:
+        builder.mergeManifest(jar.getManifest());
+        ensureSanitizedSymbolicName(builder);
+        final Manifest manifest = builder.calcManifest();
+        jar.setManifest(manifest);
+        return jar;
     }
 
     /**
@@ -76,21 +81,17 @@ public class BndBuilder extends AbstractBuilder {
      * @param jar the wrapped jar
      * @return an input stream for the wrapped jar
      */
-    private PipedInputStream createInputStream(final Jar jar) throws IOException {
-        final PipedInputStream pin = new PipedInputStream();
+    private PipedInputStream write(final Jar jar) throws IOException {
+        final CloseAwarePipedInputStream pin = new CloseAwarePipedInputStream();
         final PipedOutputStream pout = new PipedOutputStream(pin);
 
         new Thread(() -> {
             try {
                 jar.write(pout);
             } catch (Exception e) {
-                //    LOG.warn( "Bundle cannot be generated",e );
+                handleBuildException(e, pin);
             } finally {
-                try {
-                    pout.close();
-                } catch (IOException e) {
-                    logger.warn("Close ?", e);
-                }
+                close(jar, pout);
             }
         }).start();
 
@@ -107,6 +108,16 @@ public class BndBuilder extends AbstractBuilder {
         final String symbolicName = analyzer.getProperty(Constants.BUNDLE_SYMBOLICNAME, defaultSymbolicName);
         final String sanitizedSymbolicName = symbolicName.replaceAll("[^a-zA-Z_0-9.-]", "_");
         analyzer.setProperty(Constants.BUNDLE_SYMBOLICNAME, sanitizedSymbolicName);
+    }
+
+    private void close(final Closeable... closeables) {
+        for (final Closeable closeable : closeables) {
+            try {
+                closeable.close();
+            } catch (IOException e) {
+                logger.warn(e.getMessage(), e);
+            }
+        }
     }
 
 }

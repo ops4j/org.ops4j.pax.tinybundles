@@ -19,7 +19,6 @@ package org.ops4j.pax.tinybundles.internal;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
 import java.net.URL;
 import java.util.Map;
@@ -38,12 +37,12 @@ public class RawBuilder extends AbstractBuilder implements Builder {
     public InputStream build(@NotNull final Map<String, URL> resources, @NotNull final Map<String, String> headers) {
         logger.debug("building...");
         try {
-            final PipedInputStream pin = new PipedInputStream();
+            final CloseAwarePipedInputStream pin = new CloseAwarePipedInputStream();
             final PipedOutputStream pout = new PipedOutputStream(pin);
-            new Thread(() -> build(resources, headers, pout)).start();
+            new Thread(() -> build(resources, headers, pout, pin)).start();
             return pin;
         } catch (IOException e) {
-            throw new RuntimeException("Error opening pipe.", e);
+            throw new RuntimeException(e);
         }
     }
 
