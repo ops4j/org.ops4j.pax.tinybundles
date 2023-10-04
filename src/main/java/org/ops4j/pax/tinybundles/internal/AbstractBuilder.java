@@ -69,7 +69,7 @@ public abstract class AbstractBuilder implements Builder {
 
     private void addResource(final Map.Entry<String, URL> entrySet, final JarOutputStream jarOut) throws IOException {
         final JarEntry entry = new JarEntry(entrySet.getKey());
-        logger.debug("Adding resource {}, {}", entry.getName(), entrySet.getValue());
+        logger.debug("Adding resource {} [{}]", entry.getName(), entrySet.getValue());
         jarOut.putNextEntry(entry);
         try (InputStream inputStream = entrySet.getValue().openStream()) {
             copy(inputStream, jarOut);
@@ -92,12 +92,12 @@ public abstract class AbstractBuilder implements Builder {
      * @return a fresh manifest instance
      */
     protected Manifest createManifest(final Set<Map.Entry<String, String>> headers) {
-        logger.debug("Creating manifest from added headers.");
+        logger.debug("Creating manifest from headers.");
         final Manifest manifest = new Manifest();
         manifest.getMainAttributes().putValue("Manifest-Version", "1.0");
         manifest.getMainAttributes().putValue(MANIFEST_HEADER_NAME, Info.getPaxTinybundlesVersion());
         for (final Map.Entry<String, String> entry : headers) {
-            logger.debug("{} = {}", entry.getKey(), entry.getValue());
+            logger.debug("Header: {} = {}", entry.getKey(), entry.getValue());
             manifest.getMainAttributes().putValue(entry.getKey(), entry.getValue());
         }
         return manifest;

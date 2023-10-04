@@ -47,6 +47,7 @@ public class BndBuilder extends AbstractBuilder {
     @Override
     @NotNull
     public InputStream build(@NotNull final Map<String, URL> resources, @NotNull final Map<String, String> headers) {
+        logger.info("Building jar from resources and headers.");
         final CloseAwarePipedInputStream pin = new CloseAwarePipedInputStream();
         try (PipedOutputStream pout = new PipedOutputStream(pin)) {
             new Thread(() -> build(resources, headers, pout, pin)).start();
@@ -56,6 +57,8 @@ public class BndBuilder extends AbstractBuilder {
             return write(jar);
         } catch (Exception e) {
             throw new RuntimeException(e);
+        } finally {
+            logger.info("Writing jar finished.");
         }
     }
 

@@ -35,7 +35,7 @@ public class RawBuilder extends AbstractBuilder implements Builder {
     @Override
     @NotNull
     public InputStream build(@NotNull final Map<String, URL> resources, @NotNull final Map<String, String> headers) {
-        logger.debug("building...");
+        logger.info("Building jar from resources and headers.");
         try {
             final CloseAwarePipedInputStream pin = new CloseAwarePipedInputStream();
             final PipedOutputStream pout = new PipedOutputStream(pin);
@@ -43,6 +43,8 @@ public class RawBuilder extends AbstractBuilder implements Builder {
             return pin;
         } catch (IOException e) {
             throw new RuntimeException(e);
+        } finally {
+            logger.info("Writing jar finished.");
         }
     }
 
