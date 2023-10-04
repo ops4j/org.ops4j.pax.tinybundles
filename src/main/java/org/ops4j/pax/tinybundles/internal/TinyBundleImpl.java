@@ -92,7 +92,7 @@ public class TinyBundleImpl implements TinyBundle {
             } else if (strategy == InnerClassStrategy.ANONYMOUS) {
                 return finder.findAnonymousClasses(clazz);
             } else {
-                throw new IllegalArgumentException("Unsupported strategy" + strategy);
+                throw new IllegalArgumentException(String.format("Unsupported strategy: %s", strategy));
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -108,7 +108,7 @@ public class TinyBundleImpl implements TinyBundle {
                 addContents(jar);
             }
         } catch (IOException e) {
-            throw new RuntimeException("Problem loading bundle.", e);
+            throw new RuntimeException("Problem reading jar.", e);
         }
         return this;
     }
@@ -133,7 +133,7 @@ public class TinyBundleImpl implements TinyBundle {
         final URL resource = clazz.getResource("/" + path);
 
         if (Objects.isNull(resource)) {
-            throw new IllegalArgumentException(String.format("Class %s not found! (resource: %s )", clazz.getName(), path));
+            throw new IllegalArgumentException(String.format("Class %s not found! (resource: %s)", clazz.getName(), path));
         }
         addResource(path, resource);
 
