@@ -107,7 +107,7 @@ public class BndBuilder extends AbstractBuilder {
      * @param analyzer bnd analyzer
      */
     private void ensureSanitizedSymbolicName(final Analyzer analyzer) {
-        final String defaultSymbolicName = String.format("BuildByTinyBundles-%s", UUID.randomUUID());
+        final String defaultSymbolicName = String.format("TinyBundle-%s", UUID.randomUUID());
         final String symbolicName = analyzer.getProperty(Constants.BUNDLE_SYMBOLICNAME, defaultSymbolicName);
         final String sanitizedSymbolicName = symbolicName.replaceAll("[^a-zA-Z_0-9.-]", "_");
         analyzer.setProperty(Constants.BUNDLE_SYMBOLICNAME, sanitizedSymbolicName);
