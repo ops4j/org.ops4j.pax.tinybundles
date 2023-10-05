@@ -42,8 +42,7 @@ import org.osgi.framework.Constants;
 import static org.ops4j.pax.tinybundles.TinyBundles.bndBuilder;
 
 /**
- * Our default implementation of TinyBundle.
- * An instance should be retrieved via TinyBundles.bundle() factory method.
+ * The default TinyBundle implementation.
  *
  * @author Toni Menzel (tonit)
  * @since Apr 9, 2009

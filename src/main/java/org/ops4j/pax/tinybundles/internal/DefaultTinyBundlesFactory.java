@@ -28,6 +28,9 @@ import org.ops4j.pax.tinybundles.TinyBundlesFactory;
 import org.ops4j.store.Store;
 import org.ops4j.store.StoreFactory;
 
+/**
+ * The default TinyBundlesFactory service.
+ */
 public class DefaultTinyBundlesFactory implements TinyBundlesFactory {
 
     private Store<InputStream> store;

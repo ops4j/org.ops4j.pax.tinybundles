@@ -37,6 +37,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * The bnd builder builds jars from resources and headers.
+ * In addition, the builder is calculating and applying a new manifest after analyzing the jar.
+ *
  * @author Toni Menzel (tonit)
  * @since Apr 20, 2009
  */
@@ -79,10 +82,10 @@ public class BndBuilder extends AbstractBuilder {
     }
 
     /**
-     * Creates a piped input stream for the wrapped jar.
+     * Creates a piped input stream for the jar.
      *
-     * @param jar the wrapped jar
-     * @return an input stream for the wrapped jar
+     * @param jar the jar
+     * @return an input stream for the jar
      */
     private PipedInputStream write(final Jar jar) throws IOException {
         final CloseAwarePipedInputStream pin = new CloseAwarePipedInputStream();

@@ -33,6 +33,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * The abstract builder provides basic functions to build jars.
+ *
  * @author Toni Menzel (tonit)
  * @since Apr 20, 2009
  */

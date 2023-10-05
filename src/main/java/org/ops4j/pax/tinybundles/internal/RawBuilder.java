@@ -28,6 +28,9 @@ import org.ops4j.pax.tinybundles.Builder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * The raw builder builds jars from resources and headers without any additional processing.
+ */
 public class RawBuilder extends AbstractBuilder implements Builder {
 
     private final Logger logger = LoggerFactory.getLogger(RawBuilder.class);
