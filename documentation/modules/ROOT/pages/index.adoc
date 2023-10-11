@@ -6,8 +6,10 @@ https://github.com/ops4j/org.ops4j.pax.tinybundles[TinyBundles] is a library to 
 The API is exposed via an OSGi service `TinyBundlesFactory` and static methods in `TinyBundles`.
 
 TinyBundles provides two builders to compile bundles: Raw builder and https://bnd.bndtools.org/[bnd] builder.
+
+Bnd builder is calculating and applying a new manifest after analyzing the jar and supports processing of https://docs.osgi.org/specification/osgi.cmpn/8.0.0/service.component.html[Declarative Services] https://docs.osgi.org/specification/osgi.cmpn/8.0.0/service.component.html#service.component-component.annotations[component annotations].
+
 Since TinyBundles 4.0.0 bnd builder is the default.
-Bnd builder supports processing of https://docs.osgi.org/specification/osgi.cmpn/8.0.0/service.component.html[Declarative Services] https://docs.osgi.org/specification/osgi.cmpn/8.0.0/service.component.html#service.component-component.annotations[component annotations].
 
 == Using TinyBundles
 
