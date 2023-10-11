@@ -18,6 +18,39 @@
   <url>https://github.com/ops4j/org.ops4j.pax.tinybundles</url>
   <inceptionYear>2007</inceptionYear>
 
+  <developers>
+    <developer>
+      <id>tonit</id>
+      <name>Toni Menzel</name>
+      <email>toni.menzel@rebaze.com</email>
+      <organization>Rebaze</organization>
+      <roles>
+        <role>Founder</role>
+      </roles>
+      <timezone>UTC+1</timezone>
+    </developer>
+    <developer>
+      <id>hwellmann</id>
+      <name>Harald Wellmann</name>
+      <email>harald.wellmann@gmx.de</email>
+      <organization>independent software developer</organization>
+      <roles>
+        <role>Developer</role>
+      </roles>
+      <timezone>UTC+1</timezone>
+    </developer>
+    <developer>
+      <id>olli</id>
+      <name>Oliver Lietz</name>
+      <email>info@oliverlietz.de</email>
+      <organization/>
+      <roles>
+        <role>Developer</role>
+      </roles>
+      <timezone>UTC+1</timezone>
+    </developer>
+  </developers>
+
   <scm>
     <connection>scm:git:git://github.com/ops4j/org.ops4j.pax.tinybundles.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/ops4j/org.ops4j.pax.tinybundles.git</developerConnection>
@@ -148,39 +181,6 @@
       </plugin>
     </plugins>
   </build>
-
-  <developers>
-    <developer>
-      <id>tonit</id>
-      <name>Toni Menzel</name>
-      <email>toni.menzel@rebaze.com</email>
-      <organization>Rebaze</organization>
-      <roles>
-        <role>Founder</role>
-      </roles>
-      <timezone>UTC+1</timezone>
-    </developer>
-    <developer>
-      <id>hwellmann</id>
-      <name>Harald Wellmann</name>
-      <email>harald.wellmann@gmx.de</email>
-      <organization>independent software developer</organization>
-      <roles>
-        <role>Developer</role>
-      </roles>
-      <timezone>UTC+1</timezone>
-    </developer>
-    <developer>
-      <id>olli</id>
-      <name>Oliver Lietz</name>
-      <email>info@oliverlietz.de</email>
-      <organization/>
-      <roles>
-        <role>Developer</role>
-      </roles>
-      <timezone>UTC+1</timezone>
-    </developer>
-  </developers>
 
   <dependencies>
     <!-- javax -->
