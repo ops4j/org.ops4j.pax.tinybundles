@@ -20,4 +20,5 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: ${{ matrix.java-version }}
-      - run: mvn -B verify --no-transfer-progress --file pom.xml
+      - run: mvn wrapper:wrapper
+      - run: ./mvnw verify --batch-mode --no-transfer-progress --file pom.xml
