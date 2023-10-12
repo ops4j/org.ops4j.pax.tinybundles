@@ -11,7 +11,7 @@
 
   <groupId>org.ops4j.pax.tinybundles</groupId>
   <artifactId>tinybundles</artifactId>
-  <version>4.0.0-SNAPSHOT</version>
+  <version>4.0.0</version>
 
   <name>OPS4J Pax TinyBundles</name>
   <description>TinyBundles is a library to create and modify OSGi bundles on the fly using fluent Java API.</description>
@@ -44,7 +44,7 @@
       <id>olli</id>
       <name>Oliver Lietz</name>
       <email>info@oliverlietz.de</email>
-      <organization/>
+      <organization />
       <roles>
         <role>Developer</role>
       </roles>
@@ -56,7 +56,7 @@
     <connection>scm:git:git://github.com/ops4j/org.ops4j.pax.tinybundles.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/ops4j/org.ops4j.pax.tinybundles.git</developerConnection>
     <url>scm:git:https://github.com/ops4j/org.ops4j.pax.tinybundles.git</url>
-    <tag>HEAD</tag>
+    <tag>tinybundles-4.0.0</tag>
   </scm>
 
   <issueManagement>
