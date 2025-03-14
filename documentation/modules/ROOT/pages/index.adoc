@@ -20,7 +20,7 @@ Since TinyBundles 4.0.0 bnd builder is the default.
     <dependency>
       <groupId>org.ops4j.pax.tinybundles</groupId>
       <artifactId>tinybundles</artifactId>
-      <version>4.0.0</version>
+      <version>4.0.1</version>
     </dependency>
 ----
 2. Import `TinyBundles`
